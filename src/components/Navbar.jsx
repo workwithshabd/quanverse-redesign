@@ -9,9 +9,7 @@ import {
   Briefcase,
   Coins
 } from 'lucide-react';
-
 import { useNavigation } from '../hooks/useNavigation';
-
 
 export default function Navbar() {
   const { 
@@ -38,6 +36,12 @@ export default function Navbar() {
     navigateTo(page, hash);
   };
 
+  const getSubtitle = () => {
+    if (currentPage === 'careers') return 'Careers & Culture';
+    if (currentPage === 'teachers') return 'Educator Network';
+    return 'Class 10 AI Boards';
+  };
+
   return (
     <header className={`sticky-nav ${isScrolled ? 'nav-scrolled' : ''}`}>
       <div className="app-container">
@@ -55,32 +59,43 @@ export default function Navbar() {
             </div>
             <div className="logo-text-group">
               <span className="logo-title">quanverse</span>
-              <span className="logo-subtitle">
-                {currentPage === 'careers' ? 'Educator Network' : 'Class 10 AI Boards'}
-              </span>
+              <span className="logo-subtitle">{getSubtitle()}</span>
             </div>
           </a>
 
           {/* Desktop Navigation Links */}
           <nav className="desktop-nav-links" aria-label="Primary Navigation">
-            {currentPage === 'home' ? (
+            {currentPage === 'home' && (
               <>
                 <a href="#ai-marking" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#ai-marking')}>AI Marking</a>
                 <a href="#readiness" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#readiness')}>Board Readiness</a>
                 <a href="#mock-tests" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#mock-tests')}>Mock Tests</a>
-                <a href="#how-it-works" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#how-it-works')}>How It Works</a>
                 <a href="#pricing" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#pricing')}>Pricing</a>
+                
+                {/* Careers Link */}
                 <button
                   type="button"
                   className="nav-link nav-careers-pill-btn"
                   onClick={(e) => handleNavClick(e, 'careers')}
                 >
-                  <Briefcase size={14} className="text-lavender-icon" />
-                  <span>Careers / For Teachers</span>
+                  <Briefcase size={13} className="text-lavender-icon" />
+                  <span>Careers</span>
                   <span className="hiring-dot"></span>
                 </button>
+
+                {/* For Teachers Link */}
+                <button
+                  type="button"
+                  className="nav-link nav-teacher-pill-btn"
+                  onClick={(e) => handleNavClick(e, 'teachers')}
+                >
+                  <Users size={13} />
+                  <span>For Teachers</span>
+                </button>
               </>
-            ) : (
+            )}
+
+            {currentPage === 'careers' && (
               <>
                 <button 
                   type="button" 
@@ -90,18 +105,50 @@ export default function Navbar() {
                   <GraduationCap size={14} />
                   <span>Student Portal</span>
                 </button>
-                <a href="#careers" className="nav-link" onClick={(e) => handleNavClick(e, 'careers', '#careers')}>Why Teach With Us</a>
-                <a href="#royalty-calc" className="nav-link" onClick={(e) => handleNavClick(e, 'careers', '#royalty-calc')}>Royalty Calculator</a>
-                <a href="#teacher-signup-section" className="nav-link" onClick={(e) => handleNavClick(e, 'careers', '#teacher-signup-section')}>Sign Up as Teacher</a>
-                <a href="#open-roles" className="nav-link" onClick={(e) => handleNavClick(e, 'careers', '#open-roles')}>Open Roles</a>
-                <a href="#teacher-faqs" className="nav-link" onClick={(e) => handleNavClick(e, 'careers', '#teacher-faqs')}>FAQs</a>
+                <a href="#open-positions" className="nav-link" onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}>Open Roles</a>
+                <a href="#company-culture" className="nav-link" onClick={(e) => handleNavClick(e, 'careers', '#company-culture')}>Culture &amp; Perks</a>
+                
+                {/* Dedicated route to Teachers page */}
+                <button
+                  type="button"
+                  className="nav-link nav-teacher-pill-btn"
+                  onClick={(e) => handleNavClick(e, 'teachers')}
+                >
+                  <Users size={13} />
+                  <span>Teach With Us (Royalties) →</span>
+                </button>
+              </>
+            )}
+
+            {currentPage === 'teachers' && (
+              <>
+                <button 
+                  type="button" 
+                  className="nav-link nav-back-student-btn"
+                  onClick={(e) => handleNavClick(e, 'home')}
+                >
+                  <GraduationCap size={14} />
+                  <span>Student Portal</span>
+                </button>
+                <a href="#teachers" className="nav-link" onClick={(e) => handleNavClick(e, 'teachers', '#teachers')}>Why Teach With Us</a>
+                <a href="#royalty-calc" className="nav-link" onClick={(e) => handleNavClick(e, 'teachers', '#royalty-calc')}>Royalty Calculator</a>
+                <a href="#teacher-signup-section" className="nav-link" onClick={(e) => handleNavClick(e, 'teachers', '#teacher-signup-section')}>Sign Up as Teacher</a>
+                <a href="#teacher-faqs" className="nav-link" onClick={(e) => handleNavClick(e, 'teachers', '#teacher-faqs')}>FAQs</a>
+                <button
+                  type="button"
+                  className="nav-link nav-careers-pill-btn"
+                  onClick={(e) => handleNavClick(e, 'careers')}
+                >
+                  <Briefcase size={13} />
+                  <span>All Company Careers</span>
+                </button>
               </>
             )}
           </nav>
 
           {/* CTA Actions */}
           <div className="nav-actions">
-            {currentPage === 'home' ? (
+            {currentPage === 'home' && (
               <>
                 <button 
                   type="button" 
@@ -115,20 +162,31 @@ export default function Navbar() {
                 <button 
                   type="button" 
                   className="btn btn-primary nav-signin-btn"
-                  onClick={() => {
-                    alert('Student Sign In: Direct access to CBSE/ICSE mock test dashboard.');
-                  }}
+                  onClick={() => alert('Student Sign In: Direct access to CBSE/ICSE mock test dashboard.')}
                 >
                   <span>Student Sign In</span>
                   <ArrowRight size={15} />
                 </button>
               </>
-            ) : (
+            )}
+
+            {currentPage === 'careers' && (
+              <a 
+                href="#open-positions" 
+                className="btn btn-primary nav-signin-btn"
+                onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}
+              >
+                <span>View All Jobs</span>
+                <ArrowRight size={15} />
+              </a>
+            )}
+
+            {currentPage === 'teachers' && (
               <>
                 <button 
                   type="button" 
                   className="btn btn-pastel-lavender nav-demo-btn"
-                  onClick={(e) => handleNavClick(e, 'careers', '#royalty-calc')}
+                  onClick={(e) => handleNavClick(e, 'teachers', '#royalty-calc')}
                 >
                   <Coins size={15} />
                   <span>Royalty Calc</span>
@@ -173,40 +231,67 @@ export default function Navbar() {
                   className={`mobile-switch-btn ${currentPage === 'home' ? 'active' : ''}`}
                   onClick={(e) => handleNavClick(e, 'home')}
                 >
-                  <GraduationCap size={15} />
-                  <span>Student Portal</span>
+                  <GraduationCap size={14} />
+                  <span>Student</span>
                 </button>
                 <button
                   type="button"
                   className={`mobile-switch-btn ${currentPage === 'careers' ? 'active' : ''}`}
                   onClick={(e) => handleNavClick(e, 'careers')}
                 >
-                  <Users size={15} />
-                  <span>Careers / Teachers</span>
+                  <Briefcase size={14} />
+                  <span>Careers</span>
+                </button>
+                <button
+                  type="button"
+                  className={`mobile-switch-btn ${currentPage === 'teachers' ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, 'teachers')}
+                >
+                  <Users size={14} />
+                  <span>Teachers</span>
                 </button>
               </div>
             </div>
 
             <div className="mobile-links-list">
-              {currentPage === 'home' ? (
+              {currentPage === 'home' && (
                 <>
                   <a href="#ai-marking" onClick={(e) => handleNavClick(e, 'home', '#ai-marking')}>AI Step Marking</a>
                   <a href="#readiness" onClick={(e) => handleNavClick(e, 'home', '#readiness')}>Board Readiness Predictor</a>
                   <a href="#mock-tests" onClick={(e) => handleNavClick(e, 'home', '#mock-tests')}>Timed Mock Tests</a>
-                  <a href="#how-it-works" onClick={(e) => handleNavClick(e, 'home', '#how-it-works')}>How It Works</a>
                   <a href="#pricing" onClick={(e) => handleNavClick(e, 'home', '#pricing')}>Pricing &amp; Board Passes</a>
                   <a href="#careers" onClick={(e) => handleNavClick(e, 'careers')} className="text-lavender-accent font-semibold">
-                    Careers &amp; Teacher Network →
+                    Company Careers (All Roles) →
+                  </a>
+                  <a href="#teachers" onClick={(e) => handleNavClick(e, 'teachers')} className="text-emerald-accent font-semibold">
+                    For Teachers &amp; Educators →
                   </a>
                 </>
-              ) : (
+              )}
+
+              {currentPage === 'careers' && (
                 <>
-                  <a href="#careers" onClick={(e) => handleNavClick(e, 'careers', '#careers')}>Why Teach With Us</a>
-                  <a href="#royalty-calc" onClick={(e) => handleNavClick(e, 'careers', '#royalty-calc')}>Royalty &amp; Payout Calculator</a>
-                  <a href="#teacher-signup-section" onClick={(e) => handleNavClick(e, 'careers', '#teacher-signup-section')}>Sign Up as Teacher</a>
-                  <a href="#open-roles" onClick={(e) => handleNavClick(e, 'careers', '#open-roles')}>Open Positions</a>
-                  <a href="#teacher-faqs" onClick={(e) => handleNavClick(e, 'careers', '#teacher-faqs')}>Teacher FAQ</a>
-                  <a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="text-emerald-accent font-semibold">
+                  <a href="#open-positions" onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}>Open Positions</a>
+                  <a href="#company-culture" onClick={(e) => handleNavClick(e, 'careers', '#company-culture')}>Culture &amp; Perks</a>
+                  <a href="#teachers" onClick={(e) => handleNavClick(e, 'teachers')} className="text-lavender-accent font-semibold">
+                    Apply as a Teacher (Royalties) →
+                  </a>
+                  <a href="#home" onClick={(e) => handleNavClick(e, 'home')}>
+                    ← Return to Student Portal
+                  </a>
+                </>
+              )}
+
+              {currentPage === 'teachers' && (
+                <>
+                  <a href="#teachers" onClick={(e) => handleNavClick(e, 'teachers', '#teachers')}>Why Teach With Us</a>
+                  <a href="#royalty-calc" onClick={(e) => handleNavClick(e, 'teachers', '#royalty-calc')}>Royalty Calculator</a>
+                  <a href="#teacher-signup-section" onClick={(e) => handleNavClick(e, 'teachers', '#teacher-signup-section')}>Sign Up as Teacher</a>
+                  <a href="#teacher-faqs" onClick={(e) => handleNavClick(e, 'teachers', '#teacher-faqs')}>Teacher FAQs</a>
+                  <a href="#careers" onClick={(e) => handleNavClick(e, 'careers')}>
+                    Company Careers (All Roles) →
+                  </a>
+                  <a href="#home" onClick={(e) => handleNavClick(e, 'home')}>
                     ← Return to Student Portal
                   </a>
                 </>
@@ -214,7 +299,7 @@ export default function Navbar() {
             </div>
 
             <div className="mobile-menu-actions">
-              {currentPage === 'home' ? (
+              {currentPage === 'home' && (
                 <button 
                   type="button"
                   className="btn btn-primary w-full"
@@ -223,7 +308,18 @@ export default function Navbar() {
                   <Sparkles size={16} />
                   <span>Start Free First Mock</span>
                 </button>
-              ) : (
+              )}
+              {currentPage === 'careers' && (
+                <a 
+                  href="#open-positions"
+                  className="btn btn-primary w-full text-center"
+                  onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}
+                >
+                  <Briefcase size={16} />
+                  <span>Explore Open Roles</span>
+                </a>
+              )}
+              {currentPage === 'teachers' && (
                 <button 
                   type="button"
                   className="btn btn-primary w-full"
@@ -243,7 +339,7 @@ export default function Navbar() {
           position: sticky;
           top: 0;
           z-index: 100;
-          background: rgba(251, 251, 250, 0.88);
+          background: rgba(251, 251, 250, 0.9);
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
           border-bottom: 1px solid var(--border-light);
@@ -251,7 +347,7 @@ export default function Navbar() {
         }
 
         .nav-scrolled {
-          background: rgba(255, 255, 255, 0.95);
+          background: rgba(255, 255, 255, 0.96);
           box-shadow: 0 4px 20px rgba(30, 63, 49, 0.05);
         }
 
@@ -328,11 +424,11 @@ export default function Navbar() {
         .desktop-nav-links {
           display: flex;
           align-items: center;
-          gap: 1.5rem;
+          gap: 1.4rem;
         }
 
         .nav-link {
-          font-size: 0.92rem;
+          font-size: 0.9rem;
           font-weight: 500;
           color: var(--text-muted);
           transition: color var(--transition-fast);
@@ -353,23 +449,38 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           gap: 6px;
-          padding: 6px 12px;
+          padding: 5px 12px;
           background: var(--pastel-lavender);
           border: 1px solid var(--pastel-lavender-border);
           border-radius: var(--radius-full);
           color: var(--pastel-lavender-text);
           font-weight: 600;
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           transition: all var(--transition-fast);
         }
         .nav-careers-pill-btn:hover {
           background: #e4ddfc;
-          color: #3b2fa0;
           transform: translateY(-1px);
         }
-        .text-lavender-icon {
-          color: var(--pastel-lavender-text);
+
+        .nav-teacher-pill-btn {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 5px 12px;
+          background: var(--pastel-sage);
+          border: 1px solid var(--pastel-sage-border);
+          border-radius: var(--radius-full);
+          color: var(--pastel-sage-text);
+          font-weight: 600;
+          font-size: 0.82rem;
+          transition: all var(--transition-fast);
         }
+        .nav-teacher-pill-btn:hover {
+          background: #d0ebd8;
+          transform: translateY(-1px);
+        }
+
         .hiring-dot {
           width: 6px;
           height: 6px;
@@ -382,17 +493,16 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           gap: 6px;
-          padding: 6px 12px;
-          background: var(--pastel-sage);
-          border: 1px solid var(--pastel-sage-border);
+          padding: 5px 12px;
+          background: var(--bg-subtle);
+          border: 1px solid var(--border-medium);
           border-radius: var(--radius-full);
-          color: var(--pastel-sage-text);
+          color: var(--text-main);
           font-weight: 600;
-          font-size: 0.85rem;
+          font-size: 0.82rem;
         }
         .nav-back-student-btn:hover {
-          background: #d4ebd9;
-          color: #153c29;
+          background: #e5ece6;
         }
 
         .nav-actions {
@@ -471,12 +581,12 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 6px;
-          padding: 8px 10px;
+          gap: 5px;
+          padding: 7px 8px;
           border: 1px solid var(--border-light);
           background: #ffffff;
           border-radius: var(--radius-sm);
-          font-size: 0.85rem;
+          font-size: 0.8rem;
           font-weight: 600;
           cursor: pointer;
           color: var(--text-muted);

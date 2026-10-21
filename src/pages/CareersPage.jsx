@@ -1,362 +1,366 @@
-import React, { useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  Users, 
-  Coins, 
-  Award, 
-  Sparkles, 
-  CheckCircle2, 
+  Briefcase, 
+  MapPin, 
+  Clock, 
   ArrowRight, 
-  BookOpen, 
-  Star,
-  HelpCircle,
-  Briefcase
+  Sparkles, 
+  Filter, 
+  Users, 
+  GraduationCap, 
+  Cpu, 
+  Heart, 
+  Laptop, 
+  TrendingUp, 
+  CheckCircle2
 } from 'lucide-react';
-import RoyaltyCalculator from '../components/teacher/RoyaltyCalculator';
-import TeacherSignupForm from '../components/teacher/TeacherSignupForm';
-import OpenPositionsList from '../components/teacher/OpenPositionsList';
+import { api } from '../services/api';
 import { useNavigation } from '../hooks/useNavigation';
 
-
 export default function CareersPage() {
-  const { openTeacherSignup } = useNavigation();
-  const signupRef = useRef(null);
+  const { navigateTo, openJobApplication } = useNavigation();
+  const [positions, setPositions] = useState([]);
+  const [activeDept, setActiveDept] = useState('All');
+  const [isLoading, setIsLoading] = useState(true);
 
-  const scrollToSignup = () => {
-    if (signupRef.current) {
-      signupRef.current.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      openTeacherSignup();
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const jobs = await api.getOpenPositions();
+        setPositions(jobs);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     }
-  };
+    loadData();
+  }, []);
 
-  const handleApplyRole = (_roleTitle) => {
-    scrollToSignup();
-  };
-
-
-  const teacherTestimonials = [
-    {
-      name: 'Mrs. Sunita Sharma',
-      role: 'Head of Mathematics Department',
-      school: 'Delhi Public School, R.K. Puram',
-      experience: '19 Years Experience • 8-Time Board Examiner',
-      quote: 'Quanverse provides the exact step-marking rigor we demand in CBSE evaluation. I author two specimen mock series each semester and the royalties are paid like clockwork on the 5th of each month.',
-      earnings: 'Avg. ₹38,000/month in creator royalties'
-    },
-    {
-      name: 'Mr. Rajesh Nair',
-      role: 'Senior Physics Faculty & Author',
-      school: 'St. Xavier’s Collegiate School, Kolkata',
-      experience: '14 Years ICSE Science Specialist',
-      quote: 'The AI question generator matches CISCE specimen rubrics with astonishing accuracy. It saved our department 40+ hours when drafting pre-board papers for 240 candidates.',
-      earnings: 'Pre-board distribution partner'
-    },
-    {
-      name: 'Dr. Anita Deshmukh',
-      role: 'Senior Biology Evaluator',
-      school: 'Bishop’s School, Pune',
-      experience: '16 Years Secondary Board Evaluator',
-      quote: 'Teaching Class 10 requires deep nuance—students often lose marks merely on technical keywords. Authoring on Quanverse gives our expertise national reach while securing recurring income.',
-      earnings: 'Avg. ₹29,500/month royalties'
-    }
+  const departments = [
+    'All',
+    'Engineering & AI',
+    'Product & Design',
+    'Growth & Partnerships',
+    'Academics & Editorial',
+    'Operations & Support'
   ];
 
-  const teacherFaqs = [
+  const filteredPositions = activeDept === 'All'
+    ? positions
+    : positions.filter(p => p.department === activeDept);
+
+  const perks = [
     {
-      q: 'Who owns the copyright of the questions and mock papers I author?',
-      a: 'You retain full intellectual attribution and co-copyright. Quanverse receives an exclusive digital distribution license to deliver your content to students and schools, and pays you perpetual royalties for every student attempt.'
+      icon: <Laptop size={22} className="text-emerald" />,
+      title: 'Remote-First Freedom',
+      desc: 'Work from anywhere across India. We optimize for high-trust, asynchronous execution and outcomes, not seat time.'
     },
     {
-      q: 'How and when are teacher royalties paid?',
-      a: 'Royalties are calculated transparently in your Educator Dashboard and credited directly to your registered bank account or UPI on the 5th of every month. Complete attempt analytics and deduction statements are downloadable anytime.'
+      icon: <TrendingUp size={22} className="text-emerald" />,
+      title: 'Meaningful Equity (ESOPs)',
+      desc: 'Be a genuine co-owner of Quanverse. We distribute substantial equity packages across all full-time team members.'
     },
     {
-      q: 'Can I author part-time alongside my current school teaching job?',
-      a: 'Yes, absolutely! 92% of our partner educators are active school teachers or private tutors. You can author single questions in the evening, review rubrics on weekends, or curate complete pre-boards whenever your schedule permits.'
+      icon: <Heart size={22} className="text-emerald" />,
+      title: 'Comprehensive Health Cover',
+      desc: 'Comprehensive medical and health insurance for you and your dependents, with zero co-pay and OPD allowances.'
     },
     {
-      q: 'What is the minimum eligibility to become an authoring teacher?',
-      a: 'We require a minimum of 3 years of teaching experience in Class 10 CBSE, ICSE, or State Board curricula. Prior experience as an official board answer sheet evaluator is highly preferred and fast-tracks approval.'
+      icon: <Sparkles size={22} className="text-emerald" />,
+      title: '₹40,000 Learning Stipend',
+      desc: 'Annual personal development budget for engineering books, LLM developer subscriptions, workshops, and courses.'
+    },
+    {
+      icon: <Cpu size={22} className="text-emerald" />,
+      title: 'Modern AI & Web Tooling',
+      desc: 'Latest M-series MacBooks, premium Gemini & Claude API credits, and state-of-the-art developer tooling.'
+    },
+    {
+      icon: <GraduationCap size={22} className="text-emerald" />,
+      title: 'Deep Student Impact',
+      desc: 'Directly eliminate board exam panic for over 4 million Class 10 candidates across CBSE & ICSE every year.'
     }
   ];
 
   return (
-    <div className="careers-page">
+    <div className="company-careers-page">
       
-      {/* 1. Careers Hero Section */}
+      {/* 1. Hero Section */}
       <section className="careers-hero-section">
-        <div className="pastel-glow-orb orb-lavender"></div>
         <div className="pastel-glow-orb orb-sage"></div>
-        <div className="pastel-glow-orb orb-butter"></div>
+        <div className="pastel-glow-orb orb-lavender"></div>
+        <div className="pastel-glow-orb orb-peach"></div>
 
         <div className="app-container">
-          <div className="careers-hero-content text-center">
-            <div className="pill-badge pill-lavender mb-3 mx-auto">
-              <Users size={14} />
-              <span>Quanverse Educator Network &amp; Careers</span>
+          <div className="careers-hero-center text-center">
+            
+            <div className="pill-badge pill-sage mb-3 mx-auto">
+              <Sparkles size={14} />
+              <span>We're Hiring • Engineering, AI, Product &amp; Growth</span>
             </div>
 
-            <h1 className="careers-hero-heading">
-              Author Board-Standard Papers. <br />
-              <span className="highlight-text">Earn Monthly Royalties</span> &amp; Lead AI Assessment.
+            <h1 className="careers-hero-title">
+              Build the Intelligence Layer for <br />
+              <span className="highlight-text">National Board Exams</span>.
             </h1>
 
-            <p className="careers-hero-sub">
-              Are you an experienced Class 10 CBSE or ICSE educator? Partner with India’s leading board AI platform. 
-              Author original question papers, review official step-marking rubrics, automate pre-boards for your school, and receive perpetual creator royalties.
+            <p className="careers-hero-subtitle">
+              We are transforming how 4 million Class 10 CBSE &amp; ICSE students prepare for life-defining examinations. 
+              Join an ambitious, mission-driven team solving real-world computer vision, handwriting multimodal recognition, and fair step-marking.
             </p>
 
-            <div className="careers-cta-row">
-              <button 
-                type="button" 
-                className="btn btn-primary btn-lg shadow-hover"
-                onClick={scrollToSignup}
-              >
-                <Users size={18} />
-                <span>Sign Up as a Teacher</span>
-                <ArrowRight size={17} />
-              </button>
-
-              <a href="#royalty-calc" className="btn btn-secondary btn-lg">
-                <Coins size={17} className="text-butter" />
-                <span>Calculate Your Royalties</span>
+            <div className="hero-cta-buttons">
+              <a href="#open-positions" className="btn btn-primary btn-lg shadow-hover">
+                <Briefcase size={17} />
+                <span>Explore Open Roles ({positions.length})</span>
+                <ArrowRight size={16} />
               </a>
 
-              <a href="#open-roles" className="btn btn-ghost btn-lg">
-                <Briefcase size={17} />
-                <span>View Core Team Roles</span>
+              <a href="#company-culture" className="btn btn-secondary btn-lg">
+                <Heart size={16} className="text-rose" />
+                <span>Culture &amp; Perks</span>
               </a>
             </div>
 
-            {/* Social Trust Metrics */}
-            <div className="careers-trust-band">
-              <div className="trust-cell">
-                <div className="trust-val">₹3.4M+</div>
-                <div className="trust-desc">Royalties Paid to Educators</div>
+            {/* Quick Metrics */}
+            <div className="careers-stats-ribbon">
+              <div className="stat-node">
+                <div className="stat-fig">45,000+</div>
+                <div className="stat-sub">Student Papers Evaluated</div>
               </div>
-              <div className="trust-sep"></div>
-              <div className="trust-cell">
-                <div className="trust-val">140+</div>
-                <div className="trust-desc">Partner Schools &amp; Pre-Boards</div>
+              <div className="stat-line"></div>
+              <div className="stat-node">
+                <div className="stat-fig">99.4%</div>
+                <div className="stat-sub">Board Rubric Accuracy</div>
               </div>
-              <div className="trust-sep"></div>
-              <div className="trust-cell">
-                <div className="trust-val">450+</div>
-                <div className="trust-desc">Active Teacher Authors</div>
+              <div className="stat-line"></div>
+              <div className="stat-node">
+                <div className="stat-fig">140+</div>
+                <div className="stat-sub">Partner School Networks</div>
               </div>
-              <div className="trust-sep"></div>
-              <div className="trust-cell">
-                <div className="trust-val">100%</div>
-                <div className="trust-desc">Attribution &amp; IP Protection</div>
+              <div className="stat-line"></div>
+              <div className="stat-node">
+                <div className="stat-fig">Remote</div>
+                <div className="stat-sub">India-Wide Team</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Educator Benefits (4 Core Pillars) */}
-      <section className="section-spacing educator-pillars-section">
+      {/* 2. PROMINENT EDUCATOR CALLOUT: Option to Apply as a Teacher */}
+      <section className="teacher-pathway-banner-section">
+        <div className="app-container">
+          <div className="teacher-banner-card glass-panel-elevated">
+            <div className="teacher-banner-grid">
+              
+              <div className="teacher-banner-text">
+                <div className="pill-badge pill-lavender mb-3">
+                  <Users size={14} />
+                  <span>Educator &amp; School Faculty Hub</span>
+                </div>
+                <h2 className="teacher-banner-title">
+                  Are You a Senior Class 10 Teacher or Board Examiner?
+                </h2>
+                <p className="teacher-banner-sub">
+                  Looking to author board-standard question papers, validate step-marking schemes, curate pre-boards for your school, or earn monthly creator royalties? 
+                  We built a dedicated platform exclusively for educators.
+                </p>
+
+                <div className="teacher-perk-chips">
+                  <span className="perk-chip">
+                    <CheckCircle2 size={14} className="text-emerald" />
+                    Perpetual Royalties (₹350/item + attempt dividends)
+                  </span>
+                  <span className="perk-chip">
+                    <CheckCircle2 size={14} className="text-emerald" />
+                    AI Authoring Studio &amp; School Pre-Board Suite
+                  </span>
+                  <span className="perk-chip">
+                    <CheckCircle2 size={14} className="text-emerald" />
+                    Official Senior Evaluator Recognition
+                  </span>
+                </div>
+              </div>
+
+              <div className="teacher-banner-cta-col">
+                <div className="teacher-cta-card">
+                  <span className="cta-card-heading">Join Educator Network</span>
+                  <p className="cta-card-note">
+                    Author questions, calculate monthly royalties, or register as an accredited evaluator.
+                  </p>
+                  
+                  <button
+                    type="button"
+                    className="btn btn-primary w-full teacher-route-btn shadow-hover"
+                    onClick={() => navigateTo('teachers')}
+                  >
+                    <Users size={16} />
+                    <span>Apply as a Teacher</span>
+                    <ArrowRight size={16} />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="btn btn-ghost btn-sm w-full mt-2"
+                    onClick={() => navigateTo('teachers', '#royalty-calc')}
+                  >
+                    <span>View Royalty Calculator →</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Company Culture, Benefits & Perks */}
+      <section className="section-spacing company-culture-section" id="company-culture">
         <div className="app-container">
           <div className="section-head text-center mb-5">
-            <span className="pill-badge pill-sage mb-2">Why Teach With Quanverse</span>
-            <h2 className="section-title">Built by Educators, for Educators</h2>
+            <span className="pill-badge pill-butter mb-2">Life at Quanverse</span>
+            <h2 className="section-title">Why You’ll Do Your Best Work Here</h2>
             <p className="section-sub max-w-700 mx-auto">
-              We empower seasoned teachers with cutting-edge technology and fair economics—transforming your pedagogical expertise into recurring value.
+              We treat our team like professional athletes: world-class compensation, high trust, exceptional craft standards, and deep respect for your craft.
             </p>
           </div>
 
-          <div className="pillars-grid">
-            <div className="pillar-card glass-panel-elevated">
-              <div className="pillar-icon-box bg-sage">
-                <Coins size={24} className="text-sage" />
+          <div className="perks-grid">
+            {perks.map((perk, i) => (
+              <div key={i} className="perk-card glass-panel-elevated">
+                <div className="perk-icon-circle">{perk.icon}</div>
+                <h3 className="perk-title">{perk.title}</h3>
+                <p className="perk-desc">{perk.desc}</p>
               </div>
-              <h3 className="pillar-title">Author Once, Earn Perpetually</h3>
-              <p className="pillar-desc">
-                Receive upfront bounties for approved questions plus monthly dividends every single time a student takes an exam featuring your content.
-              </p>
-              <ul className="pillar-checks">
-                <li><CheckCircle2 size={14} className="text-emerald" /> Upfront bounty: ₹300 - ₹1,200 per item</li>
-                <li><CheckCircle2 size={14} className="text-emerald" /> Recurring attempts royalty dividend</li>
-                <li><CheckCircle2 size={14} className="text-emerald" /> Automatic payouts on 5th of every month</li>
-              </ul>
-            </div>
-
-            <div className="pillar-card glass-panel-elevated">
-              <div className="pillar-icon-box bg-lavender">
-                <Award size={24} className="text-lavender" />
-              </div>
-              <h3 className="pillar-title">National Educator Recognition</h3>
-              <p className="pillar-desc">
-                Your profile, verified school affiliation, and examiner credentials appear prominently alongside your authored mock exams.
-              </p>
-              <ul className="pillar-checks">
-                <li><CheckCircle2 size={14} className="text-emerald" /> Verified "Senior Board Examiner" badge</li>
-                <li><CheckCircle2 size={14} className="text-emerald" /> Dedicated author public profile page</li>
-                <li><CheckCircle2 size={14} className="text-emerald" /> Featured in school recommendation lists</li>
-              </ul>
-            </div>
-
-            <div className="pillar-card glass-panel-elevated">
-              <div className="pillar-icon-box bg-peach">
-                <Sparkles size={24} className="text-peach" />
-              </div>
-              <h3 className="pillar-title">AI Authoring Studio Access</h3>
-              <p className="pillar-desc">
-                Use our proprietary teacher co-pilot to generate official CBSE 2027-aligned marking keys, step deductions, and competency case studies in seconds.
-              </p>
-              <ul className="pillar-checks">
-                <li><CheckCircle2 size={14} className="text-emerald" /> Auto-formatting to CBSE &amp; ICSE blueprints</li>
-                <li><CheckCircle2 size={14} className="text-emerald" /> Step-by-step mark allocation generator</li>
-                <li><CheckCircle2 size={14} className="text-emerald" /> LaTeX math &amp; diagram formatting tools</li>
-              </ul>
-            </div>
-
-            <div className="pillar-card glass-panel-elevated">
-              <div className="pillar-icon-box bg-sky">
-                <BookOpen size={24} className="text-sky" />
-              </div>
-              <h3 className="pillar-title">Automate School Pre-Boards</h3>
-              <p className="pillar-desc">
-                Assemble complete 80-mark pre-board papers for your school with 1-click PDF generation, printable answer booklets, and automated AI grading.
-              </p>
-              <ul className="pillar-checks">
-                <li><CheckCircle2 size={14} className="text-emerald" /> 1-Click 80-mark pre-board generation</li>
-                <li><CheckCircle2 size={14} className="text-emerald" /> Print-ready question paper with school logo</li>
-                <li><CheckCircle2 size={14} className="text-emerald" /> Bulk AI grading for school cohorts</li>
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Interactive Royalty Calculator */}
-      <section className="section-spacing bg-subtle-section" id="royalty-calc">
+      {/* 4. Open Positions Directory */}
+      <section className="section-spacing bg-subtle-section" id="open-positions">
         <div className="app-container">
           <div className="section-head text-center mb-4">
-            <span className="pill-badge pill-butter mb-2">Earnings Transparency</span>
-            <h2 className="section-title">How Much Can You Earn?</h2>
-            <p className="section-sub max-w-600 mx-auto">
-              Drag the sliders below to estimate your monthly payouts based on questions contributed and student attempts.
+            <span className="pill-badge pill-peach mb-2">Career Opportunities</span>
+            <h2 className="section-title">Open Positions Across All Teams</h2>
+            <p className="section-sub max-w-650 mx-auto">
+              Explore opportunities in Engineering, AI, Product, Design, Growth, and Academics.
             </p>
           </div>
 
-          <div className="max-w-900 mx-auto">
-            <RoyaltyCalculator onApplyClick={scrollToSignup} />
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Embedded Teacher Sign-Up Application Form */}
-      <section className="section-spacing" id="teacher-signup-section" ref={signupRef}>
-        <div className="app-container">
-          <div className="max-w-800 mx-auto">
-            <TeacherSignupForm onSuccess={() => {}} />
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Core Open Positions & Career Opportunities */}
-      <section className="section-spacing bg-subtle-section">
-        <div className="app-container">
-          <OpenPositionsList onApplyRole={handleApplyRole} />
-        </div>
-      </section>
-
-      {/* 6. Educator Testimonials & Spotlights */}
-      <section className="section-spacing">
-        <div className="app-container">
-          <div className="section-head text-center mb-5">
-            <span className="pill-badge pill-lavender mb-2">Senior Faculty Voices</span>
-            <h2 className="section-title">Trusted by Senior CBSE &amp; ICSE Educators</h2>
-            <p className="section-sub max-w-600 mx-auto">
-              Hear from department heads and board moderators who author on Quanverse.
-            </p>
+          {/* Department Filter Bar */}
+          <div className="department-filter-wrap">
+            <div className="filter-label-group">
+              <Filter size={14} className="text-light" />
+              <span>Department:</span>
+            </div>
+            <div className="filter-pill-list">
+              {departments.map(dept => (
+                <button
+                  key={dept}
+                  type="button"
+                  className={`dept-filter-btn ${activeDept === dept ? 'active' : ''}`}
+                  onClick={() => setActiveDept(dept)}
+                >
+                  {dept}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="testimonials-grid">
-            {teacherTestimonials.map((t, idx) => (
-              <div key={idx} className="teacher-testimonial-card glass-panel-elevated">
-                <div className="rating-stars">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={15} className="fill-butter text-butter" />
-                  ))}
-                </div>
-                <blockquote className="teacher-quote">“{t.quote}”</blockquote>
-                <div className="teacher-meta-box">
-                  <div className="teacher-avatar-circle">
-                    {t.name.split(' ').map(n => n[0]).join('')}
+          {/* Jobs Listing */}
+          {isLoading ? (
+            <div className="jobs-loading-box">
+              <div className="loading-spinner"></div>
+              <span>Fetching live roles...</span>
+            </div>
+          ) : (
+            <div className="job-listings-grid">
+              {filteredPositions.map(job => (
+                <div key={job.id} className="job-card glass-panel-elevated">
+                  <div className="job-card-header">
+                    <span className="job-card-badge">{job.badge}</span>
+                    <span className="job-card-dept">{job.department}</span>
                   </div>
-                  <div className="teacher-details">
-                    <strong className="teacher-name">{t.name}</strong>
-                    <span className="teacher-title">{t.role} • {t.school}</span>
-                    <span className="teacher-exp">{t.experience}</span>
+
+                  <h3 className="job-card-title">{job.title}</h3>
+                  <p className="job-card-desc">{job.description}</p>
+
+                  {/* Skills / Tags */}
+                  {job.tags && (
+                    <div className="job-tags-row">
+                      {job.tags.map(tag => (
+                        <span key={tag} className="job-tag-item">{tag}</span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Meta Specs */}
+                  <div className="job-specs-list">
+                    <div className="spec-row">
+                      <MapPin size={13} className="text-emerald" />
+                      <span>{job.location}</span>
+                    </div>
+                    <div className="spec-row">
+                      <Clock size={13} className="text-emerald" />
+                      <span>{job.type}</span>
+                    </div>
+                    <div className="spec-row">
+                      <Briefcase size={13} className="text-emerald" />
+                      <span>{job.experience}</span>
+                    </div>
+                  </div>
+
+                  <div className="job-compensation-bar">
+                    <span className="comp-title">Salary &amp; Package:</span>
+                    <strong className="comp-value">{job.compensation}</strong>
+                  </div>
+
+                  <div className="job-card-footer">
+                    <button
+                      type="button"
+                      className="btn btn-primary w-full"
+                      onClick={() => openJobApplication(job)}
+                    >
+                      <span>Apply for this Role</span>
+                      <ArrowRight size={15} />
+                    </button>
                   </div>
                 </div>
-                <div className="teacher-earnings-tag">
-                  <Coins size={13} className="text-butter" />
-                  <span>{t.earnings}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              ))}
+            </div>
+          )}
 
-      {/* 7. Teacher & Author FAQs */}
-      <section className="section-spacing bg-subtle-section" id="teacher-faqs">
-        <div className="app-container">
-          <div className="section-head text-center mb-5">
-            <span className="pill-badge pill-peach mb-2">Have Questions?</span>
-            <h2 className="section-title">Teacher Partnership FAQ</h2>
-            <p className="section-sub max-w-600 mx-auto">
-              Everything you need to know about authoring, copyright, and royalty distribution.
-            </p>
-          </div>
-
-          <div className="teacher-faq-list max-w-800 mx-auto">
-            {teacherFaqs.map((faq, idx) => (
-              <div key={idx} className="faq-card glass-panel-elevated">
-                <h3 className="faq-question">
-                  <HelpCircle size={18} className="text-emerald" />
-                  <span>{faq.q}</span>
-                </h3>
-                <p className="faq-answer">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="faq-contact-card text-center mt-5 max-w-600 mx-auto glass-panel">
-            <h4 className="font-semibold mb-2">Have an institutional or school query?</h4>
+          {/* General Inquiries Box */}
+          <div className="open-pitch-card text-center max-w-700 mx-auto mt-5 glass-panel">
+            <h4 className="font-semibold text-lg mb-2">Don't see your exact role listed?</h4>
             <p className="text-muted text-sm mb-3">
-              Reach out directly to our Academic Partnerships team at <strong>partners@quanverse.tech</strong> or WhatsApp our coordinator at +91 98765 43210.
+              We are constantly seeking brilliant compilers, educators, distributed systems engineers, and learning theorists. Send a link to your GitHub, portfolio, or past work to:
             </p>
-            <button 
-              type="button" 
-              className="btn btn-primary btn-sm"
-              onClick={scrollToSignup}
-            >
-              <span>Submit Teacher Application</span>
-              <ArrowRight size={14} />
-            </button>
+            <div className="open-email-pill">
+              <span>careers@quanverse.tech</span>
+            </div>
           </div>
         </div>
       </section>
 
       <style>{`
-        .careers-page {
+        .company-careers-page {
           min-height: 100vh;
           background: var(--bg-page);
         }
 
         .careers-hero-section {
           position: relative;
-          padding: 5rem 0 4rem;
+          padding: 5.5rem 0 4rem;
           overflow: hidden;
         }
 
-        .careers-hero-heading {
+        .careers-hero-title {
           font-family: var(--font-display);
-          font-size: clamp(2.2rem, 5vw, 3.8rem);
+          font-size: clamp(2.4rem, 5vw, 3.8rem);
           font-weight: 800;
           color: var(--text-main);
           line-height: 1.15;
@@ -364,15 +368,15 @@ export default function CareersPage() {
           letter-spacing: -0.8px;
         }
 
-        .careers-hero-sub {
+        .careers-hero-subtitle {
           font-size: clamp(1rem, 2vw, 1.2rem);
           color: var(--text-muted);
-          max-width: 760px;
+          max-width: 780px;
           margin: 0 auto 2.5rem;
           line-height: 1.6;
         }
 
-        .careers-cta-row {
+        .hero-cta-buttons {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -381,11 +385,11 @@ export default function CareersPage() {
           margin-bottom: 3.5rem;
         }
 
-        .careers-trust-band {
+        .careers-stats-ribbon {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 2.5rem;
+          gap: 2.25rem;
           background: #ffffff;
           padding: 1.25rem 2.5rem;
           border-radius: var(--radius-xl);
@@ -396,234 +400,373 @@ export default function CareersPage() {
           flex-wrap: wrap;
         }
 
-        .trust-cell {
+        .stat-node {
           text-align: center;
         }
 
-        .trust-val {
+        .stat-fig {
           font-family: var(--font-display);
-          font-size: 1.8rem;
+          font-size: 1.75rem;
           font-weight: 800;
           color: var(--brand-emerald);
           letter-spacing: -0.5px;
         }
 
-        .trust-desc {
+        .stat-sub {
           font-size: 0.8rem;
           color: var(--text-muted);
           font-weight: 500;
         }
 
-        .trust-sep {
+        .stat-line {
           width: 1px;
           height: 36px;
           background: var(--border-medium);
         }
 
-        /* Pillars Grid */
-        .pillars-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-          gap: 1.75rem;
+        /* Teacher Pathway Banner */
+        .teacher-pathway-banner-section {
+          padding: 2.5rem 0;
         }
 
-        .pillar-card {
+        .teacher-banner-card {
+          background: linear-gradient(135deg, rgba(238, 234, 253, 0.75) 0%, rgba(226, 241, 231, 0.75) 100%);
+          border: 1px solid var(--pastel-lavender-border);
+          border-radius: var(--radius-xl);
+          padding: 2.75rem;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .teacher-banner-grid {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr;
+          gap: 2.5rem;
+          align-items: center;
+        }
+        @media (max-width: 900px) {
+          .teacher-banner-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+        }
+
+        .teacher-banner-title {
+          font-family: var(--font-display);
+          font-size: 1.75rem;
+          font-weight: 800;
+          color: var(--text-main);
+          margin-bottom: 0.75rem;
+          line-height: 1.25;
+        }
+
+        .teacher-banner-sub {
+          font-size: 0.96rem;
+          color: var(--text-muted);
+          line-height: 1.6;
+          margin-bottom: 1.5rem;
+        }
+
+        .teacher-perk-chips {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .perk-chip {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: var(--text-main);
+        }
+
+        .teacher-cta-card {
           background: #ffffff;
           border-radius: var(--radius-lg);
           padding: 2rem;
+          border: 1px solid var(--border-medium);
+          box-shadow: var(--shadow-card);
+          text-align: center;
+        }
+
+        .cta-card-heading {
+          font-family: var(--font-display);
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: var(--text-main);
+          display: block;
+          margin-bottom: 0.4rem;
+        }
+
+        .cta-card-note {
+          font-size: 0.85rem;
+          color: var(--text-muted);
+          line-height: 1.5;
+          margin-bottom: 1.25rem;
+        }
+
+        .teacher-route-btn {
+          font-size: 1rem;
+          padding: 12px 20px;
+        }
+
+        /* Perks Grid */
+        .perks-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 1.75rem;
+        }
+
+        .perk-card {
+          background: #ffffff;
+          border-radius: var(--radius-lg);
+          padding: 2rem;
+          border: 1px solid var(--border-light);
+          transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+        }
+        .perk-card:hover {
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-card);
+        }
+
+        .perk-icon-circle {
+          width: 48px;
+          height: 48px;
+          border-radius: 12px;
+          background: var(--pastel-sage);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 1.25rem;
+        }
+
+        .perk-title {
+          font-family: var(--font-display);
+          font-size: 1.2rem;
+          color: var(--text-main);
+          margin-bottom: 0.5rem;
+        }
+
+        .perk-desc {
+          font-size: 0.88rem;
+          color: var(--text-muted);
+          line-height: 1.55;
+        }
+
+        /* Department Filter */
+        .department-filter-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          margin-bottom: 2.5rem;
+          flex-wrap: wrap;
+        }
+
+        .filter-label-group {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.85rem;
+          color: var(--text-light);
+          font-weight: 600;
+        }
+
+        .filter-pill-list {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          background: #ffffff;
+          padding: 5px;
+          border-radius: var(--radius-full);
+          border: 1px solid var(--border-light);
+          box-shadow: var(--shadow-subtle);
+          flex-wrap: wrap;
+        }
+
+        .dept-filter-btn {
+          border: none;
+          background: transparent;
+          padding: 6px 14px;
+          border-radius: var(--radius-full);
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: var(--text-muted);
+          cursor: pointer;
+          transition: all var(--transition-fast);
+        }
+        .dept-filter-btn:hover {
+          color: var(--text-main);
+        }
+        .dept-filter-btn.active {
+          background: var(--brand-emerald);
+          color: #ffffff;
+        }
+
+        /* Job Listings */
+        .job-listings-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+          gap: 1.75rem;
+        }
+
+        .job-card {
+          background: #ffffff;
+          border-radius: var(--radius-lg);
+          padding: 1.85rem;
           border: 1px solid var(--border-light);
           display: flex;
           flex-direction: column;
           transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
         }
-        .pillar-card:hover {
+        .job-card:hover {
           transform: translateY(-4px);
           box-shadow: var(--shadow-card);
+          border-color: var(--pastel-sage-border);
         }
 
-        .pillar-icon-box {
-          width: 52px;
-          height: 52px;
-          border-radius: var(--radius-md);
+        .job-card-header {
           display: flex;
+          justify-content: space-between;
           align-items: center;
-          justify-content: center;
-          margin-bottom: 1.25rem;
+          margin-bottom: 0.85rem;
         }
-        .bg-sage { background: var(--pastel-sage); }
-        .text-sage { color: var(--pastel-sage-text); }
-        .bg-lavender { background: var(--pastel-lavender); }
-        .text-lavender { color: var(--pastel-lavender-text); }
-        .bg-peach { background: var(--pastel-peach); }
-        .text-peach { color: var(--pastel-peach-text); }
-        .bg-sky { background: var(--pastel-sky); }
-        .text-sky { color: var(--pastel-sky-text); }
 
-        .pillar-title {
+        .job-card-badge {
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: var(--pastel-lavender-text);
+          background: var(--pastel-lavender);
+          padding: 3px 8px;
+          border-radius: 4px;
+        }
+
+        .job-card-dept {
+          font-size: 0.8rem;
+          color: var(--text-light);
+          font-weight: 500;
+        }
+
+        .job-card-title {
           font-family: var(--font-display);
-          font-size: 1.3rem;
+          font-size: 1.25rem;
           color: var(--text-main);
           margin-bottom: 0.65rem;
+          line-height: 1.3;
         }
 
-        .pillar-desc {
-          font-size: 0.9rem;
+        .job-card-desc {
+          font-size: 0.88rem;
           color: var(--text-muted);
-          line-height: 1.55;
+          line-height: 1.5;
           margin-bottom: 1.25rem;
           flex-grow: 1;
         }
 
-        .pillar-checks {
-          list-style: none;
+        .job-tags-row {
+          display: flex;
+          gap: 6px;
+          flex-wrap: wrap;
+          margin-bottom: 1.25rem;
+        }
+        .job-tag-item {
+          font-size: 0.72rem;
+          background: var(--bg-subtle);
+          padding: 2px 8px;
+          border-radius: var(--radius-full);
+          color: var(--text-muted);
+          font-weight: 600;
+        }
+
+        .job-specs-list {
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.4rem;
+          margin-bottom: 1.25rem;
           padding-top: 1rem;
           border-top: 1px solid var(--border-light);
-          font-size: 0.85rem;
-          color: var(--text-main);
         }
-        .pillar-checks li {
+
+        .spec-row {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 7px;
+          font-size: 0.82rem;
+          color: var(--text-muted);
         }
 
-        /* Testimonials Grid */
-        .testimonials-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: 1.75rem;
+        .job-compensation-bar {
+          background: var(--bg-subtle);
+          padding: 9px 12px;
+          border-radius: var(--radius-sm);
+          margin-bottom: 1.25rem;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+        .comp-title {
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          color: var(--text-light);
+          font-weight: 600;
+        }
+        .comp-value {
+          font-size: 0.88rem;
+          color: var(--pastel-sage-text);
         }
 
-        .teacher-testimonial-card {
+        .open-pitch-card {
+          padding: 2rem;
           background: #ffffff;
           border-radius: var(--radius-lg);
-          padding: 2rem;
           border: 1px solid var(--border-light);
-          display: flex;
-          flex-direction: column;
         }
-
-        .rating-stars {
-          display: flex;
-          gap: 4px;
-          margin-bottom: 1rem;
-        }
-
-        .teacher-quote {
-          font-size: 0.95rem;
-          color: var(--text-main);
-          line-height: 1.6;
-          font-style: italic;
-          margin-bottom: 1.5rem;
-          flex-grow: 1;
-        }
-
-        .teacher-meta-box {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 1rem;
-        }
-
-        .teacher-avatar-circle {
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
+        .open-email-pill {
+          display: inline-block;
+          font-family: var(--font-mono);
+          font-weight: 600;
+          color: var(--brand-emerald);
           background: var(--pastel-sage);
-          color: var(--pastel-sage-text);
-          font-weight: 700;
-          font-size: 14px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-
-        .teacher-details {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .teacher-name {
-          font-size: 0.95rem;
-          color: var(--text-main);
-        }
-
-        .teacher-title {
-          font-size: 0.8rem;
-          color: var(--text-muted);
-        }
-
-        .teacher-exp {
-          font-size: 0.75rem;
-          color: var(--pastel-sage-text);
-          font-weight: 600;
-        }
-
-        .teacher-earnings-tag {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          background: var(--pastel-butter);
-          padding: 6px 12px;
+          padding: 6px 16px;
           border-radius: var(--radius-full);
-          font-size: 0.8rem;
-          font-weight: 600;
-          color: var(--pastel-butter-text);
-          width: fit-content;
+          font-size: 0.95rem;
+          border: 1px solid var(--pastel-sage-border);
         }
 
-        /* FAQ */
-        .teacher-faq-list {
+        .jobs-loading-box {
+          padding: 3rem;
+          text-align: center;
+          color: var(--text-muted);
           display: flex;
           flex-direction: column;
-          gap: 1.25rem;
+          align-items: center;
+          gap: 1rem;
         }
-
-        .faq-card {
-          background: #ffffff;
-          border-radius: var(--radius-md);
-          padding: 1.5rem;
-          border: 1px solid var(--border-light);
-        }
-
-        .faq-question {
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          font-size: 1.05rem;
-          font-weight: 700;
-          color: var(--text-main);
-          margin-bottom: 0.5rem;
-        }
-
-        .faq-answer {
-          font-size: 0.92rem;
-          color: var(--text-muted);
-          line-height: 1.6;
-          padding-left: 28px;
-        }
-
-        .faq-contact-card {
-          padding: 1.75rem;
-          background: #ffffff;
-          border-radius: var(--radius-md);
-          border: 1px solid var(--border-light);
+        .loading-spinner {
+          width: 32px;
+          height: 32px;
+          border: 3px solid var(--border-medium);
+          border-top-color: var(--brand-emerald);
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
         }
 
         .bg-subtle-section {
           background: var(--bg-subtle);
         }
 
-        .max-w-600 { max-width: 600px; }
+        .max-w-650 { max-width: 650px; }
         .max-w-700 { max-width: 700px; }
-        .max-w-800 { max-width: 800px; }
-        .max-w-900 { max-width: 900px; }
+        .max-w-780 { max-width: 780px; }
         .mx-auto { margin-left: auto; margin-right: auto; }
         .text-center { text-align: center; }
+
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
       `}</style>
     </div>
   );

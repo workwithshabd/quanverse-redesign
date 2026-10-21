@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '../../hooks/useNavigation';
-import { Terminal, Users, GraduationCap, Sparkles, ChevronDown, ChevronUp } from 'lucide-react';
+import { Terminal, Users, GraduationCap, Sparkles, ChevronDown, ChevronUp, Briefcase } from 'lucide-react';
+
 
 
 export default function DebugBar() {
@@ -50,8 +51,10 @@ export default function DebugBar() {
           <div className="debug-body">
             <div className="debug-stat-row">
               <span className="debug-label">Active Route:</span>
-              <span className={`debug-badge ${currentPage === 'home' ? 'badge-student' : 'badge-teacher'}`}>
-                {currentPage === 'home' ? 'Student Landing (/)' : 'Careers & Teachers (/#careers)'}
+              <span className={`debug-badge badge-${currentPage}`}>
+                {currentPage === 'home' && 'Student Landing (/)'}
+                {currentPage === 'careers' && 'Company Careers (/#careers)'}
+                {currentPage === 'teachers' && 'Educator Portal (/#teachers)'}
               </span>
             </div>
 
@@ -64,15 +67,23 @@ export default function DebugBar() {
                   onClick={() => navigateTo('home')}
                 >
                   <GraduationCap size={13} />
-                  <span>Student Landing</span>
+                  <span>Student</span>
                 </button>
                 <button
                   type="button"
                   className={`debug-btn ${currentPage === 'careers' ? 'active' : ''}`}
                   onClick={() => navigateTo('careers')}
                 >
+                  <Briefcase size={13} />
+                  <span>Careers</span>
+                </button>
+                <button
+                  type="button"
+                  className={`debug-btn ${currentPage === 'teachers' ? 'active' : ''}`}
+                  onClick={() => navigateTo('teachers')}
+                >
                   <Users size={13} />
-                  <span>Careers / Teachers</span>
+                  <span>Teachers</span>
                 </button>
               </div>
             </div>

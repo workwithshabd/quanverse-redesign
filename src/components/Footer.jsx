@@ -119,22 +119,22 @@ export default function Footer({ onOpenDemoExam }) {
           <div className="footer-col">
             <h4 className="footer-col-title">For Teachers &amp; Schools</h4>
             <ul className="footer-links-list">
-              <li><a href="#careers" onClick={(e) => { e.preventDefault(); navigateTo('careers', '#teacher-signup-section'); }}>Sign Up as Teacher</a></li>
-              <li><a href="#careers" onClick={(e) => { e.preventDefault(); navigateTo('careers', '#royalty-calc'); }}>Royalty &amp; Payout Calculator</a></li>
-              <li><a href="#careers" onClick={(e) => { e.preventDefault(); navigateTo('careers', '#careers'); }}>Educator Network Benefits</a></li>
-              <li><a href="#careers" onClick={(e) => { e.preventDefault(); navigateTo('careers', '#open-roles'); }}>Open Academic Positions</a></li>
+              <li><a href="#teachers" onClick={(e) => { e.preventDefault(); navigateTo('teachers', '#teacher-signup-section'); }}>Sign Up as Teacher</a></li>
+              <li><a href="#teachers" onClick={(e) => { e.preventDefault(); navigateTo('teachers', '#royalty-calc'); }}>Royalty &amp; Payout Calculator</a></li>
+              <li><a href="#teachers" onClick={(e) => { e.preventDefault(); navigateTo('teachers', '#teachers'); }}>Educator Network Benefits</a></li>
+              <li><a href="#teachers" onClick={(e) => { e.preventDefault(); navigateTo('teachers', '#teacher-faqs'); }}>Educator FAQs</a></li>
               <li><a href="mailto:partners@quanverse.tech">School &amp; Institutional Inquiries</a></li>
             </ul>
           </div>
 
           {/* Links Col 3: Platform */}
           <div className="footer-col">
-            <h4 className="footer-col-title">Platform &amp; Trust</h4>
+            <h4 className="footer-col-title">Platform &amp; Company</h4>
             <ul className="footer-links-list">
               <li><a href="#how-it-works" onClick={(e) => { e.preventDefault(); navigateTo('home', '#how-it-works'); }}>How AI Marking Works</a></li>
               <li><a href="#news" onClick={(e) => { e.preventDefault(); navigateTo('home', '#news'); }}>Board Circulars &amp; News</a></li>
               <li><a href="#pricing" onClick={(e) => { e.preventDefault(); navigateTo('home', '#pricing'); }}>Pricing &amp; Board Passes</a></li>
-              <li><a href="#careers" onClick={(e) => { e.preventDefault(); navigateTo('careers'); }}>Careers (Join Us)</a></li>
+              <li><a href="#careers" onClick={(e) => { e.preventDefault(); navigateTo('careers'); }}>Company Careers (All Roles)</a></li>
               <li><a href="mailto:support@quanverse.tech">24/7 Student Support</a></li>
             </ul>
           </div>

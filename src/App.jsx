@@ -3,13 +3,14 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import QuickExamModal from './components/QuickExamModal';
 import TeacherSignupModal from './components/teacher/TeacherSignupModal';
+import JobApplicationModal from './components/careers/JobApplicationModal';
 import StudentLandingPage from './pages/StudentLandingPage';
 import CareersPage from './pages/CareersPage';
+import TeachersPage from './pages/TeachersPage';
 import DebugBar from './components/common/DebugBar';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { NavigationProvider } from './context/NavigationContext';
 import { useNavigation } from './hooks/useNavigation';
-
 
 function AppContent() {
   const { 
@@ -17,7 +18,10 @@ function AppContent() {
     isDemoExamOpen, 
     closeDemoExam, 
     isTeacherSignupModalOpen, 
-    closeTeacherSignup 
+    closeTeacherSignup,
+    isJobModalOpen,
+    selectedJob,
+    closeJobApplication
   } = useNavigation();
 
   return (
@@ -25,13 +29,11 @@ function AppContent() {
       {/* Universal Responsive Navigation Bar */}
       <Navbar />
 
-      {/* Main View: Student Landing (Default) OR Careers & Educator Portal */}
+      {/* Main View: Student Landing (Default), Company Careers, OR Educator Portal */}
       <main id="main-content">
-        {currentPage === 'home' ? (
-          <StudentLandingPage />
-        ) : (
-          <CareersPage />
-        )}
+        {currentPage === 'home' && <StudentLandingPage />}
+        {currentPage === 'careers' && <CareersPage />}
+        {currentPage === 'teachers' && <TeachersPage />}
       </main>
 
       {/* Universal Footer */}
@@ -47,6 +49,13 @@ function AppContent() {
       <TeacherSignupModal
         isOpen={isTeacherSignupModalOpen}
         onClose={closeTeacherSignup}
+      />
+
+      {/* General Job Role Application Modal */}
+      <JobApplicationModal
+        isOpen={isJobModalOpen}
+        job={selectedJob}
+        onClose={closeJobApplication}
       />
 
       {/* Developer HUD: Debug bar for easy view switching and state inspection */}

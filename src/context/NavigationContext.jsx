@@ -3,10 +3,13 @@ import { logger } from '../services/logger';
 import { NavigationContext } from './navigationContextDefinition';
 
 export function NavigationProvider({ children }) {
-  // Current page view: 'home' | 'careers'
+  // Current page view: 'home' | 'careers' | 'teachers'
   const [currentPage, setCurrentPage] = useState(() => {
     const hash = window.location.hash.toLowerCase();
-    if (hash.startsWith('#careers') || hash.startsWith('#teacher-signup') || hash.startsWith('#for-teachers')) {
+    if (hash.startsWith('#teachers') || hash.startsWith('#teacher-signup') || hash.startsWith('#for-teachers')) {
+      return 'teachers';
+    }
+    if (hash.startsWith('#careers') || hash.startsWith('#jobs') || hash.startsWith('#open-roles')) {
       return 'careers';
     }
     return 'home';
@@ -18,18 +21,25 @@ export function NavigationProvider({ children }) {
     return window.location.hash.toLowerCase().includes('teacher-signup');
   });
 
-  // Listen to hash changes (for browser back/forward or direct links like #careers)
+  // General Job Application Modal state
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [isJobModalOpen, setIsJobModalOpen] = useState(false);
+
+  // Listen to hash changes (for browser back/forward or direct links like #careers, #teachers)
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
       logger.nav(`Hash changed to: ${hash}`);
 
-      if (hash.startsWith('#careers') || hash.startsWith('#for-teachers')) {
-        setCurrentPage('careers');
+      if (hash.startsWith('#teachers') || hash.startsWith('#for-teachers')) {
+        setCurrentPage('teachers');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (hash.startsWith('#teacher-signup')) {
-        setCurrentPage('careers');
+        setCurrentPage('teachers');
         setIsTeacherSignupModalOpen(true);
+      } else if (hash.startsWith('#careers') || hash.startsWith('#jobs') || hash.startsWith('#open-roles')) {
+        setCurrentPage('careers');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (hash.startsWith('#mock-demo') || hash.startsWith('#demo-exam')) {
         setIsDemoExamOpen(true);
       } else if (hash === '' || hash === '#' || hash.startsWith('#home')) {
@@ -49,10 +59,12 @@ export function NavigationProvider({ children }) {
     if (page === 'careers') {
       window.location.hash = targetHash || 'careers';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'teachers') {
+      window.location.hash = targetHash || 'teachers';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       if (targetHash) {
         window.location.hash = targetHash;
-        // Allow DOM to settle then scroll
         setTimeout(() => {
           const el = document.querySelector(targetHash);
           if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -82,6 +94,17 @@ export function NavigationProvider({ children }) {
     setIsDemoExamOpen(false);
   };
 
+  const openJobApplication = (job) => {
+    logger.api(`Opening job application for: ${job?.title || 'General role'}`);
+    setSelectedJob(job);
+    setIsJobModalOpen(true);
+  };
+
+  const closeJobApplication = () => {
+    setIsJobModalOpen(false);
+    setSelectedJob(null);
+  };
+
   const value = {
     currentPage,
     navigateTo,
@@ -90,7 +113,11 @@ export function NavigationProvider({ children }) {
     closeDemoExam,
     isTeacherSignupModalOpen,
     openTeacherSignup,
-    closeTeacherSignup
+    closeTeacherSignup,
+    isJobModalOpen,
+    selectedJob,
+    openJobApplication,
+    closeJobApplication
   };
 
   return (
@@ -99,5 +126,3 @@ export function NavigationProvider({ children }) {
     </NavigationContext.Provider>
   );
 }
-
-

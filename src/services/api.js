@@ -380,57 +380,148 @@ export const api = {
   },
 
   /**
-   * Fetch open career opportunities across Academics, Engineering, and Growth
+   * Submit General Job Application (Engineering, Product, Growth, Operations, etc.)
+   */
+  async submitGeneralJobApplication(candidateData) {
+    logger.api('Candidate job application received', candidateData);
+    await delay(600);
+
+    const existingApps = JSON.parse(localStorage.getItem('quanverse_career_applications') || '[]');
+    const newRecord = {
+      ...candidateData,
+      id: `QV-JOB-${Math.floor(100000 + Math.random() * 900000)}`,
+      submittedAt: new Date().toISOString(),
+      status: 'APPLICATION_RECEIVED'
+    };
+    existingApps.push(newRecord);
+    localStorage.setItem('quanverse_career_applications', JSON.stringify(existingApps));
+
+    logger.api('Job application stored successfully', newRecord);
+    return {
+      success: true,
+      applicationId: newRecord.id,
+      message: 'Application received! Our Talent & People team will review your profile and reach out within 3 business days.',
+      data: newRecord
+    };
+  },
+
+  /**
+   * Fetch open career opportunities across all departments
    */
   async getOpenPositions() {
     logger.api('Fetching open career positions');
     await delay(300);
     return [
       {
-        id: 'job-1',
-        title: 'Senior Board Paper Author (Class 10 Mathematics)',
-        department: 'Academics & Content',
-        location: 'Remote (India)',
-        type: 'Contract / Royalty',
-        experience: '5+ years teaching CBSE/ICSE Class 10',
-        compensation: '₹300 - ₹1,200 per approved item + recurring attempt royalties',
-        description: 'Design rigorous competency-based math questions and step-marking schemes reflecting CBSE 2027 guidelines.',
-        badge: 'Priority Need'
-      },
-      {
-        id: 'job-2',
-        title: 'Lead Physics & Chemistry Question Curator',
-        department: 'Academics & Content',
-        location: 'Remote (India)',
-        type: 'Contract / Royalty',
-        experience: '4+ years Class 10 Science',
-        compensation: '₹300 - ₹1,500 per approved item + attempt royalties',
-        description: 'Formulate case-study based practical scenario questions and experimental deduction exercises.',
-        badge: 'Popular'
-      },
-      {
-        id: 'job-3',
-        title: 'AI Rubric Alignment Evaluator',
-        department: 'AI & Educational Research',
-        location: 'Hybrid / Remote',
-        type: 'Full-time / Part-time',
-        experience: 'Prior Board Examiner or Senior Evaluator',
-        compensation: 'Competitive monthly retainer',
-        description: 'Audit AI-graded student answers against official Board Chief-Moderator answer keys for 99.5%+ accuracy.',
-        badge: 'Examiners Preferred'
-      },
-      {
-        id: 'job-4',
-        title: 'School Pre-Board Partnership Manager',
-        department: 'Institutional Growth',
-        location: 'New Delhi / Bengaluru / Remote',
+        id: 'tech-1',
+        title: 'Senior Full-Stack Engineer (Platform & AI)',
+        department: 'Engineering & AI',
+        location: 'Bengaluru / Remote (India)',
         type: 'Full-time',
-        experience: '3+ years B2B EdTech or School Sales',
-        compensation: '₹8 - ₹14 LPA + Performance Incentives',
-        description: 'Partner with top CBSE & ICSE schools to implement automated pre-board assessments and mock diagnostics.',
-        badge: 'Growth'
+        experience: '4+ years (React, Node.js, Python, PostgreSQL)',
+        compensation: '₹22 - ₹36 LPA + Equity',
+        description: 'Architect low-latency assessment streaming, real-time handwriting recognition pipelines, and test-taking engines handling 100k+ concurrent board candidates.',
+        badge: 'High Priority',
+        tags: ['React', 'Node.js', 'Python', 'AWS/GCP']
+      },
+      {
+        id: 'tech-2',
+        title: 'Multimodal AI & OCR Vision Engineer',
+        department: 'Engineering & AI',
+        location: 'Bengaluru / Remote',
+        type: 'Full-time',
+        experience: '3+ years (PyTorch, Computer Vision, Document AI)',
+        compensation: '₹25 - ₹42 LPA + Equity',
+        description: 'Train and fine-tune multimodal models to recognize messy student handwriting, complex geometric constructions, chemical formulas, and mathematical notation on real paper sheets.',
+        badge: 'Core Team',
+        tags: ['Computer Vision', 'PyTorch', 'Document OCR', 'LLMs']
+      },
+      {
+        id: 'tech-3',
+        title: 'LLM Assessment & Prompt Evaluation Specialist',
+        department: 'Engineering & AI',
+        location: 'Remote (India)',
+        type: 'Full-time',
+        experience: '2+ years (Prompt engineering, Eval frameworks, Python)',
+        compensation: '₹16 - ₹26 LPA',
+        description: 'Build rigorous rubric alignment benchmarks and automated eval suites ensuring AI marking matches official board chief-moderators with 99.5%+ fidelity.',
+        badge: 'AI Research',
+        tags: ['Prompt Engineering', 'Evals', 'Gemini / Claude', 'Python']
+      },
+      {
+        id: 'prod-1',
+        title: 'Senior Product Designer (UI/UX & Design Systems)',
+        department: 'Product & Design',
+        location: 'Remote / Hybrid (Delhi/Bengaluru)',
+        type: 'Full-time',
+        experience: '4+ years digital product design',
+        compensation: '₹18 - ₹30 LPA + Equity',
+        description: 'Lead the visual design and interaction craft for student test-taking, anxiety-reducing score diagnostics, teacher authoring studios, and school administrative dashboards.',
+        badge: 'Craft & Design',
+        tags: ['Figma', 'Design Systems', 'Micro-interactions', 'User Research']
+      },
+      {
+        id: 'prod-2',
+        title: 'Product Manager (Assessment & Learning Analytics)',
+        department: 'Product & Design',
+        location: 'Bengaluru / Remote',
+        type: 'Full-time',
+        experience: '3+ years B2C / EdTech Product Management',
+        compensation: '₹20 - ₹32 LPA + Equity',
+        description: 'Own the roadmap for Board Readiness scoring algorithms, personalized student weakness targeting, and real-time exam hall pace simulators.',
+        badge: 'Growth Track',
+        tags: ['Product Analytics', 'B2C Growth', 'Assessment Strategy']
+      },
+      {
+        id: 'growth-1',
+        title: 'Director of Institutional & School Partnerships',
+        department: 'Growth & Partnerships',
+        location: 'New Delhi / Mumbai / Bengaluru',
+        type: 'Full-time',
+        experience: '6+ years in K-12 school outreach or institutional B2B',
+        compensation: '₹24 - ₹40 LPA + Aggressive Incentive Package',
+        description: 'Expand Quanverse pre-board diagnostic partnerships across top 500 CBSE and ICSE school chains nationwide.',
+        badge: 'Leadership',
+        tags: ['K-12 Sales', 'School Chains', 'B2B Enterprise', 'Revenue']
+      },
+      {
+        id: 'growth-2',
+        title: 'Growth Marketer & Student Community Lead',
+        department: 'Growth & Partnerships',
+        location: 'Remote (India)',
+        type: 'Full-time',
+        experience: '2+ years community growth or viral B2C marketing',
+        compensation: '₹12 - ₹18 LPA',
+        description: 'Create viral YouTube/Instagram strategy breakdowns for Class 10 board toppers, manage student ambassador cohorts, and scale free mock exam trials.',
+        badge: 'Marketing',
+        tags: ['Community', 'Social Strategy', 'B2C Funnels']
+      },
+      {
+        id: 'acad-1',
+        title: 'Senior Academic Lead (CBSE & ICSE Curriculum)',
+        department: 'Academics & Editorial',
+        location: 'New Delhi / Remote',
+        type: 'Full-time',
+        experience: '7+ years secondary teaching / curriculum development',
+        compensation: '₹16 - ₹25 LPA',
+        description: 'Head the Academic Board Committee. Oversee syllabus updates, vet authoring teacher submissions, and ensure every mock paper strictly mirrors board blueprints.',
+        badge: 'Academic Board',
+        tags: ['CBSE 2027', 'CISCE', 'Curriculum Design', 'Quality']
+      },
+      {
+        id: 'ops-1',
+        title: 'Exam Operations & Student Support Lead',
+        department: 'Operations & Support',
+        location: 'Remote',
+        type: 'Full-time',
+        experience: '2+ years in customer experience or exam ops',
+        compensation: '₹7 - ₹12 LPA',
+        description: 'Ensure smooth student exam sittings, manage query resolution, and coordinate teacher onboarding workflows.',
+        badge: 'Operations',
+        tags: ['Student Support', 'Exam Ops', 'SLA Management']
       }
     ];
   }
 };
+
 
