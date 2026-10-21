@@ -93,10 +93,6 @@ export default function FaqSection() {
       </div>
 
       <style>{`
-        .faq-section {
-          background: #fbfbf9;
-        }
-
         .faq-stack {
           max-width: 820px;
           margin: 0 auto 2.5rem;
@@ -107,20 +103,24 @@ export default function FaqSection() {
 
         .faq-card {
           border-radius: var(--radius-lg);
-          background: #ffffff;
+          background: #f2f5f0;
           padding: 1.35rem 1.75rem;
           cursor: pointer;
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          box-shadow: 0 4px 16px rgba(18, 65, 112, 0.05);
           transition: all var(--transition-fast);
         }
 
         .faq-card:hover {
-          border-color: var(--pastel-sage-border);
+          border-color: rgb(103, 192, 144);
+          background: #f7faf5;
+          box-shadow: 0 8px 24px rgba(18, 65, 112, 0.1);
         }
 
         .faq-card-open {
-          border-color: var(--pastel-sage-border);
-          box-shadow: var(--shadow-card);
+          border-color: rgb(33, 91, 99);
+          background: #f7faf5;
+          box-shadow: 0 12px 32px -6px rgba(18, 65, 112, 0.14);
         }
 
         .faq-question-row {
@@ -138,15 +138,15 @@ export default function FaqSection() {
         }
 
         .faq-toggle-btn {
-          background: var(--bg-subtle);
-          border: none;
+          background: rgba(170, 255, 199, 0.35);
+          border: 1px solid rgb(103, 192, 144);
           width: 32px;
           height: 32px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--text-muted);
+          color: rgb(18, 65, 112);
           cursor: pointer;
           flex-shrink: 0;
           transition: all var(--transition-fast);
@@ -163,7 +163,7 @@ export default function FaqSection() {
         .faq-answer-block {
           margin-top: 1rem;
           padding-top: 1rem;
-          border-top: 1px solid var(--border-light);
+          border-top: 1px solid rgba(103, 192, 144, 0.25);
           animation: fadeIn 0.25s ease-out;
         }
 
@@ -179,8 +179,8 @@ export default function FaqSection() {
           display: flex;
           align-items: center;
           gap: 1rem;
-          background: #ffffff;
-          border: 1px solid var(--border-light);
+          background: #f4faf6;
+          border: 1.5px solid #bce4cc;
           padding: 1.25rem 1.75rem;
           border-radius: var(--radius-lg);
           font-size: 0.88rem;

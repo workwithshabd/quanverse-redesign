@@ -411,9 +411,10 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           align-items: center;
           gap: 1.5rem;
           padding: 1.2rem 1.6rem;
-          background: rgba(255, 255, 255, 0.7);
+          background: rgba(244, 250, 246, 0.95);
           backdrop-filter: blur(12px);
-          border: 1px solid var(--border-light);
+          border: 1.5px solid #bce4cc;
+          box-shadow: 0 8px 24px -4px rgba(16, 185, 129, 0.12);
           border-radius: var(--radius-lg);
           margin-bottom: 1.75rem;
           width: fit-content;
@@ -441,7 +442,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         .trust-divider {
           width: 1px;
           height: 32px;
-          background: var(--border-light);
+          background: #c3e5d1;
         }
 
         /* Curriculum Badges */
@@ -457,16 +458,22 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           align-items: center;
           gap: 0.4rem;
           font-size: 0.8rem;
-          color: var(--text-muted);
-          font-weight: 500;
+          color: rgb(18, 65, 112);
+          font-weight: 600;
+          background: rgba(170, 255, 199, 0.25);
+          border: 1px solid rgba(103, 192, 144, 0.4);
+          padding: 0.35rem 0.75rem;
+          border-radius: var(--radius-full);
         }
 
         /* Interactive AI Widget Card */
         .interactive-ai-card {
           padding: 1.6rem;
           position: relative;
-          background: #ffffff;
-          box-shadow: 0 20px 45px -10px rgba(30, 63, 49, 0.12), 0 2px 10px rgba(30, 63, 49, 0.04);
+          background: #f2f5f0;
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          border-radius: var(--radius-xl);
+          box-shadow: 0 20px 48px -10px rgba(18, 65, 112, 0.12), 0 4px 16px rgba(33, 91, 99, 0.08);
         }
 
         .ai-card-header {
@@ -474,7 +481,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           align-items: center;
           justify-content: space-between;
           padding-bottom: 1rem;
-          border-bottom: 1px solid var(--border-light);
+          border-bottom: 1px solid rgba(103, 192, 144, 0.3);
           margin-bottom: 1rem;
           gap: 0.75rem;
         }
@@ -489,7 +496,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           width: 36px;
           height: 36px;
           border-radius: 10px;
-          background: var(--pastel-sage);
+          background: rgba(170, 255, 199, 0.35);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -509,7 +516,8 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
 
         .subject-selector-tabs {
           display: flex;
-          background: var(--bg-subtle);
+          background: rgba(170, 255, 199, 0.2);
+          border: 1px solid rgba(103, 192, 144, 0.4);
           padding: 3px;
           border-radius: var(--radius-full);
           gap: 2px;
@@ -528,15 +536,15 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         }
 
         .subject-tab.active {
-          background: #ffffff;
-          color: var(--brand-emerald);
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+          background: #f7faf5;
+          color: rgb(18, 65, 112);
+          box-shadow: 0 2px 8px rgba(18, 65, 112, 0.18);
         }
 
         /* Question Banner */
         .eval-question-box {
-          background: var(--pastel-sage);
-          border: 1px solid var(--pastel-sage-border);
+          background: rgba(170, 255, 199, 0.2);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
           border-radius: var(--radius-md);
           padding: 0.85rem 1rem;
           margin-bottom: 0.85rem;
@@ -563,8 +571,8 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
 
         /* Student Submission Box */
         .student-submission-box {
-          background: #fafaf9;
-          border: 1px dashed var(--border-medium);
+          background: #f2f8f4;
+          border: 1.5px dashed #a4d8bd;
           border-radius: var(--radius-md);
           padding: 0.85rem 1rem;
           margin-bottom: 1rem;
@@ -588,15 +596,15 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         .submission-content-pre {
           font-family: var(--font-mono);
           font-size: 0.8rem;
-          color: #273b30;
+          color: rgb(18, 65, 112);
           line-height: 1.5;
           white-space: pre-line;
           max-height: 130px;
           overflow-y: auto;
-          background: #ffffff;
+          background: rgba(170, 255, 199, 0.15);
           padding: 0.6rem;
           border-radius: var(--radius-sm);
-          border: 1px solid rgba(0, 0, 0, 0.04);
+          border: 1px solid rgba(103, 192, 144, 0.35);
         }
 
         .eval-btn {
@@ -621,8 +629,8 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           display: flex;
           align-items: center;
           gap: 1rem;
-          background: #f7faf8;
-          border: 1px solid var(--pastel-sage-border);
+          background: rgba(170, 255, 199, 0.22);
+          border: 1.5px solid rgba(103, 192, 144, 0.45);
           border-radius: var(--radius-md);
           padding: 0.85rem;
           margin-bottom: 1rem;
@@ -631,7 +639,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         .score-badge-circle {
           width: 52px;
           height: 52px;
-          background: var(--brand-emerald);
+          background: linear-gradient(135deg, rgb(18, 65, 112) 0%, rgb(33, 91, 99) 100%);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -640,7 +648,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           font-family: var(--font-display);
           font-weight: 800;
           flex-shrink: 0;
-          box-shadow: 0 4px 10px rgba(30, 63, 49, 0.2);
+          box-shadow: 0 4px 12px rgba(18, 65, 112, 0.25);
         }
 
         .earned-score {
@@ -697,13 +705,13 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         }
 
         .step-passed {
-          background: rgba(226, 241, 231, 0.5);
-          border: 1px solid rgba(184, 224, 199, 0.6);
+          background: rgba(170, 255, 199, 0.2);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
         }
 
         .step-partial {
-          background: rgba(255, 237, 226, 0.6);
-          border: 1px solid rgba(254, 210, 186, 0.8);
+          background: #fef7ec;
+          border: 1.5px solid #f6d89e;
         }
 
         .step-row-top {
@@ -730,8 +738,8 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         }
 
         .tag-green {
-          background: #c8e9d3;
-          color: var(--brand-emerald);
+          background: rgba(170, 255, 199, 0.45);
+          color: rgb(18, 65, 112);
         }
 
         .tag-orange {

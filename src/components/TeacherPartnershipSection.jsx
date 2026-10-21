@@ -150,15 +150,12 @@ export default function TeacherPartnershipSection() {
       </div>
 
       <style>{`
-        .teacher-section {
-          background: #ffffff;
-        }
-
         .teacher-feature-card {
           padding: clamp(2rem, 4vw, 3.5rem);
           border-radius: var(--radius-xl);
-          background: linear-gradient(135deg, #ffffff 0%, #f6f5fe 100%);
-          border: 1px solid var(--pastel-lavender-border);
+          background: linear-gradient(135deg, #e7edf0 0%, #dbe5ea 100%);
+          border: 1.5px solid rgba(18, 65, 112, 0.25);
+          box-shadow: 0 16px 40px -8px rgba(18, 65, 112, 0.12);
         }
 
         .teacher-grid {
@@ -213,13 +210,13 @@ export default function TeacherPartnershipSection() {
           min-width: 220px;
           padding: 0.75rem 1rem;
           border-radius: var(--radius-full);
-          border: 1px solid var(--border-medium);
-          background: #ffffff;
+          border: 1.5px solid rgba(33, 91, 99, 0.3);
+          background: #f7faf5;
           font-size: 0.9rem;
         }
 
         .teacher-input:focus {
-          border-color: #6366f1;
+          border-color: rgb(18, 65, 112);
         }
 
         .apply-success-box {
@@ -236,11 +233,11 @@ export default function TeacherPartnershipSection() {
 
         /* Calculator Card */
         .calc-card {
-          background: #ffffff;
-          border: 1px solid var(--border-light);
+          background: #f2f5f0;
+          border: 1.5px solid rgba(33, 91, 99, 0.25);
           border-radius: var(--radius-lg);
           padding: 1.75rem;
-          box-shadow: var(--shadow-card);
+          box-shadow: 0 16px 40px -8px rgba(18, 65, 112, 0.12);
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
@@ -294,7 +291,7 @@ export default function TeacherPartnershipSection() {
         }
 
         .calc-result-box {
-          background: #fafbfa;
+          background: #f7faf5;
           border: 1px solid var(--pastel-butter-border);
           border-radius: var(--radius-md);
           padding: 1.25rem;

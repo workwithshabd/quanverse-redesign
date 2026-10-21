@@ -148,7 +148,7 @@ export default function Footer({ onOpenDemoExam }) {
           </div>
 
           <div className="bottom-trust">
-            <ShieldCheck size={14} className="text-emerald" />
+            <ShieldCheck size={14} style={{ color: 'rgb(103, 192, 144)' }} />
             <span>Encrypted &amp; Secure • CBSE &amp; CISCE Blueprint Aligned</span>
           </div>
 
@@ -163,11 +163,13 @@ export default function Footer({ onOpenDemoExam }) {
 
       <style>{`
         .site-footer {
-          background: #f4f6f4;
-          border-top: 1px solid var(--border-light);
+          background: #080c10;
+          background-image: radial-gradient(circle at 50% 0%, rgba(33, 91, 99, 0.18) 0%, transparent 60%);
+          border-top: 1.5px solid rgba(103, 192, 144, 0.25);
           padding-top: 2rem;
           padding-bottom: 3rem;
           position: relative;
+          color: #f1f5f9;
         }
 
         .footer-cta-band {
@@ -178,7 +180,7 @@ export default function Footer({ onOpenDemoExam }) {
         }
 
         .cta-band-card {
-          background: #ffffff;
+          background: linear-gradient(135deg, #111722 0%, #090e15 100%);
           border-radius: var(--radius-xl);
           padding: clamp(2rem, 4vw, 3rem);
           display: flex;
@@ -186,8 +188,8 @@ export default function Footer({ onOpenDemoExam }) {
           justify-content: space-between;
           gap: 2rem;
           flex-wrap: wrap;
-          border: 1px solid var(--pastel-sage-border);
-          box-shadow: var(--shadow-elevated);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.65);
         }
 
         .cta-band-content {
@@ -197,12 +199,12 @@ export default function Footer({ onOpenDemoExam }) {
         .cta-band-title {
           font-size: clamp(1.4rem, 1.2rem + 1vw, 2.1rem);
           margin-bottom: 0.5rem;
-          color: var(--text-main);
+          color: #ffffff;
         }
 
         .cta-band-sub {
           font-size: 0.95rem;
-          color: var(--text-muted);
+          color: #94a3b8;
         }
 
         .footer-main-grid {
@@ -212,9 +214,23 @@ export default function Footer({ onOpenDemoExam }) {
           margin-bottom: 3.5rem;
         }
 
+        .site-footer .logo-title {
+          color: #ffffff !important;
+        }
+
+        .site-footer .logo-subtitle {
+          color: #94a3b8 !important;
+        }
+
+        .site-footer .logo-symbol {
+          background: linear-gradient(135deg, rgb(33, 91, 99) 0%, rgb(18, 65, 112) 100%) !important;
+          border: 1px solid rgba(170, 255, 199, 0.4) !important;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+        }
+
         .brand-pitch {
           font-size: 0.85rem;
-          color: var(--text-muted);
+          color: #94a3b8;
           line-height: 1.6;
           margin-bottom: 1.5rem;
           max-width: 340px;
@@ -230,17 +246,18 @@ export default function Footer({ onOpenDemoExam }) {
         .nl-label {
           font-size: 0.75rem;
           font-weight: 700;
-          color: var(--text-main);
+          color: rgb(170, 255, 199);
           text-transform: uppercase;
           letter-spacing: 0.04em;
         }
 
         .nl-form {
           display: flex;
-          background: #ffffff;
-          border: 1px solid var(--border-medium);
+          background: rgba(255, 255, 255, 0.06);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
           border-radius: var(--radius-full);
           padding: 3px;
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .nl-input {
@@ -249,10 +266,19 @@ export default function Footer({ onOpenDemoExam }) {
           padding: 0.5rem 0.85rem;
           font-size: 0.85rem;
           flex: 1;
+          color: #ffffff;
+        }
+
+        .nl-input::placeholder {
+          color: #64748b;
+        }
+
+        .nl-input:focus {
+          outline: none;
         }
 
         .nl-btn {
-          background: var(--brand-emerald);
+          background: rgb(18, 65, 112);
           color: #ffffff;
           border: none;
           width: 34px;
@@ -262,11 +288,12 @@ export default function Footer({ onOpenDemoExam }) {
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          transition: background var(--transition-fast);
+          transition: all var(--transition-fast);
         }
 
         .nl-btn:hover {
-          background: var(--brand-emerald-dark);
+          background: rgb(33, 91, 99);
+          transform: scale(1.05);
         }
 
         .nl-success {
@@ -274,7 +301,7 @@ export default function Footer({ onOpenDemoExam }) {
           align-items: center;
           gap: 0.5rem;
           font-size: 0.8rem;
-          color: var(--brand-emerald);
+          color: rgb(170, 255, 199);
           font-weight: 600;
           padding: 0.4rem 0;
         }
@@ -282,8 +309,9 @@ export default function Footer({ onOpenDemoExam }) {
         .footer-col-title {
           font-size: 0.95rem;
           font-weight: 700;
-          color: var(--text-main);
+          color: #ffffff;
           margin-bottom: 1.25rem;
+          letter-spacing: 0.01em;
         }
 
         .footer-links-list {
@@ -295,12 +323,14 @@ export default function Footer({ onOpenDemoExam }) {
 
         .footer-links-list a {
           font-size: 0.85rem;
-          color: var(--text-muted);
-          transition: color var(--transition-fast);
+          color: #94a3b8;
+          transition: all var(--transition-fast);
+          display: inline-block;
         }
 
         .footer-links-list a:hover {
-          color: var(--brand-emerald);
+          color: rgb(170, 255, 199) !important;
+          transform: translateX(2px);
         }
 
         .footer-bottom-bar {
@@ -308,18 +338,22 @@ export default function Footer({ onOpenDemoExam }) {
           align-items: center;
           justify-content: space-between;
           padding-top: 2rem;
-          border-top: 1px solid var(--border-light);
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
           font-size: 0.8rem;
-          color: var(--text-light);
+          color: #64748b;
           flex-wrap: wrap;
           gap: 1rem;
+        }
+
+        .bottom-copy {
+          color: #64748b;
         }
 
         .bottom-trust {
           display: flex;
           align-items: center;
           gap: 0.4rem;
-          color: var(--text-muted);
+          color: #94a3b8;
           font-weight: 500;
         }
 
@@ -330,11 +364,12 @@ export default function Footer({ onOpenDemoExam }) {
         }
 
         .bottom-legal-links a {
-          color: var(--text-muted);
+          color: #94a3b8;
+          transition: color var(--transition-fast);
         }
 
         .bottom-legal-links a:hover {
-          color: var(--brand-emerald);
+          color: rgb(170, 255, 199) !important;
         }
 
         @media (max-width: 900px) {

@@ -261,10 +261,6 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
       </div>
 
       <style>{`
-        .readiness-section {
-          background: linear-gradient(180deg, rgba(244, 247, 245, 0) 0%, rgba(226, 241, 231, 0.35) 50%, rgba(244, 247, 245, 0) 100%);
-        }
-
         .section-head {
           max-width: 680px;
           margin-left: auto;
@@ -288,7 +284,10 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
 
         .simulator-card {
           padding: clamp(1.5rem, 3vw, 2.75rem);
-          background: #ffffff;
+          background: #f7fbfe;
+          border: 1.5px solid #b6defa;
+          border-radius: var(--radius-xl);
+          box-shadow: 0 20px 48px -12px rgba(14, 165, 233, 0.18);
         }
 
         .sim-grid {
@@ -302,7 +301,7 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
           align-items: center;
           justify-content: space-between;
           padding-bottom: 1.25rem;
-          border-bottom: 1px solid var(--border-light);
+          border-bottom: 1px solid #cce5f8;
           margin-bottom: 1.5rem;
           flex-wrap: wrap;
           gap: 1rem;
@@ -316,7 +315,8 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
 
         .board-toggle {
           display: flex;
-          background: var(--bg-subtle);
+          background: #e1f0fa;
+          border: 1px solid #bee0f8;
           padding: 3px;
           border-radius: var(--radius-full);
           gap: 3px;
@@ -335,9 +335,9 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
         }
 
         .board-btn.active-board {
-          background: #ffffff;
-          color: var(--brand-emerald);
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+          background: #f2f5f0;
+          color: rgb(18, 65, 112);
+          box-shadow: 0 2px 8px rgba(18, 65, 112, 0.18);
         }
 
         .sliders-list {
@@ -375,7 +375,7 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
           width: 100%;
           height: 8px;
           border-radius: 9999px;
-          background: #e7ede9;
+          background: #dce3db;
           outline: none;
           cursor: pointer;
           transition: background var(--transition-fast);
@@ -387,9 +387,9 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
           width: 22px;
           height: 22px;
           border-radius: 50%;
-          background: #ffffff;
-          border: 3px solid var(--brand-emerald);
-          box-shadow: 0 2px 8px rgba(30, 63, 49, 0.25);
+          background: #f2f5f0;
+          border: 3px solid rgb(18, 65, 112);
+          box-shadow: 0 2px 8px rgba(18, 65, 112, 0.25);
           cursor: pointer;
           transition: transform 0.1s ease;
         }
@@ -399,15 +399,15 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
         }
 
         .range-lavender::-webkit-slider-thumb {
-          border-color: #6366f1;
+          border-color: rgb(33, 91, 99);
         }
 
         .range-peach::-webkit-slider-thumb {
-          border-color: #e07a5f;
+          border-color: rgb(18, 65, 112);
         }
 
         .range-sky::-webkit-slider-thumb {
-          border-color: #0284c7;
+          border-color: rgb(103, 192, 144);
         }
 
         .slider-subtext {
@@ -417,8 +417,8 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
 
         /* Output Column */
         .output-card-inner {
-          background: #fafbfa;
-          border: 1px solid var(--border-light);
+          background: #f2f5f0;
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
           border-radius: var(--radius-lg);
           padding: 1.75rem;
           display: flex;
@@ -542,8 +542,8 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
           align-items: center;
           justify-content: space-between;
           padding: 0.65rem 0.85rem;
-          background: #ffffff;
-          border: 1px solid var(--border-light);
+          background: #f8fcfe;
+          border: 1px solid #c2e3f9;
           border-radius: var(--radius-sm);
         }
 

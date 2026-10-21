@@ -58,14 +58,14 @@ export default function TeacherSignupModal({ isOpen, onClose }) {
 
         .teacher-modal-dialog {
           position: relative;
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-xl);
           width: 100%;
           max-width: 760px;
           max-height: 90vh;
           overflow: hidden;
-          box-shadow: var(--shadow-elevated);
-          border: 1px solid var(--border-medium);
+          box-shadow: 0 25px 60px -15px rgba(18, 65, 112, 0.2);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
           display: flex;
           flex-direction: column;
           animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);

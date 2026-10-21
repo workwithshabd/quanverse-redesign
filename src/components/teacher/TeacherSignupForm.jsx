@@ -169,7 +169,7 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
 
         <style>{`
           .teacher-form-success-card {
-            background: #ffffff;
+            background: #f2f5f0;
             border-radius: var(--radius-lg);
             padding: 2.5rem;
             text-align: center;
@@ -541,11 +541,11 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
 
       <style>{`
         .teacher-signup-form {
-          background: #ffffff;
-          border: 1px solid var(--border-light);
+          background: #f2f5f0;
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
           border-radius: var(--radius-lg);
           padding: 2.5rem;
-          box-shadow: var(--shadow-card);
+          box-shadow: 0 16px 40px -8px rgba(18, 65, 112, 0.1);
         }
         .is-modal-form {
           border: none;
@@ -627,8 +627,8 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
           width: 100%;
           padding: 10px 14px;
           border-radius: var(--radius-sm);
-          border: 1px solid var(--border-medium);
-          background: #ffffff;
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          background: #fbfdfc;
           font-family: var(--font-sans);
           font-size: 0.9rem;
           color: var(--text-main);
@@ -639,8 +639,8 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
         }
         .form-control:focus {
           outline: none;
-          border-color: var(--brand-emerald);
-          box-shadow: 0 0 0 3px rgba(30, 63, 49, 0.12);
+          border-color: rgb(18, 65, 112);
+          box-shadow: 0 0 0 3px rgba(18, 65, 112, 0.15);
         }
 
         .select-control {
@@ -676,8 +676,8 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
           align-items: center;
           gap: 8px;
           padding: 8px 14px;
-          background: #fff;
-          border: 1px solid var(--border-medium);
+          background: #fbfdfc;
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
           border-radius: var(--radius-full);
           font-size: 0.85rem;
           font-weight: 500;
@@ -689,9 +689,9 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
           cursor: pointer;
         }
         .radio-pill.selected {
-          border-color: var(--brand-emerald);
-          background: var(--pastel-sage);
-          color: var(--pastel-sage-text);
+          border-color: rgb(18, 65, 112);
+          background: rgba(170, 255, 199, 0.35);
+          color: rgb(18, 65, 112);
           font-weight: 600;
         }
 
@@ -706,19 +706,19 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
           align-items: flex-start;
           gap: 12px;
           padding: 12px 14px;
-          background: #ffffff;
-          border: 1px solid var(--border-medium);
+          background: #fbfdfc;
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
           border-radius: var(--radius-md);
           cursor: pointer;
           transition: all var(--transition-fast);
         }
         .role-choice-card:hover {
-          border-color: var(--brand-emerald-light);
-          background: rgba(226, 241, 231, 0.2);
+          border-color: rgb(103, 192, 144);
+          background: rgba(170, 255, 199, 0.15);
         }
         .role-choice-card.role-selected {
-          border-color: var(--brand-emerald);
-          background: var(--pastel-sage);
+          border-color: rgb(18, 65, 112);
+          background: rgba(170, 255, 199, 0.35);
         }
 
         .role-checkbox {
@@ -730,7 +730,7 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
           align-items: center;
           justify-content: center;
           margin-top: 2px;
-          background: #fff;
+          background: #f7faf5;
           flex-shrink: 0;
         }
         .role-checkbox.checked {

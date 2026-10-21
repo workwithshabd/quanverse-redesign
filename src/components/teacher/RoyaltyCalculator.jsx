@@ -145,11 +145,11 @@ export default function RoyaltyCalculator({ onApplyClick }) {
 
       <style>{`
         .royalty-calc-widget {
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-xl);
           padding: 2.25rem;
-          border: 1px solid var(--border-medium);
-          box-shadow: var(--shadow-card);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          box-shadow: 0 16px 40px -8px rgba(18, 65, 112, 0.1);
         }
 
         .calc-header-band {
@@ -173,8 +173,8 @@ export default function RoyaltyCalculator({ onApplyClick }) {
           width: 48px;
           height: 48px;
           border-radius: var(--radius-md);
-          background: var(--pastel-butter);
-          border: 1px solid var(--pastel-butter-border);
+          background: rgba(170, 255, 199, 0.35);
+          border: 1px solid rgba(103, 192, 144, 0.5);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -269,11 +269,12 @@ export default function RoyaltyCalculator({ onApplyClick }) {
 
         /* Summary Col */
         .payout-result-card {
-          background: linear-gradient(135deg, #142a21 0%, #1e3f31 100%);
+          background: linear-gradient(135deg, rgb(18, 65, 112) 0%, rgb(33, 91, 99) 100%);
           border-radius: var(--radius-lg);
           padding: 2rem;
           color: #ffffff;
-          box-shadow: var(--shadow-card);
+          box-shadow: 0 16px 36px -8px rgba(18, 65, 112, 0.3);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -284,7 +285,7 @@ export default function RoyaltyCalculator({ onApplyClick }) {
           font-size: 0.85rem;
           text-transform: uppercase;
           letter-spacing: 0.8px;
-          color: rgba(226, 241, 231, 0.8);
+          color: rgba(170, 255, 199, 0.85);
           font-weight: 600;
           margin-bottom: 0.5rem;
         }
@@ -298,7 +299,7 @@ export default function RoyaltyCalculator({ onApplyClick }) {
 
         .payout-currency {
           font-size: 1.5rem;
-          color: #faeab0;
+          color: rgb(170, 255, 199);
           font-weight: 700;
         }
 
@@ -312,12 +313,12 @@ export default function RoyaltyCalculator({ onApplyClick }) {
 
         .payout-period {
           font-size: 0.9rem;
-          color: rgba(255, 255, 255, 0.7);
+          color: rgba(255, 255, 255, 0.8);
         }
 
         .breakdown-list {
           width: 100%;
-          border-top: 1px solid rgba(255, 255, 255, 0.12);
+          border-top: 1px solid rgba(255, 255, 255, 0.15);
           padding-top: 1.25rem;
           margin-bottom: 1.75rem;
           display: flex;
@@ -333,12 +334,12 @@ export default function RoyaltyCalculator({ onApplyClick }) {
         }
 
         .item-name {
-          color: rgba(226, 241, 231, 0.75);
+          color: rgba(255, 255, 255, 0.85);
         }
 
         .item-amount {
           font-weight: 600;
-          color: #faeab0;
+          color: rgb(170, 255, 199);
         }
 
         .apply-from-calc-btn {

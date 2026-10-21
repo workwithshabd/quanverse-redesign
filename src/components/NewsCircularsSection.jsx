@@ -89,10 +89,6 @@ export default function NewsCircularsSection() {
       </div>
 
       <style>{`
-        .news-section {
-          background: #fbfbf9;
-        }
-
         .news-header-row {
           display: flex;
           align-items: flex-end;
@@ -120,8 +116,8 @@ export default function NewsCircularsSection() {
           width: 100%;
           padding: 0.7rem 1rem 0.7rem 2.5rem;
           border-radius: var(--radius-full);
-          border: 1px solid var(--border-medium);
-          background: #ffffff;
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          background: #f2f5f0;
           font-size: 0.85rem;
         }
 
@@ -134,17 +130,19 @@ export default function NewsCircularsSection() {
         .news-card {
           padding: 1.75rem;
           border-radius: var(--radius-lg);
-          background: #ffffff;
+          background: #f2f5f0;
           display: flex;
           flex-direction: column;
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
           transition: all var(--transition-smooth);
         }
 
         .news-card:hover {
           transform: translateY(-4px);
-          box-shadow: var(--shadow-card);
-          border-color: var(--pastel-sage-border);
+          box-shadow: 0 16px 36px -8px rgba(18, 65, 112, 0.16);
+          border-color: rgb(33, 91, 99);
+          background: #f7faf5;
         }
 
         .news-card-top {

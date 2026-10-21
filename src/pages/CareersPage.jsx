@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Briefcase, 
   MapPin, 
@@ -16,9 +16,13 @@ import {
 } from 'lucide-react';
 import { api } from '../services/api';
 import { useNavigation } from '../hooks/useNavigation';
+import { useGsapScroll } from '../hooks/useGsapScroll';
 
 export default function CareersPage() {
   const { navigateTo, openJobApplication } = useNavigation();
+  const pageRef = useRef(null);
+  useGsapScroll(pageRef);
+
   const [positions, setPositions] = useState([]);
   const [activeDept, setActiveDept] = useState('All');
   const [isLoading, setIsLoading] = useState(true);
@@ -84,7 +88,7 @@ export default function CareersPage() {
   ];
 
   return (
-    <div className="company-careers-page">
+    <div className="company-careers-page" ref={pageRef}>
       
       {/* 1. Hero Section */}
       <section className="careers-hero-section">
@@ -390,11 +394,11 @@ export default function CareersPage() {
           align-items: center;
           justify-content: center;
           gap: 2.25rem;
-          background: #ffffff;
+          background: #f2f5f0;
           padding: 1.25rem 2.5rem;
           border-radius: var(--radius-xl);
-          border: 1px solid var(--border-light);
-          box-shadow: var(--shadow-card);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
           max-width: 900px;
           margin: 0 auto;
           flex-wrap: wrap;
@@ -483,11 +487,11 @@ export default function CareersPage() {
         }
 
         .teacher-cta-card {
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-lg);
           padding: 2rem;
-          border: 1px solid var(--border-medium);
-          box-shadow: var(--shadow-card);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
           text-align: center;
         }
 
@@ -520,22 +524,23 @@ export default function CareersPage() {
         }
 
         .perk-card {
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-lg);
           padding: 2rem;
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
           transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
         }
         .perk-card:hover {
           transform: translateY(-4px);
-          box-shadow: var(--shadow-card);
+          box-shadow: 0 16px 36px -8px rgba(33, 91, 99, 0.15);
+          border-color: rgb(103, 192, 144);
         }
 
         .perk-icon-circle {
           width: 48px;
           height: 48px;
           border-radius: 12px;
-          background: var(--pastel-sage);
+          background: rgba(170, 255, 199, 0.35);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -578,10 +583,10 @@ export default function CareersPage() {
           display: flex;
           align-items: center;
           gap: 6px;
-          background: #ffffff;
+          background: #f2f5f0;
           padding: 5px;
           border-radius: var(--radius-full);
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
           box-shadow: var(--shadow-subtle);
           flex-wrap: wrap;
         }
@@ -601,7 +606,7 @@ export default function CareersPage() {
           color: var(--text-main);
         }
         .dept-filter-btn.active {
-          background: var(--brand-emerald);
+          background: rgb(18, 65, 112);
           color: #ffffff;
         }
 
@@ -613,18 +618,18 @@ export default function CareersPage() {
         }
 
         .job-card {
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-lg);
           padding: 1.85rem;
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
           display: flex;
           flex-direction: column;
           transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
         }
         .job-card:hover {
           transform: translateY(-4px);
-          box-shadow: var(--shadow-card);
-          border-color: var(--pastel-sage-border);
+          box-shadow: 0 16px 36px -8px rgba(33, 91, 99, 0.15);
+          border-color: rgb(103, 192, 144);
         }
 
         .job-card-header {
@@ -720,20 +725,20 @@ export default function CareersPage() {
 
         .open-pitch-card {
           padding: 2rem;
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-lg);
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
         }
         .open-email-pill {
           display: inline-block;
           font-family: var(--font-mono);
           font-weight: 600;
-          color: var(--brand-emerald);
-          background: var(--pastel-sage);
+          color: rgb(18, 65, 112);
+          background: rgba(170, 255, 199, 0.35);
           padding: 6px 16px;
           border-radius: var(--radius-full);
           font-size: 0.95rem;
-          border: 1px solid var(--pastel-sage-border);
+          border: 1px solid rgba(103, 192, 144, 0.5);
         }
 
         .jobs-loading-box {

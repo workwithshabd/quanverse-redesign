@@ -9,6 +9,7 @@ import CareersPage from './pages/CareersPage';
 import TeachersPage from './pages/TeachersPage';
 import DebugBar from './components/common/DebugBar';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { ThemeProvider } from './context/ThemeContext';
 import { NavigationProvider } from './context/NavigationContext';
 import { useNavigation } from './hooks/useNavigation';
 
@@ -79,9 +80,11 @@ function AppContent() {
 export default function App() {
   return (
     <ErrorBoundary>
-      <NavigationProvider>
-        <AppContent />
-      </NavigationProvider>
+      <ThemeProvider>
+        <NavigationProvider>
+          <AppContent />
+        </NavigationProvider>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }

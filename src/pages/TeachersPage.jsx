@@ -13,10 +13,13 @@ import {
 import RoyaltyCalculator from '../components/teacher/RoyaltyCalculator';
 import TeacherSignupForm from '../components/teacher/TeacherSignupForm';
 import { useNavigation } from '../hooks/useNavigation';
+import { useGsapScroll } from '../hooks/useGsapScroll';
 
 export default function TeachersPage() {
   const { openTeacherSignup, navigateTo } = useNavigation();
   const signupRef = useRef(null);
+  const pageRef = useRef(null);
+  useGsapScroll(pageRef);
 
   const scrollToSignup = () => {
     if (signupRef.current) {
@@ -73,7 +76,7 @@ export default function TeachersPage() {
   ];
 
   return (
-    <div className="teachers-page">
+    <div className="teachers-page" ref={pageRef}>
       
       {/* 1. Teacher Hero Section */}
       <section className="teachers-hero-section">
@@ -377,11 +380,11 @@ export default function TeachersPage() {
           align-items: center;
           justify-content: center;
           gap: 2.5rem;
-          background: #ffffff;
+          background: #f2f5f0;
           padding: 1.25rem 2.5rem;
           border-radius: var(--radius-xl);
-          border: 1px solid var(--border-light);
-          box-shadow: var(--shadow-card);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          box-shadow: 0 12px 32px -8px rgba(18, 65, 112, 0.1);
           max-width: 900px;
           margin: 0 auto;
           flex-wrap: wrap;
@@ -395,8 +398,12 @@ export default function TeachersPage() {
           font-family: var(--font-display);
           font-size: 1.8rem;
           font-weight: 800;
-          color: var(--brand-emerald);
+          color: rgb(18, 65, 112);
           letter-spacing: -0.5px;
+        }
+
+        [data-theme="dark"] .trust-val {
+          color: rgb(170, 255, 199);
         }
 
         .trust-desc {
@@ -419,17 +426,18 @@ export default function TeachersPage() {
         }
 
         .pillar-card {
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-lg);
           padding: 2rem;
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
           display: flex;
           flex-direction: column;
           transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
         }
         .pillar-card:hover {
           transform: translateY(-4px);
-          box-shadow: var(--shadow-card);
+          box-shadow: 0 16px 36px -8px rgba(33, 91, 99, 0.15);
+          border-color: rgb(103, 192, 144);
         }
 
         .pillar-icon-box {
@@ -489,12 +497,19 @@ export default function TeachersPage() {
         }
 
         .teacher-testimonial-card {
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-lg);
           padding: 2rem;
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          box-shadow: 0 10px 24px -6px rgba(18, 65, 112, 0.06);
           display: flex;
           flex-direction: column;
+          transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+        }
+        .teacher-testimonial-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 16px 36px -8px rgba(33, 91, 99, 0.15);
+          border-color: rgb(103, 192, 144);
         }
 
         .rating-stars {
@@ -523,8 +538,9 @@ export default function TeachersPage() {
           width: 44px;
           height: 44px;
           border-radius: 50%;
-          background: var(--pastel-sage);
-          color: var(--pastel-sage-text);
+          background: rgba(170, 255, 199, 0.35);
+          color: rgb(18, 65, 112);
+          border: 1px solid rgba(103, 192, 144, 0.5);
           font-weight: 700;
           font-size: 14px;
           display: flex;
@@ -575,10 +591,14 @@ export default function TeachersPage() {
         }
 
         .faq-card {
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-md);
           padding: 1.5rem;
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          transition: border-color var(--transition-fast);
+        }
+        .faq-card:hover {
+          border-color: rgb(103, 192, 144);
         }
 
         .faq-question {
@@ -600,9 +620,9 @@ export default function TeachersPage() {
 
         .faq-contact-card {
           padding: 1.75rem;
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-md);
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
         }
 
         .bg-subtle-section {

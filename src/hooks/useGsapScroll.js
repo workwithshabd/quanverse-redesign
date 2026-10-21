@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
 
 // Register GSAP plugin safely
 if (typeof window !== 'undefined') {
@@ -9,8 +10,9 @@ if (typeof window !== 'undefined') {
 
 /**
  * useGsapScroll Hook
- * Attaches smooth scroll-triggered entrance animations, card staggers,
- * and ambient parallax physics to the page. Automatically cleans up on unmount.
+ * Attaches Lenis buttery-smooth inertial scrolling connected with GSAP ScrollTrigger.
+ * Executes smooth entrance animations, card staggers, and floating elements.
+ * Automatically cleans up on unmount.
  */
 export function useGsapScroll(containerRef) {
   const ctxRef = useRef(null);
@@ -18,15 +20,50 @@ export function useGsapScroll(containerRef) {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Use gsap.context for React 19 safe scoping and clean cleanup
+    // 1. Initialize Lenis with snappier, responsive smooth scrolling
+    const lenis = new Lenis({
+      duration: 0.8,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true,
+      touchMultiplier: 1.8,
+    });
+
+    // Synchronize Lenis scroll position with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+
+    const updateTicker = (time) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(updateTicker);
+    gsap.ticker.lagSmoothing(0);
+
+    // Smooth animated anchor link navigation with snappy duration
+    const handleAnchorClick = (e) => {
+      const link = e.target.closest('a[href^="#"]');
+      if (link) {
+        const href = link.getAttribute('href');
+        if (href && href !== '#' && href.startsWith('#')) {
+          const targetEl = document.querySelector(href);
+          if (targetEl) {
+            e.preventDefault();
+            lenis.scrollTo(targetEl, { offset: -68, duration: 0.7 });
+          }
+        }
+      }
+    };
+    document.addEventListener('click', handleAnchorClick);
+
+    // 2. Use gsap.context for animations
     const ctx = gsap.context(() => {
-      // 1. Reveal Section Headings & Badges smoothly
+      // Reveal Section Headings & Badges with snappy speed
       const sectionHeads = gsap.utils.toArray('.gsap-reveal');
       sectionHeads.forEach((el) => {
         gsap.fromTo(
           el,
           { 
-            y: 35, 
+            y: 24, 
             opacity: 0,
             scale: 0.98
           },
@@ -34,18 +71,18 @@ export function useGsapScroll(containerRef) {
             y: 0,
             opacity: 1,
             scale: 1,
-            duration: 0.85,
+            duration: 0.55,
             ease: 'power3.out',
             scrollTrigger: {
               trigger: el,
-              start: 'top 88%',
+              start: 'top 90%',
               toggleActions: 'play none none none'
             }
           }
         );
       });
 
-      // 2. Staggered Card Entrances (Bento, Mocks, Pricing, Steps)
+      // Snappy Staggered Card Entrances (Bento, Mocks, Pricing, Steps)
       const staggerGroups = gsap.utils.toArray('.gsap-stagger-group');
       staggerGroups.forEach((group) => {
         const items = group.querySelectorAll('.gsap-stagger-item');
@@ -53,20 +90,20 @@ export function useGsapScroll(containerRef) {
           gsap.fromTo(
             items,
             { 
-              y: 40, 
+              y: 28, 
               opacity: 0,
-              scale: 0.96
+              scale: 0.97
             },
             {
               y: 0,
               opacity: 1,
               scale: 1,
-              duration: 0.75,
-              stagger: 0.12,
+              duration: 0.48,
+              stagger: 0.06,
               ease: 'power2.out',
               scrollTrigger: {
                 trigger: group,
-                start: 'top 82%',
+                start: 'top 86%',
                 toggleActions: 'play none none none'
               }
             }
@@ -74,29 +111,12 @@ export function useGsapScroll(containerRef) {
         }
       });
 
-      // 3. Subtle Parallax for Ambient Light Orbs
-      const orbs = gsap.utils.toArray('.pastel-glow-orb');
-      orbs.forEach((orb, i) => {
-        const speed = (i + 1) * 20;
-        gsap.to(orb, {
-          y: speed,
-          x: (i % 2 === 0 ? 1 : -1) * 15,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: orb.parentElement || document.body,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.5
-          }
-        });
-      });
-
-      // 4. Smooth Floating Animation for Stat Pills and Badges
+      // Lively sinusoidal physics for badges and meters
       const floatItems = gsap.utils.toArray('.gsap-float');
       floatItems.forEach((el, idx) => {
         gsap.to(el, {
-          y: idx % 2 === 0 ? -8 : 8,
-          duration: 3 + (idx * 0.4),
+          y: idx % 2 === 0 ? -5 : 5,
+          duration: 2.0 + (idx * 0.25),
           repeat: -1,
           yoyo: true,
           ease: 'sine.inOut'
@@ -107,14 +127,16 @@ export function useGsapScroll(containerRef) {
 
     ctxRef.current = ctx;
 
-    // Refresh ScrollTrigger after DOM layout stabilizes
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 150);
+    }, 180);
 
     return () => {
       clearTimeout(timer);
-      ctx.revert(); // clean up all GSAP tweens and ScrollTriggers
+      document.removeEventListener('click', handleAnchorClick);
+      gsap.ticker.remove(updateTicker);
+      lenis.destroy();
+      ctx.revert();
     };
   }, [containerRef]);
 

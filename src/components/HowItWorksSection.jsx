@@ -222,10 +222,6 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
       </div>
 
       <style>{`
-        .how-it-works-section {
-          background: #ffffff;
-        }
-
         .how-grid {
           display: grid;
           grid-template-columns: 1fr 1.15fr;
@@ -244,46 +240,47 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
           align-items: center;
           gap: 1.25rem;
           padding: 1.25rem 1.4rem;
-          background: #fbfbfb;
-          border: 1px solid var(--border-light);
+          background: #f2f5f0;
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
           border-radius: var(--radius-lg);
           cursor: pointer;
           transition: all var(--transition-smooth);
+          box-shadow: 0 4px 16px rgba(18, 65, 112, 0.05);
         }
 
         .step-nav-card:hover {
-          background: #ffffff;
-          border-color: var(--border-medium);
+          background: #f7faf5;
+          border-color: rgb(33, 91, 99);
           transform: translateX(4px);
-          box-shadow: var(--shadow-card);
+          box-shadow: 0 10px 24px -4px rgba(18, 65, 112, 0.12);
         }
 
         .step-nav-card.active {
-          background: #ffffff;
-          border-color: var(--pastel-sage-border);
-          box-shadow: 0 10px 25px -4px rgba(30, 63, 49, 0.08);
-          border-left: 4px solid var(--brand-emerald);
+          background: #f7faf5;
+          border-color: rgb(33, 91, 99);
+          box-shadow: 0 12px 30px -6px rgba(18, 65, 112, 0.16);
+          border-left: 5px solid rgb(18, 65, 112);
         }
 
         .step-num-circle {
           width: 44px;
           height: 44px;
           border-radius: 50%;
-          background: var(--bg-subtle);
+          background: rgba(170, 255, 199, 0.45);
           display: flex;
           align-items: center;
           justify-content: center;
           font-family: var(--font-display);
           font-size: 1.1rem;
           font-weight: 800;
-          color: var(--text-light);
+          color: rgb(18, 65, 112);
           flex-shrink: 0;
           transition: all var(--transition-fast);
         }
 
         .step-nav-card.active .step-num-circle {
-          background: var(--pastel-sage);
-          color: var(--brand-emerald);
+          background: rgb(18, 65, 112);
+          color: #ffffff;
         }
 
         .step-nav-content {
@@ -333,7 +330,7 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
           flex-direction: column;
           height: 100%;
           position: relative;
-          background: #fafbfa;
+          background: #f2f5f0;
         }
 
         .card-top-tag {
@@ -391,12 +388,12 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
 
         /* Interactive Visual Graphic */
         .interactive-step-visual {
-          background: #ffffff;
-          border: 1px solid var(--border-light);
+          background: #eef5f0;
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
           border-radius: var(--radius-md);
           padding: 1.25rem;
           margin-bottom: 1.75rem;
-          box-shadow: var(--shadow-subtle);
+          box-shadow: 0 4px 16px rgba(18, 65, 112, 0.06);
         }
 
         .author-card-mock {
@@ -419,9 +416,9 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
           border-radius: 50%;
         }
 
-        .dot-red { background: #ff5f56; }
-        .dot-yellow { background: #ffbd2e; }
-        .dot-green { background: #27c93f; }
+        .dot-red { background: rgb(18, 65, 112); }
+        .dot-yellow { background: rgb(33, 91, 99); }
+        .dot-green { background: rgb(103, 192, 144); }
 
         .mock-title {
           font-size: 0.75rem;
@@ -445,7 +442,7 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
         }
 
         .step-var {
-          color: #6366f1;
+          color: rgb(18, 65, 112);
         }
 
         .mock-badge-line {
@@ -522,8 +519,8 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
         }
 
         .tag-amber {
-          background: var(--pastel-peach);
-          color: #a8421b;
+          background: rgba(33, 91, 99, 0.12);
+          color: rgb(18, 65, 112);
           padding: 2px 8px;
           border-radius: var(--radius-full);
           font-weight: 600;
@@ -562,7 +559,7 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
 
         .w-85 { width: 88%; }
         .w-60 { width: 62%; }
-        .bar-peach { background: #e07a5f; }
+        .bar-peach { background: rgb(33, 91, 99); }
 
         .radar-val {
           font-size: 0.72rem;

@@ -334,7 +334,8 @@ export default function QuickExamModal({ isOpen, onClose }) {
         }
 
         .exam-modal-container {
-          background: #ffffff;
+          background: #f2f5f0;
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
           width: 100%;
           max-width: 680px;
           border-radius: var(--radius-xl);
@@ -342,7 +343,7 @@ export default function QuickExamModal({ isOpen, onClose }) {
           flex-direction: column;
           max-height: 90dvh;
           overflow: hidden;
-          box-shadow: var(--shadow-elevated);
+          box-shadow: 0 25px 60px -15px rgba(18, 65, 112, 0.2);
         }
 
         .exam-modal-header {
@@ -350,8 +351,8 @@ export default function QuickExamModal({ isOpen, onClose }) {
           align-items: center;
           justify-content: space-between;
           padding: 1.25rem 1.75rem;
-          border-bottom: 1px solid var(--border-light);
-          background: #fbfcfb;
+          border-bottom: 1.5px solid rgba(103, 192, 144, 0.3);
+          background: #eef3ed;
         }
 
         .modal-title-group {
@@ -458,19 +459,19 @@ export default function QuickExamModal({ isOpen, onClose }) {
         }
 
         .palette-num-btn.answered {
-          background: var(--pastel-sage);
-          border-color: var(--pastel-sage-border);
-          color: var(--brand-emerald);
+          background: rgba(170, 255, 199, 0.3);
+          border-color: rgb(103, 192, 144);
+          color: rgb(18, 65, 112);
         }
 
         .palette-num-btn.current {
-          border-color: var(--brand-emerald);
-          box-shadow: 0 0 0 2px rgba(30, 63, 49, 0.2);
+          border-color: rgb(18, 65, 112);
+          box-shadow: 0 0 0 2px rgba(18, 65, 112, 0.2);
         }
 
         /* Active Question Card */
         .active-question-card {
-          background: #ffffff;
+          background: transparent;
           display: flex;
           flex-direction: column;
           gap: 1rem;
@@ -519,21 +520,21 @@ export default function QuickExamModal({ isOpen, onClose }) {
           align-items: center;
           gap: 0.75rem;
           padding: 0.85rem 1rem;
-          border: 1px solid var(--border-light);
-          background: #fafbfa;
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          background: rgba(170, 255, 199, 0.08);
           border-radius: var(--radius-md);
           cursor: pointer;
           transition: all var(--transition-fast);
         }
 
         .option-row:hover {
-          background: #f2f7f4;
-          border-color: var(--pastel-sage-border);
+          background: rgba(170, 255, 199, 0.2);
+          border-color: rgb(103, 192, 144);
         }
 
         .option-row.selected {
-          background: var(--pastel-sage);
-          border-color: var(--pastel-sage-border);
+          background: rgba(170, 255, 199, 0.35);
+          border-color: rgb(18, 65, 112);
         }
 
         .option-radio {
@@ -544,21 +545,21 @@ export default function QuickExamModal({ isOpen, onClose }) {
           width: 24px;
           height: 24px;
           border-radius: 50%;
-          background: #ffffff;
-          border: 1px solid var(--border-medium);
+          background: rgba(103, 192, 144, 0.15);
+          border: 1px solid rgba(103, 192, 144, 0.4);
           display: flex;
           align-items: center;
           justify-content: center;
           font-size: 0.78rem;
           font-weight: 700;
-          color: var(--text-main);
+          color: rgb(18, 65, 112);
           flex-shrink: 0;
         }
 
         .option-row.selected .option-index-badge {
-          background: var(--brand-emerald);
+          background: rgb(18, 65, 112);
           color: #ffffff;
-          border-color: var(--brand-emerald);
+          border-color: rgb(18, 65, 112);
         }
 
         .option-text {
@@ -715,7 +716,7 @@ export default function QuickExamModal({ isOpen, onClose }) {
           font-size: 0.7rem;
           padding: 1px 6px;
           border-radius: var(--radius-full);
-          background: #ffffff;
+          background: #f2f5f0;
         }
 
         .res-q-explanation {

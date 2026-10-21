@@ -260,14 +260,14 @@ export default function JobApplicationModal({ isOpen, job, onClose }) {
 
         .job-modal-dialog {
           position: relative;
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-xl);
           width: 100%;
           max-width: 680px;
           max-height: 90vh;
           overflow: hidden;
-          box-shadow: var(--shadow-elevated);
-          border: 1px solid var(--border-medium);
+          box-shadow: 0 25px 60px -15px rgba(18, 65, 112, 0.2);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
           animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -355,8 +355,8 @@ export default function JobApplicationModal({ isOpen, job, onClose }) {
           width: 100%;
           padding: 10px 12px;
           border-radius: var(--radius-sm);
-          border: 1px solid var(--border-medium);
-          background: #ffffff;
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          background: #f7faf5;
           font-family: var(--font-sans);
           font-size: 0.9rem;
           color: var(--text-main);
@@ -364,8 +364,8 @@ export default function JobApplicationModal({ isOpen, job, onClose }) {
         }
         .job-control:focus {
           outline: none;
-          border-color: var(--brand-emerald);
-          box-shadow: 0 0 0 3px rgba(30, 63, 49, 0.1);
+          border-color: rgb(18, 65, 112);
+          box-shadow: 0 0 0 3px rgba(18, 65, 112, 0.15);
         }
 
         .textarea-control {

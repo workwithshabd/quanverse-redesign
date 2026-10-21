@@ -131,10 +131,6 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
       </div>
 
       <style>{`
-        .bento-section {
-          background: #fbfbf9;
-        }
-
         .bento-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -147,7 +143,7 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          border: 1px solid var(--border-light);
+          border: 1.5px solid var(--border-light);
           transition: all var(--transition-smooth);
           position: relative;
           overflow: hidden;
@@ -162,25 +158,33 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
           grid-column: span 2;
         }
 
-        /* Pastel Card Backgrounds */
+        /* Bento Card Backgrounds - Directly Mapped to the 4 Colors */
         .card-pastel-sage {
-          background: linear-gradient(135deg, #ffffff 0%, #f1f8f3 100%);
-          border-color: var(--pastel-sage-border);
+          /* Color 1: Mint */
+          background: linear-gradient(145deg, #f2fcf7 0%, rgba(170, 255, 199, 0.45) 100%);
+          border-color: rgb(103, 192, 144);
+          box-shadow: 0 12px 32px -8px rgba(103, 192, 144, 0.2);
         }
 
         .card-pastel-lavender {
-          background: linear-gradient(135deg, #ffffff 0%, #f4f2fe 100%);
-          border-color: var(--pastel-lavender-border);
+          /* Color 3: Pine Teal */
+          background: linear-gradient(145deg, #f2f7f7 0%, rgba(33, 91, 99, 0.12) 100%);
+          border-color: rgba(33, 91, 99, 0.35);
+          box-shadow: 0 12px 32px -8px rgba(33, 91, 99, 0.18);
         }
 
         .card-pastel-peach {
-          background: linear-gradient(135deg, #ffffff 0%, #fff2eb 100%);
-          border-color: var(--pastel-peach-border);
+          /* Color 4: Oceanic Navy */
+          background: linear-gradient(145deg, #f2f6fa 0%, rgba(18, 65, 112, 0.10) 100%);
+          border-color: rgba(18, 65, 112, 0.32);
+          box-shadow: 0 12px 32px -8px rgba(18, 65, 112, 0.18);
         }
 
         .card-pastel-butter {
-          background: linear-gradient(135deg, #ffffff 0%, #fef9e8 100%);
-          border-color: var(--pastel-butter-border);
+          /* Color 2: Jade Green */
+          background: linear-gradient(145deg, #f0faf4 0%, rgba(103, 192, 144, 0.26) 100%);
+          border-color: rgb(103, 192, 144);
+          box-shadow: 0 12px 32px -8px rgba(103, 192, 144, 0.2);
         }
 
         .bento-title {
@@ -198,13 +202,13 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
 
         /* Paper Visual */
         .bento-visual-paper {
-          background: #ffffff;
-          border: 1px dashed var(--pastel-sage-border);
+          background: #f4fbf7;
+          border: 1.5px dashed rgb(103, 192, 144);
           border-radius: var(--radius-md);
           padding: 1rem 1.25rem;
           font-family: var(--font-mono);
           font-size: 0.8rem;
-          color: #243b2f;
+          color: rgb(18, 65, 112);
         }
 
         .paper-sample {
@@ -219,8 +223,9 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
           gap: 0.4rem;
           margin-top: 0.5rem;
           padding: 0.3rem 0.65rem;
-          background: var(--pastel-sage);
-          color: var(--brand-emerald);
+          background: rgba(170, 255, 199, 0.5);
+          color: rgb(18, 65, 112);
+          border: 1px solid rgb(103, 192, 144);
           border-radius: var(--radius-full);
           font-size: 0.75rem;
           font-weight: 700;
@@ -232,7 +237,8 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
           display: flex;
           flex-direction: column;
           gap: 0.6rem;
-          background: #ffffff;
+          background: #f3f7f8;
+          border: 1px solid rgba(33, 91, 99, 0.25);
           padding: 1rem;
           border-radius: var(--radius-md);
           font-size: 0.8rem;
@@ -247,15 +253,17 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
         .badge-ideal {
           font-size: 0.7rem;
           font-weight: 700;
-          color: #4c3fb5;
-          background: var(--pastel-lavender);
-          padding: 2px 6px;
+          color: rgb(18, 65, 112);
+          background: rgba(170, 255, 199, 0.5);
+          padding: 2px 7px;
           border-radius: var(--radius-full);
+          border: 1px solid rgb(103, 192, 144);
         }
 
         /* Earning */
         .earning-snapshot {
-          background: #ffffff;
+          background: #f2f6fa;
+          border: 1px solid rgba(18, 65, 112, 0.25);
           padding: 1rem;
           border-radius: var(--radius-md);
           display: flex;
@@ -273,7 +281,7 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
           font-family: var(--font-display);
           font-size: 1.3rem;
           font-weight: 800;
-          color: #a14c24;
+          color: rgb(18, 65, 112);
         }
 
         /* Radar Grid */
@@ -284,13 +292,13 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
         }
 
         .radar-badge-card {
-          background: #ffffff;
+          background: #f3faf5;
+          border: 1px solid rgba(103, 192, 144, 0.35);
           padding: 0.85rem;
           border-radius: var(--radius-md);
           display: flex;
           flex-direction: column;
           gap: 0.3rem;
-          border: 1px solid rgba(0, 0, 0, 0.04);
         }
 
         .radar-sub {

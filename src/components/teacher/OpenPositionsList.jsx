@@ -147,11 +147,11 @@ export default function OpenPositionsList({ onApplyRole }) {
           gap: 8px;
           flex-wrap: wrap;
           justify-content: center;
-          background: #ffffff;
+          background: #fbfdfc;
           padding: 6px 12px;
           border-radius: var(--radius-full);
-          border: 1px solid var(--border-light);
-          box-shadow: var(--shadow-subtle);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          box-shadow: 0 4px 16px rgba(18, 65, 112, 0.08);
         }
 
         .filter-icon-tag {
@@ -179,7 +179,7 @@ export default function OpenPositionsList({ onApplyRole }) {
           background: var(--bg-hover);
         }
         .dept-tab-btn.active {
-          background: var(--brand-emerald);
+          background: rgb(18, 65, 112);
           color: #ffffff;
           font-weight: 600;
         }
@@ -191,18 +191,20 @@ export default function OpenPositionsList({ onApplyRole }) {
         }
 
         .position-card {
-          background: #ffffff;
+          background: #f2f5f0;
           border-radius: var(--radius-lg);
           padding: 1.75rem;
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
           display: flex;
           flex-direction: column;
           transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
         }
         .position-card:hover {
           transform: translateY(-4px);
-          box-shadow: var(--shadow-card);
-          border-color: var(--pastel-sage-border);
+          box-shadow: 0 16px 36px -8px rgba(33, 91, 99, 0.16);
+          border-color: rgb(103, 192, 144);
+          background: #f7faf5;
         }
 
         .job-top-bar {

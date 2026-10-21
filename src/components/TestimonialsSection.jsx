@@ -127,13 +127,10 @@ export default function TestimonialsSection() {
       </div>
 
       <style>{`
-        .testimonials-section {
-          background: #ffffff;
-        }
-
         .testimonial-tabs-row {
           display: inline-flex;
-          background: var(--bg-subtle);
+          background: #fce4e8;
+          border: 1px solid #f9c7d0;
           padding: 3px;
           border-radius: var(--radius-full);
           margin-top: 1.5rem;
@@ -152,9 +149,9 @@ export default function TestimonialsSection() {
         }
 
         .test-tab-btn.active {
-          background: #ffffff;
-          color: var(--brand-emerald);
-          box-shadow: 0 2px 8px rgba(30, 63, 49, 0.08);
+          background: #f2f5f0;
+          color: rgb(18, 65, 112);
+          box-shadow: 0 2px 8px rgba(18, 65, 112, 0.15);
         }
 
         .reviews-grid {
@@ -166,18 +163,19 @@ export default function TestimonialsSection() {
         .review-card {
           padding: 2rem;
           border-radius: var(--radius-xl);
-          background: #fafbfa;
+          background: #f2f5f0;
           display: flex;
           flex-direction: column;
-          border: 1px solid var(--border-light);
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
           transition: all var(--transition-smooth);
         }
 
         .review-card:hover {
           transform: translateY(-4px);
-          background: #ffffff;
-          box-shadow: var(--shadow-card);
-          border-color: var(--pastel-sage-border);
+          background: #f7faf5;
+          border-color: rgb(33, 91, 99);
+          box-shadow: 0 16px 36px -8px rgba(18, 65, 112, 0.16);
         }
 
         .review-card-top {

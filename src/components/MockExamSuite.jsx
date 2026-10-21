@@ -162,7 +162,7 @@ export default function MockExamSuite({ onOpenDemoExam }) {
 
       <style>{`
         .mock-suite-section {
-          background: #ffffff;
+          position: relative;
         }
 
         .suite-header-row {
@@ -176,7 +176,8 @@ export default function MockExamSuite({ onOpenDemoExam }) {
 
         .filter-pill-group {
           display: flex;
-          background: var(--bg-subtle);
+          background: rgba(33, 91, 99, 0.08);
+          border: 1px solid rgba(33, 91, 99, 0.2);
           padding: 4px;
           border-radius: var(--radius-full);
           gap: 3px;
@@ -195,9 +196,9 @@ export default function MockExamSuite({ onOpenDemoExam }) {
         }
 
         .filter-btn.active {
-          background: #ffffff;
-          color: var(--brand-emerald);
-          box-shadow: 0 2px 8px rgba(30, 63, 49, 0.08);
+          background: #f2f5f0;
+          color: rgb(18, 65, 112);
+          box-shadow: 0 2px 8px rgba(18, 65, 112, 0.15);
         }
 
         .mocks-grid {
@@ -211,17 +212,18 @@ export default function MockExamSuite({ onOpenDemoExam }) {
           padding: 1.5rem;
           display: flex;
           flex-direction: column;
-          background: #fafbfa;
-          border: 1px solid var(--border-light);
+          background: #f2f5f0;
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
           border-radius: var(--radius-xl);
+          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
           transition: all var(--transition-smooth);
         }
 
         .mock-exam-card:hover {
           transform: translateY(-4px);
-          background: #ffffff;
-          border-color: var(--pastel-sage-border);
-          box-shadow: var(--shadow-card);
+          background: #f7faf5;
+          border-color: rgb(33, 91, 99);
+          box-shadow: 0 16px 36px -8px rgba(18, 65, 112, 0.16);
         }
 
         .mock-card-top {

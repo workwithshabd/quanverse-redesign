@@ -163,7 +163,7 @@ export default function PricingSection({ onOpenDemoExam }) {
 
       <style>{`
         .pricing-section {
-          background: #fbfbf9;
+          position: relative;
         }
 
         .pricing-grid {
@@ -177,8 +177,9 @@ export default function PricingSection({ onOpenDemoExam }) {
         .pricing-card {
           padding: 2.25rem 2rem;
           border-radius: var(--radius-xl);
-          background: #ffffff;
-          border: 1px solid var(--border-light);
+          background: #f2f5f0;
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
           display: flex;
           flex-direction: column;
           position: relative;
@@ -187,13 +188,15 @@ export default function PricingSection({ onOpenDemoExam }) {
 
         .pricing-card:hover {
           transform: translateY(-5px);
-          box-shadow: var(--shadow-card);
+          background: #f7faf5;
+          border-color: rgb(33, 91, 99);
+          box-shadow: 0 18px 40px -8px rgba(18, 65, 112, 0.16);
         }
 
         .pricing-popular-card {
-          border-color: var(--pastel-sage-border);
-          box-shadow: 0 16px 36px -8px rgba(30, 63, 49, 0.12);
-          background: linear-gradient(180deg, #ffffff 0%, #f6faf7 100%);
+          border: 2px solid rgb(103, 192, 144);
+          box-shadow: 0 20px 48px -10px rgba(103, 192, 144, 0.28);
+          background: linear-gradient(180deg, #edf6f0 0%, rgba(170, 255, 199, 0.35) 100%);
         }
 
         .popular-ribbon {
@@ -201,7 +204,7 @@ export default function PricingSection({ onOpenDemoExam }) {
           top: -13px;
           left: 50%;
           transform: translateX(-50%);
-          background: var(--brand-emerald);
+          background: rgb(18, 65, 112);
           color: #ffffff;
           font-size: 0.75rem;
           font-weight: 700;
@@ -210,7 +213,7 @@ export default function PricingSection({ onOpenDemoExam }) {
           display: flex;
           align-items: center;
           gap: 0.4rem;
-          box-shadow: 0 4px 12px rgba(30, 63, 49, 0.2);
+          box-shadow: 0 4px 12px rgba(18, 65, 112, 0.25);
         }
 
         .plan-header {
@@ -316,8 +319,8 @@ export default function PricingSection({ onOpenDemoExam }) {
           gap: 2.5rem;
           flex-wrap: wrap;
           padding: 1.25rem;
-          background: #ffffff;
-          border: 1px solid var(--border-light);
+          background: #f2f8f5;
+          border: 1.5px solid rgba(103, 192, 144, 0.35);
           border-radius: var(--radius-lg);
         }
 

@@ -1,62 +1,109 @@
-/* Quanverse Modern Pastel Design System */
+/* Quanverse Modern Design System - High-Contrast Chromatic Palette & Dual-Mode Engine */
 :root {
   /* Fonts */
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Brand Heritage + Editorial Pastels */
-  --brand-emerald: #1e3f31;
-  --brand-emerald-dark: #142a21;
-  --brand-emerald-light: #2c5946;
+  /* ============================================================
+     USER SIGNATURE 4-COLOR PALETTE
+     1. rgb(170, 255, 199) - Luminous Mint
+     2. rgb(103, 192, 144) - Vibrant Jade Green
+     3. rgb(33, 91, 99)    - Deep Pine Teal
+     4. rgb(18, 65, 112)   - Deep Oceanic Navy
+     ============================================================ */
+  --c-mint: rgb(170, 255, 199);
+  --c-jade: rgb(103, 192, 144);
+  --c-teal: rgb(33, 91, 99);
+  --c-navy: rgb(18, 65, 112);
 
-  /* Curated Pastel Palettes */
-  --pastel-sage: #e2f1e7;
-  --pastel-sage-border: #b8e0c7;
-  --pastel-sage-text: #1d5338;
+  /* Transparent Tints */
+  --c-mint-wash: rgba(170, 255, 199, 0.45);
+  --c-mint-subtle: rgba(170, 255, 199, 0.20);
+  --c-jade-wash: rgba(103, 192, 144, 0.25);
+  --c-teal-wash: rgba(33, 91, 99, 0.12);
+  --c-navy-wash: rgba(18, 65, 112, 0.08);
 
-  --pastel-lavender: #eeeafd;
-  --pastel-lavender-border: #d4ccfc;
-  --pastel-lavender-text: #4c3fb5;
+  /* Brand Accents mapped to the 4 colors */
+  --accent-emerald: rgb(103, 192, 144);
+  --accent-emerald-dark: rgb(33, 91, 99);
+  --accent-emerald-light: rgb(170, 255, 199);
+  --accent-emerald-glow: rgba(103, 192, 144, 0.35);
 
-  --pastel-peach: #ffede2;
-  --pastel-peach-border: #fed2ba;
-  --pastel-peach-text: #a14c24;
+  --accent-violet: rgb(18, 65, 112);
+  --accent-violet-dark: rgb(18, 65, 112);
+  --accent-violet-light: rgb(33, 91, 99);
+  --accent-violet-glow: rgba(18, 65, 112, 0.25);
 
-  --pastel-butter: #fef7db;
-  --pastel-butter-border: #faeab0;
-  --pastel-butter-text: #7d6110;
+  --accent-cyan: rgb(33, 91, 99);
+  --accent-cyan-dark: rgb(18, 65, 112);
+  --accent-cyan-light: rgb(103, 192, 144);
+  --accent-cyan-glow: rgba(33, 91, 99, 0.25);
 
-  --pastel-sky: #e4f2fe;
-  --pastel-sky-border: #bee2fd;
-  --pastel-sky-text: #18619e;
+  --accent-amber: rgb(103, 192, 144);
+  --accent-amber-dark: rgb(33, 91, 99);
+  --accent-amber-light: rgb(170, 255, 199);
+  --accent-amber-glow: rgba(103, 192, 144, 0.25);
 
-  --pastel-rose: #fde8ed;
-  --pastel-rose-border: #f8c2ce;
-  --pastel-rose-text: #9f2441;
+  --accent-rose: rgb(18, 65, 112);
+  --accent-rose-dark: rgb(18, 65, 112);
+  --accent-rose-light: rgb(33, 91, 99);
+  --accent-rose-glow: rgba(18, 65, 112, 0.25);
 
-  /* Canvas & Neutral Hierarchy */
-  --bg-page: #fbfbfa;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --bg-card-solid: #ffffff;
-  --bg-card-elevated: #ffffff;
-  --bg-subtle: #f4f6f4;
-  --bg-hover: rgba(30, 63, 49, 0.04);
+  --accent-purple: rgb(33, 91, 99);
+  --accent-purple-glow: rgba(33, 91, 99, 0.25);
 
-  --text-main: #192a21;
-  --text-muted: #576d61;
-  --text-light: #82988d;
+  /* Brand Heritage (Light Mode) */
+  --brand-emerald: rgb(18, 65, 112);
+  --brand-emerald-dark: rgb(18, 65, 112);
+  --brand-emerald-light: rgb(33, 91, 99);
+
+  /* Editorial Pastel & Chromatic Chips (Light Mode) */
+  --pastel-sage: rgba(170, 255, 199, 0.45);
+  --pastel-sage-border: rgb(103, 192, 144);
+  --pastel-sage-text: rgb(18, 65, 112);
+
+  --pastel-lavender: rgba(33, 91, 99, 0.12);
+  --pastel-lavender-border: rgba(33, 91, 99, 0.35);
+  --pastel-lavender-text: rgb(18, 65, 112);
+
+  --pastel-peach: rgba(18, 65, 112, 0.09);
+  --pastel-peach-border: rgba(18, 65, 112, 0.32);
+  --pastel-peach-text: rgb(18, 65, 112);
+
+  --pastel-butter: rgba(170, 255, 199, 0.35);
+  --pastel-butter-border: rgb(103, 192, 144);
+  --pastel-butter-text: rgb(33, 91, 99);
+
+  --pastel-sky: rgba(103, 192, 144, 0.22);
+  --pastel-sky-border: rgba(103, 192, 144, 0.5);
+  --pastel-sky-text: rgb(18, 65, 112);
+
+  --pastel-rose: rgba(33, 91, 99, 0.14);
+  --pastel-rose-border: rgba(33, 91, 99, 0.35);
+  --pastel-rose-text: rgb(18, 65, 112);
+
+  /* Canvas & Neutral Hierarchy (Light Mode) - Soothing Matte Off-White */
+  --bg-page: #ebeee8;
+  --bg-surface: #f2f5f0;
+  --bg-card: rgba(242, 245, 240, 0.96);
+  --bg-card-solid: #f2f5f0;
+  --bg-card-elevated: #e6eae3;
+  --bg-subtle: #dde3d8;
+  --bg-hover: rgba(18, 65, 112, 0.08);
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-light: #64748b;
   --text-inverse: #ffffff;
 
-  --border-light: rgba(30, 63, 49, 0.09);
-  --border-medium: rgba(30, 63, 49, 0.16);
+  --border-light: rgba(15, 23, 42, 0.10);
+  --border-medium: rgba(33, 91, 99, 0.22);
 
-  /* Elevation Shadows with Soft Pastel Ambient Tint */
-  --shadow-subtle: 0 2px 10px rgba(30, 63, 49, 0.03);
-  --shadow-card: 0 10px 30px -6px rgba(30, 63, 49, 0.06), 0 2px 8px -2px rgba(30, 63, 49, 0.03);
-  --shadow-elevated: 0 24px 48px -12px rgba(30, 63, 49, 0.1), 0 4px 16px -2px rgba(30, 63, 49, 0.04);
-  --shadow-glow-emerald: 0 0 32px rgba(45, 106, 79, 0.18);
-  --shadow-glow-lavender: 0 0 32px rgba(124, 114, 237, 0.18);
+  /* Elevation Shadows */
+  --shadow-subtle: 0 2px 10px rgba(18, 65, 112, 0.05);
+  --shadow-card: 0 10px 30px -6px rgba(18, 65, 112, 0.08), 0 2px 8px -2px rgba(18, 65, 112, 0.05);
+  --shadow-elevated: 0 24px 48px -12px rgba(18, 65, 112, 0.14), 0 4px 16px -2px rgba(18, 65, 112, 0.06);
 
   /* Radius */
   --radius-sm: 8px;
@@ -65,10 +112,73 @@
   --radius-xl: 28px;
   --radius-full: 9999px;
 
-  /* Transitions */
-  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Transitions (snappier, responsive feedback) */
+  --transition-fast: 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================================
+   DARK MODE ENGINE - TURNS WHITE INTO GREYISH BLACK
+   Sleek slate / charcoal greyish black (#0d1117 / #151b23)
+   With Luminous Mint & Vibrant Jade Accents
+   ============================================================ */
+[data-theme="dark"] {
+  /* Brand in Dark Mode pops with high-contrast luminous mint & jade */
+  --brand-emerald: rgb(170, 255, 199);
+  --brand-emerald-dark: rgb(103, 192, 144);
+  --brand-emerald-light: rgb(170, 255, 199);
+
+  /* Greyish Black Canvas Hierarchy */
+  --bg-page: #0d1117;          /* Sleek charcoal greyish-black */
+  --bg-surface: #151b23;       /* Elevated dark slate surface */
+  --bg-card: rgba(22, 27, 34, 0.88);
+  --bg-card-solid: #161b22;    /* Solid dark slate card */
+  --bg-card-elevated: #21262d; /* Hovered / active card */
+  --bg-subtle: #1c2128;
+  --bg-hover: rgba(170, 255, 199, 0.08);
+
+  /* High Contrast Typography */
+  --text-main: #f0f6fc;
+  --text-muted: #9ba3af;
+  --text-light: #6e7681;
+  --text-inverse: #0d1117;
+
+  /* Clean Contrasting Borders */
+  --border-light: rgba(170, 255, 199, 0.15);
+  --border-medium: rgba(103, 192, 144, 0.28);
+
+  /* Saturated Dark Mode Glowing Badges */
+  --pastel-sage: rgba(170, 255, 199, 0.18);
+  --pastel-sage-border: rgba(170, 255, 199, 0.45);
+  --pastel-sage-text: rgb(170, 255, 199);
+
+  --pastel-lavender: rgba(33, 91, 99, 0.4);
+  --pastel-lavender-border: rgba(103, 192, 144, 0.45);
+  --pastel-lavender-text: rgb(170, 255, 199);
+
+  --pastel-peach: rgba(18, 65, 112, 0.5);
+  --pastel-peach-border: rgba(103, 192, 144, 0.4);
+  --pastel-peach-text: rgb(170, 255, 199);
+
+  --pastel-butter: rgba(170, 255, 199, 0.18);
+  --pastel-butter-border: rgba(170, 255, 199, 0.45);
+  --pastel-butter-text: rgb(170, 255, 199);
+
+  --pastel-sky: rgba(103, 192, 144, 0.22);
+  --pastel-sky-border: rgba(103, 192, 144, 0.5);
+  --pastel-sky-text: rgb(170, 255, 199);
+
+  --pastel-rose: rgba(33, 91, 99, 0.45);
+  --pastel-rose-border: rgba(170, 255, 199, 0.4);
+  --pastel-rose-text: rgb(170, 255, 199);
+
+  /* Shadows for Dark Mode with Palette Glows */
+  --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 10px 30px -6px rgba(0, 0, 0, 0.6), 0 2px 8px -2px rgba(0, 0, 0, 0.35);
+  --shadow-elevated: 0 24px 48px -12px rgba(0, 0, 0, 0.8), 0 4px 16px -2px rgba(0, 0, 0, 0.5);
+  --shadow-glow-emerald: 0 0 32px rgba(170, 255, 199, 0.25);
+  --shadow-glow-lavender: 0 0 32px rgba(103, 192, 144, 0.25);
 }
 
 /* CSS Reset & Defaults */
@@ -94,10 +204,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(226, 241, 231, 0.6) 0%, transparent 40%),
-    radial-gradient(circle at 85% 30%, rgba(238, 234, 253, 0.5) 0%, transparent 35%),
-    radial-gradient(circle at 50% 80%, rgba(255, 237, 226, 0.4) 0%, transparent 45%);
+    radial-gradient(circle at 15% 15%, rgba(170, 255, 199, 0.28) 0%, transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(103, 192, 144, 0.16) 0%, transparent 35%),
+    radial-gradient(circle at 50% 80%, rgba(33, 91, 99, 0.06) 0%, transparent 45%);
   background-attachment: fixed;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] body {
+  background-color: #0d1117;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(18, 65, 112, 0.25) 0%, transparent 42%),
+    radial-gradient(circle at 85% 30%, rgba(33, 91, 99, 0.20) 0%, transparent 38%),
+    radial-gradient(circle at 50% 80%, rgba(170, 255, 199, 0.08) 0%, transparent 45%);
 }
 
 /* Typography Headings */
@@ -166,15 +285,17 @@ button, input, select, textarea {
 }
 
 .glass-panel-elevated {
-  background: rgba(255, 255, 255, 0.94);
+  background: var(--bg-card-solid);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border-medium);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-elevated);
 }
 
-/* Minimalist Badges & Pills */
+/* ============================================================
+   PILL BADGES WITH VIVID ACCENT HARMONY
+   ============================================================ */
 .pill-badge {
   display: inline-flex;
   align-items: center;
@@ -217,7 +338,15 @@ button, input, select, textarea {
   color: var(--pastel-sky-text);
 }
 
-/* Buttons */
+.pill-rose {
+  background-color: var(--pastel-rose);
+  border: 1px solid var(--pastel-rose-border);
+  color: var(--pastel-rose-text);
+}
+
+/* ============================================================
+   BUTTONS WITH ENHANCED CONTRAST & ACCENT GRADIENTS
+   ============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -234,15 +363,16 @@ button, input, select, textarea {
 }
 
 .btn-primary {
-  background-color: var(--brand-emerald);
+  background: linear-gradient(135deg, rgb(18, 65, 112) 0%, rgb(33, 91, 99) 100%);
   color: #ffffff;
-  box-shadow: 0 4px 16px rgba(30, 63, 49, 0.2);
+  box-shadow: 0 4px 16px rgba(18, 65, 112, 0.28);
+  border: 1px solid rgba(170, 255, 199, 0.25);
 }
 
 .btn-primary:hover {
-  background-color: var(--brand-emerald-dark);
+  background: linear-gradient(135deg, rgb(33, 91, 99) 0%, rgb(18, 65, 112) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(30, 63, 49, 0.25);
+  box-shadow: 0 8px 24px rgba(18, 65, 112, 0.38);
 }
 
 .btn-primary:active {
@@ -251,17 +381,28 @@ button, input, select, textarea {
 
 .btn-pastel-sage {
   background-color: var(--pastel-sage);
-  color: var(--brand-emerald);
+  color: var(--pastel-sage-text);
   border: 1px solid var(--pastel-sage-border);
 }
 
 .btn-pastel-sage:hover {
-  background-color: #d2ecdc;
+  filter: brightness(0.96);
+  transform: translateY(-2px);
+}
+
+.btn-pastel-lavender {
+  background-color: var(--pastel-lavender);
+  color: var(--pastel-lavender-text);
+  border: 1px solid var(--pastel-lavender-border);
+}
+
+.btn-pastel-lavender:hover {
+  filter: brightness(0.96);
   transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background-color: #ffffff;
+  background-color: var(--bg-card-solid);
   color: var(--text-main);
   border: 1px solid var(--border-medium);
   box-shadow: var(--shadow-subtle);
@@ -269,7 +410,7 @@ button, input, select, textarea {
 
 .btn-secondary:hover {
   background-color: var(--bg-subtle);
-  border-color: var(--brand-emerald);
+  border-color: var(--accent-emerald);
   transform: translateY(-2px);
 }
 
@@ -283,24 +424,33 @@ button, input, select, textarea {
   color: var(--text-main);
 }
 
-/* Animations */
+/* ============================================================
+   HIGH-CONTRAST ACCENT UTILITIES
+   ============================================================ */
+.text-accent-emerald { color: var(--accent-emerald) !important; }
+.text-accent-violet { color: var(--accent-violet) !important; }
+.text-accent-cyan { color: var(--accent-cyan) !important; }
+.text-accent-amber { color: var(--accent-amber) !important; }
+.text-accent-rose { color: var(--accent-rose) !important; }
+
+.glow-emerald { box-shadow: 0 0 24px var(--accent-emerald-glow); }
+.glow-violet { box-shadow: 0 0 24px var(--accent-violet-glow); }
+.glow-cyan { box-shadow: 0 0 24px var(--accent-cyan-glow); }
+.glow-amber { box-shadow: 0 0 24px var(--accent-amber-glow); }
+
+/* Animations (Snappy & Responsive) */
 @keyframes subtleFloat {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-5px); }
 }
 
 @keyframes pulseSlow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.05); }
 }
 
 .float-animation {
-  animation: subtleFloat 5s ease-in-out infinite;
+  animation: subtleFloat 3.2s ease-in-out infinite;
 }
 
 /* Custom Scrollbar */
@@ -319,165 +469,747 @@ button, input, select, textarea {
   background: #a3b8ad;
 }
 
-/* ===================================================
-   ELEVATED SECTION CHROMATIC THEMES & AMBIENCE
-   =================================================== */
-
-/* 1. Hero Section: Imperial Emerald & Golden Dawn */
-.hero-section {
-  position: relative;
-  background: radial-gradient(circle at 10% 20%, rgba(226, 241, 231, 0.85) 0%, transparent 50%),
-              radial-gradient(circle at 90% 10%, rgba(254, 247, 219, 0.7) 0%, transparent 45%),
-              linear-gradient(180deg, #f7faf8 0%, #edf5f0 100%);
-  border-bottom: 1px solid rgba(44, 89, 70, 0.08);
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #30363d;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
 }
 
-/* 2. Board Readiness Section: Oceanic Cyan & Electric Mint Cockpit */
+/* ============================================================
+   ELEVATED SECTION CHROMATIC THEMES (LIGHT & DARK ADAPTATIONS)
+   ============================================================ */
+
+/* 1. Hero Section: Luminous Mint & Soft Jade Atmosphere */
+.hero-section {
+  position: relative;
+  background: radial-gradient(circle at 10% 20%, rgba(170, 255, 199, 0.40) 0%, transparent 60%),
+              radial-gradient(circle at 90% 15%, rgba(103, 192, 144, 0.20) 0%, transparent 50%),
+              linear-gradient(180deg, #e4ede7 0%, #d8eae0 100%);
+  border-bottom: 1.5px solid rgba(103, 192, 144, 0.35);
+}
+
+[data-theme="dark"] .hero-section {
+  background: radial-gradient(circle at 12% 18%, rgba(18, 65, 112, 0.35) 0%, transparent 50%),
+              radial-gradient(circle at 88% 12%, rgba(33, 91, 99, 0.25) 0%, transparent 45%),
+              radial-gradient(circle at 50% 80%, rgba(170, 255, 199, 0.1) 0%, transparent 55%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  border-bottom: 1px solid rgba(170, 255, 199, 0.15);
+}
+
+/* 2. Board Readiness Section: Oceanic Navy & Mint Atmosphere */
 .readiness-section {
   position: relative;
-  background: radial-gradient(circle at 15% 30%, rgba(228, 242, 254, 0.95) 0%, transparent 55%),
-              radial-gradient(circle at 85% 70%, rgba(226, 241, 231, 0.9) 0%, transparent 50%),
-              linear-gradient(180deg, #eef7fc 0%, #e2f0f8 100%);
-  border-top: 1px solid rgba(24, 97, 158, 0.08);
-  border-bottom: 1px solid rgba(24, 97, 158, 0.1);
+  background: radial-gradient(circle at 12% 30%, rgba(18, 65, 112, 0.06) 0%, transparent 55%),
+              radial-gradient(circle at 88% 70%, rgba(170, 255, 199, 0.25) 0%, transparent 50%),
+              linear-gradient(180deg, #e3ece8 0%, #d5e5e0 100%);
+  border-top: 1.5px solid rgba(33, 91, 99, 0.25);
+  border-bottom: 1.5px solid rgba(33, 91, 99, 0.25);
 }
 
 .readiness-section .simulator-card {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(190, 226, 253, 0.9);
-  box-shadow: 0 24px 60px -15px rgba(24, 97, 158, 0.12),
-              0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  background: #f2f5f0;
+  border: 1.5px solid rgba(33, 91, 99, 0.25);
+  box-shadow: 0 20px 48px -12px rgba(18, 65, 112, 0.12);
 }
 
-/* 3. How It Works Section: Celestial Lavender & Royal Iris */
+[data-theme="dark"] .readiness-section {
+  background: radial-gradient(circle at 15% 30%, rgba(18, 65, 112, 0.3) 0%, transparent 55%),
+              radial-gradient(circle at 85% 70%, rgba(103, 192, 144, 0.15) 0%, transparent 50%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  border-color: rgba(103, 192, 144, 0.25) !important;
+}
+
+/* 3. How It Works Section: Luminous Mint & Vibrant Jade */
 .how-it-works-section {
   position: relative;
-  background: radial-gradient(circle at 80% 20%, rgba(238, 234, 253, 0.95) 0%, transparent 50%),
-              radial-gradient(circle at 20% 80%, rgba(253, 232, 237, 0.7) 0%, transparent 45%),
-              linear-gradient(180deg, #f7f5ff 0%, #eeeafd 100%);
-  border-top: 1px solid rgba(124, 114, 237, 0.1);
-  border-bottom: 1px solid rgba(124, 114, 237, 0.1);
+  background: radial-gradient(circle at 85% 20%, rgba(170, 255, 199, 0.30) 0%, transparent 50%),
+              radial-gradient(circle at 15% 80%, rgba(103, 192, 144, 0.18) 0%, transparent 45%),
+              linear-gradient(180deg, #e2ece7 0%, #d5e6de 100%);
+  border-top: 1.5px solid rgba(103, 192, 144, 0.35);
+  border-bottom: 1.5px solid rgba(103, 192, 144, 0.35);
 }
 
 .how-it-works-section .interactive-step-card {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(212, 204, 252, 0.85);
-  box-shadow: 0 20px 48px -12px rgba(76, 63, 181, 0.1);
+  background: #f2f5f0;
+  border: 1.5px solid rgba(103, 192, 144, 0.4);
+  box-shadow: 0 20px 48px -12px rgba(18, 65, 112, 0.12);
 }
 
-/* 4. Features Bento Grid: Multi-Chromatic Jewel Mosaic */
+[data-theme="dark"] .how-it-works-section {
+  background: radial-gradient(circle at 80% 20%, rgba(33, 91, 99, 0.25) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(170, 255, 199, 0.1) 0%, transparent 45%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  border-color: rgba(170, 255, 199, 0.2) !important;
+}
+
+/* 4. Features Bento Grid: 4-Color Signature Cards */
 .bento-section {
   position: relative;
-  background: radial-gradient(circle at 50% 10%, rgba(255, 237, 226, 0.6) 0%, transparent 45%),
-              radial-gradient(circle at 10% 80%, rgba(226, 241, 231, 0.7) 0%, transparent 40%),
-              radial-gradient(circle at 90% 70%, rgba(238, 234, 253, 0.65) 0%, transparent 45%),
-              linear-gradient(180deg, #fcfbf8 0%, #f4f0e6 100%);
-  border-top: 1px solid rgba(30, 63, 49, 0.06);
-  border-bottom: 1px solid rgba(30, 63, 49, 0.08);
+  background: radial-gradient(circle at 50% 10%, rgba(18, 65, 112, 0.06) 0%, transparent 50%),
+              radial-gradient(circle at 10% 85%, rgba(170, 255, 199, 0.25) 0%, transparent 45%),
+              linear-gradient(180deg, #e5ece8 0%, #d7e6df 100%);
+  border-top: 1.5px solid rgba(33, 91, 99, 0.25);
+  border-bottom: 1.5px solid rgba(33, 91, 99, 0.25);
 }
 
-/* 5. Mock Exam Suite: Prestige Amber & Champagne Gold */
+/* Bento Distinctive Colored Cards - Mapped to the 4 Colors */
+.card-pastel-sage {
+  /* Color 1: Luminous Mint rgb(170, 255, 199) */
+  background: linear-gradient(145deg, #eaf4ed 0%, rgba(170, 255, 199, 0.40) 100%);
+  border: 1.5px solid rgb(103, 192, 144);
+  box-shadow: 0 12px 32px -8px rgba(103, 192, 144, 0.2);
+}
+
+.card-pastel-lavender {
+  /* Color 3: Deep Pine Teal rgb(33, 91, 99) */
+  background: linear-gradient(145deg, #e6eceb 0%, rgba(33, 91, 99, 0.12) 100%);
+  border: 1.5px solid rgba(33, 91, 99, 0.35);
+  box-shadow: 0 12px 32px -8px rgba(33, 91, 99, 0.18);
+}
+
+.card-pastel-peach {
+  /* Color 4: Deep Oceanic Navy rgb(18, 65, 112) */
+  background: linear-gradient(145deg, #e5ebf1 0%, rgba(18, 65, 112, 0.10) 100%);
+  border: 1.5px solid rgba(18, 65, 112, 0.32);
+  box-shadow: 0 12px 32px -8px rgba(18, 65, 112, 0.18);
+}
+
+.card-pastel-butter {
+  /* Color 2: Vibrant Jade Green rgb(103, 192, 144) */
+  background: linear-gradient(145deg, #e6f0ea 0%, rgba(103, 192, 144, 0.22) 100%);
+  border: 1.5px solid rgb(103, 192, 144);
+  box-shadow: 0 12px 32px -8px rgba(103, 192, 144, 0.2);
+}
+
+[data-theme="dark"] .bento-section {
+  background: radial-gradient(circle at 50% 10%, rgba(18, 65, 112, 0.25) 0%, transparent 45%),
+              radial-gradient(circle at 10% 80%, rgba(170, 255, 199, 0.08) 0%, transparent 40%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  border-color: rgba(170, 255, 199, 0.15) !important;
+}
+
+/* 5. Mock Exam Suite: Mint & Deep Pine Teal Atmosphere */
 .mock-suite-section {
   position: relative;
-  background: radial-gradient(circle at 20% 20%, rgba(254, 247, 219, 0.95) 0%, transparent 50%),
-              radial-gradient(circle at 85% 80%, rgba(255, 237, 226, 0.85) 0%, transparent 50%),
-              linear-gradient(180deg, #fffcf2 0%, #fef7db 100%);
-  border-top: 1px solid rgba(217, 119, 6, 0.12);
-  border-bottom: 1px solid rgba(217, 119, 6, 0.12);
+  background: radial-gradient(circle at 20% 20%, rgba(170, 255, 199, 0.30) 0%, transparent 50%),
+              radial-gradient(circle at 85% 80%, rgba(18, 65, 112, 0.06) 0%, transparent 50%),
+              linear-gradient(180deg, #e3ede8 0%, #d6e5df 100%);
+  border-top: 1.5px solid rgba(103, 192, 144, 0.3);
+  border-bottom: 1.5px solid rgba(103, 192, 144, 0.3);
 }
 
-.mock-suite-section .mock-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(250, 234, 176, 0.85);
-  box-shadow: 0 16px 36px -10px rgba(125, 97, 16, 0.1);
+[data-theme="dark"] .mock-suite-section {
+  background: radial-gradient(circle at 20% 20%, rgba(33, 91, 99, 0.25) 0%, transparent 50%),
+              radial-gradient(circle at 85% 80%, rgba(18, 65, 112, 0.25) 0%, transparent 50%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  border-color: rgba(103, 192, 144, 0.25) !important;
 }
 
-/* 6. News & Circulars: Electric Cyan & Intelligence Cobalt */
-.circulars-section {
+/* 6. News & Circulars: Vibrant Jade & Navy */
+.circulars-section,
+.news-section {
   position: relative;
-  background: radial-gradient(circle at 75% 25%, rgba(228, 242, 254, 0.9) 0%, transparent 55%),
-              radial-gradient(circle at 20% 70%, rgba(226, 241, 231, 0.8) 0%, transparent 45%),
-              linear-gradient(180deg, #f1fafb 0%, #e2f6f7 100%);
-  border-top: 1px solid rgba(6, 182, 212, 0.12);
-  border-bottom: 1px solid rgba(6, 182, 212, 0.12);
+  background: radial-gradient(circle at 80% 25%, rgba(103, 192, 144, 0.20) 0%, transparent 55%),
+              radial-gradient(circle at 20% 70%, rgba(18, 65, 112, 0.06) 0%, transparent 45%),
+              linear-gradient(180deg, #e3ece8 0%, #d5e6de 100%);
+  border-top: 1.5px solid rgba(33, 91, 99, 0.25);
+  border-bottom: 1.5px solid rgba(33, 91, 99, 0.25);
 }
 
-/* 7. Pricing Section: Deep Obsidian Emerald & Shimmering Gold (Keynote Section) */
+[data-theme="dark"] .circulars-section,
+[data-theme="dark"] .news-section {
+  background: radial-gradient(circle at 75% 25%, rgba(33, 91, 99, 0.25) 0%, transparent 55%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  border-color: rgba(170, 255, 199, 0.2) !important;
+}
+
+/* 7. Pricing Section: Jewel Mint & Pine Accent */
 .pricing-section {
   position: relative;
-  background: radial-gradient(circle at 80% 10%, rgba(44, 89, 70, 0.5) 0%, transparent 55%),
-              radial-gradient(circle at 20% 90%, rgba(20, 42, 33, 0.8) 0%, transparent 60%),
-              linear-gradient(180deg, #163327 0%, #0d1e17 50%, #152d23 100%);
-  color: #ffffff;
-  border-top: 1px solid rgba(247, 208, 112, 0.25);
-  border-bottom: 1px solid rgba(44, 89, 70, 0.3);
+  background: radial-gradient(circle at 80% 20%, rgba(170, 255, 199, 0.35) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(33, 91, 99, 0.08) 0%, transparent 45%),
+              linear-gradient(180deg, #e2ece7 0%, #d4e7dd 100%);
+  border-top: 1.5px solid rgba(103, 192, 144, 0.35);
+  border-bottom: 1.5px solid rgba(103, 192, 144, 0.35);
 }
 
-.pricing-section h2, 
-.pricing-section .section-title {
-  color: #ffffff !important;
+[data-theme="dark"] .pricing-section {
+  background: radial-gradient(circle at 80% 10%, rgba(170, 255, 199, 0.12) 0%, transparent 55%),
+              radial-gradient(circle at 20% 90%, rgba(18, 65, 112, 0.3) 0%, transparent 60%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  border-color: rgba(170, 255, 199, 0.25) !important;
 }
 
-.pricing-section .section-subtitle {
-  color: rgba(255, 255, 255, 0.72) !important;
-}
-
-.pricing-section .pricing-card {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.4);
-  color: #ffffff;
-}
-
-.pricing-section .pricing-card:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(247, 208, 112, 0.5);
-  box-shadow: 0 28px 60px -12px rgba(0, 0, 0, 0.5), 0 0 32px rgba(247, 208, 112, 0.18);
-}
-
-.pricing-section .pricing-card.featured-card {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid #f7d070;
-  box-shadow: 0 28px 64px -12px rgba(0, 0, 0, 0.6), 0 0 36px rgba(247, 208, 112, 0.25);
-}
-
-.pricing-section .card-tier-name,
-.pricing-section .price-value {
-  color: #ffffff !important;
-}
-
-.pricing-section .tier-feature-item {
-  color: rgba(255, 255, 255, 0.85) !important;
-}
-
-.pricing-section .tier-desc {
-  color: rgba(255, 255, 255, 0.65) !important;
-}
-
-/* 8. Testimonials Section: Sunset Coral & Rose Quartz Warmth */
+/* 8. Testimonials Section: Soft Mint & Oceanic Navy Tint */
 .testimonials-section {
   position: relative;
-  background: radial-gradient(circle at 15% 20%, rgba(253, 232, 237, 0.95) 0%, transparent 50%),
-              radial-gradient(circle at 85% 75%, rgba(255, 237, 226, 0.85) 0%, transparent 50%),
-              linear-gradient(180deg, #fff7f4 0%, #fde8ed 100%);
-  border-top: 1px solid rgba(248, 194, 206, 0.3);
-  border-bottom: 1px solid rgba(248, 194, 206, 0.3);
+  background: radial-gradient(circle at 15% 20%, rgba(170, 255, 199, 0.25) 0%, transparent 50%),
+              radial-gradient(circle at 85% 75%, rgba(18, 65, 112, 0.06) 0%, transparent 50%),
+              linear-gradient(180deg, #e4ece8 0%, #d6e6df 100%);
+  border-top: 1.5px solid rgba(33, 91, 99, 0.25);
+  border-bottom: 1.5px solid rgba(33, 91, 99, 0.25);
 }
 
-.testimonials-section .testimonial-card {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(248, 194, 206, 0.7);
-  box-shadow: 0 16px 36px -10px rgba(159, 36, 65, 0.08);
+[data-theme="dark"] .testimonials-section {
+  background: radial-gradient(circle at 15% 20%, rgba(33, 91, 99, 0.25) 0%, transparent 50%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  border-color: rgba(103, 192, 144, 0.25) !important;
 }
 
-/* 9. FAQ Section: Crystalline Frosted Sage */
+/* 9. FAQ Section: Luminous Mint Meadow */
 .faq-section {
   position: relative;
-  background: radial-gradient(circle at 50% 20%, rgba(226, 241, 231, 0.85) 0%, transparent 60%),
-              linear-gradient(180deg, #f7faf8 0%, #eaf4ee 100%);
-  border-top: 1px solid rgba(30, 63, 49, 0.08);
+  background: radial-gradient(circle at 50% 20%, rgba(170, 255, 199, 0.30) 0%, transparent 60%),
+              linear-gradient(180deg, #e2ece6 0%, #d5e7dc 100%);
+  border-top: 1.5px solid rgba(103, 192, 144, 0.35);
+}
+
+[data-theme="dark"] .faq-section {
+  background: radial-gradient(circle at 50% 20%, rgba(170, 255, 199, 0.09) 0%, transparent 60%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  border-color: rgba(170, 255, 199, 0.15) !important;
+}
+
+/* 10. Teacher Partnership Section: Oceanic Navy & Mint */
+.teacher-section {
+  position: relative;
+  background: radial-gradient(circle at 20% 30%, rgba(18, 65, 112, 0.06) 0%, transparent 55%),
+              radial-gradient(circle at 80% 70%, rgba(170, 255, 199, 0.25) 0%, transparent 50%),
+              linear-gradient(180deg, #e4ebed 0%, #d6e3e7 100%);
+  border-top: 1.5px solid rgba(33, 91, 99, 0.25);
+  border-bottom: 1.5px solid rgba(33, 91, 99, 0.25);
+}
+
+[data-theme="dark"] .teacher-section {
+  background: radial-gradient(circle at 20% 30%, rgba(18, 65, 112, 0.35) 0%, transparent 55%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  border-color: rgba(103, 192, 144, 0.25) !important;
+}
+
+/* ============================================================
+   UNIVERSAL DARK MODE ENGINE: 100% CONTRAST & VISIBILITY
+   ============================================================ */
+
+/* Global Headings & Typography Visibility */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .hero-heading,
+[data-theme="dark"] .detail-card-heading,
+[data-theme="dark"] .bento-title,
+[data-theme="dark"] .mock-title,
+[data-theme="dark"] .news-title,
+[data-theme="dark"] .plan-name,
+[data-theme="dark"] .faq-q-text,
+[data-theme="dark"] .cta-band-title,
+[data-theme="dark"] .teachers-hero-heading,
+[data-theme="dark"] .pillar-title,
+[data-theme="dark"] .calc-title,
+[data-theme="dark"] .job-card-title {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] .section-subtitle,
+[data-theme="dark"] .section-sub,
+[data-theme="dark"] .hero-subtext,
+[data-theme="dark"] .detail-card-desc,
+[data-theme="dark"] .bento-desc,
+[data-theme="dark"] .news-summary,
+[data-theme="dark"] .plan-desc,
+[data-theme="dark"] .faq-answer-text,
+[data-theme="dark"] .review-quote,
+[data-theme="dark"] .cta-band-sub,
+[data-theme="dark"] .teachers-hero-sub,
+[data-theme="dark"] .pillar-desc,
+[data-theme="dark"] .job-card-desc {
+  color: #9ba3af !important;
+}
+
+/* High Contrast Highlight Text */
+.highlight-text {
+  background: linear-gradient(135deg, rgb(18, 65, 112) 0%, rgb(33, 91, 99) 45%, rgb(103, 192, 144) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="dark"] .highlight-text {
+  background: linear-gradient(120deg, rgb(170, 255, 199) 0%, rgb(103, 192, 144) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Hero Section Widget & Sub-Cards */
+[data-theme="dark"] .orb-sage { background: rgba(170, 255, 199, 0.12) !important; }
+[data-theme="dark"] .orb-lavender { background: rgba(33, 91, 99, 0.25) !important; }
+[data-theme="dark"] .orb-peach { background: rgba(18, 65, 112, 0.25) !important; }
+
+[data-theme="dark"] .interactive-ai-card {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .trust-ribbon {
+  background: rgba(22, 27, 34, 0.9) !important;
+  border-color: #30363d !important;
+}
+
+[data-theme="dark"] .trust-number {
+  color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .subject-tab.active {
+  background: #21262d !important;
+  color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .student-submission-box {
+  background: #0d1117 !important;
+  border-color: #30363d !important;
+}
+
+[data-theme="dark"] .submission-content-pre {
+  background: #090d12 !important;
+  color: rgb(170, 255, 199) !important;
+  border-color: #21262d !important;
+}
+
+[data-theme="dark"] .eval-question-box {
+  background: rgba(170, 255, 199, 0.12) !important;
+  border-color: rgba(103, 192, 144, 0.4) !important;
+}
+
+[data-theme="dark"] .eval-question-text {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .score-summary-banner {
+  background: rgba(170, 255, 199, 0.12) !important;
+  border-color: rgba(103, 192, 144, 0.4) !important;
+}
+
+[data-theme="dark"] .step-card {
+  border-color: #30363d !important;
+}
+
+[data-theme="dark"] .step-passed {
+  background: rgba(103, 192, 144, 0.15) !important;
+  border: 1px solid rgba(170, 255, 199, 0.4) !important;
+}
+
+[data-theme="dark"] .step-partial {
+  background: rgba(33, 91, 99, 0.25) !important;
+  border: 1px solid rgba(103, 192, 144, 0.4) !important;
+}
+
+[data-theme="dark"] .step-title {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .tag-green {
+  background: rgba(170, 255, 199, 0.22) !important;
+  color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .tag-orange {
+  background: rgba(33, 91, 99, 0.35) !important;
+  color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .examiner-tip-box {
+  background: rgba(18, 65, 112, 0.35) !important;
+  border-color: rgba(103, 192, 144, 0.4) !important;
+  color: rgb(170, 255, 199) !important;
+}
+
+/* Board Readiness Simulator Cards */
+[data-theme="dark"] .readiness-section .simulator-card,
+[data-theme="dark"] .readiness-section .output-card-inner,
+[data-theme="dark"] .readiness-section .topic-card {
+  background: #161b22 !important;
+  border-color: #30363d !important;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .readiness-section .subject-name,
+[data-theme="dark"] .readiness-section .topic-name,
+[data-theme="dark"] .readiness-section .control-title,
+[data-theme="dark"] .readiness-section .focus-header {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .readiness-section .pred-range {
+  color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .readiness-section .urgency-tag {
+  color: rgb(103, 192, 144) !important;
+}
+
+[data-theme="dark"] .readiness-section .radial-bg {
+  stroke: #30363d !important;
+}
+
+[data-theme="dark"] .readiness-section .radial-number {
+  color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .readiness-section .custom-range {
+  background: #21262d !important;
+}
+
+[data-theme="dark"] .readiness-section .custom-range::-webkit-slider-thumb {
+  background: #161b22 !important;
+  border-color: rgb(170, 255, 199) !important;
+}
+
+/* How It Works Step Navigation & Cards */
+[data-theme="dark"] .how-it-works-section .step-nav-card {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="dark"] .how-it-works-section .step-nav-card.active {
+  background: #1c2128 !important;
+  border-color: rgb(33, 91, 99) !important;
+}
+
+[data-theme="dark"] .how-it-works-section .step-detail-card {
+  background: #161b22 !important;
+  border-color: #30363d !important;
+}
+
+[data-theme="dark"] .how-it-works-section .interactive-step-visual {
+  background: #0d1117 !important;
+  border-color: #30363d !important;
+}
+
+[data-theme="dark"] .how-it-works-section .mock-code-box {
+  color: #e6edf3 !important;
+}
+
+[data-theme="dark"] .how-it-works-section .step-giant-number {
+  color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="dark"] .how-it-works-section .bullet-row,
+[data-theme="dark"] .how-it-works-section .scan-content,
+[data-theme="dark"] .how-it-works-section .radar-label {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .how-it-works-section .progress-track {
+  background: #21262d !important;
+}
+
+/* Bento Grid Cards & Inner Widgets */
+[data-theme="dark"] .bento-card,
+[data-theme="dark"] .card-pastel-sage,
+[data-theme="dark"] .card-pastel-lavender,
+[data-theme="dark"] .card-pastel-peach,
+[data-theme="dark"] .card-pastel-butter {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="dark"] .bento-card:hover {
+  background: #1c2128 !important;
+  border-color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .bento-visual-paper,
+[data-theme="dark"] .pacing-bars,
+[data-theme="dark"] .earning-snapshot,
+[data-theme="dark"] .radar-badge-card {
+  background: #0d1117 !important;
+  border-color: #30363d !important;
+  color: #e6edf3 !important;
+}
+
+[data-theme="dark"] .radar-sub,
+[data-theme="dark"] .pacing-row span {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .earn-amount {
+  color: rgb(170, 255, 199) !important;
+}
+
+/* Mock Exam Cards & Blueprint Strip */
+[data-theme="dark"] .mock-exam-card {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="dark"] .mock-exam-card:hover {
+  background: #1c2128 !important;
+  border-color: rgb(103, 192, 144) !important;
+}
+
+[data-theme="dark"] .filter-btn.active {
+  background: #21262d !important;
+  color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .mock-marks-badge {
+  background: #21262d !important;
+}
+
+[data-theme="dark"] .marks-num {
+  color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .exam-tag-pill {
+  background: #21262d !important;
+  color: #c9d1d9 !important;
+}
+
+[data-theme="dark"] .blueprint-download-strip {
+  background: #161b22 !important;
+  border-color: #30363d !important;
+}
+
+[data-theme="dark"] .strip-title {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .strip-desc {
+  color: #9ba3af !important;
+}
+
+/* News & Circulars Cards & Search Input */
+[data-theme="dark"] .news-card {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="dark"] .news-card:hover {
+  background: #1c2128 !important;
+  border-color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .news-search-input {
+  background: #161b22 !important;
+  border-color: #30363d !important;
+  color: #f0f6fc !important;
+}
+
+/* Pricing Cards & Guarantee Bar */
+[data-theme="dark"] .pricing-card {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="dark"] .pricing-popular-card {
+  background: linear-gradient(180deg, #1c2420 0%, #161b22 100%) !important;
+  border-color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .pricing-card .card-tier-name,
+[data-theme="dark"] .pricing-card .price-value,
+[data-theme="dark"] .pricing-card .features-label,
+[data-theme="dark"] .pricing-card .feature-item {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .pricing-card .plan-desc,
+[data-theme="dark"] .pricing-card .tier-desc {
+  color: #9ba3af !important;
+}
+
+[data-theme="dark"] .pricing-guarantee-bar {
+  background: #161b22 !important;
+  border-color: #30363d !important;
+  color: #9ba3af !important;
+}
+
+/* Testimonials Review Cards */
+[data-theme="dark"] .review-card {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="dark"] .review-card:hover {
+  background: #1c2128 !important;
+  border-color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .review-quote,
+[data-theme="dark"] .reviewer-name {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .reviewer-meta {
+  color: #9ba3af !important;
+}
+
+[data-theme="dark"] .test-tab-btn.active {
+  background: #21262d !important;
+  color: rgb(170, 255, 199) !important;
+}
+
+/* FAQ Accordion Cards */
+[data-theme="dark"] .faq-card,
+[data-theme="dark"] .faq-contact-card {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="dark"] .faq-card:hover,
+[data-theme="dark"] .faq-card-open {
+  background: #1c2128 !important;
+  border-color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .faq-toggle-btn {
+  background: #21262d !important;
+  color: #9ba3af !important;
+}
+
+/* Footer CTA Band & Newsletter Form */
+.site-footer,
+[data-theme="dark"] .site-footer {
+  background: #080c10 !important;
+  background-image: radial-gradient(circle at 50% 0%, rgba(33, 91, 99, 0.18) 0%, transparent 60%) !important;
+  border-top: 1.5px solid rgba(103, 192, 144, 0.25) !important;
+}
+
+.cta-band-card,
+[data-theme="dark"] .cta-band-card {
+  background: linear-gradient(135deg, #111722 0%, #090e15 100%) !important;
+  border: 1.5px solid rgba(103, 192, 144, 0.4) !important;
+  box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.65) !important;
+}
+
+[data-theme="dark"] .nl-form {
+  background: #0d1117 !important;
+  border-color: #30363d !important;
+}
+
+[data-theme="dark"] .nl-input {
+  background: transparent !important;
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .nl-label {
+  color: #f0f6fc !important;
+}
+
+/* Quick Exam & Assessment Modals */
+[data-theme="dark"] .quick-exam-modal-sheet,
+[data-theme="dark"] .active-question-card,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .teacher-modal,
+[data-theme="dark"] .job-modal {
+  background: #161b22 !important;
+  border-color: #30363d !important;
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .palette-num-btn {
+  background: #21262d !important;
+  border-color: #30363d !important;
+  color: #c9d1d9 !important;
+}
+
+[data-theme="dark"] .palette-num-btn.answered {
+  background: rgba(170, 255, 199, 0.2) !important;
+  border-color: rgb(170, 255, 199) !important;
+  color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .palette-num-btn.current {
+  border-color: rgb(170, 255, 199) !important;
+  box-shadow: 0 0 0 2px rgba(170, 255, 199, 0.3) !important;
+}
+
+[data-theme="dark"] .q-prompt-text,
+[data-theme="dark"] .option-text,
+[data-theme="dark"] .res-q-explanation {
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .option-row {
+  background: #1c2128 !important;
+  border-color: #30363d !important;
+}
+
+[data-theme="dark"] .option-row:hover {
+  background: #21262d !important;
+  border-color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .option-row.selected {
+  background: rgba(170, 255, 199, 0.18) !important;
+  border-color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] .option-index-badge {
+  background: #21262d !important;
+  border-color: #30363d !important;
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .subjective-textarea {
+  background: #0d1117 !important;
+  border-color: #30363d !important;
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] .result-hero-box {
+  background: rgba(170, 255, 199, 0.1) !important;
+  border-color: rgba(170, 255, 199, 0.3) !important;
+}
+
+[data-theme="dark"] .res-q-badge {
+  background: #21262d !important;
+  color: #f0f6fc !important;
+}
+
+/* Careers & Teachers Pages */
+[data-theme="dark"] .teachers-hero-section,
+[data-theme="dark"] .careers-hero-section {
+  background: radial-gradient(circle at 50% 15%, rgba(18, 65, 112, 0.35) 0%, transparent 60%),
+              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+}
+
+[data-theme="dark"] .teachers-trust-band,
+[data-theme="dark"] .pillar-card,
+[data-theme="dark"] .calc-card,
+[data-theme="dark"] .teacher-card,
+[data-theme="dark"] .signup-form-card,
+[data-theme="dark"] .job-card,
+[data-theme="dark"] .perk-card,
+[data-theme="dark"] .open-pitch-card {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6) !important;
+}
+
+[data-theme="dark"] .job-card:hover {
+  background: #1c2128 !important;
+  border-color: rgb(170, 255, 199) !important;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background: #0d1117 !important;
+  border-color: #30363d !important;
+  color: #f0f6fc !important;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+  border-color: rgb(170, 255, 199) !important;
+  box-shadow: 0 0 0 3px rgba(170, 255, 199, 0.2) !important;
 }
 
 /* GSAP Reveal Helper Base Styles */
