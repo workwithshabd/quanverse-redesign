@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
-# Persistent Reverse SSH Tunnel Daemon via localhost.run
+# Resilient Reverse SSH Tunnel Daemon via Pinggy (port 443)
 PORT="${1:-5175}"
 
-echo "[SSH-TUNNEL] Starting reverse SSH tunnel on port ${PORT}..."
+echo "[PINGGY-SSH] Starting reverse SSH tunnel on port ${PORT}..."
 
 while true; do
-  echo "[SSH-TUNNEL] Connecting to localhost.run at $(date)..."
+  echo "[PINGGY-SSH] Connecting to a.pinggy.io on port 443 at $(date)..."
   ssh -o StrictHostKeyChecking=no \
       -o UserKnownHostsFile=/dev/null \
-      -o ServerAliveInterval=20 \
+      -o ServerAliveInterval=30 \
       -o ServerAliveCountMax=3 \
-      -o ExitOnForwardFailure=yes \
+      -p 443 \
+      -T \
       -R 80:localhost:"$PORT" \
-      nokey@localhost.run
+      a.pinggy.io
   
   EXIT_CODE=$?
-  echo "[SSH-TUNNEL] Disconnected with code ${EXIT_CODE}. Reconnecting in 3s..."
+  echo "[PINGGY-SSH] Exited with code ${EXIT_CODE}. Reconnecting in 3s..."
   sleep 3
 done
