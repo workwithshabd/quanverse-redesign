@@ -21,12 +21,23 @@ export default function Navbar() {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [reflectionOffset, setReflectionOffset] = useState(-250);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+
+      // Liquid glass specular sweep calculation:
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const progress = scrollY / maxScroll;
+      const navWidth = window.innerWidth;
+      const targetX = -200 + progress * (navWidth + 400);
+      setReflectionOffset(targetX);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -44,6 +55,14 @@ export default function Navbar() {
 
   return (
     <header className={`sticky-nav ${isScrolled ? 'nav-scrolled' : ''}`}>
+      {/* Liquid Glass Refraction & Specular Highlights */}
+      <div 
+        className="liquid-glass-sheen" 
+        style={{ transform: `translateX(${reflectionOffset}px) skewX(-24deg)` }}
+        aria-hidden="true"
+      />
+      <div className="liquid-glass-refraction-rim" aria-hidden="true" />
+
       <div className="app-container">
         <div className="nav-inner">
           {/* Brand Logo */}
@@ -69,29 +88,11 @@ export default function Navbar() {
               <>
                 <a href="#ai-marking" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#ai-marking')}>AI Marking</a>
                 <a href="#readiness" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#readiness')}>Board Readiness</a>
+                <a href="#how-it-works" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#how-it-works')}>How It Works</a>
+                <a href="#features" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#features')}>Features</a>
                 <a href="#mock-tests" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#mock-tests')}>Mock Tests</a>
                 <a href="#pricing" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#pricing')}>Pricing</a>
-                
-                {/* Careers Link */}
-                <button
-                  type="button"
-                  className="nav-link nav-careers-pill-btn"
-                  onClick={(e) => handleNavClick(e, 'careers')}
-                >
-                  <Briefcase size={13} className="text-lavender-icon" />
-                  <span>Careers</span>
-                  <span className="hiring-dot"></span>
-                </button>
-
-                {/* For Teachers Link */}
-                <button
-                  type="button"
-                  className="nav-link nav-teacher-pill-btn"
-                  onClick={(e) => handleNavClick(e, 'teachers')}
-                >
-                  <Users size={13} />
-                  <span>For Teachers</span>
-                </button>
+                <a href="#faqs" className="nav-link" onClick={(e) => handleNavClick(e, 'home', '#faqs')}>FAQs</a>
               </>
             )}
 
@@ -258,14 +259,11 @@ export default function Navbar() {
                 <>
                   <a href="#ai-marking" onClick={(e) => handleNavClick(e, 'home', '#ai-marking')}>AI Step Marking</a>
                   <a href="#readiness" onClick={(e) => handleNavClick(e, 'home', '#readiness')}>Board Readiness Predictor</a>
+                  <a href="#how-it-works" onClick={(e) => handleNavClick(e, 'home', '#how-it-works')}>How It Works</a>
+                  <a href="#features" onClick={(e) => handleNavClick(e, 'home', '#features')}>Core Features Bento</a>
                   <a href="#mock-tests" onClick={(e) => handleNavClick(e, 'home', '#mock-tests')}>Timed Mock Tests</a>
                   <a href="#pricing" onClick={(e) => handleNavClick(e, 'home', '#pricing')}>Pricing &amp; Board Passes</a>
-                  <a href="#careers" onClick={(e) => handleNavClick(e, 'careers')} className="text-lavender-accent font-semibold">
-                    Company Careers (All Roles) →
-                  </a>
-                  <a href="#teachers" onClick={(e) => handleNavClick(e, 'teachers')} className="text-emerald-accent font-semibold">
-                    For Teachers &amp; Educators →
-                  </a>
+                  <a href="#faqs" onClick={(e) => handleNavClick(e, 'home', '#faqs')}>Frequently Asked Questions</a>
                 </>
               )}
 
@@ -339,16 +337,69 @@ export default function Navbar() {
           position: sticky;
           top: 0;
           z-index: 100;
-          background: rgba(251, 251, 250, 0.9);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          border-bottom: 1px solid var(--border-light);
-          transition: all var(--transition-smooth);
+          background: rgba(255, 255, 255, 0.58);
+          backdrop-filter: blur(28px) saturate(220%) brightness(102%);
+          -webkit-backdrop-filter: blur(28px) saturate(220%) brightness(102%);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+          box-shadow: 
+            0 4px 20px -2px rgba(18, 42, 30, 0.04),
+            inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.9);
+          transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                      border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                      box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          overflow: hidden;
         }
 
         .nav-scrolled {
-          background: rgba(255, 255, 255, 0.96);
-          box-shadow: 0 4px 20px rgba(30, 63, 49, 0.05);
+          background: rgba(255, 255, 255, 0.74);
+          backdrop-filter: blur(34px) saturate(240%) brightness(104%);
+          -webkit-backdrop-filter: blur(34px) saturate(240%) brightness(104%);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+          box-shadow: 
+            0 16px 40px -10px rgba(18, 42, 30, 0.1),
+            0 2px 8px rgba(18, 42, 30, 0.03),
+            inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.98),
+            inset 0 -1px 2px 0 rgba(30, 63, 49, 0.04);
+        }
+
+        /* Liquid glass specular sheen layer */
+        .liquid-glass-sheen {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 320px;
+          background: linear-gradient(
+            90deg, 
+            rgba(255, 255, 255, 0) 0%, 
+            rgba(255, 255, 255, 0.22) 35%, 
+            rgba(255, 255, 255, 0.55) 50%, 
+            rgba(255, 255, 255, 0.22) 65%, 
+            rgba(255, 255, 255, 0) 100%
+          );
+          pointer-events: none;
+          z-index: 1;
+          mix-blend-mode: overlay;
+          will-change: transform;
+          filter: blur(4px);
+        }
+
+        /* Top rim refraction glow */
+        .liquid-glass-refraction-rim {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 1.5px;
+          background: linear-gradient(
+            90deg, 
+            rgba(255, 255, 255, 0.2) 0%, 
+            rgba(255, 255, 255, 0.95) 25%, 
+            rgba(247, 208, 112, 0.7) 50%, 
+            rgba(184, 224, 199, 0.8) 75%, 
+            rgba(255, 255, 255, 0.2) 100%
+          );
+          pointer-events: none;
+          z-index: 2;
         }
 
         .nav-inner {

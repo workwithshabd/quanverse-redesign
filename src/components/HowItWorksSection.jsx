@@ -71,8 +71,8 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
       <div className="app-container">
         
         {/* Header */}
-        <div className="section-head text-center">
-          <div className="pill-badge pill-sage mb-3">
+        <div className="section-head text-center gsap-reveal">
+          <div className="pill-badge pill-sage mb-3 gsap-float">
             <Sparkles size={14} />
             <span>The Exam Engine</span>
           </div>
@@ -88,11 +88,11 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
         <div className="how-grid">
           
           {/* Step Selector List */}
-          <div className="steps-selector-list">
+          <div className="steps-selector-list gsap-stagger-group">
             {steps.map((st, i) => (
               <div
                 key={i}
-                className={`step-nav-card ${activeStep === i ? 'active' : ''}`}
+                className={`step-nav-card gsap-stagger-item ${activeStep === i ? 'active' : ''}`}
                 onClick={() => setActiveStep(i)}
               >
                 <div className="step-num-circle">{st.num}</div>

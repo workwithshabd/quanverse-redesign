@@ -32,12 +32,12 @@ export default function FaqSection() {
   ];
 
   return (
-    <section className="faq-section section-spacing" id="faq">
+    <section className="faq-section section-spacing" id="faqs">
       <div className="app-container">
         
         {/* Header */}
-        <div className="section-head text-center">
-          <div className="pill-badge pill-sky mb-3">
+        <div className="section-head text-center gsap-reveal">
+          <div className="pill-badge pill-sky mb-3 gsap-float">
             <HelpCircle size={14} />
             <span>Got Questions?</span>
           </div>
@@ -45,18 +45,18 @@ export default function FaqSection() {
             Frequently Asked <span className="highlight-text">Questions</span>
           </h2>
           <p className="section-subtitle">
-            Everything you need to know about AI step marking, board patterns, and teacher payouts.
+            Everything you need to know about AI step marking, board patterns, and preparation tips.
           </p>
         </div>
 
         {/* Accordion Stack */}
-        <div className="faq-stack">
+        <div className="faq-stack gsap-stagger-group">
           {faqs.map((f, i) => {
             const isOpen = openIndex === i;
             return (
               <div 
                 key={i} 
-                className={`faq-card glass-panel ${isOpen ? 'faq-card-open' : ''}`}
+                className={`faq-card glass-panel gsap-stagger-item ${isOpen ? 'faq-card-open' : ''}`}
                 onClick={() => setOpenIndex(isOpen ? -1 : i)}
               >
                 <div className="faq-question-row">

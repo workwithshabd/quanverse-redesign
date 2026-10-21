@@ -28,9 +28,9 @@ export default function MockExamSuite({ onOpenDemoExam }) {
       <div className="app-container">
         
         {/* Header with Board Filter */}
-        <div className="suite-header-row">
+        <div className="suite-header-row gsap-reveal">
           <div>
-            <div className="pill-badge pill-sky mb-2">
+            <div className="pill-badge pill-sky mb-2 gsap-float">
               <FileText size={13} />
               <span>Full-Length 80-Mark Tests</span>
             </div>
@@ -69,9 +69,9 @@ export default function MockExamSuite({ onOpenDemoExam }) {
         </div>
 
         {/* Mock Exam Cards Grid */}
-        <div className="mocks-grid">
+        <div className="mocks-grid gsap-stagger-group">
           {filteredMocks.map((exam) => (
-            <div key={exam.id} className="mock-exam-card glass-panel">
+            <div key={exam.id} className="mock-exam-card glass-panel gsap-stagger-item">
               
               <div className="mock-card-top">
                 <div className="mock-board-tag">

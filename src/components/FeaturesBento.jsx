@@ -13,8 +13,8 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
       <div className="app-container">
         
         {/* Section Header */}
-        <div className="section-head text-center">
-          <div className="pill-badge pill-butter mb-3">
+        <div className="section-head text-center gsap-reveal">
+          <div className="pill-badge pill-butter mb-3 gsap-float">
             <Sparkles size={14} />
             <span>Platform Capabilities</span>
           </div>
@@ -27,10 +27,10 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
         </div>
 
         {/* Bento Grid Layout */}
-        <div className="bento-grid">
+        <div className="bento-grid gsap-stagger-group">
           
           {/* Card 1: Large Span (Handwriting OCR & Step Scheme) */}
-          <div className="bento-card bento-span-2 card-pastel-sage">
+          <div className="bento-card bento-span-2 card-pastel-sage gsap-stagger-item">
             <div className="bento-content">
               <div className="pill-badge pill-sage mb-3">
                 <ScanLine size={13} />
@@ -55,7 +55,7 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
           </div>
 
           {/* Card 2: Timer & Exam Hall Simulation */}
-          <div className="bento-card card-pastel-lavender">
+          <div className="bento-card card-pastel-lavender gsap-stagger-item">
             <div className="bento-content">
               <div className="pill-badge pill-lavender mb-3">
                 <Clock4 size={13} />
@@ -79,7 +79,7 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
           </div>
 
           {/* Card 3: Official Topper Answer Comparison */}
-          <div className="bento-card card-pastel-peach">
+          <div className="bento-card card-pastel-peach gsap-stagger-item">
             <div className="bento-content">
               <div className="pill-badge pill-peach mb-3">
                 <Award size={13} />
@@ -98,7 +98,7 @@ export default function FeaturesBento({ onOpenDemoExam: _onOpenDemoExam }) {
 
 
           {/* Card 4: Large Span (Weakness Radar) */}
-          <div className="bento-card bento-span-2 card-pastel-butter">
+          <div className="bento-card bento-span-2 card-pastel-butter gsap-stagger-item">
             <div className="bento-content">
               <div className="pill-badge pill-butter mb-3">
                 <BarChart size={13} />

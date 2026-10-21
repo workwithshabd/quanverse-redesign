@@ -75,8 +75,8 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         <div className="hero-grid">
           
           {/* Left Column: Editorial Value Proposition */}
-          <div className="hero-content">
-            <div className="pill-badge pill-sage mb-4">
+          <div className="hero-content gsap-reveal">
+            <div className="pill-badge pill-sage mb-4 gsap-float">
               <span className="live-dot"></span>
               <span>CBSE &amp; ICSE Class 10 • 2027 Syllabus Updated</span>
             </div>
@@ -139,7 +139,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           </div>
 
           {/* Right Column: Interactive Live AI Marking Widget */}
-          <div className="hero-widget-wrap">
+          <div className="hero-widget-wrap gsap-reveal">
             <div className="interactive-ai-card glass-panel-elevated">
               {/* Card Header */}
               <div className="ai-card-header">

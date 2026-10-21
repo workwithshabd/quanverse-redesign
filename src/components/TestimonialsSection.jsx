@@ -61,8 +61,8 @@ export default function TestimonialsSection() {
       <div className="app-container">
         
         {/* Header */}
-        <div className="section-head text-center">
-          <div className="pill-badge pill-sage mb-3">
+        <div className="section-head text-center gsap-reveal">
+          <div className="pill-badge pill-sage mb-3 gsap-float">
             <Star size={13} className="fill-current text-butter" />
             <span>Proven Board Outcomes</span>
           </div>
@@ -93,9 +93,9 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Reviews Grid */}
-        <div className="reviews-grid">
+        <div className="reviews-grid gsap-stagger-group">
           {currentList.map((rev, i) => (
-            <div key={i} className="review-card glass-panel">
+            <div key={i} className="review-card glass-panel gsap-stagger-item">
               <div className="review-card-top">
                 <div className="stars-row">
                   {[...Array(5)].map((_, s) => (

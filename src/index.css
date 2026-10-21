@@ -318,3 +318,173 @@ button, input, select, textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: #a3b8ad;
 }
+
+/* ===================================================
+   ELEVATED SECTION CHROMATIC THEMES & AMBIENCE
+   =================================================== */
+
+/* 1. Hero Section: Imperial Emerald & Golden Dawn */
+.hero-section {
+  position: relative;
+  background: radial-gradient(circle at 10% 20%, rgba(226, 241, 231, 0.85) 0%, transparent 50%),
+              radial-gradient(circle at 90% 10%, rgba(254, 247, 219, 0.7) 0%, transparent 45%),
+              linear-gradient(180deg, #f7faf8 0%, #edf5f0 100%);
+  border-bottom: 1px solid rgba(44, 89, 70, 0.08);
+}
+
+/* 2. Board Readiness Section: Oceanic Cyan & Electric Mint Cockpit */
+.readiness-section {
+  position: relative;
+  background: radial-gradient(circle at 15% 30%, rgba(228, 242, 254, 0.95) 0%, transparent 55%),
+              radial-gradient(circle at 85% 70%, rgba(226, 241, 231, 0.9) 0%, transparent 50%),
+              linear-gradient(180deg, #eef7fc 0%, #e2f0f8 100%);
+  border-top: 1px solid rgba(24, 97, 158, 0.08);
+  border-bottom: 1px solid rgba(24, 97, 158, 0.1);
+}
+
+.readiness-section .simulator-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(190, 226, 253, 0.9);
+  box-shadow: 0 24px 60px -15px rgba(24, 97, 158, 0.12),
+              0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+/* 3. How It Works Section: Celestial Lavender & Royal Iris */
+.how-it-works-section {
+  position: relative;
+  background: radial-gradient(circle at 80% 20%, rgba(238, 234, 253, 0.95) 0%, transparent 50%),
+              radial-gradient(circle at 20% 80%, rgba(253, 232, 237, 0.7) 0%, transparent 45%),
+              linear-gradient(180deg, #f7f5ff 0%, #eeeafd 100%);
+  border-top: 1px solid rgba(124, 114, 237, 0.1);
+  border-bottom: 1px solid rgba(124, 114, 237, 0.1);
+}
+
+.how-it-works-section .interactive-step-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(212, 204, 252, 0.85);
+  box-shadow: 0 20px 48px -12px rgba(76, 63, 181, 0.1);
+}
+
+/* 4. Features Bento Grid: Multi-Chromatic Jewel Mosaic */
+.bento-section {
+  position: relative;
+  background: radial-gradient(circle at 50% 10%, rgba(255, 237, 226, 0.6) 0%, transparent 45%),
+              radial-gradient(circle at 10% 80%, rgba(226, 241, 231, 0.7) 0%, transparent 40%),
+              radial-gradient(circle at 90% 70%, rgba(238, 234, 253, 0.65) 0%, transparent 45%),
+              linear-gradient(180deg, #fcfbf8 0%, #f4f0e6 100%);
+  border-top: 1px solid rgba(30, 63, 49, 0.06);
+  border-bottom: 1px solid rgba(30, 63, 49, 0.08);
+}
+
+/* 5. Mock Exam Suite: Prestige Amber & Champagne Gold */
+.mock-suite-section {
+  position: relative;
+  background: radial-gradient(circle at 20% 20%, rgba(254, 247, 219, 0.95) 0%, transparent 50%),
+              radial-gradient(circle at 85% 80%, rgba(255, 237, 226, 0.85) 0%, transparent 50%),
+              linear-gradient(180deg, #fffcf2 0%, #fef7db 100%);
+  border-top: 1px solid rgba(217, 119, 6, 0.12);
+  border-bottom: 1px solid rgba(217, 119, 6, 0.12);
+}
+
+.mock-suite-section .mock-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(250, 234, 176, 0.85);
+  box-shadow: 0 16px 36px -10px rgba(125, 97, 16, 0.1);
+}
+
+/* 6. News & Circulars: Electric Cyan & Intelligence Cobalt */
+.circulars-section {
+  position: relative;
+  background: radial-gradient(circle at 75% 25%, rgba(228, 242, 254, 0.9) 0%, transparent 55%),
+              radial-gradient(circle at 20% 70%, rgba(226, 241, 231, 0.8) 0%, transparent 45%),
+              linear-gradient(180deg, #f1fafb 0%, #e2f6f7 100%);
+  border-top: 1px solid rgba(6, 182, 212, 0.12);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.12);
+}
+
+/* 7. Pricing Section: Deep Obsidian Emerald & Shimmering Gold (Keynote Section) */
+.pricing-section {
+  position: relative;
+  background: radial-gradient(circle at 80% 10%, rgba(44, 89, 70, 0.5) 0%, transparent 55%),
+              radial-gradient(circle at 20% 90%, rgba(20, 42, 33, 0.8) 0%, transparent 60%),
+              linear-gradient(180deg, #163327 0%, #0d1e17 50%, #152d23 100%);
+  color: #ffffff;
+  border-top: 1px solid rgba(247, 208, 112, 0.25);
+  border-bottom: 1px solid rgba(44, 89, 70, 0.3);
+}
+
+.pricing-section h2, 
+.pricing-section .section-title {
+  color: #ffffff !important;
+}
+
+.pricing-section .section-subtitle {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.pricing-section .pricing-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+}
+
+.pricing-section .pricing-card:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(247, 208, 112, 0.5);
+  box-shadow: 0 28px 60px -12px rgba(0, 0, 0, 0.5), 0 0 32px rgba(247, 208, 112, 0.18);
+}
+
+.pricing-section .pricing-card.featured-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #f7d070;
+  box-shadow: 0 28px 64px -12px rgba(0, 0, 0, 0.6), 0 0 36px rgba(247, 208, 112, 0.25);
+}
+
+.pricing-section .card-tier-name,
+.pricing-section .price-value {
+  color: #ffffff !important;
+}
+
+.pricing-section .tier-feature-item {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.pricing-section .tier-desc {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* 8. Testimonials Section: Sunset Coral & Rose Quartz Warmth */
+.testimonials-section {
+  position: relative;
+  background: radial-gradient(circle at 15% 20%, rgba(253, 232, 237, 0.95) 0%, transparent 50%),
+              radial-gradient(circle at 85% 75%, rgba(255, 237, 226, 0.85) 0%, transparent 50%),
+              linear-gradient(180deg, #fff7f4 0%, #fde8ed 100%);
+  border-top: 1px solid rgba(248, 194, 206, 0.3);
+  border-bottom: 1px solid rgba(248, 194, 206, 0.3);
+}
+
+.testimonials-section .testimonial-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(248, 194, 206, 0.7);
+  box-shadow: 0 16px 36px -10px rgba(159, 36, 65, 0.08);
+}
+
+/* 9. FAQ Section: Crystalline Frosted Sage */
+.faq-section {
+  position: relative;
+  background: radial-gradient(circle at 50% 20%, rgba(226, 241, 231, 0.85) 0%, transparent 60%),
+              linear-gradient(180deg, #f7faf8 0%, #eaf4ee 100%);
+  border-top: 1px solid rgba(30, 63, 49, 0.08);
+}
+
+/* GSAP Reveal Helper Base Styles */
+.gsap-reveal {
+  will-change: transform, opacity;
+}
+.gsap-stagger-item {
+  will-change: transform, opacity;
+}
+

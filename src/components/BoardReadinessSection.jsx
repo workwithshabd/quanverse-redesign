@@ -40,8 +40,8 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
       <div className="app-container">
         
         {/* Section Header */}
-        <div className="section-head text-center">
-          <div className="pill-badge pill-lavender mb-3">
+        <div className="section-head text-center gsap-reveal">
+          <div className="pill-badge pill-lavender mb-3 gsap-float">
             <Target size={14} />
             <span>Interactive Simulator</span>
           </div>
@@ -55,7 +55,7 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
         </div>
 
         {/* Interactive Simulator Card */}
-        <div className="simulator-card glass-panel-elevated">
+        <div className="simulator-card glass-panel-elevated gsap-reveal">
           <div className="sim-grid">
             
             {/* Left: Input Controls */}

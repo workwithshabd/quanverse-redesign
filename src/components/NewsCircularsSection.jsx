@@ -28,9 +28,9 @@ export default function NewsCircularsSection() {
       <div className="app-container">
         
         {/* Header with Search */}
-        <div className="news-header-row">
+        <div className="news-header-row gsap-reveal">
           <div>
-            <div className="pill-badge pill-sage mb-2">
+            <div className="pill-badge pill-sage mb-2 gsap-float">
               <Bell size={13} />
               <span>Verified Circulars &amp; Directives</span>
             </div>
@@ -55,9 +55,9 @@ export default function NewsCircularsSection() {
         </div>
 
         {/* News Cards Grid */}
-        <div className="news-grid">
+        <div className="news-grid gsap-stagger-group">
           {filtered.map((item) => (
-            <article key={item.id} className="news-card glass-panel">
+            <article key={item.id} className="news-card glass-panel gsap-stagger-item">
               <div className="news-card-top">
                 <span className={`pill-badge pill-${item.badgeColor} news-cat-pill`}>
                   {item.category}

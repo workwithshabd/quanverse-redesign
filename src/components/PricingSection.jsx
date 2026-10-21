@@ -77,8 +77,8 @@ export default function PricingSection({ onOpenDemoExam }) {
       <div className="app-container">
         
         {/* Header */}
-        <div className="section-head text-center">
-          <div className="pill-badge pill-peach mb-3">
+        <div className="section-head text-center gsap-reveal">
+          <div className="pill-badge pill-peach mb-3 gsap-float">
             <Zap size={14} />
             <span>Fair &amp; Transparent</span>
           </div>
@@ -91,11 +91,11 @@ export default function PricingSection({ onOpenDemoExam }) {
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="pricing-grid">
+        <div className="pricing-grid gsap-stagger-group">
           {plans.map((p) => (
             <div 
               key={p.id} 
-              className={`pricing-card glass-panel ${p.popular ? 'pricing-popular-card' : ''}`}
+              className={`pricing-card glass-panel gsap-stagger-item ${p.popular ? 'pricing-popular-card' : ''}`}
             >
               {p.popular && (
                 <div className="popular-ribbon">
