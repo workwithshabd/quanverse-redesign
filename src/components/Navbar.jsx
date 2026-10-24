@@ -9,23 +9,44 @@ import {
   X, 
   Briefcase,
   Sun,
-  Moon
+  Moon,
+  ChevronDown,
+  LogOut,
+  LogIn,
+  User
 } from 'lucide-react';
 import { useNavigation } from '../hooks/useNavigation';
 import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../hooks/useAuth';
 
 export default function Navbar() {
   const { 
     currentPage, 
     navigateTo, 
     openDemoExam, 
-    openTeacherSignup 
+    openTeacherSignup,
+    openSignIn
   } = useNavigation();
 
   const { isDark, toggleTheme } = useTheme();
+  const { user, isAuthenticated, signOut } = useAuth();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (!e.target.closest('.nav-user-dropdown-wrap')) {
+        setUserDropdownOpen(false);
+      }
+    };
+    if (userDropdownOpen) {
+      document.addEventListener('click', handleOutsideClick);
+    }
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, [userDropdownOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,6 +90,7 @@ export default function Navbar() {
   const getSubtitle = () => {
     if (currentPage === 'careers') return 'Careers';
     if (currentPage === 'teachers') return 'Educators';
+    if (currentPage === 'signin') return 'Sign In';
     return 'Class 10';
   };
 
@@ -190,6 +212,33 @@ export default function Navbar() {
                   </button>
                 </>
               )}
+
+              {currentPage === 'signin' && (
+                <>
+                  <button 
+                    type="button" 
+                    className="nav-link nav-portal-return-link"
+                    onClick={(e) => handleNavClick(e, 'home')}
+                  >
+                    <GraduationCap size={13} />
+                    <span>Class 10 Portal</span>
+                  </button>
+                  <a 
+                    href="#how-it-works" 
+                    className="nav-link" 
+                    onClick={(e) => handleNavClick(e, 'home', '#how-it-works')}
+                  >
+                    How It Works
+                  </a>
+                  <a 
+                    href="#pricing" 
+                    className="nav-link" 
+                    onClick={(e) => handleNavClick(e, 'home', '#pricing')}
+                  >
+                    Board Passes
+                  </a>
+                </>
+              )}
             </nav>
 
             {/* Desktop Actions & Theme Toggle */}
@@ -209,48 +258,148 @@ export default function Navbar() {
                 )}
               </button>
 
-              {currentPage === 'home' && (
-                <>
+              {/* If Authenticated: Show Student Profile Chip, Dropdown, AND Direct Sign Out Button */}
+              {isAuthenticated && user ? (
+                <div className="nav-authenticated-wrapper">
+                  <div className="nav-user-dropdown-wrap">
+                    <button 
+                      type="button" 
+                      className="nav-user-pill-btn"
+                      onClick={() => setUserDropdownOpen(prev => !prev)}
+                      aria-expanded={userDropdownOpen}
+                      aria-label="Student account menu"
+                    >
+                      {user.avatar ? (
+                        <img src={user.avatar} alt={user.name} className="nav-user-avatar-img" />
+                      ) : (
+                        <div className="nav-user-avatar-initials">
+                          {user.name ? user.name.charAt(0).toUpperCase() : 'S'}
+                        </div>
+                      )}
+                      <span className="nav-user-firstname">{user.name?.split(' ')[0] || 'Student'}</span>
+                      <span className="nav-user-badge">{user.board || 'CBSE'} 10th</span>
+                      <ChevronDown size={13} className={`nav-user-caret ${userDropdownOpen ? 'rotated' : ''}`} />
+                    </button>
+
+                    {userDropdownOpen && (
+                      <div className="nav-user-dropdown-menu">
+                        <div className="dropdown-user-info">
+                          <div className="dropdown-user-name-row">
+                            <span className="dropdown-user-name">{user.name}</span>
+                            {user.provider === 'google' && (
+                              <span className="dropdown-google-tag" title="Verified via Google Account">Google</span>
+                            )}
+                          </div>
+                          <span className="dropdown-user-email">{user.email}</span>
+                          <span className="dropdown-user-board-info">{user.board} Class 10 • 2027 Boards</span>
+                        </div>
+
+                        <div className="dropdown-menu-divider" />
+
+                        <button 
+                          type="button" 
+                          className="dropdown-menu-action"
+                          onClick={() => { setUserDropdownOpen(false); navigateTo('signin'); }}
+                        >
+                          <User size={14} className="text-teal" />
+                          <span>Student Account &amp; Stats</span>
+                        </button>
+
+                        <button 
+                          type="button" 
+                          className="dropdown-menu-action"
+                          onClick={() => { setUserDropdownOpen(false); openDemoExam(); }}
+                        >
+                          <Sparkles size={14} className="text-emerald" />
+                          <span>Practice Board Mock</span>
+                        </button>
+
+                        <button 
+                          type="button" 
+                          className="dropdown-menu-action"
+                          onClick={() => { setUserDropdownOpen(false); navigateTo('home', '#mock-tests'); }}
+                        >
+                          <GraduationCap size={14} className="text-teal" />
+                          <span>Question Banks</span>
+                        </button>
+
+                        <div className="dropdown-menu-divider" />
+
+                        <button 
+                          type="button" 
+                          className="dropdown-menu-action text-danger"
+                          onClick={() => { setUserDropdownOpen(false); signOut(); }}
+                        >
+                          <LogOut size={14} />
+                          <span>Sign Out</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* PROMINENT, WORKABLE SIGN OUT BUTTON (DIRECT 1-CLICK ACCESS) */}
                   <button 
                     type="button" 
-                    className="nav-signin-ghost"
-                    onClick={() => alert('Student Sign In: Direct access to CBSE/ICSE mock test dashboard.')}
+                    className="nav-signout-header-btn"
+                    onClick={() => {
+                      setUserDropdownOpen(false);
+                      signOut();
+                    }}
+                    aria-label="Sign out of student account"
+                    title="Sign Out of student account"
                   >
-                    Sign In
+                    <LogOut size={13} className="nav-signout-icon" />
+                    <span className="nav-signout-text">Sign Out</span>
                   </button>
-
+                </div>
+              ) : (
+                /* Unauthenticated State: Always visible Sign In button + Primary CTA */
+                <div className="nav-unauthenticated-wrapper">
                   <button 
                     type="button" 
-                    className="btn btn-primary nav-cta-btn"
-                    onClick={openDemoExam}
+                    className={`nav-signin-header-btn ${currentPage === 'signin' ? 'active' : ''}`}
+                    onClick={() => openSignIn('signin')}
+                    aria-label="Student Sign In"
+                    title="Sign In to Student Portal"
                   >
-                    <Sparkles size={13} />
-                    <span>Try Demo</span>
+                    <LogIn size={13} className="nav-signin-icon" />
+                    <span>Sign In</span>
                   </button>
-                </>
-              )}
 
-              {currentPage === 'careers' && (
-                <a 
-                  href="#open-positions" 
-                  className="btn btn-primary nav-cta-btn"
-                  onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}
-                >
-                  <span>Explore Jobs</span>
-                  <ArrowRight size={13} />
-                </a>
-              )}
+                  {(currentPage === 'home' || currentPage === 'signin') && (
+                    <button 
+                      type="button" 
+                      className="btn btn-primary nav-cta-btn"
+                      onClick={openDemoExam}
+                    >
+                      <Sparkles size={13} />
+                      <span>Try Demo</span>
+                    </button>
+                  )}
 
-              {currentPage === 'teachers' && (
-                <button 
-                  type="button" 
-                  className="btn btn-primary nav-cta-btn"
-                  onClick={openTeacherSignup}
-                >
-                  <Users size={13} />
-                  <span>Apply Now</span>
-                  <ArrowRight size={13} />
-                </button>
+                  {currentPage === 'careers' && (
+                    <a 
+                      href="#open-positions" 
+                      className="btn btn-primary nav-cta-btn"
+                      onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}
+                    >
+                      <span>Explore Jobs</span>
+                      <ArrowRight size={13} />
+                    </a>
+                  )}
+
+                  {currentPage === 'teachers' && (
+                    <button 
+                      type="button" 
+                      className="btn btn-primary nav-cta-btn"
+                      onClick={openTeacherSignup}
+                    >
+                      <Users size={13} />
+                      <span>Apply Now</span>
+                      <ArrowRight size={13} />
+                    </button>
+                  )}
+                </div>
               )}
 
               {/* Mobile Hamburger Button */}
@@ -403,44 +552,85 @@ export default function Navbar() {
 
               {/* Mobile Clean CTAs */}
               <div className="mobile-menu-actions">
-                {currentPage === 'home' && (
-                  <>
-                    <button 
-                      type="button"
-                      className="btn btn-primary w-full"
-                      onClick={() => { setMobileMenuOpen(false); openDemoExam(); }}
-                    >
-                      <Sparkles size={15} />
-                      <span>Try Free Demo Exam</span>
-                    </button>
+                {/* Authenticated User in Mobile Menu */}
+                {isAuthenticated && user ? (
+                  <div className="mobile-user-card">
+                    <div className="mobile-user-row">
+                      {user.avatar ? (
+                        <img src={user.avatar} alt={user.name} className="mobile-user-avatar" />
+                      ) : (
+                        <div className="mobile-user-initials">{user.name?.charAt(0) || 'S'}</div>
+                      )}
+                      <div className="mobile-user-meta">
+                        <span className="mobile-user-name">{user.name}</span>
+                        <span className="mobile-user-email">{user.email}</span>
+                        <span className="mobile-user-board">{user.board} Class 10 • 2027 Boards</span>
+                      </div>
+                    </div>
+                    <div className="mobile-user-actions">
+                      <button 
+                        type="button"
+                        className="btn btn-primary w-full"
+                        onClick={() => { setMobileMenuOpen(false); openDemoExam(); }}
+                      >
+                        <Sparkles size={15} />
+                        <span>Practice Free Demo Exam</span>
+                      </button>
+                      
+                      {/* WORKABLE PROMINENT MOBILE SIGN OUT BUTTON */}
+                      <button 
+                        type="button" 
+                        className="btn btn-secondary w-full mobile-signout-btn"
+                        onClick={() => { setMobileMenuOpen(false); signOut(); }}
+                        title="Sign Out of student account"
+                      >
+                        <LogOut size={15} />
+                        <span>Sign Out of Account</span>
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mobile-unauth-actions">
                     <button 
                       type="button" 
-                      className="btn btn-secondary w-full"
-                      onClick={() => { setMobileMenuOpen(false); alert('Student Sign In'); }}
+                      className="btn btn-secondary w-full mobile-signin-btn"
+                      onClick={() => { setMobileMenuOpen(false); openSignIn('signin'); }}
                     >
-                      <span>Student Sign In</span>
+                      <LogIn size={15} />
+                      <span>Student Sign In / Create Account</span>
                     </button>
-                  </>
-                )}
-                {currentPage === 'careers' && (
-                  <a 
-                    href="#open-positions"
-                    className="btn btn-primary w-full text-center"
-                    onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}
-                  >
-                    <span>View All Open Positions</span>
-                    <ArrowRight size={15} />
-                  </a>
-                )}
-                {currentPage === 'teachers' && (
-                  <button 
-                    type="button"
-                    className="btn btn-primary w-full"
-                    onClick={() => { setMobileMenuOpen(false); openTeacherSignup(); }}
-                  >
-                    <Users size={15} />
-                    <span>Apply as an Educator</span>
-                  </button>
+
+                    {(currentPage === 'home' || currentPage === 'signin') && (
+                      <button 
+                        type="button"
+                        className="btn btn-primary w-full"
+                        onClick={() => { setMobileMenuOpen(false); openDemoExam(); }}
+                      >
+                        <Sparkles size={15} />
+                        <span>Try Free Demo Exam</span>
+                      </button>
+                    )}
+                    {currentPage === 'careers' && (
+                      <a 
+                        href="#open-positions"
+                        className="btn btn-primary w-full text-center"
+                        onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}
+                      >
+                        <span>View All Open Positions</span>
+                        <ArrowRight size={15} />
+                      </a>
+                    )}
+                    {currentPage === 'teachers' && (
+                      <button 
+                        type="button"
+                        className="btn btn-primary w-full"
+                        onClick={() => { setMobileMenuOpen(false); openTeacherSignup(); }}
+                      >
+                        <Users size={15} />
+                        <span>Apply as an Educator</span>
+                      </button>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
@@ -694,30 +884,87 @@ export default function Navbar() {
           color: rgb(170, 255, 199);
         }
 
-        .nav-signin-ghost {
-          background: transparent;
-          border: none;
-          color: var(--text-muted);
+        .nav-authenticated-wrapper,
+        .nav-unauthenticated-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .nav-signin-header-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          background: var(--bg-surface);
+          border: 1px solid var(--border-medium);
+          color: var(--text-main);
           font-size: 0.8125rem;
-          font-weight: 600;
+          font-weight: 700;
           font-family: var(--font-sans);
-          padding: 0.45rem 0.75rem;
+          padding: 0.42rem 0.85rem;
           border-radius: var(--radius-full);
           cursor: pointer;
-          transition: color 0.15s ease, background 0.15s ease;
+          transition: all 0.16s ease;
         }
 
-        .nav-signin-ghost:hover {
-          color: var(--text-main);
-          background: var(--bg-hover);
-        }
-
-        [data-theme="dark"] .nav-signin-ghost {
-          color: #94a3b8;
-        }
-
-        [data-theme="dark"] .nav-signin-ghost:hover {
+        .nav-signin-header-btn:hover,
+        .nav-signin-header-btn.active {
+          background: var(--c-navy);
           color: #ffffff;
+          border-color: var(--c-navy);
+          transform: translateY(-1px);
+          box-shadow: 0 2px 8px var(--c-navy-wash);
+        }
+
+        [data-theme="dark"] .nav-signin-header-btn {
+          background: rgba(255, 255, 255, 0.06);
+          border-color: rgba(255, 255, 255, 0.15);
+          color: #f1f5f9;
+        }
+
+        [data-theme="dark"] .nav-signin-header-btn:hover,
+        [data-theme="dark"] .nav-signin-header-btn.active {
+          background: var(--c-mint);
+          color: var(--c-navy);
+          border-color: var(--c-mint);
+          box-shadow: 0 2px 10px rgba(170, 255, 199, 0.25);
+        }
+
+        /* Workable, Direct 1-Click Sign Out Button */
+        .nav-signout-header-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          padding: 0.4rem 0.75rem;
+          background: rgba(220, 38, 38, 0.08);
+          border: 1px solid rgba(220, 38, 38, 0.25);
+          border-radius: var(--radius-full);
+          color: #dc2626;
+          font-size: 0.78rem;
+          font-weight: 700;
+          font-family: var(--font-sans);
+          cursor: pointer;
+          transition: all 0.16s ease;
+        }
+
+        .nav-signout-header-btn:hover {
+          background: #dc2626;
+          color: #ffffff;
+          border-color: #dc2626;
+          transform: translateY(-1px);
+          box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+        }
+
+        [data-theme="dark"] .nav-signout-header-btn {
+          background: rgba(239, 68, 68, 0.15);
+          border-color: rgba(239, 68, 68, 0.35);
+          color: #fca5a5;
+        }
+
+        [data-theme="dark"] .nav-signout-header-btn:hover {
+          background: #ef4444;
+          color: #ffffff;
+          border-color: #ef4444;
         }
 
         .nav-cta-btn {
@@ -930,6 +1177,251 @@ export default function Navbar() {
           width: 100%;
         }
 
+        /* User Dropdown Pill & Popover Menu */
+        .nav-user-dropdown-wrap {
+          position: relative;
+        }
+
+        .nav-user-pill-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.28rem 0.65rem 0.28rem 0.32rem;
+          background: var(--bg-card);
+          border: 1px solid var(--border-light);
+          border-radius: var(--radius-full);
+          cursor: pointer;
+          transition: all 0.15s ease;
+          box-shadow: var(--shadow-subtle);
+        }
+        .nav-user-pill-btn:hover {
+          background: var(--bg-subtle);
+          border-color: var(--c-teal);
+        }
+
+        .nav-user-avatar-img {
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .nav-user-avatar-initials {
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          background: var(--c-navy);
+          color: #ffffff;
+          font-size: 0.75rem;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .nav-user-firstname {
+          font-size: 0.82rem;
+          font-weight: 700;
+          color: var(--text-main);
+        }
+
+        .nav-user-badge {
+          background: var(--c-mint-wash);
+          color: var(--c-navy);
+          font-size: 0.68rem;
+          font-weight: 700;
+          padding: 1px 6px;
+          border-radius: 4px;
+        }
+
+        .nav-user-caret {
+          color: var(--text-light);
+          transition: transform 0.2s ease;
+        }
+        .nav-user-caret.rotated {
+          transform: rotate(180deg);
+        }
+
+        .nav-user-dropdown-menu {
+          position: absolute;
+          top: calc(100% + 8px);
+          right: 0;
+          width: 240px;
+          background: var(--bg-card);
+          border: 1px solid var(--border-medium);
+          border-radius: var(--radius-lg);
+          padding: 0.5rem;
+          box-shadow: var(--shadow-elevated);
+          z-index: 1100;
+          animation: dropFadeIn 0.15s ease-out;
+        }
+
+        @keyframes dropFadeIn {
+          from { opacity: 0; transform: translateY(-4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-user-info {
+          padding: 0.5rem 0.65rem;
+        }
+
+        .dropdown-user-name-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.4rem;
+        }
+
+        .dropdown-user-name {
+          font-size: 0.88rem;
+          font-weight: 700;
+          color: var(--text-main);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .dropdown-google-tag {
+          font-size: 0.65rem;
+          font-weight: 700;
+          color: #1a73e8;
+          background: #e8f0fe;
+          padding: 1px 5px;
+          border-radius: 4px;
+        }
+
+        .dropdown-user-email {
+          font-size: 0.74rem;
+          color: var(--text-muted);
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-top: 1px;
+        }
+
+        .dropdown-user-board-info {
+          font-size: 0.7rem;
+          color: var(--c-teal);
+          font-weight: 600;
+          display: block;
+          margin-top: 2px;
+        }
+
+        .dropdown-menu-divider {
+          height: 1px;
+          background: var(--border-light);
+          margin: 0.35rem 0;
+        }
+
+        .dropdown-menu-action {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 0.65rem;
+          background: transparent;
+          border: none;
+          border-radius: var(--radius-sm);
+          font-size: 0.82rem;
+          font-weight: 600;
+          color: var(--text-main);
+          cursor: pointer;
+          text-align: left;
+          transition: background 0.12s ease;
+        }
+        .dropdown-menu-action:hover {
+          background: var(--bg-hover);
+        }
+        .dropdown-menu-action.text-danger {
+          color: #dc2626;
+        }
+        .dropdown-menu-action.text-danger:hover {
+          background: rgba(220, 38, 38, 0.08);
+        }
+
+        /* Mobile User Card */
+        .mobile-user-card {
+          background: var(--bg-card);
+          border: 1px solid var(--border-medium);
+          border-radius: var(--radius-lg);
+          padding: 0.85rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .mobile-user-row {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .mobile-user-avatar {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .mobile-user-initials {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: var(--c-navy);
+          color: #ffffff;
+          font-size: 0.85rem;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .mobile-user-meta {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .mobile-user-name {
+          font-size: 0.88rem;
+          font-weight: 700;
+          color: var(--text-main);
+        }
+
+        .mobile-user-email {
+          font-size: 0.74rem;
+          color: var(--text-muted);
+        }
+
+        .mobile-user-board {
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: var(--c-teal);
+        }
+
+        .mobile-user-actions,
+        .mobile-unauth-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .mobile-signout-btn {
+          color: #dc2626 !important;
+          border-color: rgba(220, 38, 38, 0.3) !important;
+          background: rgba(220, 38, 38, 0.06) !important;
+          font-weight: 700;
+        }
+
+        .mobile-signout-btn:hover {
+          background: #dc2626 !important;
+          color: #ffffff !important;
+          border-color: #dc2626 !important;
+        }
+
+        .mobile-signin-btn {
+          font-weight: 700;
+        }
+
         /* Responsive Breakpoints */
         @media (max-width: 860px) {
           .desktop-nav-links {
@@ -940,8 +1432,18 @@ export default function Navbar() {
             align-items: center;
             justify-content: center;
           }
-          .nav-signin-ghost {
+          .nav-authenticated-wrapper,
+          .nav-unauthenticated-wrapper {
+            gap: 0.35rem;
+          }
+        }
+
+        @media (max-width: 580px) {
+          .nav-signout-text {
             display: none;
+          }
+          .nav-signout-header-btn {
+            padding: 0.42rem 0.55rem;
           }
         }
 
@@ -955,6 +1457,12 @@ export default function Navbar() {
           }
           .nav-cta-btn {
             padding: 0.44rem 0.6rem;
+          }
+          .nav-signin-header-btn span {
+            display: none;
+          }
+          .nav-signin-header-btn {
+            padding: 0.42rem 0.55rem;
           }
         }
       `}</style>

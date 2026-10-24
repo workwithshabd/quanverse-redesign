@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '../../hooks/useNavigation';
-import { Terminal, Users, GraduationCap, Sparkles, ChevronDown, ChevronUp, Briefcase } from 'lucide-react';
-
-
+import { useAuth } from '../../hooks/useAuth';
+import { Terminal, Users, GraduationCap, Sparkles, ChevronDown, ChevronUp, Briefcase, LogIn, LogOut } from 'lucide-react';
 
 export default function DebugBar() {
   const { 
     currentPage, 
     navigateTo, 
     openTeacherSignup, 
-    openDemoExam 
+    openDemoExam,
+    openSignIn
   } = useNavigation();
+
+  const {
+    user,
+    isAuthenticated,
+    signOut,
+    quickDemoLogin
+  } = useAuth();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -55,7 +62,43 @@ export default function DebugBar() {
                 {currentPage === 'home' && 'Student Landing (/)'}
                 {currentPage === 'careers' && 'Company Careers (/#careers)'}
                 {currentPage === 'teachers' && 'Educator Portal (/#teachers)'}
+                {currentPage === 'signin' && 'Sign In / Account (/#signin)'}
               </span>
+            </div>
+
+            <div className="debug-stat-row">
+              <span className="debug-label">Auth State:</span>
+              {isAuthenticated && user ? (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span className="debug-badge badge-active" style={{ background: '#10b981', color: '#fff' }}>
+                    Signed In: {user.name.split(' ')[0]}
+                  </span>
+                  <button
+                    type="button"
+                    className="debug-btn"
+                    style={{ color: '#ef4444', borderColor: 'rgba(239, 68, 68, 0.4)', padding: '2px 7px' }}
+                    onClick={signOut}
+                    title="Sign Out of student account"
+                  >
+                    <LogOut size={11} />
+                    <span>Sign Out</span>
+                  </button>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span className="debug-badge">Logged Out</span>
+                  <button
+                    type="button"
+                    className="debug-btn debug-btn-accent"
+                    style={{ padding: '2px 7px' }}
+                    onClick={quickDemoLogin}
+                    title="Quick Demo Student Login"
+                  >
+                    <Sparkles size={11} />
+                    <span>1-Click Demo</span>
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="debug-controls-group">
@@ -84,6 +127,14 @@ export default function DebugBar() {
                 >
                   <Users size={13} />
                   <span>Teachers</span>
+                </button>
+                <button
+                  type="button"
+                  className={`debug-btn ${currentPage === 'signin' ? 'active' : ''}`}
+                  onClick={() => openSignIn('signin')}
+                >
+                  <LogIn size={13} />
+                  <span>Sign In</span>
                 </button>
               </div>
             </div>
@@ -124,7 +175,7 @@ export default function DebugBar() {
         >
           <Terminal size={14} className="text-emerald" />
           <span className="debug-pill-text">
-            {currentPage === 'home' ? 'Student View' : 'Careers View'}
+            {currentPage === 'home' ? 'Student View' : currentPage === 'signin' ? 'Sign In View' : currentPage === 'teachers' ? 'Teachers View' : 'Careers View'}
           </span>
           <ChevronUp size={13} />
         </button>

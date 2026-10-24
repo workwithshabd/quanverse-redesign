@@ -3,7 +3,7 @@ import { logger } from '../services/logger';
 import { NavigationContext } from './navigationContextDefinition';
 
 export function NavigationProvider({ children }) {
-  // Current page view: 'home' | 'careers' | 'teachers'
+  // Current page view: 'home' | 'careers' | 'teachers' | 'signin'
   const [currentPage, setCurrentPage] = useState(() => {
     const hash = window.location.hash.toLowerCase();
     if (hash.startsWith('#teachers') || hash.startsWith('#teacher-signup') || hash.startsWith('#for-teachers')) {
@@ -12,10 +12,22 @@ export function NavigationProvider({ children }) {
     if (hash.startsWith('#careers') || hash.startsWith('#jobs') || hash.startsWith('#open-roles')) {
       return 'careers';
     }
+    if (hash.startsWith('#signin') || hash.startsWith('#login') || hash.startsWith('#signup') || hash.startsWith('#register') || hash.startsWith('#create-account')) {
+      return 'signin';
+    }
     return 'home';
   });
 
+  const [authInitialTab, setAuthInitialTab] = useState(() => {
+    const hash = window.location.hash.toLowerCase();
+    if (hash.startsWith('#signup') || hash.startsWith('#register') || hash.startsWith('#create-account')) {
+      return 'signup';
+    }
+    return 'signin';
+  });
+
   // Modal states
+  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isDemoExamOpen, setIsDemoExamOpen] = useState(false);
   const [isTeacherSignupModalOpen, setIsTeacherSignupModalOpen] = useState(() => {
     return window.location.hash.toLowerCase().includes('teacher-signup');
@@ -25,7 +37,7 @@ export function NavigationProvider({ children }) {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isJobModalOpen, setIsJobModalOpen] = useState(false);
 
-  // Listen to hash changes (for browser back/forward or direct links like #careers, #teachers)
+  // Listen to hash changes (for browser back/forward or direct links like #careers, #teachers, #signin)
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
@@ -39,6 +51,14 @@ export function NavigationProvider({ children }) {
         setIsTeacherSignupModalOpen(true);
       } else if (hash.startsWith('#careers') || hash.startsWith('#jobs') || hash.startsWith('#open-roles')) {
         setCurrentPage('careers');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash.startsWith('#signin') || hash.startsWith('#login')) {
+        setCurrentPage('signin');
+        setAuthInitialTab('signin');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash.startsWith('#signup') || hash.startsWith('#register') || hash.startsWith('#create-account')) {
+        setCurrentPage('signin');
+        setAuthInitialTab('signup');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (hash.startsWith('#mock-demo') || hash.startsWith('#demo-exam')) {
         setIsDemoExamOpen(true);
@@ -62,6 +82,9 @@ export function NavigationProvider({ children }) {
     } else if (page === 'teachers') {
       window.location.hash = targetHash || 'teachers';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'signin') {
+      window.location.hash = targetHash || 'signin';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       if (targetHash) {
         window.location.hash = targetHash;
@@ -74,6 +97,31 @@ export function NavigationProvider({ children }) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
+  };
+
+  const openSignInModal = (tab = 'signin') => {
+    logger.auth(`Opening sign in modal with tab: ${tab}`);
+    setAuthInitialTab(tab);
+    setIsSignInModalOpen(true);
+  };
+
+  const closeSignInModal = () => {
+    setIsSignInModalOpen(false);
+  };
+
+  const openSignIn = (tab = 'signin') => {
+    // Navigates directly to the dedicated Sign In / Account page
+    logger.auth(`Navigating to Sign In page with initialTab: ${tab}`);
+    setAuthInitialTab(tab);
+    setIsSignInModalOpen(false);
+    navigateTo('signin');
+  };
+
+  const openSignUp = () => {
+    logger.auth('Navigating to Create Account page');
+    setAuthInitialTab('signup');
+    setIsSignInModalOpen(false);
+    navigateTo('signin');
   };
 
   const openTeacherSignup = () => {
@@ -107,7 +155,13 @@ export function NavigationProvider({ children }) {
 
   const value = {
     currentPage,
+    authInitialTab,
+    isSignInModalOpen,
+    openSignInModal,
+    closeSignInModal,
     navigateTo,
+    openSignIn,
+    openSignUp,
     isDemoExamOpen,
     openDemoExam,
     closeDemoExam,

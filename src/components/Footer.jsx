@@ -5,7 +5,7 @@ import { useNavigation } from '../hooks/useNavigation';
 
 
 export default function Footer({ onOpenDemoExam }) {
-  const { navigateTo, openDemoExam } = useNavigation();
+  const { navigateTo, openDemoExam, openSignIn } = useNavigation();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -107,6 +107,7 @@ export default function Footer({ onOpenDemoExam }) {
           <div className="footer-col">
             <h4 className="footer-col-title">For Students</h4>
             <ul className="footer-links-list">
+              <li><a href="#signin" onClick={(e) => { e.preventDefault(); openSignIn('signin'); }}>Student Sign In &amp; Account</a></li>
               <li><a href="#mock-tests" onClick={(e) => { e.preventDefault(); navigateTo('home', '#mock-tests'); }}>CBSE Class 10 Mock Tests</a></li>
               <li><a href="#mock-tests" onClick={(e) => { e.preventDefault(); navigateTo('home', '#mock-tests'); }}>ICSE Specimen Papers 2027</a></li>
               <li><a href="#readiness" onClick={(e) => { e.preventDefault(); navigateTo('home', '#readiness'); }}>Board Readiness Score</a></li>
