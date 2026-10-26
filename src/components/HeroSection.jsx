@@ -431,7 +431,10 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           border: none;
           outline: none;
           cursor: pointer;
-          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+          -webkit-mask-image: -webkit-radial-gradient(white, black);
+          mask-image: radial-gradient(white, black);
+          background-clip: padding-box;
+          transition: background-color 0.25s ease, color 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
           position: relative;
           overflow: hidden;
@@ -461,11 +464,11 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         }
 
         .zuse-cta-primary:hover {
-          background-color: #FFFFFF;
+          background-color: #07110D;
           border: none;
           outline: none;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+          transition: background-color 0.25s ease, color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-cta-primary:hover > *:not(.button__flair) {

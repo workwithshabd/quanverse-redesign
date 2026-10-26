@@ -944,6 +944,10 @@ export default function Navbar() {
   background-image: none !important;
   color: #07110D !important;
 
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  background-clip: padding-box;
+
   border: none !important;
   outline: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
@@ -953,6 +957,7 @@ export default function Navbar() {
   text-decoration: none;
 
   transition:
+    background-color 0.25s ease,
     color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
     box-shadow 0.15s ease;
 }
@@ -1004,23 +1009,26 @@ export default function Navbar() {
     border-color 0.15s ease;
 }
 
-/* Hover: preserve the white surface and let the flair animate */
+/* Hover: dark background transitions in lockstep with flair fill */
 .nav-cta-btn:hover,
 .zuse-cta-btn:hover {
-  background: #FFFFFF !important;
-  background-color: #FFFFFF !important;
+  background: #07110D !important;
+  background-color: #07110D !important;
   background-image: none !important;
-  color: #07110D !important;
+  color: #FFFFFF !important;
   border: none !important;
   outline: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  transition:
+    background-color 0.25s ease,
+    color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+    box-shadow 0.15s ease;
 }
 
-/* Text and icons turn white only if the dark flair covers them.
-   The button's direct children remain above the flair. */
+/* Text and icons turn white when hovered */
 .nav-cta-btn:hover > *:not(.button__flair),
 .zuse-cta-btn:hover > *:not(.button__flair) {
-  color: #07110D;
+  color: #FFFFFF !important;
 }
 
 .nav-cta-btn:hover .kbd-key,
