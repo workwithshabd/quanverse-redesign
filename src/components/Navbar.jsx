@@ -344,6 +344,7 @@ export default function Navbar() {
                     aria-label="Student Sign In"
                     title="Sign In to Student Portal"
                   >
+                    <span className="button__flair" aria-hidden="true" />
                     <LogIn size={13} className="nav-signin-icon" />
                     <span>Sign In</span>
                   </button>
@@ -664,6 +665,7 @@ export default function Navbar() {
           justify-content: space-between;
           height: 56px;
           gap: 1.25rem;
+          position: relative;
         }
 
         /* Brand Logo */
@@ -675,6 +677,8 @@ export default function Navbar() {
           text-decoration: none;
           flex-shrink: 0;
           user-select: none;
+          position: relative;
+          z-index: 2;
         }
 
         .logo-symbol {
@@ -752,8 +756,11 @@ export default function Navbar() {
           color: #8F9D93;
         }
 
-        /* Desktop Nav Links: Clean editorial inline navigation without pill container or outline */
+        /* Desktop Nav Links: Clean editorial inline navigation centered independently */
         .desktop-nav-links {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -761,6 +768,9 @@ export default function Navbar() {
           padding: 0;
           border: none;
           border-radius: 0;
+          z-index: 1;
+          white-space: nowrap;
+          pointer-events: auto;
         }
 
         [data-theme="dark"] .desktop-nav-links {
@@ -824,6 +834,9 @@ export default function Navbar() {
           align-items: center;
           gap: 0.65rem;
           flex-shrink: 0;
+          margin-left: auto;
+          position: relative;
+          z-index: 2;
         }
 
         .nav-authenticated-wrapper,
@@ -831,6 +844,7 @@ export default function Navbar() {
           display: flex;
           align-items: center;
           gap: 0.5rem;
+          flex-shrink: 0;
         }
 
         .nav-signin-header-btn {
@@ -838,7 +852,7 @@ export default function Navbar() {
           align-items: center;
           gap: 5px;
           background: transparent;
-          border: 1px solid transparent;
+          border: 1px solid transparent !important;
           color: var(--text-muted);
           font-size: 0.75rem;
           font-weight: 500;
@@ -846,25 +860,28 @@ export default function Navbar() {
           padding: 0.32rem 0.65rem;
           border-radius: 6px;
           cursor: pointer;
-          transition: all 0.15s ease;
+          transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+          box-sizing: border-box;
+          flex-shrink: 0;
         }
 
         .nav-signin-header-btn:hover,
         .nav-signin-header-btn.active {
           color: var(--text-heading);
           background: var(--bg-card-elevated);
-          border-color: var(--border-light);
+          border: 1px solid var(--border-light) !important;
         }
 
         [data-theme="dark"] .nav-signin-header-btn {
           color: var(--text-muted);
+          border: 1px solid transparent !important;
         }
 
         [data-theme="dark"] .nav-signin-header-btn:hover,
         [data-theme="dark"] .nav-signin-header-btn.active {
           color: var(--text-heading);
           background: var(--bg-card-elevated);
-          border-color: var(--border-medium);
+          border: 1px solid var(--border-medium) !important;
         }
 
         /* Workable, Direct 1-Click Sign Out Button */
@@ -881,7 +898,9 @@ export default function Navbar() {
           font-weight: 600;
           font-family: var(--font-sans);
           cursor: pointer;
-          transition: all 0.16s ease;
+          transition: color 0.16s ease, background-color 0.16s ease, border-color 0.16s ease;
+          box-sizing: border-box;
+          flex-shrink: 0;
         }
 
         .nav-signout-header-btn:hover {
@@ -1002,6 +1021,17 @@ export default function Navbar() {
 .nav-cta-btn:hover > *:not(.button__flair),
 .zuse-cta-btn:hover > *:not(.button__flair) {
   color: #07110D;
+}
+
+.nav-cta-btn:hover .kbd-key,
+.zuse-cta-btn:hover .kbd-key {
+  color: #FFFFFF !important;
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 /* Pressed state */

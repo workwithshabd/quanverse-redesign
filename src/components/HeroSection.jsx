@@ -442,7 +442,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           position: relative;
           z-index: 2;
           pointer-events: none;
-          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-cta-primary svg {
@@ -452,12 +452,12 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           color: inherit;
           stroke: currentColor;
           fill: none;
-          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1), stroke 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), stroke 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-cta-primary svg path {
           stroke: currentColor;
-          transition: stroke 50ms cubic-bezier(0.645, 0.045, 0.355, 1), color 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+          transition: stroke 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-cta-primary:hover {
@@ -573,22 +573,36 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         }
 
         .zuse-kbd {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
           padding: 0.15rem 0.4rem;
           font-family: var(--font-mono);
           font-size: 0.6875rem;
           font-weight: 700;
+          line-height: 1;
           border-radius: 4px;
-          background: rgba(0, 0, 0, 0.12);
+          background-color: rgba(0, 0, 0, 0.12);
           border: 1px solid rgba(0, 0, 0, 0.2);
           color: #07110D;
-          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1), background 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+          pointer-events: none;
+          position: relative;
+          z-index: 2;
+          box-sizing: border-box;
+          transition:
+            color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+            background-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+            border-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-cta-primary:hover .zuse-kbd {
           color: #ffffff !important;
-          background: rgba(255, 255, 255, 0.18);
+          background-color: rgba(255, 255, 255, 0.18);
           border-color: rgba(255, 255, 255, 0.3);
-          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+          transition:
+            color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+            background-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+            border-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-hero-micro {
