@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  Sparkles, 
-  ArrowRight, 
-  CheckCircle2, 
-  AlertCircle, 
-  Clock, 
-  RefreshCw, 
+import {
+  Sparkles,
+  ArrowRight,
+  CheckCircle2,
+  AlertCircle,
+  Clock,
+  RefreshCw,
   ShieldCheck,
   Award
 } from 'lucide-react';
@@ -64,7 +64,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
   return (
     <section className="hero-section" id="ai-marking">
       <div className="app-container">
-        
+
         {/* ============================================================
             CENTERED HERO HEADER - ZUSE EDITORIAL TECH AESTHETIC
             ============================================================ */}
@@ -82,19 +82,21 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
 
           {/* Action CTAs */}
           <div className="zuse-hero-ctas">
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="zuse-cta-primary"
               onClick={onOpenDemoExam}
             >
+              <span className="button__flair" aria-hidden="true" />
               <Sparkles size={16} />
               <span>Start Free First Mock Exam</span>
               <kbd className="zuse-kbd">↵</kbd>
             </button>
 
             <a href="#how-it-works" className="zuse-cta-secondary">
+              <span className="button__flair" aria-hidden="true" />
               <span>See how marking works</span>
-              <ArrowRight size={14} className="text-accent-emerald" />
+              <ArrowRight size={14} className="zuse-cta-arrow" />
             </a>
           </div>
 
@@ -127,7 +129,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
             ============================================================ */}
         <div className="zuse-window-wrap gsap-reveal">
           <div className="zuse-window-frame">
-            
+
             {/* Top Window Bar with macOS traffic lights */}
             <div className="zuse-window-topbar">
               <div className="zuse-topbar-left">
@@ -145,7 +147,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
 
               {/* Subject Tabs in Topbar */}
               <div className="zuse-topbar-tabs">
-                <button 
+                <button
                   type="button"
                   className={`zuse-tab-btn ${selectedSubject === 'Maths' ? 'active' : ''}`}
                   onClick={() => { setSelectedSubject('Maths'); setEvaluationResult(null); setStudentInput(''); }}
@@ -153,7 +155,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
                   <span>Maths (3M)</span>
                   <span className="zuse-tab-diff diff-pos">+3.0</span>
                 </button>
-                <button 
+                <button
                   type="button"
                   className={`zuse-tab-btn ${selectedSubject === 'Science' ? 'active' : ''}`}
                   onClick={() => { setSelectedSubject('Science'); setEvaluationResult(null); setStudentInput(''); }}
@@ -173,7 +175,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
 
             {/* Split Window Body */}
             <div className="zuse-window-body">
-              
+
               {/* Left Sidebar: Workspaces & Exam Items */}
               <aside className="zuse-window-sidebar">
                 <div className="zuse-sidebar-head">
@@ -234,7 +236,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
 
               {/* Main Studio Pane: AI Marking Sandbox */}
               <div className="zuse-window-main">
-                
+
                 {/* Question Box */}
                 <div className="zuse-question-box">
                   <div className="zuse-q-meta">
@@ -307,8 +309,8 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
                       </div>
 
                       {evaluationResult.steps.map((st) => (
-                        <div 
-                          key={st.stepNumber} 
+                        <div
+                          key={st.stepNumber}
                           className={`zuse-step-item ${st.status === 'passed' ? 'passed' : 'partial'}`}
                         >
                           <div className="zuse-step-icon">
@@ -421,36 +423,69 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           gap: 0.55rem;
           padding: 0.65rem 1.35rem;
           border-radius: 6px;
-          background: #FFFFFF;
           background-color: #FFFFFF;
-          background-image: none;
           color: #07110D;
           font-family: var(--font-mono);
           font-size: 0.825rem;
           font-weight: 700;
-          border: 1px solid rgba(255, 255, 255, 0.95);
+          border: none;
+          outline: none;
           cursor: pointer;
-          transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.2);
+          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
           position: relative;
+          overflow: hidden;
+          isolation: isolate;
+        }
+
+        .zuse-cta-primary > *:not(.button__flair) {
+          position: relative;
+          z-index: 2;
+          pointer-events: none;
+          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-cta-primary svg {
-          color: #07110D !important;
+          position: relative;
+          z-index: 2;
+          pointer-events: none;
+          color: inherit;
+          stroke: currentColor;
+          fill: none;
+          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1), stroke 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .zuse-cta-primary svg path {
+          stroke: currentColor;
+          transition: stroke 50ms cubic-bezier(0.645, 0.045, 0.355, 1), color 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-cta-primary:hover {
-          background: #EBF3EE;
-          background-color: #EBF3EE;
-          background-image: none;
-          color: #07110D;
-          border-color: #FFFFFF;
-          box-shadow: 0 4px 18px rgba(255, 255, 255, 0.22), 0 2px 6px rgba(0, 0, 0, 0.4);
+          background-color: #FFFFFF;
+          border: none;
+          outline: none;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .zuse-cta-primary:hover > *:not(.button__flair) {
+          color: #FFFFFF;
+          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .zuse-cta-primary:hover svg {
+          color: #FFFFFF;
+          stroke: currentColor;
+          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), stroke 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .zuse-cta-primary:hover svg path {
+          stroke: currentColor;
+          transition: stroke 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-cta-primary:active {
-          background: #E2ECE5;
-          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+          background-color: #E2ECE5;
         }
 
         .zuse-cta-primary:focus-visible {
@@ -470,20 +505,66 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           background-color: rgba(11, 36, 26, 0.85);
           background-image: radial-gradient(rgba(190, 220, 200, 0.05) 1px, transparent 0);
           background-size: 5px 5px;
-          border: 1px solid rgba(190, 220, 200, 0.24);
+          border: none;
+          outline: none;
           border-radius: 6px;
           text-decoration: none;
-          transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
           position: relative;
+          overflow: hidden;
+          isolation: isolate;
+        }
+
+        .zuse-cta-secondary > *:not(.button__flair) {
+          position: relative;
+          z-index: 2;
+          pointer-events: none;
+          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .zuse-cta-secondary svg,
+        .zuse-cta-secondary .zuse-cta-arrow {
+          position: relative;
+          z-index: 2;
+          pointer-events: none;
+          color: inherit;
+          stroke: currentColor;
+          fill: none;
+          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1), stroke 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .zuse-cta-secondary svg path,
+        .zuse-cta-secondary .zuse-cta-arrow path {
+          stroke: currentColor;
+          transition: stroke 50ms cubic-bezier(0.645, 0.045, 0.355, 1), color 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-cta-secondary:hover {
-          background-color: rgba(16, 71, 52, 0.95);
-          background-image: radial-gradient(rgba(67, 201, 139, 0.12) 1.2px, transparent 0);
-          border-color: rgba(67, 201, 139, 0.55);
-          color: #A7F3C4;
-          box-shadow: inset 0 1px 0 rgba(67, 201, 139, 0.15), 0 4px 14px rgba(0, 0, 0, 0.5);
+          background-color: rgba(11, 36, 26, 0.85);
+          color: #07110D;
+          border: none;
+          outline: none;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .zuse-cta-secondary:hover > *:not(.button__flair) {
+          color: #07110D;
+          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .zuse-cta-secondary:hover svg,
+        .zuse-cta-secondary:hover .zuse-cta-arrow {
+          color: #07110D;
+          stroke: currentColor;
+          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), stroke 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .zuse-cta-secondary:hover svg path,
+        .zuse-cta-secondary:hover .zuse-cta-arrow path {
+          stroke: currentColor;
+          transition: stroke 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-cta-secondary:focus-visible {
@@ -500,6 +581,14 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           background: rgba(0, 0, 0, 0.12);
           border: 1px solid rgba(0, 0, 0, 0.2);
           color: #07110D;
+          transition: color 50ms cubic-bezier(0.645, 0.045, 0.355, 1), background 50ms cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .zuse-cta-primary:hover .zuse-kbd {
+          color: #ffffff !important;
+          background: rgba(255, 255, 255, 0.18);
+          border-color: rgba(255, 255, 255, 0.3);
+          transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
         .zuse-hero-micro {
@@ -515,6 +604,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           gap: 1.15rem;
           padding: 0.45rem 1.15rem;
           border-radius: 9999px;
+          margin-top: 50px;
           background: rgba(11, 36, 26, 0.45);
           border: 1px solid rgba(190, 220, 200, 0.14);
           backdrop-filter: blur(8px);
@@ -561,6 +651,8 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         .zuse-window-frame {
           border-radius: 12px;
           border: 1px solid var(--border-light);
+          margin-top : 80px;
+        
           background: var(--bg-card);
           box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
           overflow: hidden;
@@ -712,8 +804,9 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         /* Window Body Split Layout */
         .zuse-window-body {
           display: grid;
+          padding: 20px;
           grid-template-columns: 240px 1fr;
-          min-height: 380px;
+          min-height: 500px;
         }
 
         /* Sidebar */
@@ -723,7 +816,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: 0.7rem;
+          padding: 0.9rem 0.75rem;
         }
 
         .zuse-sidebar-head {
@@ -766,7 +859,8 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           background-color: rgba(16, 71, 52, 0.35);
           background-image: radial-gradient(rgba(213, 243, 106, 0.10) 1px, transparent 0);
           background-size: 4px 4px;
-          border-color: rgba(67, 201, 139, 0.35);
+          border-color: transparent !important;
+          outline: none !important;
           box-shadow: inset 2px 0 0 var(--accent-emerald);
         }
 
@@ -830,10 +924,10 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
 
         /* Main Studio Pane */
         .zuse-window-main {
-          padding: 0.95rem 1.15rem;
+          padding: 1.15rem 1.25rem;
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
+          gap: 0.85rem;
           background: var(--bg-card);
         }
 
@@ -920,12 +1014,13 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           font-family: var(--font-mono);
           font-size: 0.775rem;
           color: var(--text-main);
-          line-height: 1.45;
+          line-height: 1.5;
           white-space: pre-line;
-          max-height: 105px;
+          min-height: 135px;
+          max-height: 175px;
           overflow-y: auto;
           background: rgba(0, 0, 0, 0.15);
-          padding: 0.5rem;
+          padding: 0.65rem 0.75rem;
           border-radius: 6px;
           border: 1px solid var(--border-light);
         }
@@ -946,21 +1041,24 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
           background-color: var(--accent-emerald);
           background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 0);
           background-size: 4px 4px;
-          border: 1px solid rgba(255, 255, 255, 0.35);
+          border: none !important;
+          outline: none !important;
           color: #07110D;
           font-family: var(--font-mono);
           font-size: 0.8rem;
           font-weight: 700;
           cursor: pointer;
-          transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 3px 10px rgba(0, 0, 0, 0.4);
+          transition: background-color 0.2s ease, box-shadow 0.2s ease;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
         }
 
         .zuse-eval-btn:hover {
           background-color: var(--accent-emerald-hover);
           background-image: radial-gradient(rgba(0, 0, 0, 0.20) 1.2px, transparent 0);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 3px 14px rgba(67, 201, 139, 0.35);
-          border-color: rgba(255, 255, 255, 0.5);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+          border: none !important;
+          border-color: transparent !important;
+          outline: none !important;
         }
 
         .zuse-eval-btn:active {
@@ -968,8 +1066,7 @@ This keeps oxygen-rich and oxygen-poor blood completely separated for efficient 
         }
 
         .zuse-eval-btn:focus-visible {
-          outline: 2px solid var(--accent-lime);
-          outline-offset: 2px;
+          outline: none !important;
         }
 
         .zuse-eval-btn.evaluating {

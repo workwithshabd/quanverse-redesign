@@ -17,9 +17,13 @@ import { AuthProvider } from './context/AuthContext';
 import { NavigationProvider } from './context/NavigationContext';
 import { useNavigation } from './hooks/useNavigation';
 import { useAuth } from './hooks/useAuth';
+import { useButtonFlair } from './hooks/useButtonFlair';
 import { X, CheckCircle, Info } from 'lucide-react';
 
 function AppContent() {
+  // Global cursor-following circular GSAP hover effect across all eligible buttons
+  useButtonFlair();
+
   const {
     currentPage,
     authInitialTab,

@@ -928,7 +928,8 @@ export default function BoardReadinessSection({ onOpenDemoExam }) {
 
         .board-btn:hover {
           color: #F1F5F2;
-          border-color: rgba(67, 201, 139, 0.55);
+          border-color: transparent !important;
+          outline: none !important;
           background-color: rgba(16, 71, 52, 0.45);
         }
 

@@ -1,78 +1,220 @@
-import React, { useState } from 'react';
-import {
-  FileEdit,
-  Timer,
-  BrainCircuit,
-  BarChart3,
-  CheckCircle2,
-  ArrowRight
-} from 'lucide-react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import gsap from 'gsap';
 import HalftoneMosaic from './common/HalftoneMosaic';
 
-const STEP_HALFTONES = ['architecture', 'compass', 'optics', 'geometry'];
+const STAGES = [
+  {
+    num: '01',
+    title: 'Educator Blueprint',
+    keyword: 'Blueprint',
+    subheading: 'Built for board standards',
+    halftone: 'architecture',
+  },
+  {
+    num: '02',
+    title: 'Timed Simulation',
+    keyword: 'Simulation',
+    subheading: 'Practice under exam conditions',
+    halftone: 'compass',
+  },
+  {
+    num: '03',
+    title: 'Step Evaluation',
+    keyword: 'Precision',
+    subheading: 'Step-by-step evaluation',
+    halftone: 'optics',
+  },
+  {
+    num: '04',
+    title: 'Diagnostic Radar',
+    keyword: 'Diagnosis',
+    subheading: 'Targeted revision drills',
+    halftone: 'geometry',
+  },
+];
+
+const STAGE_RED_SHADES = [
+  {
+    label: 'Stage 01',
+    activeBg: '#FF7B7B',
+    border: '#FFA39E',
+    activeGlow: '0 0 10px rgba(255, 123, 123, 0.75)',
+    inactiveBg: 'rgba(255, 123, 123, 0.22)',
+    inactiveBorder: 'rgba(255, 123, 123, 0.38)',
+  },
+  {
+    label: 'Stage 02',
+    activeBg: '#F5222D',
+    border: '#FF4D4F',
+    activeGlow: '0 0 10px rgba(245, 34, 45, 0.75)',
+    inactiveBg: 'rgba(245, 34, 45, 0.22)',
+    inactiveBorder: 'rgba(245, 34, 45, 0.38)',
+  },
+  {
+    label: 'Stage 03',
+    activeBg: '#BA121A',
+    border: '#CF1322',
+    activeGlow: '0 0 10px rgba(186, 18, 26, 0.8)',
+    inactiveBg: 'rgba(186, 18, 26, 0.25)',
+    inactiveBorder: 'rgba(186, 18, 26, 0.42)',
+  },
+  {
+    label: 'Stage 04',
+    activeBg: '#6B000B',
+    border: '#8B0A14',
+    activeGlow: '0 0 12px rgba(139, 10, 20, 0.85)',
+    inactiveBg: 'rgba(107, 0, 11, 0.3)',
+    inactiveBorder: 'rgba(139, 10, 20, 0.48)',
+  },
+];
 
 export default function HowItWorksSection({ onOpenDemoExam }) {
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStage, setActiveStage] = useState(0);
+  const [keywordText, setKeywordText] = useState(STAGES[0].keyword);
 
-  const steps = [
-    {
-      num: '01',
-      tag: 'EDUCATOR AUTHORING',
-      title: 'Educator-Authored Papers',
-      desc: 'Structured questions mapped directly to official CBSE & CISCE blueprints.',
-      bullets: [
-        'Embedded with official step-marking criteria by senior board examiners'
-      ],
-      icon: FileEdit,
-      visualBadge: 'NCERT 2027 BLUEPRINT',
-      miniDetail: 'Official Blueprints'
-    },
-    {
-      num: '02',
-      tag: 'SIMULATION',
-      title: 'Timed Exam Simulation',
-      desc: 'Full 80-mark, 3-hour mock tests under authentic exam hall conditions.',
-      bullets: [
-        'Real-time countdown enforcing pacing across Sections A through E'
-      ],
-      icon: Timer,
-      visualBadge: '3-HOUR HALL CLOCK',
-      miniDetail: '180-Min Timer'
-    },
-    {
-      num: '03',
-      tag: 'STEP EVALUATION',
-      title: 'Step-by-Step AI Evaluation',
-      desc: 'Our OCR engine scans handwritten answers and cross-references board rubrics in 60s.',
-      bullets: [
-        'Detects formula omissions, wrong notation, and skipped intermediate steps'
-      ],
-      icon: BrainCircuit,
-      visualBadge: 'NEURAL STEP SCHEME',
-      miniDetail: 'Sub-60s Turnaround'
-    },
-    {
-      num: '04',
-      tag: 'DIAGNOSTIC RADAR',
-      title: 'Diagnostic Scorecard',
-      desc: 'Surgical breakdown isolating specific subtopics leaking half-marks.',
-      bullets: [
-        'Side-by-side comparison against 100/100 Topper Model Answers'
-      ],
-      icon: BarChart3,
-      visualBadge: 'TARGETED REPAIR',
-      miniDetail: 'Targeted Drills'
+  const containerRef = useRef(null);
+  const progressBarRefs = useRef([]);
+  const keywordRef = useRef(null);
+  const currentStageRef = useRef(0);
+  const progressTweenRef = useRef(null);
+  const headingTlRef = useRef(null);
+  const isInteractingRef = useRef(false);
+
+  // Synchronize ref with activeStage for callbacks
+  useEffect(() => {
+    currentStageRef.current = activeStage;
+  }, [activeStage]);
+
+  // Master stage transition sequence animating keyword and card progress
+  const goToStage = useCallback((nextIdx) => {
+    const prevIdx = currentStageRef.current;
+    if (nextIdx === prevIdx && progressTweenRef.current?.isActive()) {
+      return;
     }
-  ];
+
+    // Terminate existing progress and text animation immediately
+    if (progressTweenRef.current) {
+      progressTweenRef.current.kill();
+      progressTweenRef.current = null;
+    }
+    if (headingTlRef.current) {
+      headingTlRef.current.kill();
+      headingTlRef.current = null;
+    }
+
+    // Reset progress indicators on other cards
+    progressBarRefs.current.forEach((bar, idx) => {
+      if (bar && idx !== nextIdx) {
+        gsap.set(bar, { scaleX: 0 });
+      }
+    });
+
+    // Update active stage and keyword immediately without crossfade
+    setActiveStage(nextIdx);
+    setKeywordText(STAGES[nextIdx].keyword);
+    if (keywordRef.current) {
+      keywordRef.current.textContent = STAGES[nextIdx].keyword;
+      gsap.set(keywordRef.current, { opacity: 1, y: 0 });
+    }
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      const activeBar = progressBarRefs.current[nextIdx];
+      if (activeBar) gsap.set(activeBar, { scaleX: 1 });
+      return;
+    }
+
+    // Animate active card's progress indicator over the 4-second interval
+    const activeBar = progressBarRefs.current[nextIdx];
+    if (activeBar) {
+      const pTween = gsap.fromTo(
+        activeBar,
+        { scaleX: 0 },
+        {
+          scaleX: 1,
+          duration: 4,
+          ease: 'none',
+          paused: isInteractingRef.current,
+          onComplete: () => {
+            const following = (nextIdx + 1) % STAGES.length;
+            goToStage(following);
+          },
+        },
+      );
+      progressTweenRef.current = pTween;
+    }
+  }, []);
+
+  // Initialize on mount
+  useEffect(() => {
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (keywordRef.current) {
+      keywordRef.current.textContent = STAGES[0].keyword;
+      gsap.set(keywordRef.current, { opacity: 1, y: 0 });
+    }
+
+    if (prefersReducedMotion) {
+      setActiveStage(0);
+      setKeywordText(STAGES[0].keyword);
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      goToStage(0);
+    }, containerRef);
+
+    return () => {
+      if (progressTweenRef.current) progressTweenRef.current.kill();
+      if (headingTlRef.current) headingTlRef.current.kill();
+      ctx.revert();
+    };
+  }, [goToStage]);
+
+  // Pause automatic loop while interacting with a card
+  const handleCardMouseEnter = () => {
+    isInteractingRef.current = true;
+    if (progressTweenRef.current && !progressTweenRef.current.paused()) {
+      progressTweenRef.current.pause();
+    }
+  };
+
+  const handleCardMouseLeave = () => {
+    isInteractingRef.current = false;
+    if (progressTweenRef.current && progressTweenRef.current.paused()) {
+      progressTweenRef.current.resume();
+    }
+  };
+
+  const handleCardClick = (idx) => {
+    goToStage(idx);
+  };
+
+  const handleCardKeyDown = (idx, e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      goToStage(idx);
+    }
+  };
 
   return (
-    <section className="editorial-how-section" id="how-it-works">
+    <section
+      className="editorial-how-section"
+      id="how-it-works"
+      ref={containerRef}
+    >
       <div className="app-container">
-
         {/* Section Header */}
         <div className="editorial-section-header">
           <div className="header-meta-row font-mono text-xs text-muted mb-2">
-            <span className="text-accent-emerald font-bold">EXAM METHODOLOGY</span>
+            <span className="text-accent-emerald font-bold tracking-wider">
+              EXAM METHODOLOGY
+            </span>
           </div>
 
           <div className="title-with-flourish">
@@ -80,118 +222,84 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
               How Senior Examiners Grade — Rebuilt in Code
             </h2>
           </div>
-
-          <p className="section-subtitle">
-            Senior board examiner rubrics united with step-level machine precision.
-          </p>
         </div>
+      </div>
 
+      {/* Architectural Dotted Divider connecting directly to the vertical border lines */}
+      <div className="editorial-dotted-divider" aria-hidden="true" />
+
+      <div className="app-container">
         {/* Continuous Four-Column Structured Editorial Grid */}
         <div className="editorial-steps-grid">
-
-          {/* 4 Aligned Columns */}
-          <div className="steps-columns-container">
-            {steps.map((st, idx) => {
-              const IconComp = st.icon;
-              const isActive = activeStep === idx;
-              
-              // Restrained dual-accent assignment (Emerald & Acid Lime only)
-              const accent = {
-                color: isActive ? 'text-accent-lime' : 'text-accent-emerald',
-                dotClass: isActive ? 'text-accent-lime' : 'text-accent-emerald'
-              };
+          {/* Row 1: Four Equal Columns (Stage Heading + Muted Subheading) */}
+          <div
+            className="steps-columns-container"
+            role="tablist"
+            aria-label="Exam Methodology Stages"
+            onMouseEnter={handleCardMouseEnter}
+            onMouseLeave={handleCardMouseLeave}
+          >
+            {STAGES.map((st, idx) => {
+              const isActive = activeStage === idx;
 
               return (
                 <div
                   key={st.num}
+                  id={`stage-tab-${idx}`}
                   className={`step-grid-col ${isActive ? 'active-col' : ''}`}
-                  onClick={() => setActiveStep(idx)}
-                  role="button"
+                  onClick={() => handleCardClick(idx)}
+                  onFocus={handleCardMouseEnter}
+                  onBlur={handleCardMouseLeave}
+                  role="tab"
                   tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === 'Enter') setActiveStep(idx); }}
-                  aria-label={`View step ${st.num}: ${st.title}`}
+                  aria-selected={isActive}
+                  aria-controls={`stage-panel-${idx}`}
+                  onKeyDown={(e) => handleCardKeyDown(idx, e)}
+                  aria-label={`Stage ${st.num}: ${st.title} — ${st.subheading}`}
                 >
-                  <div className="col-top-meta font-mono text-[10px] flex items-center justify-between">
-                    <span className="col-tag text-muted uppercase tracking-wider">{st.tag}</span>
+                  {/* Subtle Dotted Halftone Texture Reveal */}
+                  <div className="card-halftone-texture" aria-hidden="true" />
+
+                  {/* Vertically Centered Stage Heading & Smaller Subheading */}
+                  <div className="col-card-content">
+                    <h3 className="col-title">{st.title}</h3>
+                    <p className="col-subheading">{st.subheading}</p>
                   </div>
 
-                  <div className="col-icon-wrap my-1.5 flex items-center gap-2">
-                    <IconComp size={16} className={isActive ? accent.color : 'text-muted'} />
-                    <span className="font-mono text-[10px] text-muted">{st.miniDetail}</span>
-                  </div>
-
-                  <h3 className="col-title text-main mb-1">
-                    {st.title}
-                  </h3>
-
-                  <p className="col-desc text-muted mb-2">
-                    {st.desc}
-                  </p>
-
-                  <div className="col-active-indicator mt-auto pt-1.5">
-                    <span className={`font-mono text-[10px] ${isActive ? accent.color + ' font-semibold' : 'text-muted'}`}>
-                      {isActive ? '● ACTIVE STAGE' : 'CLICK TO SELECT'}
-                    </span>
+                  {/* Coordinated Lime-Green Bottom Border Progress Indicator */}
+                  <div className="card-progress-track" aria-hidden="true">
+                    <div
+                      ref={(el) => {
+                        progressBarRefs.current[idx] = el;
+                      }}
+                      className="card-progress-bar"
+                    />
                   </div>
                 </div>
               );
             })}
           </div>
 
-          {/* Integrated Deep-Dive Showcase Row (Directly in Grid, No Floating Card) */}
-          <div className="step-deep-dive-pane">
-            <div className="deep-dive-header font-mono text-xs">
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="deep-dive-title text-main font-semibold">
-                  STAGE {steps[activeStep].num}: {steps[activeStep].title.toUpperCase()}
-                </span>
-                <span className="text-muted opacity-40">/</span>
-                <span className="text-accent-emerald font-semibold">
-                  {steps[activeStep].visualBadge}
-                </span>
-              </div>
-              <span className="font-mono text-[10px] text-muted uppercase tracking-wider hidden sm:inline">
-                {steps[activeStep].tag}
-              </span>
-            </div>
-
-            <div className="deep-dive-body">
-              {/* Left Column: Evaluation heading, concise supporting content, bullet points, and CTA */}
-              <div className="deep-dive-content-col">
-                <p className="deep-dive-desc font-sans text-xs md:text-sm text-muted leading-relaxed mb-3">
-                  {steps[activeStep].desc}
-                </p>
-
-                <div className="deep-dive-bullets">
-                  <div className="bullets-heading font-mono text-[10.5px] text-muted mb-2 uppercase tracking-wider">
-                    VERIFIED EVALUATION PROTOCOLS:
-                  </div>
-                  <ul className="space-y-2.5 font-sans text-xs text-muted">
-                    {steps[activeStep].bullets.map((b, bIdx) => (
-                      <li key={bIdx} className="flex items-start gap-2">
-                        <CheckCircle2 size={13} className="text-accent-emerald shrink-0 mt-0.5" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="deep-dive-action mt-3.5">
-                  <button
-                    type="button"
-                    className="btn btn-emerald btn-sm"
-                    onClick={onOpenDemoExam}
-                  >
-                    <span>Experience Stage {steps[activeStep].num} Live</span>
-                    <ArrowRight size={13} />
-                  </button>
+          {/* Row 2: Editorial Detail Panel (Expanded Main Keyword Across 3 Columns) */}
+          <div
+            className="step-deep-dive-pane"
+            role="region"
+            aria-label="Active Stage Detail"
+          >
+            <div className="deep-dive-single-panel">
+              {/* Prominent Bold Keyword Spanning First 3 Columns */}
+              <div className="deep-dive-panel-content">
+                <div className="editorial-heading-container">
+                  <h2 ref={keywordRef} className="editorial-stage-keyword">
+                    {keywordText}
+                  </h2>
                 </div>
               </div>
 
-              {/* Right Column: Proportional, Compact Halftone Mosaic Illustration */}
+              {/* Stationary Technical Illustration (Fixed in position, size, and container) */}
               <div className="deep-dive-illustration-col">
                 <HalftoneMosaic
-                  subject={STEP_HALFTONES[activeStep]}
+                  subject={STAGES[activeStage].halftone}
                   variant="plate"
                   compact={true}
                   aspectRatio="16/10"
@@ -201,8 +309,37 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
             </div>
           </div>
 
-        </div>
 
+        </div>
+        {/* 4 Stage Dots Below Row 2 (Progressively Darker Red Tones) */}
+        <div
+          className="stage-dots-bar"
+          role="tablist"
+          aria-label="Exam Methodology Stage Progression"
+        >
+          {STAGE_RED_SHADES.map((shade, idx) => {
+            const isActive = activeStage === idx;
+            return (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => handleCardClick(idx)}
+                className={`stage-dot-btn ${isActive ? 'active-dot' : ''}`}
+                title={`${shade.label}: ${STAGES[idx].title}`}
+                aria-label={`${shade.label}: ${STAGES[idx].title}`}
+                aria-selected={isActive}
+                style={{
+                  backgroundColor: isActive
+                    ? shade.activeBg
+                    : shade.inactiveBg,
+                  borderColor: isActive ? shade.border : shade.inactiveBorder,
+                  boxShadow: isActive ? shade.activeGlow : 'none',
+                  width: isActive ? '24px' : '9px',
+                }}
+              />
+            );
+          })}
+        </div>
       </div>
 
       <style>{`
@@ -213,7 +350,24 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
         }
 
         .editorial-how-section .editorial-section-header {
-          margin-bottom: clamp(1.75rem, 2.8vw, 2.5rem);
+          margin-bottom: 0;
+        }
+
+        /* Architectural Dotted Divider connecting directly to outer frame vertical borders */
+        .editorial-dotted-divider {
+          width: 100%;
+          height: 0;
+          border-top: 1px dotted rgba(190, 220, 200, 0.2);
+          margin-top: clamp(1.15rem, 1.8vw, 1.5rem);
+          margin-bottom: clamp(1.75rem, 2.5vw, 2.25rem);
+        }
+
+        @media (max-width: 640px) {
+          .editorial-dotted-divider {
+            border-top-color: rgba(190, 220, 200, 0.14);
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+          }
         }
 
         .editorial-steps-grid {
@@ -224,7 +378,7 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
           -webkit-backdrop-filter: blur(8px);
         }
 
-        /* 4 Columns Container */
+        /* Row 1: 4 Equal-Sized Columns (Headings & Muted Subheadings) */
         .steps-columns-container {
           display: grid;
           grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -232,159 +386,181 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
         }
 
         .step-grid-col {
-          padding: clamp(1.35rem, 2vw, 1.85rem);
+          position: relative;
+          overflow: hidden;
+          padding: clamp(1.15rem, 1.8vw, 1.55rem);
           border-right: 1px solid rgba(190, 220, 200, 0.14);
           cursor: pointer;
           display: flex;
           flex-direction: column;
-          gap: 0.35rem;
-          transition: background-color 0.2s ease;
-          position: relative;
-          min-height: 160px;
+          justify-content: center;
+          align-items: flex-start;
+          min-height: 112px;
+          height: 112px;
+          background: rgba(7, 17, 13, 0.45);
+          transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          outline: none;
           box-sizing: border-box;
+          user-select: none;
         }
 
         .step-grid-col:last-child {
           border-right: none;
         }
 
-        .col-top-meta {
-          height: 16px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          letter-spacing: 0.05em;
+        .step-grid-col.active-col {
+          background: rgba(14, 38, 28, 0.7);
         }
 
-        .col-icon-wrap {
-          height: 20px;
-          margin: 0.35rem 0 0.25rem;
-          display: flex;
-          align-items: center;
+        /* Halftone Texture Overlay on Active Card */
+        .card-halftone-texture {
+          position: absolute;
+          inset: 0;
+          background-image: radial-gradient(rgba(190, 220, 200, 0.12) 1px, transparent 1px);
+          background-size: 7px 7px;
+          opacity: 0;
+          transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          pointer-events: none;
+          z-index: 0;
         }
 
-        .col-title {
-          min-height: 2.35rem;
-          display: flex;
-          align-items: flex-start;
-          line-height: 1.3;
-          margin-bottom: 0.25rem;
-          font-size: 1.05rem;
-          font-weight: 600;
-          color: #F1F5F2;
+        .step-grid-col.active-col .card-halftone-texture {
+          opacity: 1;
+          background-image: radial-gradient(rgba(213, 243, 106, 0.16) 1px, transparent 1px);
         }
 
-        .col-desc {
-          flex: 1;
-          min-height: 2.5rem;
-          margin-bottom: 0.35rem;
-          line-height: 1.5;
-          font-size: 0.84rem;
-          color: #B5C0B8;
-        }
-
-        .col-mini-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.35rem;
-          padding: 0.15rem 0.45rem;
-          border-radius: 3px;
-          background: rgba(190, 220, 200, 0.08);
-          color: #B5C0B8;
-          align-self: flex-start;
-          margin-top: auto;
-          font-size: 10px;
-        }
-
-        .badge-dot {
-          color: var(--color-lime);
-        }
-
-        .col-active-indicator {
-          margin-top: auto;
-          padding-top: 0.25rem;
-          border-top: 1px dashed rgba(190, 220, 200, 0.1);
-          opacity: 0.85;
-          font-size: 10px;
-          height: 18px;
-          line-height: 18px;
-          white-space: nowrap;
-        }
-
-        /* Deep Dive Pane */
-        .step-deep-dive-pane {
-          padding: 0.95rem 1.35rem;
-          background: rgba(11, 36, 26, 0.3);
-          min-height: 255px;
-          box-sizing: border-box;
-        }
-
-        .deep-dive-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding-bottom: 0.45rem;
-          border-bottom: 1px solid rgba(190, 220, 200, 0.12);
-          margin-bottom: 0.75rem;
-          min-height: 28px;
-          gap: 0.5rem;
-          flex-wrap: nowrap;
-        }
-
-        .deep-dive-title {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .deep-dive-body {
-          display: grid;
-          grid-template-columns: 1fr 220px;
-          gap: 1.75rem;
-          align-items: center;
-          min-height: 195px;
-        }
-
-        .deep-dive-content-col {
+        /* Vertically Centered Card Content Layer */
+        .col-card-content {
+          position: relative;
+          z-index: 1;
           display: flex;
           flex-direction: column;
           justify-content: center;
-          min-height: 195px;
+          width: 100%;
         }
 
-        .deep-dive-desc {
+        .col-title {
+          font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+          font-size: clamp(0.925rem, 1.1vw, 1.05rem);
+          font-weight: 800;
           color: #B5C0B8;
-          font-size: 0.84rem;
-          line-height: 1.55;
-          max-width: 640px;
-          min-height: 2.45rem;
-          margin-bottom: 0.65rem;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
+          line-height: 1.3;
+          margin: 0 0 0.35rem 0;
+          transition: color 0.3s ease;
+        }
+
+        .step-grid-col.active-col .col-title {
+          color: #31d813ff !important;
+          font-weight: 800;
+        }
+
+        .col-subheading {
+          font-family: var(--font-sans, 'Inter', sans-serif);
+          font-size: clamp(0.725rem, 0.85vw, 0.82rem);
+          font-weight: 400;
+          color: #7E8D82;
+          line-height: 1.35;
+          margin: 0;
+          transition: color 0.3s ease;
+        }
+
+        .step-grid-col.active-col .col-subheading {
+          color: #A3B5A8;
+        }
+
+        /* Coordinated Lime Progress Bar at Card Bottom */
+        .card-progress-track {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2.5px;
+          background: rgba(190, 220, 200, 0.08);
           overflow: hidden;
+          z-index: 2;
         }
 
-        .deep-dive-bullets {
-          max-width: 100%;
-          min-height: 4.45rem;
+        .card-progress-bar {
+          width: 100%;
+          height: 100%;
+          background: var(--accent-lime, #D5F36A);
+          box-shadow: 0 0 10px rgba(213, 243, 106, 0.7);
+          transform-origin: left center;
+          transform: scaleX(0);
         }
 
-        .deep-dive-action {
-          margin-top: 0.85rem;
+        .step-grid-col:focus-visible {
+          outline: 2px solid var(--accent-lime, #D5F36A);
+          outline-offset: -2px;
         }
 
+        /* Row 2: Editorial Detail Panel (Spacious, Fixed Dimensions & Stationary) */
+        .step-deep-dive-pane {
+          padding: 0;
+          background: rgba(11, 36, 26, 0.3);
+          box-sizing: border-box;
+          position: relative;
+          min-height: 220px;
+        }
+
+        .deep-dive-single-panel {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          align-items: stretch;
+          width: 100%;
+          min-height: 220px;
+        }
+
+        /* Keyword container occupies the full space spanning the first 3 columns */
+        .deep-dive-panel-content {
+          grid-column: 1 / 4;
+          display: flex;
+          align-items: center;
+          min-width: 0;
+          width: 100%;
+          padding: clamp(1.8rem, 3vw, 2.5rem) clamp(1.15rem, 1.8vw, 1.55rem);
+          border-right: 1px solid rgba(190, 220, 200, 0.14);
+          box-sizing: border-box;
+        }
+
+        /* Container for keyword spanning across the first 3 columns */
+        .editorial-heading-container {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          overflow: visible;
+        }
+
+        /* Bold Keyword in Green Rectangle (High specificity to override [data-theme="dark"] h2 !important) */
+        h2.editorial-stage-keyword,
+        [data-theme="dark"] h2.editorial-stage-keyword,
+        .editorial-how-section [data-theme="dark"] h2.editorial-stage-keyword {
+          font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+          font-size: clamp(3.2rem, 6.2vw, 5.25rem);
+          font-weight: 800;
+          font-style: normal;
+          line-height: 1;
+          letter-spacing: -0.025em;
+          color: #000000 !important;
+          -webkit-text-fill-color: #000000 !important;
+          background: #3aae78 !important;
+          padding: clamp(0.35rem, 0.7vw, 0.6rem) clamp(0.9rem, 1.6vw, 1.5rem);
+          border-radius: 4px;
+          display: inline-block;
+          box-sizing: border-box;
+          margin: 0;
+          white-space: nowrap;
+        }
+
+        /* Stationary Mosaic Image Container in Column 4 */
         .deep-dive-illustration-col {
-          width: 220px;
-          min-width: 220px;
-          max-width: 220px;
-          height: 180px;
-          justify-self: end;
-          align-self: center;
+          grid-column: 4 / 5;
+          width: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
-          flex-shrink: 0;
+          padding: clamp(1.25rem, 2vw, 1.75rem);
+          box-sizing: border-box;
         }
 
         .deep-dive-halftone-plate {
@@ -398,7 +574,38 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
           overflow: hidden;
         }
 
-        /* Responsive */
+        /* 4 Stage Dots Below Row 2 */
+        .stage-dots-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.95rem 1.5rem 1.05rem;
+
+  background: transparent;
+   transform: translateY(40px);
+}
+
+        .stage-dot-btn {
+          height: 9px;
+          border-radius: 999px;
+          border-width: 1px;
+          border-style: solid;
+          cursor: pointer;
+          padding: 0;
+          outline: none;
+          transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                      background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .stage-dot-btn:focus-visible {
+          outline: 2px solid #FF7875;
+          outline-offset: 2px;
+        }
+
+        /* Responsive Layout */
         @media (max-width: 1024px) {
           .steps-columns-container {
             grid-template-columns: repeat(2, 1fr);
@@ -413,38 +620,35 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
             border-bottom: 1px solid rgba(190, 220, 200, 0.14);
           }
 
-          .step-deep-dive-pane {
-            min-height: auto;
-          }
-
-          .deep-dive-header {
-            flex-wrap: wrap;
-            min-height: auto;
-          }
-
-          .deep-dive-body {
+          .deep-dive-single-panel {
             grid-template-columns: 1fr;
-            gap: 1.25rem;
+            gap: 0;
             min-height: auto;
           }
 
-          .deep-dive-content-col {
-            min-height: auto;
+          .deep-dive-panel-content {
+            grid-column: 1 / -1;
+            border-right: none;
+            border-bottom: 1px dotted rgba(190, 220, 200, 0.28);
+            padding: clamp(1.5rem, 3vw, 2rem) 1.25rem;
           }
 
-          .deep-dive-desc {
+          .editorial-heading-container {
             min-height: auto;
+            height: auto;
+            margin-bottom: 0;
           }
 
-          .deep-dive-bullets {
-            min-height: auto;
+          .editorial-stage-keyword {
+            font-size: clamp(2.2rem, 5.5vw, 3.25rem);
+            white-space: normal;
           }
 
           .deep-dive-illustration-col {
-            width: 220px;
-            max-width: 220px;
-            height: 180px;
-            justify-self: start;
+            grid-column: 1 / -1;
+            width: 100%;
+            padding: 1.5rem 1.25rem 2rem;
+            justify-content: flex-start;
           }
         }
 
@@ -456,6 +660,27 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
           .step-grid-col {
             border-right: none;
             border-bottom: 1px solid rgba(190, 220, 200, 0.14);
+            min-height: 84px;
+            height: auto;
+            padding: 1.15rem 1.15rem;
+          }
+
+          .editorial-stage-keyword {
+            font-size: 2.25rem;
+          }
+        }
+
+        /* Prefers-reduced-motion: disable transitions and auto-loop */
+        @media (prefers-reduced-motion: reduce) {
+          .step-grid-col,
+          .card-halftone-texture,
+          .editorial-stage-keyword {
+            transition: none !important;
+            animation: none !important;
+          }
+
+          .card-progress-bar {
+            transform: scaleX(1) !important;
           }
         }
       `}</style>

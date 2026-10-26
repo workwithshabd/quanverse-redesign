@@ -339,6 +339,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     className={`nav-signin-header-btn ${currentPage === 'signin' ? 'active' : ''}`}
+                    data-flair-stable
                     onClick={() => openSignIn('signin')}
                     aria-label="Student Sign In"
                     title="Sign In to Student Portal"
@@ -353,6 +354,7 @@ export default function Navbar() {
                       className="nav-cta-btn zuse-cta-btn"
                       onClick={openDemoExam}
                     >
+                      <span className="button__flair" aria-hidden="true" />
                       <Sparkles size={12} />
                       <span>Start Free</span>
                       <kbd className="kbd-key">↵</kbd>
@@ -365,6 +367,7 @@ export default function Navbar() {
                       className="nav-cta-btn zuse-cta-btn"
                       onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}
                     >
+                      <span className="button__flair" aria-hidden="true" />
                       <span>Explore Jobs</span>
                       <ArrowRight size={12} />
                     </a>
@@ -376,6 +379,7 @@ export default function Navbar() {
                       className="nav-cta-btn zuse-cta-btn"
                       onClick={openTeacherSignup}
                     >
+                      <span className="button__flair" aria-hidden="true" />
                       <Users size={12} />
                       <span>Apply Now</span>
                       <ArrowRight size={12} />
@@ -898,56 +902,122 @@ export default function Navbar() {
           border-color: #ef4444;
         }
 
-        .nav-cta-btn,
-        .zuse-cta-btn {
-          height: 28px;
-          padding: 0 0.85rem;
-          font-size: 0.72rem;
-          font-family: var(--font-mono);
-          font-weight: 700;
-          border-radius: 6px;
-          display: inline-flex;
-          align-items: center;
-          gap: 0.45rem;
-          background: #FFFFFF !important;
-          background-color: #FFFFFF !important;
-          background-image: none !important;
-          color: #07110D !important;
-          border: 1px solid rgba(255, 255, 255, 0.95) !important;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
-          letter-spacing: 0.01em;
-          cursor: pointer;
-          text-decoration: none;
-          transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-          position: relative;
-        }
+       .nav-cta-btn,
+.zuse-cta-btn {
+  height: 28px;
+  padding: 0 0.85rem;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 
-        .nav-cta-btn svg,
-        .zuse-cta-btn svg {
-          color: #07110D !important;
-        }
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 
-        .nav-cta-btn:hover,
-        .zuse-cta-btn:hover {
-          background: #EBF3EE !important;
-          background-color: #EBF3EE !important;
-          background-image: none !important;
-          color: #07110D !important;
-          border-color: #FFFFFF !important;
-          box-shadow: 0 2px 12px rgba(255, 255, 255, 0.22) !important;
-        }
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  color: #07110D !important;
 
-        .nav-cta-btn:active,
-        .zuse-cta-btn:active {
-          background-color: #E2ECE5 !important;
-          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
-        }
+  border: none !important;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 
-        .nav-cta-btn:focus-visible,
-        .zuse-cta-btn:focus-visible {
-          outline: 2px solid var(--accent-lime);
-          outline-offset: 2px;
-        }
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition:
+    color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+    box-shadow 0.15s ease;
+}
+
+/* Keep the button content above the animated flair */
+.nav-cta-btn > *:not(.button__flair),
+.zuse-cta-btn > *:not(.button__flair) {
+  position: relative;
+  z-index: 2;
+  transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Animated flair layer */
+.nav-cta-btn > .button__flair,
+.zuse-cta-btn > .button__flair {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Icon styling */
+.nav-cta-btn svg,
+.zuse-cta-btn svg {
+  color: inherit;
+  stroke: currentColor;
+  fill: none;
+}
+
+/* Keyboard badge */
+.nav-cta-btn .kbd-key,
+.zuse-cta-btn .kbd-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  line-height: 1;
+  padding: 0.1rem 0.28rem;
+  border-radius: 3px;
+
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  color: inherit;
+
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* Hover: preserve the white surface and let the flair animate */
+.nav-cta-btn:hover,
+.zuse-cta-btn:hover {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  color: #07110D !important;
+  border: none !important;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Text and icons turn white only if the dark flair covers them.
+   The button's direct children remain above the flair. */
+.nav-cta-btn:hover > *:not(.button__flair),
+.zuse-cta-btn:hover > *:not(.button__flair) {
+  color: #07110D;
+}
+
+/* Pressed state */
+.nav-cta-btn:active,
+.zuse-cta-btn:active {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Accessible keyboard focus */
+.nav-cta-btn:focus-visible,
+.zuse-cta-btn:focus-visible {
+  outline: 2px solid #D4FF4F !important;
+  outline-offset: 3px;
+}
 
         .mobile-hamburger {
           display: none;

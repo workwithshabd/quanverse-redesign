@@ -32,14 +32,14 @@ export default function StudentLandingPage() {
       {/* Kinetic Pinned Horizontal Scroll Stream */}
       <HorizontalScrollTextSection />
 
-     
-
       {/* 2. How It Works (Examiner rubrics meet AI feedback) */}
       <HowItWorksSection onOpenDemoExam={openDemoExam} />
 
-
       {/* 3. Interactive Board Readiness Simulator */}
       <BoardReadinessSection onOpenDemoExam={openDemoExam} />
+
+
+
       {/* 4. Core Features Bento Grid */}
       <FeaturesBento onOpenDemoExam={openDemoExam} />
 

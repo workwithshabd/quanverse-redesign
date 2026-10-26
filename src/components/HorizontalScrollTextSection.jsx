@@ -54,21 +54,21 @@ export default function HorizontalScrollTextSection() {
   const streamItems = (
     <>
       <span className="stream-symbol">✦</span>
-      <span>STOP LOSING STEP MARKS</span>
+      <span>Stop Losing Step Marks</span>
       <span className="stream-symbol">✦</span>
-      <span className="text-lime">CBSE &amp; ICSE CLASS 10</span>
+      <span className="text-lime">CBSE &amp; ICSE Class 10</span>
       <span className="stream-symbol">✦</span>
-      <span>AI STEP-MARKING ENGINE</span>
+      <span>AI Step-Marking Engine</span>
       <span className="stream-symbol">✦</span>
-      <span className="text-emerald">ZERO STEP MARK LEAKAGE</span>
+      <span className="text-emerald">Zero Step-Mark Leakage</span>
       <span className="stream-symbol">✦</span>
-      <span>TOPPER EVALUATION SCHEMES</span>
+      <span>Topper Evaluation Schemes</span>
       <span className="stream-symbol">✦</span>
-      <span className="text-lime">REAL-TIME DIAGNOSTIC MATRIX</span>
+      <span className="text-lime">Real-Time Diagnostic Matrix</span>
       <span className="stream-symbol">✦</span>
-      <span>EVERY SINGLE STEP COUNTS</span>
+      <span>Every Single Step Counts</span>
       <span className="stream-symbol">✦</span>
-      <span className="text-emerald">OFFICIAL SPECIMEN ACCURACY</span>
+      <span className="text-emerald">Official Specimen Accuracy</span>
       <span className="stream-symbol">✦</span>
     </>
   );
@@ -78,10 +78,10 @@ export default function HorizontalScrollTextSection() {
       <div className="Horizontal__track-wrap">
         <div className="Horizontal__text-track" ref={trackRef}>
           {/* Two identical sets of items for seamless infinite looping */}
-          <div className="Horizontal__text-group">
+          <div className="Horizontal__text-group oi-regular">
             {streamItems}
           </div>
-          <div className="Horizontal__text-group" aria-hidden="true">
+          <div className="Horizontal__text-group oi-regular" aria-hidden="true">
             {streamItems}
           </div>
         </div>

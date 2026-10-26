@@ -11,10 +11,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at 50% 50%, rgba(14, 46, 31, 0.45) 0%, rgba(7, 17, 13, 0.96) 75%, #07110D 100%);
+  background: #07110D;
   border-top: 1px dotted rgba(190, 220, 200, 0.22);
   border-bottom: 1px dotted rgba(190, 220, 200, 0.22);
-  padding: clamp(1.2rem, 2.2vw, 1.85rem) 0;
+  padding: clamp(1.6rem, 2.8vw, 2.4rem) 0;
   user-select: none;
   z-index: 15;
 }
@@ -64,32 +64,58 @@
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
-  font-family: var(--font-heading, "Syne", sans-serif);
-  font-size: clamp(2.2rem, 5vw, 4.2rem);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
-  color: #F1F5F2;
+  font-family: "Oi", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.45;
+  letter-spacing: 0.03em;
+  color: #E8EEE9;
   padding-right: 2.5rem;
 }
 
-/* Highlight Accents in the Stream */
+.oi-regular {
+  font-family: "Oi", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Highlight Accents - Naturally luminous letterforms with no box/blur behind */
 .Horizontal .text-lime {
   color: var(--accent-lime, #D5F36A);
-  text-shadow: 0 0 20px rgba(213, 243, 106, 0.3);
+  font-weight: 400;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  text-shadow: 0 0 6px rgba(213, 243, 106, 0.45);
 }
 
 .Horizontal .text-emerald {
   color: var(--accent-emerald, #43C98B);
-  text-shadow: 0 0 20px rgba(67, 201, 139, 0.3);
+  font-weight: 400;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  text-shadow: 0 0 6px rgba(67, 201, 139, 0.45);
 }
 
 .Horizontal .stream-symbol {
   display: inline-block;
-  margin: 0 clamp(1rem, 2vw, 2.2rem);
+  margin: 0 clamp(1.2rem, 2.5vw, 2.8rem);
   color: var(--accent-lime, #D5F36A);
-  font-size: 0.65em;
-  opacity: 0.85;
+  font-style: normal;
+  font-size: 0.55em;
+  opacity: 0.9;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  text-shadow: 0 0 5px rgba(213, 243, 106, 0.5);
 }
 
 /* Responsive adjustments */
