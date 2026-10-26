@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { X, CheckCircle2, ArrowRight, RefreshCw, Briefcase, Mail, Phone, User, Link as LinkIcon, Send } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight, RefreshCw, Mail, Phone, User, Link as LinkIcon, Send } from 'lucide-react';
 import { api } from '../../services/api';
 
 export default function JobApplicationModal({ isOpen, job, onClose }) {
@@ -63,9 +63,9 @@ export default function JobApplicationModal({ isOpen, job, onClose }) {
   return (
     <div className="job-modal-backdrop" onClick={handleClose} role="dialog" aria-modal="true">
       <div className="job-modal-dialog glass-panel-elevated" onClick={e => e.stopPropagation()}>
-        <button 
-          type="button" 
-          className="job-modal-close-btn" 
+        <button
+          type="button"
+          className="job-modal-close-btn"
           onClick={handleClose}
           aria-label="Close dialog"
         >
@@ -78,7 +78,6 @@ export default function JobApplicationModal({ isOpen, job, onClose }) {
               <div className="success-icon-wrap">
                 <CheckCircle2 size={44} className="text-emerald" />
               </div>
-              <span className="pill-badge pill-sage mb-2">Application Received</span>
               <h3 className="job-success-title">Thank You, {formData.fullName}!</h3>
               <p className="job-success-desc">
                 Your application for <strong>{job?.title || 'this role'}</strong> has been submitted directly to our Talent &amp; Hiring team.
@@ -89,8 +88,8 @@ export default function JobApplicationModal({ isOpen, job, onClose }) {
               <p className="text-muted text-sm mb-4">
                 We review applications weekly. If your background aligns with our engineering &amp; product roadmap, our team will schedule a 30-minute introductory call.
               </p>
-              <button 
-                type="button" 
+              <button
+                type="button"
                 className="btn btn-primary"
                 onClick={handleClose}
               >
@@ -100,10 +99,6 @@ export default function JobApplicationModal({ isOpen, job, onClose }) {
           ) : (
             <form onSubmit={handleSubmit} className="job-app-form">
               <div className="job-form-header">
-                <div className="pill-badge pill-lavender mb-2">
-                  <Briefcase size={14} />
-                  <span>{job?.department || 'Company Role'}</span>
-                </div>
                 <h3 className="job-modal-title">Apply for {job?.title || 'Open Position'}</h3>
                 <p className="job-modal-sub">
                   Location: <strong>{job?.location || 'Remote'}</strong> • Type: <strong>{job?.type || 'Full-time'}</strong>

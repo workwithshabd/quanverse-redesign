@@ -10,8 +10,8 @@ import StudentLandingPage from './pages/StudentLandingPage';
 import CareersPage from './pages/CareersPage';
 import TeachersPage from './pages/TeachersPage';
 import SignInPage from './pages/SignInPage';
-import DebugBar from './components/common/DebugBar';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import ArtisticGraffitiBackground from './components/common/ArtisticGraffitiBackground';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { NavigationProvider } from './context/NavigationContext';
@@ -20,14 +20,14 @@ import { useAuth } from './hooks/useAuth';
 import { X, CheckCircle, Info } from 'lucide-react';
 
 function AppContent() {
-  const { 
-    currentPage, 
+  const {
+    currentPage,
     authInitialTab,
     isSignInModalOpen,
     closeSignInModal,
-    isDemoExamOpen, 
-    closeDemoExam, 
-    isTeacherSignupModalOpen, 
+    isDemoExamOpen,
+    closeDemoExam,
+    isTeacherSignupModalOpen,
     closeTeacherSignup,
     isJobModalOpen,
     selectedJob,
@@ -44,19 +44,43 @@ function AppContent() {
 
   return (
     <div className="quanverse-app-wrapper">
-      {/* Universal Responsive Navigation Bar */}
-      <Navbar />
+      {/* 1. Dedicated Fixed Full-Screen Green Gradient Background Layer */}
+      <div className="fixed-green-bg" aria-hidden="true">
+        <div className="fixed-green-bg-gradient" />
+        <div className="fixed-green-bg-radial" />
+        <div className="fixed-green-bg-mesh" />
+      </div>
 
-      {/* Main View: Student Landing (Default), Company Careers, Educator Portal, OR Sign In/Account Page */}
-      <main id="main-content">
-        {currentPage === 'home' && <StudentLandingPage />}
-        {currentPage === 'careers' && <CareersPage />}
-        {currentPage === 'teachers' && <TeachersPage />}
-        {currentPage === 'signin' && <SignInPage initialTab={authInitialTab} />}
-      </main>
+      {/* 2. Scrolling Content Layer (Preserves Normal Document Flow) */}
+      <div className="scrolling-content-layer">
+        {/* Dedicated Full-Page Document-Height Scattered Graffiti Calligraphy Artwork Layer */}
+        <ArtisticGraffitiBackground />
 
-      {/* Universal Footer */}
-      <Footer />
+        {/* Universal Responsive Navigation Bar */}
+        <Navbar />
+
+        {/* Centered Main Architectural Shell with Continuous Dotted Vertical Borders */}
+        <div className="zuse-main-frame">
+
+          {/* Main View: Student Landing (Default), Company Careers, Educator Portal, OR Sign In/Account Page */}
+          <main id="main-content">
+            {currentPage === 'home' && <StudentLandingPage />}
+            {currentPage === 'careers' && <CareersPage />}
+            {currentPage === 'teachers' && <TeachersPage />}
+            {currentPage === 'signin' && <SignInPage initialTab={authInitialTab} />}
+          </main>
+
+          {/* Universal Footer */}
+          <Footer />
+        </div>
+      </div>
+
+      {/* 3. Progressive Bottom-Edge Blur Overlay (Seamless Atmospheric Dissolve, No Visible Lines) */}
+      <div className="bottom-edge-blur" aria-hidden="true">
+        <div className="blur-layer blur-layer-base" />
+        <div className="blur-layer blur-layer-deep" />
+        <div className="blur-layer-tint" />
+      </div>
 
       {/* Interactive Sign In & Create Account Modal */}
       <SignInModal
@@ -102,9 +126,9 @@ function AppContent() {
             )}
           </div>
           <span className="toast-text">{toastNotification.message}</span>
-          <button 
-            type="button" 
-            onClick={clearToast} 
+          <button
+            type="button"
+            onClick={clearToast}
             className="toast-close"
             aria-label="Dismiss message"
           >
@@ -113,11 +137,19 @@ function AppContent() {
         </div>
       )}
 
-      {/* Developer HUD: Debug bar for easy view switching and state inspection */}
-      <DebugBar />
+      {/* Global Auth Feedback Toast */}
+
 
       <style>{`
         .quanverse-app-wrapper {
+          min-height: 100dvh;
+          position: relative;
+        }
+
+        .scrolling-content-layer {
+          position: relative;
+          z-index: 1;
+          width: 100%;
           min-height: 100dvh;
           display: flex;
           flex-direction: column;

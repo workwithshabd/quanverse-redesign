@@ -1,34 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { 
-  Sparkles, 
-  ArrowRight, 
-  GraduationCap, 
-  Users, 
-  Menu, 
-  X, 
+import {
+  Sparkles,
+  ArrowRight,
+  GraduationCap,
+  Users,
+  Menu,
+  X,
   Briefcase,
-  Sun,
-  Moon,
   ChevronDown,
   LogOut,
   LogIn,
   User
 } from 'lucide-react';
 import { useNavigation } from '../hooks/useNavigation';
-import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../hooks/useAuth';
 
 export default function Navbar() {
-  const { 
-    currentPage, 
-    navigateTo, 
-    openDemoExam, 
+  const {
+    currentPage,
+    navigateTo,
+    openDemoExam,
     openTeacherSignup,
     openSignIn
   } = useNavigation();
 
-  const { isDark, toggleTheme } = useTheme();
   const { user, isAuthenticated, signOut } = useAuth();
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -100,9 +96,9 @@ export default function Navbar() {
         <div className="app-container">
           <div className="nav-inner">
             {/* Minimal Brand Logo */}
-            <a 
-              href="#" 
-              className="brand-logo" 
+            <a
+              href="#"
+              className="brand-logo"
               onClick={(e) => handleNavClick(e, 'home')}
               aria-label="Quanverse Home"
             >
@@ -121,30 +117,30 @@ export default function Navbar() {
             <nav className="desktop-nav-links" aria-label="Primary Navigation">
               {currentPage === 'home' && (
                 <>
-                  <a 
-                    href="#how-it-works" 
-                    className="nav-link" 
+                  <a
+                    href="#how-it-works"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'home', '#how-it-works')}
                   >
                     How It Works
                   </a>
-                  <a 
-                    href="#features" 
-                    className="nav-link" 
+                  <a
+                    href="#features"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'home', '#features')}
                   >
                     Features
                   </a>
-                  <a 
-                    href="#mock-tests" 
-                    className="nav-link" 
+                  <a
+                    href="#mock-tests"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'home', '#mock-tests')}
                   >
                     Mock Tests
                   </a>
-                  <a 
-                    href="#pricing" 
-                    className="nav-link" 
+                  <a
+                    href="#pricing"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'home', '#pricing')}
                   >
                     Pricing
@@ -154,29 +150,29 @@ export default function Navbar() {
 
               {currentPage === 'teachers' && (
                 <>
-                  <a 
-                    href="#teachers" 
-                    className="nav-link" 
+                  <a
+                    href="#teachers"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'teachers', '#teachers')}
                   >
                     Why Teach
                   </a>
-                  <a 
-                    href="#royalty-calc" 
-                    className="nav-link" 
+                  <a
+                    href="#royalty-calc"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'teachers', '#royalty-calc')}
                   >
                     Royalty Calculator
                   </a>
-                  <a 
-                    href="#teacher-faqs" 
-                    className="nav-link" 
+                  <a
+                    href="#teacher-faqs"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'teachers', '#teacher-faqs')}
                   >
                     FAQs
                   </a>
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="nav-link nav-portal-return-link"
                     onClick={(e) => handleNavClick(e, 'home')}
                   >
@@ -188,22 +184,22 @@ export default function Navbar() {
 
               {currentPage === 'careers' && (
                 <>
-                  <a 
-                    href="#open-positions" 
-                    className="nav-link" 
+                  <a
+                    href="#open-positions"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}
                   >
                     Open Roles
                   </a>
-                  <a 
-                    href="#company-culture" 
-                    className="nav-link" 
+                  <a
+                    href="#company-culture"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'careers', '#company-culture')}
                   >
                     Culture &amp; Perks
                   </a>
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="nav-link nav-portal-return-link"
                     onClick={(e) => handleNavClick(e, 'home')}
                   >
@@ -215,24 +211,24 @@ export default function Navbar() {
 
               {currentPage === 'signin' && (
                 <>
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="nav-link nav-portal-return-link"
                     onClick={(e) => handleNavClick(e, 'home')}
                   >
                     <GraduationCap size={13} />
                     <span>Class 10 Portal</span>
                   </button>
-                  <a 
-                    href="#how-it-works" 
-                    className="nav-link" 
+                  <a
+                    href="#how-it-works"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'home', '#how-it-works')}
                   >
                     How It Works
                   </a>
-                  <a 
-                    href="#pricing" 
-                    className="nav-link" 
+                  <a
+                    href="#pricing"
+                    className="nav-link"
                     onClick={(e) => handleNavClick(e, 'home', '#pricing')}
                   >
                     Board Passes
@@ -241,30 +237,15 @@ export default function Navbar() {
               )}
             </nav>
 
-            {/* Desktop Actions & Theme Toggle */}
+            {/* Desktop Actions - Inspired by Zuse */}
             <div className="nav-actions">
-              {/* Theme Toggle Button */}
-              <button 
-                type="button" 
-                className="theme-toggle-btn"
-                onClick={toggleTheme}
-                aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-                title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-              >
-                {isDark ? (
-                  <Sun size={15} className="theme-toggle-icon sun" />
-                ) : (
-                  <Moon size={15} className="theme-toggle-icon moon" />
-                )}
-              </button>
-
               {/* If Authenticated: Show Student Profile Chip, Dropdown, AND Direct Sign Out Button */}
               {isAuthenticated && user ? (
                 <div className="nav-authenticated-wrapper">
                   <div className="nav-user-dropdown-wrap">
-                    <button 
-                      type="button" 
-                      className="nav-user-pill-btn"
+                    <button
+                      type="button"
+                      className="nav-user-btn"
                       onClick={() => setUserDropdownOpen(prev => !prev)}
                       aria-expanded={userDropdownOpen}
                       aria-label="Student account menu"
@@ -296,8 +277,8 @@ export default function Navbar() {
 
                         <div className="dropdown-menu-divider" />
 
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           className="dropdown-menu-action"
                           onClick={() => { setUserDropdownOpen(false); navigateTo('signin'); }}
                         >
@@ -305,8 +286,8 @@ export default function Navbar() {
                           <span>Student Account &amp; Stats</span>
                         </button>
 
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           className="dropdown-menu-action"
                           onClick={() => { setUserDropdownOpen(false); openDemoExam(); }}
                         >
@@ -314,8 +295,8 @@ export default function Navbar() {
                           <span>Practice Board Mock</span>
                         </button>
 
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           className="dropdown-menu-action"
                           onClick={() => { setUserDropdownOpen(false); navigateTo('home', '#mock-tests'); }}
                         >
@@ -325,8 +306,8 @@ export default function Navbar() {
 
                         <div className="dropdown-menu-divider" />
 
-                        <button 
-                          type="button" 
+                        <button
+                          type="button"
                           className="dropdown-menu-action text-danger"
                           onClick={() => { setUserDropdownOpen(false); signOut(); }}
                         >
@@ -337,9 +318,9 @@ export default function Navbar() {
                     )}
                   </div>
 
-                  {/* PROMINENT, WORKABLE SIGN OUT BUTTON (DIRECT 1-CLICK ACCESS) */}
-                  <button 
-                    type="button" 
+                  {/* PROMINENT SIGN OUT BUTTON */}
+                  <button
+                    type="button"
                     className="nav-signout-header-btn"
                     onClick={() => {
                       setUserDropdownOpen(false);
@@ -355,8 +336,8 @@ export default function Navbar() {
               ) : (
                 /* Unauthenticated State: Always visible Sign In button + Primary CTA */
                 <div className="nav-unauthenticated-wrapper">
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className={`nav-signin-header-btn ${currentPage === 'signin' ? 'active' : ''}`}
                     onClick={() => openSignIn('signin')}
                     aria-label="Student Sign In"
@@ -367,45 +348,46 @@ export default function Navbar() {
                   </button>
 
                   {(currentPage === 'home' || currentPage === 'signin') && (
-                    <button 
-                      type="button" 
-                      className="btn btn-primary nav-cta-btn"
+                    <button
+                      type="button"
+                      className="nav-cta-btn zuse-cta-btn"
                       onClick={openDemoExam}
                     >
-                      <Sparkles size={13} />
-                      <span>Try Demo</span>
+                      <Sparkles size={12} />
+                      <span>Start Free</span>
+                      <kbd className="kbd-key">↵</kbd>
                     </button>
                   )}
 
                   {currentPage === 'careers' && (
-                    <a 
-                      href="#open-positions" 
-                      className="btn btn-primary nav-cta-btn"
+                    <a
+                      href="#open-positions"
+                      className="nav-cta-btn zuse-cta-btn"
                       onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}
                     >
                       <span>Explore Jobs</span>
-                      <ArrowRight size={13} />
+                      <ArrowRight size={12} />
                     </a>
                   )}
 
                   {currentPage === 'teachers' && (
-                    <button 
-                      type="button" 
-                      className="btn btn-primary nav-cta-btn"
+                    <button
+                      type="button"
+                      className="nav-cta-btn zuse-cta-btn"
                       onClick={openTeacherSignup}
                     >
-                      <Users size={13} />
+                      <Users size={12} />
                       <span>Apply Now</span>
-                      <ArrowRight size={13} />
+                      <ArrowRight size={12} />
                     </button>
                   )}
                 </div>
               )}
 
               {/* Mobile Hamburger Button */}
-              <button 
-                type="button" 
-                className="mobile-hamburger" 
+              <button
+                type="button"
+                className="mobile-hamburger"
                 onClick={() => setMobileMenuOpen(prev => !prev)}
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileMenuOpen}
@@ -420,16 +402,16 @@ export default function Navbar() {
       {/* Clean Mobile Drawer Rendered via Portal */}
       {mobileMenuOpen && typeof document !== 'undefined' && createPortal(
         <div className="mobile-drawer-portal">
-          <div 
-            className="mobile-drawer-backdrop" 
+          <div
+            className="mobile-drawer-backdrop"
             onClick={() => setMobileMenuOpen(false)}
-            aria-hidden="true" 
+            aria-hidden="true"
           />
 
-          <div 
-            className="mobile-menu-drawer" 
-            role="dialog" 
-            aria-modal="true" 
+          <div
+            className="mobile-menu-drawer"
+            role="dialog"
+            aria-modal="true"
             aria-label="Mobile Navigation"
           >
             <div className="mobile-drawer-header">
@@ -445,16 +427,8 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="mobile-drawer-header-actions">
-                <button 
-                  type="button" 
-                  className="theme-toggle-btn mobile-theme-btn"
-                  onClick={toggleTheme}
-                  aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-                >
-                  {isDark ? <Sun size={16} /> : <Moon size={16} />}
-                </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="mobile-close-btn"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close menu"
@@ -568,7 +542,7 @@ export default function Navbar() {
                       </div>
                     </div>
                     <div className="mobile-user-actions">
-                      <button 
+                      <button
                         type="button"
                         className="btn btn-primary w-full"
                         onClick={() => { setMobileMenuOpen(false); openDemoExam(); }}
@@ -576,10 +550,10 @@ export default function Navbar() {
                         <Sparkles size={15} />
                         <span>Practice Free Demo Exam</span>
                       </button>
-                      
+
                       {/* WORKABLE PROMINENT MOBILE SIGN OUT BUTTON */}
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         className="btn btn-secondary w-full mobile-signout-btn"
                         onClick={() => { setMobileMenuOpen(false); signOut(); }}
                         title="Sign Out of student account"
@@ -591,8 +565,8 @@ export default function Navbar() {
                   </div>
                 ) : (
                   <div className="mobile-unauth-actions">
-                    <button 
-                      type="button" 
+                    <button
+                      type="button"
                       className="btn btn-secondary w-full mobile-signin-btn"
                       onClick={() => { setMobileMenuOpen(false); openSignIn('signin'); }}
                     >
@@ -601,7 +575,7 @@ export default function Navbar() {
                     </button>
 
                     {(currentPage === 'home' || currentPage === 'signin') && (
-                      <button 
+                      <button
                         type="button"
                         className="btn btn-primary w-full"
                         onClick={() => { setMobileMenuOpen(false); openDemoExam(); }}
@@ -611,7 +585,7 @@ export default function Navbar() {
                       </button>
                     )}
                     {currentPage === 'careers' && (
-                      <a 
+                      <a
                         href="#open-positions"
                         className="btn btn-primary w-full text-center"
                         onClick={(e) => handleNavClick(e, 'careers', '#open-positions')}
@@ -621,7 +595,7 @@ export default function Navbar() {
                       </a>
                     )}
                     {currentPage === 'teachers' && (
-                      <button 
+                      <button
                         type="button"
                         className="btn btn-primary w-full"
                         onClick={() => { setMobileMenuOpen(false); openTeacherSignup(); }}
@@ -641,50 +615,58 @@ export default function Navbar() {
 
       <style>{`
         /* ============================================================
-           MINIMAL REFINED NAVBAR
+           ZUSE MINIMAL REFINED NAVBAR (56px h-14)
            ============================================================ */
         .sticky-nav {
           position: sticky;
           top: 0;
           z-index: 1000;
-          background: rgba(235, 238, 232, 0.90);
-          backdrop-filter: blur(18px) saturate(180%);
-          -webkit-backdrop-filter: blur(18px) saturate(180%);
-          border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-          transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+          background: rgba(7, 17, 13, 0.85);
+          backdrop-filter: blur(20px) saturate(180%);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          border-bottom: 1px solid rgba(190, 220, 200, 0.12);
+          transition: background 0.2s ease, border-color 0.2s ease;
         }
 
         .nav-scrolled {
-          background: rgba(242, 245, 240, 0.96);
-          border-bottom: 1.5px solid rgba(15, 23, 42, 0.10);
-          box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+          background: rgba(7, 17, 13, 0.94);
+          border-bottom: 1px solid rgba(190, 220, 200, 0.20);
+          box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.6);
         }
 
-        /* Dark Mode Translucent Navbar */
-        [data-theme="dark"] .sticky-nav {
-          background: rgba(13, 17, 23, 0.82);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        /* Seamless connection to dotted architectural frame */
+        .sticky-nav .app-container {
+          border-left: 1px dotted rgba(190, 220, 200, 0.2);
+          border-right: 1px dotted rgba(190, 220, 200, 0.2);
         }
 
-        [data-theme="dark"] .nav-scrolled {
-          background: rgba(13, 17, 23, 0.94);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-          box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.5);
+        @media (max-width: 1280px) {
+          .sticky-nav .app-container {
+            max-width: calc(100% - 32px);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .sticky-nav .app-container {
+            max-width: calc(100% - 16px);
+            border-left: 1px dotted rgba(190, 220, 200, 0.14);
+            border-right: 1px dotted rgba(190, 220, 200, 0.14);
+          }
         }
 
         .nav-inner {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          height: 62px;
-          gap: 1.5rem;
+          height: 56px;
+          gap: 1.25rem;
         }
 
         /* Brand Logo */
         .brand-logo {
           display: inline-flex;
           align-items: center;
-          gap: 0.6rem;
+          gap: 0.55rem;
           cursor: pointer;
           text-decoration: none;
           flex-shrink: 0;
@@ -692,23 +674,18 @@ export default function Navbar() {
         }
 
         .logo-symbol {
-          width: 32px;
-          height: 32px;
-          border-radius: 9px;
-          background: linear-gradient(135deg, rgb(18, 65, 112) 0%, rgb(33, 91, 99) 100%);
+          width: 28px;
+          height: 28px;
+          border-radius: 7px;
+          background: #121413;
+          border: 1px solid var(--border-medium);
           display: flex;
           align-items: center;
           justify-content: center;
           position: relative;
-          box-shadow: 0 2px 8px rgba(18, 65, 112, 0.25);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
           flex-shrink: 0;
           transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        [data-theme="dark"] .logo-symbol {
-          background: linear-gradient(135deg, rgb(33, 91, 99) 0%, rgb(18, 65, 112) 100%);
-          border: 1px solid rgba(170, 255, 199, 0.4);
-          box-shadow: 0 2px 10px rgba(170, 255, 199, 0.2);
         }
 
         .brand-logo:hover .logo-symbol {
@@ -716,22 +693,22 @@ export default function Navbar() {
         }
 
         .logo-q {
-          color: #ffffff;
+          color: var(--text-heading);
           font-family: var(--font-display);
           font-weight: 800;
-          font-size: 1.05rem;
+          font-size: 0.95rem;
           line-height: 1;
         }
 
         .logo-dot {
           position: absolute;
-          width: 6px;
-          height: 6px;
-          background-color: rgb(170, 255, 199);
+          width: 5px;
+          height: 5px;
+          background-color: var(--color-lime);
           border-radius: 50%;
-          bottom: 4px;
-          right: 4px;
-          box-shadow: 0 0 6px rgb(170, 255, 199);
+          bottom: 3px;
+          right: 3px;
+          box-shadow: 0 0 6px var(--color-lime);
         }
 
         .logo-text-group {
@@ -746,13 +723,9 @@ export default function Navbar() {
           font-family: var(--font-display);
           font-weight: 800;
           font-size: 1.15rem;
-          color: rgb(18, 65, 112);
+          color: #F1F5F2;
           letter-spacing: -0.025em;
           line-height: 1;
-        }
-
-        [data-theme="dark"] .logo-title {
-          color: rgb(170, 255, 199);
         }
 
         .logo-badge-divider {
@@ -765,82 +738,80 @@ export default function Navbar() {
         .logo-subtitle {
           font-size: 0.65rem;
           font-weight: 700;
-          color: var(--text-muted);
           text-transform: uppercase;
           letter-spacing: 0.04em;
-          background: var(--bg-subtle);
-          padding: 2px 7px;
-          border-radius: var(--radius-full);
-          border: 1px solid var(--border-light);
+          background: rgba(11, 36, 26, 0.5);
+          padding: 2px 6px;
+          border-radius: 3px;
+          border: 1px solid rgba(190, 220, 200, 0.14);
           line-height: 1.2;
+          color: #8F9D93;
         }
 
-        [data-theme="dark"] .logo-subtitle {
-          background: #21262d;
-          color: #8b949e;
-          border-color: #30363d;
-        }
-
-        /* Desktop Nav Links: Minimal floating pill container */
+        /* Desktop Nav Links: Clean editorial inline navigation without pill container or outline */
         .desktop-nav-links {
           display: flex;
           align-items: center;
-          gap: 0.25rem;
-          background: rgba(15, 23, 42, 0.03);
-          padding: 3px 5px;
-          border-radius: var(--radius-full);
-          border: 1px solid rgba(15, 23, 42, 0.05);
+          gap: 0.5rem;
+          background: transparent;
+          padding: 0;
+          border: none;
+          border-radius: 0;
         }
 
         [data-theme="dark"] .desktop-nav-links {
-          background: rgba(255, 255, 255, 0.03);
-          border-color: rgba(255, 255, 255, 0.06);
+          background: transparent;
+          border: none;
         }
 
         .nav-link {
           font-size: 0.8125rem;
           font-weight: 500;
-          color: var(--text-muted);
-          padding: 0.42rem 0.9rem;
-          border-radius: var(--radius-full);
+          color: #B5C0B8;
+          padding: 0.38rem 0.75rem;
+          border-radius: 4px;
           text-decoration: none;
-          background: transparent;
-          border: none;
+          background-color: transparent;
+          border: 1px solid transparent;
           cursor: pointer;
           font-family: var(--font-sans);
           white-space: nowrap;
           letter-spacing: -0.01em;
-          transition: color 0.16s ease, background 0.16s ease, transform 0.16s ease;
+          transition: color 0.16s ease, background 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
           display: inline-flex;
           align-items: center;
           gap: 5px;
+          position: relative;
         }
 
         .nav-link:hover {
-          color: var(--text-main);
-          background: rgba(15, 23, 42, 0.06);
+          color: #F1F5F2;
+          background-color: rgba(11, 36, 26, 0.75);
+          background-image: radial-gradient(rgba(213, 243, 106, 0.14) 1px, transparent 0);
+          background-size: 4px 4px;
+          border-color: rgba(67, 201, 139, 0.35);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(213, 243, 106, 0.1);
         }
 
-        [data-theme="dark"] .nav-link {
-          color: #94a3b8;
-        }
-
-        [data-theme="dark"] .nav-link:hover {
-          color: #f8fafc;
-          background: rgba(255, 255, 255, 0.08);
+        .nav-link:focus-visible {
+          outline: 2px solid var(--accent-emerald);
+          outline-offset: 2px;
         }
 
         .nav-portal-return-link {
-          background: rgba(170, 255, 199, 0.4);
-          color: rgb(18, 65, 112);
+          background-color: rgba(16, 71, 52, 0.4);
+          background-image: radial-gradient(rgba(67, 201, 139, 0.1) 1px, transparent 0);
+          background-size: 4px 4px;
+          color: var(--accent-emerald);
           font-weight: 600;
-          border: 1px solid rgb(103, 192, 144);
+          border: 1px solid rgba(67, 201, 139, 0.35);
+          border-radius: 4px;
         }
 
-        [data-theme="dark"] .nav-portal-return-link {
-          background: rgba(170, 255, 199, 0.15);
-          color: rgb(170, 255, 199);
-          border-color: rgba(170, 255, 199, 0.35);
+        .nav-portal-return-link:hover {
+          background-color: rgba(16, 71, 52, 0.65);
+          color: var(--accent-lime);
+          border-color: rgba(213, 243, 106, 0.45);
         }
 
         /* Desktop Actions */
@@ -849,39 +820,6 @@ export default function Navbar() {
           align-items: center;
           gap: 0.65rem;
           flex-shrink: 0;
-        }
-
-        .theme-toggle-btn {
-          width: 34px;
-          height: 34px;
-          border-radius: 50%;
-          border: 1px solid var(--border-light);
-          background: var(--bg-card);
-          color: var(--text-main);
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-          box-shadow: var(--shadow-subtle);
-        }
-
-        .theme-toggle-btn:hover {
-          background: var(--bg-subtle);
-          transform: translateY(-1px);
-          border-color: var(--border-medium);
-        }
-
-        .theme-toggle-icon.sun {
-          color: rgb(103, 192, 144);
-        }
-
-        .theme-toggle-icon.moon {
-          color: rgb(18, 65, 112);
-        }
-
-        [data-theme="dark"] .theme-toggle-icon.moon {
-          color: rgb(170, 255, 199);
         }
 
         .nav-authenticated-wrapper,
@@ -895,39 +833,34 @@ export default function Navbar() {
           display: inline-flex;
           align-items: center;
           gap: 5px;
-          background: var(--bg-surface);
-          border: 1px solid var(--border-medium);
-          color: var(--text-main);
-          font-size: 0.8125rem;
-          font-weight: 700;
+          background: transparent;
+          border: 1px solid transparent;
+          color: var(--text-muted);
+          font-size: 0.75rem;
+          font-weight: 500;
           font-family: var(--font-sans);
-          padding: 0.42rem 0.85rem;
-          border-radius: var(--radius-full);
+          padding: 0.32rem 0.65rem;
+          border-radius: 6px;
           cursor: pointer;
-          transition: all 0.16s ease;
+          transition: all 0.15s ease;
         }
 
         .nav-signin-header-btn:hover,
         .nav-signin-header-btn.active {
-          background: var(--c-navy);
-          color: #ffffff;
-          border-color: var(--c-navy);
-          transform: translateY(-1px);
-          box-shadow: 0 2px 8px var(--c-navy-wash);
+          color: var(--text-heading);
+          background: var(--bg-card-elevated);
+          border-color: var(--border-light);
         }
 
         [data-theme="dark"] .nav-signin-header-btn {
-          background: rgba(255, 255, 255, 0.06);
-          border-color: rgba(255, 255, 255, 0.15);
-          color: #f1f5f9;
+          color: var(--text-muted);
         }
 
         [data-theme="dark"] .nav-signin-header-btn:hover,
         [data-theme="dark"] .nav-signin-header-btn.active {
-          background: var(--c-mint);
-          color: var(--c-navy);
-          border-color: var(--c-mint);
-          box-shadow: 0 2px 10px rgba(170, 255, 199, 0.25);
+          color: var(--text-heading);
+          background: var(--bg-card-elevated);
+          border-color: var(--border-medium);
         }
 
         /* Workable, Direct 1-Click Sign Out Button */
@@ -935,13 +868,13 @@ export default function Navbar() {
           display: inline-flex;
           align-items: center;
           gap: 5px;
-          padding: 0.4rem 0.75rem;
+          padding: 0.32rem 0.65rem;
           background: rgba(220, 38, 38, 0.08);
           border: 1px solid rgba(220, 38, 38, 0.25);
-          border-radius: var(--radius-full);
+          border-radius: 6px;
           color: #dc2626;
-          font-size: 0.78rem;
-          font-weight: 700;
+          font-size: 0.75rem;
+          font-weight: 600;
           font-family: var(--font-sans);
           cursor: pointer;
           transition: all 0.16s ease;
@@ -951,8 +884,6 @@ export default function Navbar() {
           background: #dc2626;
           color: #ffffff;
           border-color: #dc2626;
-          transform: translateY(-1px);
-          box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
         }
 
         [data-theme="dark"] .nav-signout-header-btn {
@@ -967,13 +898,55 @@ export default function Navbar() {
           border-color: #ef4444;
         }
 
-        .nav-cta-btn {
-          font-size: 0.8125rem;
-          padding: 0.44rem 0.95rem;
-          border-radius: var(--radius-full);
+        .nav-cta-btn,
+        .zuse-cta-btn {
+          height: 28px;
+          padding: 0 0.85rem;
+          font-size: 0.72rem;
+          font-family: var(--font-mono);
+          font-weight: 700;
+          border-radius: 6px;
           display: inline-flex;
           align-items: center;
-          gap: 6px;
+          gap: 0.45rem;
+          background: #FFFFFF !important;
+          background-color: #FFFFFF !important;
+          background-image: none !important;
+          color: #07110D !important;
+          border: 1px solid rgba(255, 255, 255, 0.95) !important;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+          letter-spacing: 0.01em;
+          cursor: pointer;
+          text-decoration: none;
+          transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+          position: relative;
+        }
+
+        .nav-cta-btn svg,
+        .zuse-cta-btn svg {
+          color: #07110D !important;
+        }
+
+        .nav-cta-btn:hover,
+        .zuse-cta-btn:hover {
+          background: #EBF3EE !important;
+          background-color: #EBF3EE !important;
+          background-image: none !important;
+          color: #07110D !important;
+          border-color: #FFFFFF !important;
+          box-shadow: 0 2px 12px rgba(255, 255, 255, 0.22) !important;
+        }
+
+        .nav-cta-btn:active,
+        .zuse-cta-btn:active {
+          background-color: #E2ECE5 !important;
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        .nav-cta-btn:focus-visible,
+        .zuse-cta-btn:focus-visible {
+          outline: 2px solid var(--accent-lime);
+          outline-offset: 2px;
         }
 
         .mobile-hamburger {
@@ -1177,26 +1150,26 @@ export default function Navbar() {
           width: 100%;
         }
 
-        /* User Dropdown Pill & Popover Menu */
+        /* User Dropdown & Popover Menu */
         .nav-user-dropdown-wrap {
           position: relative;
         }
 
-        .nav-user-pill-btn {
+        .nav-user-btn {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.28rem 0.65rem 0.28rem 0.32rem;
-          background: var(--bg-card);
-          border: 1px solid var(--border-light);
-          border-radius: var(--radius-full);
+          padding: 0.3rem 0.65rem;
+          background: rgba(11, 36, 26, 0.6);
+          border: 1px solid rgba(190, 220, 200, 0.16);
+          border-radius: 6px;
           cursor: pointer;
           transition: all 0.15s ease;
-          box-shadow: var(--shadow-subtle);
+          box-shadow: none;
         }
-        .nav-user-pill-btn:hover {
-          background: var(--bg-subtle);
-          border-color: var(--c-teal);
+        .nav-user-btn:hover {
+          background: rgba(16, 71, 52, 0.35);
+          border-color: var(--color-lime);
         }
 
         .nav-user-avatar-img {

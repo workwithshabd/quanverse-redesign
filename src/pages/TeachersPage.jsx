@@ -80,23 +80,17 @@ export default function TeachersPage() {
       
       {/* 1. Teacher Hero Section */}
       <section className="teachers-hero-section">
-        <div className="pastel-glow-orb orb-lavender"></div>
+        <div className="pastel-glow-orb orb-emerald"></div>
         <div className="pastel-glow-orb orb-sage"></div>
-        <div className="pastel-glow-orb orb-butter"></div>
 
         <div className="app-container">
           <div className="teachers-hero-content text-center">
             
-            <div className="hero-top-badge-row">
-              <div className="pill-badge pill-lavender mb-3 mx-auto">
-                <Users size={14} />
-                <span>Quanverse Educator Creator Network</span>
-              </div>
-            </div>
+
 
             <h1 className="teachers-hero-heading">
               Author Board-Standard Papers. <br />
-              <span className="highlight-text">Earn Monthly Royalties</span> &amp; Lead AI Assessment.
+              Earn Monthly Royalties &amp; Lead AI Assessment.
             </h1>
 
             <p className="teachers-hero-sub">
@@ -159,7 +153,6 @@ export default function TeachersPage() {
       <section className="section-spacing educator-pillars-section">
         <div className="app-container">
           <div className="section-head text-center mb-5">
-            <span className="pill-badge pill-sage mb-2">Why Teach With Quanverse</span>
             <h2 className="section-title">Built by Educators, for Educators</h2>
             <p className="section-sub max-w-700 mx-auto">
               We empower seasoned teachers with cutting-edge technology and fair economics—transforming your pedagogical expertise into recurring value.
@@ -183,8 +176,8 @@ export default function TeachersPage() {
             </div>
 
             <div className="pillar-card glass-panel-elevated">
-              <div className="pillar-icon-box bg-lavender">
-                <Award size={24} className="text-lavender" />
+              <div className="pillar-icon-box bg-subtle">
+                <Award size={24} className="text-accent-emerald" />
               </div>
               <h3 className="pillar-title">National Examiner Recognition</h3>
               <p className="pillar-desc">
@@ -198,8 +191,8 @@ export default function TeachersPage() {
             </div>
 
             <div className="pillar-card glass-panel-elevated">
-              <div className="pillar-icon-box bg-peach">
-                <Sparkles size={24} className="text-peach" />
+              <div className="pillar-icon-box bg-subtle">
+                <Sparkles size={24} className="text-accent-lime" />
               </div>
               <h3 className="pillar-title">AI Authoring Studio Access</h3>
               <p className="pillar-desc">
@@ -213,8 +206,8 @@ export default function TeachersPage() {
             </div>
 
             <div className="pillar-card glass-panel-elevated">
-              <div className="pillar-icon-box bg-sky">
-                <BookOpen size={24} className="text-sky" />
+              <div className="pillar-icon-box bg-subtle">
+                <BookOpen size={24} className="text-accent-emerald" />
               </div>
               <h3 className="pillar-title">Automate School Pre-Boards</h3>
               <p className="pillar-desc">
@@ -234,7 +227,6 @@ export default function TeachersPage() {
       <section className="section-spacing bg-subtle-section" id="royalty-calc">
         <div className="app-container">
           <div className="section-head text-center mb-4">
-            <span className="pill-badge pill-butter mb-2">Earnings Transparency</span>
             <h2 className="section-title">How Much Can You Earn?</h2>
             <p className="section-sub max-w-600 mx-auto">
               Drag the sliders below to estimate your monthly payouts based on questions contributed and student attempts.
@@ -260,7 +252,6 @@ export default function TeachersPage() {
       <section className="section-spacing bg-subtle-section">
         <div className="app-container">
           <div className="section-head text-center mb-5">
-            <span className="pill-badge pill-lavender mb-2">Senior Faculty Voices</span>
             <h2 className="section-title">Trusted by Senior CBSE &amp; ICSE Educators</h2>
             <p className="section-sub max-w-600 mx-auto">
               Hear from department heads and board moderators who author on Quanverse.
@@ -300,7 +291,6 @@ export default function TeachersPage() {
       <section className="section-spacing" id="teacher-faqs">
         <div className="app-container">
           <div className="section-head text-center mb-5">
-            <span className="pill-badge pill-peach mb-2">Frequently Asked Questions</span>
             <h2 className="section-title">Educator Partnership FAQs</h2>
             <p className="section-sub max-w-600 mx-auto">
               Clear answers regarding intellectual property, monthly payouts, and time commitments.
@@ -380,11 +370,11 @@ export default function TeachersPage() {
           align-items: center;
           justify-content: center;
           gap: 2.5rem;
-          background: #f2f5f0;
+          background: var(--bg-card);
           padding: 1.25rem 2.5rem;
-          border-radius: var(--radius-xl);
-          border: 1.5px solid rgba(103, 192, 144, 0.4);
-          box-shadow: 0 12px 32px -8px rgba(18, 65, 112, 0.1);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--border-light);
+          box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
           max-width: 900px;
           margin: 0 auto;
           flex-wrap: wrap;
@@ -395,19 +385,15 @@ export default function TeachersPage() {
         }
 
         .trust-val {
-          font-family: var(--font-display);
-          font-size: 1.8rem;
-          font-weight: 800;
-          color: rgb(18, 65, 112);
+          font-family: var(--font-mono);
+          font-size: 1.6rem;
+          font-weight: 700;
+          color: var(--color-lime);
           letter-spacing: -0.5px;
         }
 
-        [data-theme="dark"] .trust-val {
-          color: rgb(170, 255, 199);
-        }
-
         .trust-desc {
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           color: var(--text-muted);
           font-weight: 500;
         }
@@ -415,58 +401,55 @@ export default function TeachersPage() {
         .trust-sep {
           width: 1px;
           height: 36px;
-          background: var(--border-medium);
+          background: var(--border-light);
         }
 
         /* Pillars Grid */
         .pillars-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-          gap: 1.75rem;
+          gap: 1.5rem;
         }
 
         .pillar-card {
-          background: #f2f5f0;
-          border-radius: var(--radius-lg);
-          padding: 2rem;
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          background: var(--bg-card);
+          border-radius: var(--radius-md);
+          padding: 1.75rem;
+          border: 1px solid var(--border-light);
           display: flex;
           flex-direction: column;
-          transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+          box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+          transition: transform var(--transition-smooth), border-color var(--transition-smooth);
         }
         .pillar-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 36px -8px rgba(33, 91, 99, 0.15);
-          border-color: rgb(103, 192, 144);
+          transform: translateY(-2px);
+          border-color: var(--border-medium);
         }
 
         .pillar-icon-box {
-          width: 52px;
-          height: 52px;
-          border-radius: var(--radius-md);
+          width: 48px;
+          height: 48px;
+          border-radius: var(--radius-sm);
+          border: 1px solid var(--border-light);
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 1.25rem;
+          background: var(--bg-subtle);
         }
-        .bg-sage { background: var(--pastel-sage); }
-        .text-sage { color: var(--pastel-sage-text); }
-        .bg-lavender { background: var(--pastel-lavender); }
-        .text-lavender { color: var(--pastel-lavender-text); }
-        .bg-peach { background: var(--pastel-peach); }
-        .text-peach { color: var(--pastel-peach-text); }
-        .bg-sky { background: var(--pastel-sky); }
-        .text-sky { color: var(--pastel-sky-text); }
+        .bg-subtle { background: rgba(16, 71, 52, 0.2); }
+        .bg-sage { background: rgba(16, 71, 52, 0.2); }
+        .text-sage { color: var(--accent-lime); }
 
         .pillar-title {
-          font-family: var(--font-display);
-          font-size: 1.3rem;
-          color: var(--text-main);
+          font-size: 1.15rem;
+          font-weight: 600;
+          color: var(--text-heading);
           margin-bottom: 0.65rem;
         }
 
         .pillar-desc {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--text-muted);
           line-height: 1.55;
           margin-bottom: 1.25rem;
@@ -480,7 +463,7 @@ export default function TeachersPage() {
           gap: 0.5rem;
           padding-top: 1rem;
           border-top: 1px solid var(--border-light);
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           color: var(--text-main);
         }
         .pillar-checks li {
@@ -493,23 +476,22 @@ export default function TeachersPage() {
         .testimonials-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-          gap: 1.75rem;
+          gap: 1.5rem;
         }
 
         .teacher-testimonial-card {
-          background: #f2f5f0;
-          border-radius: var(--radius-lg);
-          padding: 2rem;
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
-          box-shadow: 0 10px 24px -6px rgba(18, 65, 112, 0.06);
+          background: var(--bg-card);
+          border-radius: var(--radius-md);
+          padding: 1.75rem;
+          border: 1px solid var(--border-light);
+          box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
           display: flex;
           flex-direction: column;
-          transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+          transition: transform var(--transition-smooth), border-color var(--transition-smooth);
         }
         .teacher-testimonial-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 36px -8px rgba(33, 91, 99, 0.15);
-          border-color: rgb(103, 192, 144);
+          transform: translateY(-2px);
+          border-color: var(--border-medium);
         }
 
         .rating-stars {
@@ -519,7 +501,7 @@ export default function TeachersPage() {
         }
 
         .teacher-quote {
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           color: var(--text-main);
           line-height: 1.6;
           font-style: italic;
@@ -535,14 +517,14 @@ export default function TeachersPage() {
         }
 
         .teacher-avatar-circle {
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          background: rgba(170, 255, 199, 0.35);
-          color: rgb(18, 65, 112);
-          border: 1px solid rgba(103, 192, 144, 0.5);
+          width: 38px;
+          height: 38px;
+          border-radius: var(--radius-sm);
+          background: var(--bg-subtle);
+          color: var(--color-lime);
+          border: 1px solid var(--border-light);
           font-weight: 700;
-          font-size: 14px;
+          font-size: 13px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -555,31 +537,35 @@ export default function TeachersPage() {
         }
 
         .teacher-name {
-          font-size: 0.95rem;
-          color: var(--text-main);
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: var(--text-heading);
         }
 
         .teacher-title {
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           color: var(--text-muted);
         }
 
         .teacher-exp {
-          font-size: 0.75rem;
-          color: var(--pastel-sage-text);
-          font-weight: 600;
+          font-size: 0.72rem;
+          color: var(--color-lime);
+          font-family: var(--font-mono);
+          font-weight: 500;
         }
 
         .teacher-earnings-tag {
           display: flex;
           align-items: center;
           gap: 6px;
-          background: var(--pastel-butter);
-          padding: 6px 12px;
-          border-radius: var(--radius-full);
-          font-size: 0.8rem;
-          font-weight: 600;
-          color: var(--pastel-butter-text);
+          background: rgba(137, 202, 33, 0.08);
+          border: 1px solid rgba(137, 202, 33, 0.25);
+          padding: 4px 10px;
+          border-radius: var(--radius-sm);
+          font-size: 0.75rem;
+          font-family: var(--font-mono);
+          font-weight: 500;
+          color: var(--color-lime);
           width: fit-content;
         }
 
@@ -587,42 +573,44 @@ export default function TeachersPage() {
         .teacher-faq-list {
           display: flex;
           flex-direction: column;
-          gap: 1.25rem;
+          gap: 1rem;
         }
 
         .faq-card {
-          background: #f2f5f0;
+          background: var(--bg-card);
           border-radius: var(--radius-md);
-          padding: 1.5rem;
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          padding: 1.25rem 1.5rem;
+          border: 1px solid var(--border-light);
+          box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04);
           transition: border-color var(--transition-fast);
         }
         .faq-card:hover {
-          border-color: rgb(103, 192, 144);
+          border-color: var(--border-medium);
         }
 
         .faq-question {
           display: flex;
           align-items: flex-start;
           gap: 10px;
-          font-size: 1.05rem;
-          font-weight: 700;
-          color: var(--text-main);
+          font-size: 0.98rem;
+          font-weight: 600;
+          color: var(--text-heading);
           margin-bottom: 0.5rem;
         }
 
         .faq-answer {
-          font-size: 0.92rem;
+          font-size: 0.88rem;
           color: var(--text-muted);
           line-height: 1.6;
           padding-left: 28px;
         }
 
         .faq-contact-card {
-          padding: 1.75rem;
-          background: #f2f5f0;
+          padding: 1.5rem;
+          background: var(--bg-card);
           border-radius: var(--radius-md);
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          border: 1px solid var(--border-light);
+          box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
 
         .bg-subtle-section {

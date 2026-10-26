@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { 
-  CheckCircle2, 
-  ArrowRight, 
-  Send, 
-  Award, 
-  FileText, 
-  Building, 
-  Phone, 
-  Mail, 
-  User, 
-  Check, 
+import {
+  CheckCircle2,
+  ArrowRight,
+  Send,
+  FileText,
+  Building,
+  Phone,
+  Mail,
+  User,
+  Check,
   RefreshCw,
   Copy
 } from 'lucide-react';
@@ -112,10 +111,9 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
         <div className="success-icon-badge">
           <CheckCircle2 size={40} className="text-emerald" />
         </div>
-        <span className="pill-badge pill-sage mb-2">Application Successfully Submitted</span>
         <h3 className="success-title">Welcome to the Educator Network, {formData.fullName}!</h3>
         <p className="success-sub">
-          Your credentials have been logged in our Academic Verification Queue. 
+          Your credentials have been logged in our Academic Verification Queue.
           Our Chief Board Moderator will review your subject expertise and connect via WhatsApp/Email within <strong>24 to 48 hours</strong>.
         </p>
 
@@ -123,8 +121,8 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
           <div className="ref-label">Your Application Reference ID</div>
           <div className="ref-value-row">
             <span className="ref-code">{submitResult.applicationId}</span>
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="btn btn-secondary btn-sm copy-btn"
               onClick={handleCopyId}
             >
@@ -157,8 +155,8 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
         </div>
 
         <div className="success-actions">
-          <button 
-            type="button" 
+          <button
+            type="button"
             className="btn btn-secondary"
             onClick={handleReset}
           >
@@ -273,13 +271,9 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
 
   return (
     <form className={`teacher-signup-form ${isModal ? 'is-modal-form' : ''}`} onSubmit={handleSubmit}>
-      
+
       {/* Form Header */}
       <div className="form-head">
-        <div className="pill-badge pill-lavender mb-2">
-          <Award size={14} />
-          <span>CBSE &amp; ICSE Senior Educator Application</span>
-        </div>
         <h3 className="form-main-title">Sign Up as an Authoring Educator</h3>
         <p className="form-sub-title">
           Partner with Quanverse to author board-calibrated mock papers, review step-marking schemes, and earn monthly author royalties.
@@ -463,7 +457,7 @@ export default function TeacherSignupForm({ onSuccess, isModal = false }) {
           {roleOptions.map((role) => {
             const isChecked = formData.roles.includes(role.id);
             return (
-              <div 
+              <div
                 key={role.id}
                 className={`role-choice-card ${isChecked ? 'role-selected' : ''}`}
                 onClick={() => handleRoleToggle(role.id)}

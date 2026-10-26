@@ -93,20 +93,14 @@ export default function CareersPage() {
       {/* 1. Hero Section */}
       <section className="careers-hero-section">
         <div className="pastel-glow-orb orb-sage"></div>
-        <div className="pastel-glow-orb orb-lavender"></div>
-        <div className="pastel-glow-orb orb-peach"></div>
+        <div className="pastel-glow-orb orb-emerald"></div>
 
         <div className="app-container">
           <div className="careers-hero-center text-center">
-            
-            <div className="pill-badge pill-sage mb-3 mx-auto">
-              <Sparkles size={14} />
-              <span>We're Hiring • Engineering, AI, Product &amp; Growth</span>
-            </div>
 
             <h1 className="careers-hero-title">
               Build the Intelligence Layer for <br />
-              <span className="highlight-text">National Board Exams</span>.
+              National Board Exams.
             </h1>
 
             <p className="careers-hero-subtitle">
@@ -160,10 +154,6 @@ export default function CareersPage() {
             <div className="teacher-banner-grid">
               
               <div className="teacher-banner-text">
-                <div className="pill-badge pill-lavender mb-3">
-                  <Users size={14} />
-                  <span>Educator &amp; School Faculty Hub</span>
-                </div>
                 <h2 className="teacher-banner-title">
                   Are You a Senior Class 10 Teacher or Board Examiner?
                 </h2>
@@ -224,7 +214,6 @@ export default function CareersPage() {
       <section className="section-spacing company-culture-section" id="company-culture">
         <div className="app-container">
           <div className="section-head text-center mb-5">
-            <span className="pill-badge pill-butter mb-2">Life at Quanverse</span>
             <h2 className="section-title">Why You’ll Do Your Best Work Here</h2>
             <p className="section-sub max-w-700 mx-auto">
               We treat our team like professional athletes: world-class compensation, high trust, exceptional craft standards, and deep respect for your craft.
@@ -247,7 +236,6 @@ export default function CareersPage() {
       <section className="section-spacing bg-subtle-section" id="open-positions">
         <div className="app-container">
           <div className="section-head text-center mb-4">
-            <span className="pill-badge pill-peach mb-2">Career Opportunities</span>
             <h2 className="section-title">Open Positions Across All Teams</h2>
             <p className="section-sub max-w-650 mx-auto">
               Explore opportunities in Engineering, AI, Product, Design, Growth, and Academics.
@@ -394,11 +382,11 @@ export default function CareersPage() {
           align-items: center;
           justify-content: center;
           gap: 2.25rem;
-          background: #f2f5f0;
+          background: var(--bg-card);
           padding: 1.25rem 2.5rem;
-          border-radius: var(--radius-xl);
-          border: 1.5px solid rgba(103, 192, 144, 0.4);
-          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
+          border-radius: var(--radius-lg);
+          border: 1px solid var(--border-light);
+          box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
           max-width: 900px;
           margin: 0 auto;
           flex-wrap: wrap;
@@ -409,15 +397,15 @@ export default function CareersPage() {
         }
 
         .stat-fig {
-          font-family: var(--font-display);
-          font-size: 1.75rem;
-          font-weight: 800;
-          color: var(--brand-emerald);
+          font-family: var(--font-mono);
+          font-size: 1.6rem;
+          font-weight: 700;
+          color: var(--color-lime);
           letter-spacing: -0.5px;
         }
 
         .stat-sub {
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           color: var(--text-muted);
           font-weight: 500;
         }
@@ -425,7 +413,7 @@ export default function CareersPage() {
         .stat-line {
           width: 1px;
           height: 36px;
-          background: var(--border-medium);
+          background: var(--border-light);
         }
 
         /* Teacher Pathway Banner */
@@ -434,12 +422,13 @@ export default function CareersPage() {
         }
 
         .teacher-banner-card {
-          background: linear-gradient(135deg, rgba(238, 234, 253, 0.75) 0%, rgba(226, 241, 231, 0.75) 100%);
-          border: 1px solid var(--pastel-lavender-border);
-          border-radius: var(--radius-xl);
-          padding: 2.75rem;
+          background: var(--bg-card);
+          border: 1px solid var(--border-light);
+          border-radius: var(--radius-lg);
+          padding: 2.5rem;
           position: relative;
           overflow: hidden;
+          box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .teacher-banner-grid {
@@ -456,16 +445,15 @@ export default function CareersPage() {
         }
 
         .teacher-banner-title {
-          font-family: var(--font-display);
-          font-size: 1.75rem;
-          font-weight: 800;
-          color: var(--text-main);
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: var(--text-heading);
           margin-bottom: 0.75rem;
           line-height: 1.25;
         }
 
         .teacher-banner-sub {
-          font-size: 0.96rem;
+          font-size: 0.92rem;
           color: var(--text-muted);
           line-height: 1.6;
           margin-bottom: 1.5rem;
@@ -482,65 +470,65 @@ export default function CareersPage() {
           align-items: center;
           gap: 8px;
           font-size: 0.85rem;
-          font-weight: 600;
+          font-weight: 500;
           color: var(--text-main);
         }
 
         .teacher-cta-card {
-          background: #f2f5f0;
-          border-radius: var(--radius-lg);
-          padding: 2rem;
-          border: 1.5px solid rgba(103, 192, 144, 0.4);
-          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
+          background: var(--bg-surface);
+          border-radius: var(--radius-md);
+          padding: 1.75rem;
+          border: 1px solid var(--border-light);
+          box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3);
           text-align: center;
         }
 
         .cta-card-heading {
-          font-family: var(--font-display);
-          font-size: 1.25rem;
-          font-weight: 700;
-          color: var(--text-main);
+          font-size: 1.15rem;
+          font-weight: 600;
+          color: var(--text-heading);
           display: block;
           margin-bottom: 0.4rem;
         }
 
         .cta-card-note {
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           color: var(--text-muted);
           line-height: 1.5;
           margin-bottom: 1.25rem;
         }
 
         .teacher-route-btn {
-          font-size: 1rem;
-          padding: 12px 20px;
+          font-size: 0.9rem;
+          padding: 10px 18px;
         }
 
         /* Perks Grid */
         .perks-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 1.75rem;
+          gap: 1.5rem;
         }
 
         .perk-card {
-          background: #f2f5f0;
-          border-radius: var(--radius-lg);
-          padding: 2rem;
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
-          transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+          background: var(--bg-card);
+          border-radius: var(--radius-md);
+          padding: 1.75rem;
+          border: 1px solid var(--border-light);
+          box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+          transition: transform var(--transition-smooth), border-color var(--transition-smooth);
         }
         .perk-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 36px -8px rgba(33, 91, 99, 0.15);
-          border-color: rgb(103, 192, 144);
+          transform: translateY(-2px);
+          border-color: var(--border-medium);
         }
 
         .perk-icon-circle {
-          width: 48px;
-          height: 48px;
-          border-radius: 12px;
-          background: rgba(170, 255, 199, 0.35);
+          width: 44px;
+          height: 44px;
+          border-radius: var(--radius-sm);
+          background: var(--bg-subtle);
+          border: 1px solid var(--border-light);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -548,14 +536,14 @@ export default function CareersPage() {
         }
 
         .perk-title {
-          font-family: var(--font-display);
-          font-size: 1.2rem;
-          color: var(--text-main);
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: var(--text-heading);
           margin-bottom: 0.5rem;
         }
 
         .perk-desc {
-          font-size: 0.88rem;
+          font-size: 0.86rem;
           color: var(--text-muted);
           line-height: 1.55;
         }
@@ -574,30 +562,29 @@ export default function CareersPage() {
           display: flex;
           align-items: center;
           gap: 6px;
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           color: var(--text-light);
-          font-weight: 600;
+          font-weight: 500;
         }
 
         .filter-pill-list {
           display: flex;
           align-items: center;
-          gap: 6px;
-          background: #f2f5f0;
-          padding: 5px;
-          border-radius: var(--radius-full);
-          border: 1.5px solid rgba(103, 192, 144, 0.4);
-          box-shadow: var(--shadow-subtle);
+          gap: 4px;
+          background: var(--bg-surface);
+          padding: 3px;
+          border-radius: var(--radius-sm);
+          border: 1px solid var(--border-light);
           flex-wrap: wrap;
         }
 
         .dept-filter-btn {
-          border: none;
+          border: 1px solid transparent;
           background: transparent;
-          padding: 6px 14px;
-          border-radius: var(--radius-full);
-          font-size: 0.82rem;
-          font-weight: 600;
+          padding: 5px 12px;
+          border-radius: calc(var(--radius-sm) - 2px);
+          font-size: 0.78rem;
+          font-family: var(--font-mono);
           color: var(--text-muted);
           cursor: pointer;
           transition: all var(--transition-fast);
@@ -606,30 +593,32 @@ export default function CareersPage() {
           color: var(--text-main);
         }
         .dept-filter-btn.active {
-          background: rgb(18, 65, 112);
-          color: #ffffff;
+          background: var(--bg-card-elevated);
+          color: var(--color-lime);
+          border-color: var(--color-lime);
+          box-shadow: 0 0 10px rgba(137, 202, 33, 0.2);
         }
 
         /* Job Listings */
         .job-listings-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-          gap: 1.75rem;
+          gap: 1.5rem;
         }
 
         .job-card {
-          background: #f2f5f0;
-          border-radius: var(--radius-lg);
-          padding: 1.85rem;
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          background: var(--bg-card);
+          border-radius: var(--radius-md);
+          padding: 1.75rem;
+          border: 1px solid var(--border-light);
+          box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
           display: flex;
           flex-direction: column;
-          transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+          transition: transform var(--transition-smooth), border-color var(--transition-smooth);
         }
         .job-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 36px -8px rgba(33, 91, 99, 0.15);
-          border-color: rgb(103, 192, 144);
+          transform: translateY(-2px);
+          border-color: var(--border-medium);
         }
 
         .job-card-header {
@@ -640,30 +629,31 @@ export default function CareersPage() {
         }
 
         .job-card-badge {
-          font-size: 0.75rem;
-          font-weight: 700;
-          color: var(--pastel-lavender-text);
-          background: var(--pastel-lavender);
-          padding: 3px 8px;
-          border-radius: 4px;
+          font-size: 0.72rem;
+          font-family: var(--font-mono);
+          color: var(--color-lime);
+          background: rgba(137, 202, 33, 0.08);
+          border: 1px solid rgba(137, 202, 33, 0.25);
+          padding: 2px 7px;
+          border-radius: var(--radius-sm);
         }
 
         .job-card-dept {
-          font-size: 0.8rem;
+          font-size: 0.75rem;
           color: var(--text-light);
           font-weight: 500;
         }
 
         .job-card-title {
-          font-family: var(--font-display);
-          font-size: 1.25rem;
-          color: var(--text-main);
+          font-size: 1.15rem;
+          font-weight: 600;
+          color: var(--text-heading);
           margin-bottom: 0.65rem;
           line-height: 1.3;
         }
 
         .job-card-desc {
-          font-size: 0.88rem;
+          font-size: 0.86rem;
           color: var(--text-muted);
           line-height: 1.5;
           margin-bottom: 1.25rem;
@@ -677,12 +667,13 @@ export default function CareersPage() {
           margin-bottom: 1.25rem;
         }
         .job-tag-item {
-          font-size: 0.72rem;
+          font-size: 0.68rem;
+          font-family: var(--font-mono);
           background: var(--bg-subtle);
-          padding: 2px 8px;
-          border-radius: var(--radius-full);
+          border: 1px solid var(--border-light);
+          padding: 2px 7px;
+          border-radius: var(--radius-sm);
           color: var(--text-muted);
-          font-weight: 600;
         }
 
         .job-specs-list {
@@ -690,7 +681,7 @@ export default function CareersPage() {
           flex-direction: column;
           gap: 0.4rem;
           margin-bottom: 1.25rem;
-          padding-top: 1rem;
+          padding-top: 0.85rem;
           border-top: 1px solid var(--border-light);
         }
 
@@ -698,13 +689,14 @@ export default function CareersPage() {
           display: flex;
           align-items: center;
           gap: 7px;
-          font-size: 0.82rem;
+          font-size: 0.78rem;
           color: var(--text-muted);
         }
 
         .job-compensation-bar {
           background: var(--bg-subtle);
-          padding: 9px 12px;
+          border: 1px solid var(--border-light);
+          padding: 8px 12px;
           border-radius: var(--radius-sm);
           margin-bottom: 1.25rem;
           display: flex;
@@ -712,33 +704,34 @@ export default function CareersPage() {
           gap: 2px;
         }
         .comp-title {
-          font-size: 0.7rem;
+          font-size: 0.68rem;
           text-transform: uppercase;
           letter-spacing: 0.5px;
           color: var(--text-light);
-          font-weight: 600;
         }
         .comp-value {
-          font-size: 0.88rem;
-          color: var(--pastel-sage-text);
+          font-size: 0.85rem;
+          font-family: var(--font-mono);
+          color: var(--color-lime);
         }
 
         .open-pitch-card {
-          padding: 2rem;
-          background: #f2f5f0;
-          border-radius: var(--radius-lg);
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
+          padding: 1.75rem;
+          background: var(--bg-card);
+          border-radius: var(--radius-md);
+          border: 1px solid var(--border-light);
+          box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
         .open-email-pill {
           display: inline-block;
           font-family: var(--font-mono);
-          font-weight: 600;
-          color: rgb(18, 65, 112);
-          background: rgba(170, 255, 199, 0.35);
-          padding: 6px 16px;
-          border-radius: var(--radius-full);
-          font-size: 0.95rem;
-          border: 1px solid rgba(103, 192, 144, 0.5);
+          font-weight: 500;
+          color: var(--color-lime);
+          background: rgba(137, 202, 33, 0.08);
+          padding: 5px 14px;
+          border-radius: var(--radius-sm);
+          font-size: 0.88rem;
+          border: 1px solid rgba(137, 202, 33, 0.25);
         }
 
         .jobs-loading-box {

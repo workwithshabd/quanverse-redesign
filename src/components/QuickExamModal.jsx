@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
   X, 
-  Clock, 
   ArrowRight, 
   RotateCcw, 
   Award,
-  Sparkles,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -114,25 +112,35 @@ export default function QuickExamModal({ isOpen, onClose }) {
 
   return (
     <div className="exam-modal-backdrop" onClick={onClose}>
-      <div className="exam-modal-container glass-panel-elevated" onClick={e => e.stopPropagation()}>
+      <div className="exam-modal-container" onClick={e => e.stopPropagation()}>
         
-        {/* Header */}
-        <div className="exam-modal-header">
-          <div className="modal-title-group">
-            <span className="pill-badge pill-sage text-xs">Simulated Exam Room</span>
-            <h3 className="exam-header-title">{examData.title}</h3>
+        {/* Top Window Chrome */}
+        <div className="modal-chrome-bar">
+          <div className="chrome-dots">
+            <span className="dot dot-red"></span>
+            <span className="dot dot-yellow"></span>
+            <span className="dot dot-green"></span>
           </div>
-
-          <div className="header-right-tools">
+          <div className="chrome-title font-mono text-xs text-muted">
+            quanverse-runtime / assessment-sprint.spec
+          </div>
+          <div className="chrome-right flex items-center gap-3">
             {!isSubmitted && (
-              <div className={`timer-badge ${timeLeft < 60 ? 'timer-urgent' : ''}`}>
-                <Clock size={15} />
+              <div className={`timer-badge font-mono ${timeLeft < 60 ? 'timer-urgent' : ''}`}>
+                <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse"></span>
                 <span>{formatTime(timeLeft)}</span>
               </div>
             )}
             <button type="button" className="close-btn" onClick={onClose} aria-label="Close modal">
-              <X size={20} />
+              <X size={16} />
             </button>
+          </div>
+        </div>
+
+        {/* Modal Header */}
+        <div className="exam-modal-header">
+          <div className="modal-title-group">
+            <h3 className="exam-header-title text-lg font-light tracking-tight">{examData.title}</h3>
           </div>
         </div>
 
@@ -142,13 +150,13 @@ export default function QuickExamModal({ isOpen, onClose }) {
             
             {/* Question Navigation Palette */}
             <div className="question-palette-bar">
-              <span className="palette-label">Question Palette:</span>
+              <span className="palette-label font-mono">SECTIONS:</span>
               <div className="palette-buttons">
                 {questions.map((q, idx) => (
                   <button
                     key={q.id}
                     type="button"
-                    className={`palette-num-btn ${currentIdx === idx ? 'current' : ''} ${answers[q.id] !== undefined ? 'answered' : ''}`}
+                    className={`palette-num-btn font-mono ${currentIdx === idx ? 'current' : ''} ${answers[q.id] !== undefined ? 'answered' : ''}`}
                     onClick={() => setCurrentIdx(idx)}
                   >
                     Q{idx + 1}
@@ -159,16 +167,16 @@ export default function QuickExamModal({ isOpen, onClose }) {
 
             {/* Active Question Box */}
             <div className="active-question-card">
-              <div className="q-meta-line">
-                <span className="q-label">Question {currentIdx + 1} of {questions.length}</span>
-                <span className="q-marks-tag">{currentQ.marks} {currentQ.marks > 1 ? 'Marks' : 'Mark'}</span>
+              <div className="q-meta-line font-mono text-xs">
+                <span className="q-label text-muted">QUESTION 0{currentIdx + 1} / 0{questions.length}</span>
+                <span className="q-marks-tag font-mono">[ +{currentQ.marks} {currentQ.marks > 1 ? 'MARKS' : 'MARK'} ]</span>
               </div>
 
-              <p className="q-prompt-text">{currentQ.question}</p>
+              <p className="q-prompt-text font-sans">{currentQ.question}</p>
 
               {/* MCQ / Assertion Options */}
               {currentQ.options ? (
-                <div className="options-stack">
+                <div className="options-stack font-mono">
                   {currentQ.options.map((opt, oIdx) => (
                     <label 
                       key={oIdx} 
@@ -182,16 +190,16 @@ export default function QuickExamModal({ isOpen, onClose }) {
                         className="option-radio"
                       />
                       <span className="option-index-badge">{String.fromCharCode(65 + oIdx)}</span>
-                      <span className="option-text">{opt}</span>
+                      <span className="option-text font-sans">{opt}</span>
                     </label>
                   ))}
                 </div>
               ) : (
-                <div className="subjective-input-area">
-                  <span className="sub-hint">Write your step-by-step response below for AI evaluation:</span>
+                <div className="subjective-input-area font-mono">
+                  <span className="sub-hint text-xs text-muted">Write your step-by-step response below for AI evaluation:</span>
                   <textarea
                     rows={4}
-                    className="subjective-textarea"
+                    className="subjective-textarea font-mono text-xs"
                     placeholder={currentQ.sampleAnswerPlaceholder}
                     value={answers[currentQ.id] || ''}
                     onChange={(e) => handleTextAnswer(e.target.value)}
@@ -201,38 +209,38 @@ export default function QuickExamModal({ isOpen, onClose }) {
             </div>
 
             {/* Navigation Footer */}
-            <div className="exam-modal-footer">
+            <div className="exam-modal-footer font-mono">
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="modal-nav-btn"
                 disabled={currentIdx === 0}
                 onClick={() => setCurrentIdx(prev => prev - 1)}
               >
-                <ChevronLeft size={16} />
-                <span>Previous</span>
+                <ChevronLeft size={14} />
+                <span>PREV</span>
               </button>
 
-              <div className="footer-center-status">
-                <span>{Object.keys(answers).length} of {questions.length} Answered</span>
+              <div className="footer-center-status font-mono text-xs text-muted">
+                <span>[ {Object.keys(answers).length} / {questions.length} RECORDED ]</span>
               </div>
 
               {currentIdx < questions.length - 1 ? (
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="modal-nav-btn active-next"
                   onClick={() => setCurrentIdx(prev => prev + 1)}
                 >
-                  <span>Next Question</span>
-                  <ChevronRight size={16} />
+                  <span>NEXT</span>
+                  <ChevronRight size={14} />
                 </button>
               ) : (
                 <button
                   type="button"
-                  className="btn btn-primary btn-submit-exam"
+                  className="btn-submit-exam font-mono"
                   onClick={handleSubmit}
                 >
-                  <Sparkles size={16} className="text-butter" />
-                  <span>Submit &amp; View AI Marksheet</span>
+                  <span>SUBMIT &amp; EVALUATE</span>
+                  <kbd className="submit-kbd">↵</kbd>
                 </button>
               )}
             </div>
@@ -240,26 +248,26 @@ export default function QuickExamModal({ isOpen, onClose }) {
           </div>
         ) : (
           /* Result Report Card */
-          <div className="exam-result-view">
+          <div className="exam-result-view font-sans">
             <div className="result-hero-box">
               <div className="result-icon-celebrate">
-                <Award size={36} className="text-emerald" />
+                <Award size={28} className="text-lime" />
               </div>
-              <h4 className="result-headline">Exam Evaluated by Quanverse AI</h4>
-              <p className="result-sub">
+              <h4 className="result-headline text-xl font-light">Exam Evaluated by <span className="text-lime">Quanverse AI</span></h4>
+              <p className="result-sub font-mono text-xs text-muted">
                 Official CBSE &amp; ICSE marking scheme applied with step-level mark distribution.
               </p>
 
-              <div className="result-score-pill">
+              <div className="result-score-pill font-mono">
                 <span className="score-big">{scoreResult?.earnedMarks}</span>
-                <span className="score-small">/ {scoreResult?.totalMarks} Marks</span>
-                <span className="score-pct">({scoreResult?.percentage}%)</span>
+                <span className="score-small text-muted">/ {scoreResult?.totalMarks} MARKS</span>
+                <span className="score-pct text-lime ml-2">[ {scoreResult?.percentage}% ]</span>
               </div>
             </div>
 
             {/* Question Breakdown List */}
-            <div className="results-review-list">
-              <span className="review-title">Detailed Step Assessment</span>
+            <div className="results-review-list font-mono">
+              <div className="review-title text-xs text-muted uppercase tracking-wider mb-2">Step-by-step Verification</div>
               {questions.map((q, idx) => {
                 const isCorrect = (q.type === 'mcq' || q.type === 'assertion') 
                   ? answers[q.id] === q.correctIndex 
@@ -268,12 +276,12 @@ export default function QuickExamModal({ isOpen, onClose }) {
                 return (
                   <div key={q.id} className={`result-q-item ${isCorrect ? 'correct' : 'incorrect'}`}>
                     <div className="res-q-header">
-                      <span className="res-q-num">Q{idx + 1}: {q.type.toUpperCase()}</span>
-                      <span className="res-q-badge">{isCorrect ? 'Full Credit' : 'Partial / 0'}</span>
+                      <span className="res-q-num">Q0{idx + 1}: {q.type.toUpperCase()}</span>
+                      <span className="res-q-badge font-mono">{isCorrect ? '+FULL CREDIT' : 'PARTIAL / 0'}</span>
                     </div>
-                    <p className="res-q-text">{q.question}</p>
+                    <p className="res-q-text font-sans">{q.question}</p>
                     {q.explanation && (
-                      <div className="res-q-explanation">
+                      <div className="res-q-explanation font-sans text-xs">
                         <strong>Official Board Marking Note: </strong>
                         <span>{q.explanation}</span>
                       </div>
@@ -284,10 +292,10 @@ export default function QuickExamModal({ isOpen, onClose }) {
             </div>
 
             {/* Modal Actions */}
-            <div className="result-footer-actions">
+            <div className="result-footer-actions font-mono">
               <button
                 type="button"
-                className="btn btn-secondary"
+                className="modal-nav-btn"
                 onClick={() => {
                   setAnswers({});
                   setIsSubmitted(false);
@@ -295,17 +303,17 @@ export default function QuickExamModal({ isOpen, onClose }) {
                   setTimeLeft(300);
                 }}
               >
-                <RotateCcw size={16} />
-                <span>Retake Sprint</span>
+                <RotateCcw size={13} />
+                <span>RETAKE SPRINT</span>
               </button>
 
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn-submit-exam font-mono"
                 onClick={onClose}
               >
-                <span>Unlock Full 80-Mark Mock Series</span>
-                <ArrowRight size={16} />
+                <span>CLOSE &amp; VIEW DASHBOARD</span>
+                <ArrowRight size={13} />
               </button>
             </div>
           </div>
@@ -317,9 +325,8 @@ export default function QuickExamModal({ isOpen, onClose }) {
         .exam-modal-backdrop {
           position: fixed;
           inset: 0;
-          background: rgba(15, 30, 23, 0.6);
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
+          background: rgba(0, 0, 0, 0.75);
+          backdrop-filter: blur(12px);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -334,68 +341,76 @@ export default function QuickExamModal({ isOpen, onClose }) {
         }
 
         .exam-modal-container {
-          background: #f2f5f0;
-          border: 1.5px solid rgba(103, 192, 144, 0.4);
+          background: var(--bg-card);
+          border: 1px solid var(--border-light);
           width: 100%;
-          max-width: 680px;
-          border-radius: var(--radius-xl);
+          max-width: 660px;
+          border-radius: var(--radius-lg);
           display: flex;
           flex-direction: column;
           max-height: 90dvh;
           overflow: hidden;
-          box-shadow: 0 25px 60px -15px rgba(18, 65, 112, 0.2);
+          box-shadow: 0 25px 80px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
+
+        .modal-chrome-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.65rem 1.25rem;
+          background: var(--bg-subtle);
+          border-bottom: 1px solid var(--border-light);
+        }
+
+        .chrome-dots {
+          display: flex;
+          gap: 6px;
+        }
+
+        .dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #eab308; }
+        .dot-green { background: #22c55e; }
 
         .exam-modal-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 1.25rem 1.75rem;
-          border-bottom: 1.5px solid rgba(103, 192, 144, 0.3);
-          background: #eef3ed;
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid var(--border-light);
+          background: var(--bg-card);
         }
 
         .modal-title-group {
           display: flex;
           flex-direction: column;
-          gap: 0.25rem;
-        }
-
-        .text-xs {
-          font-size: 0.72rem;
         }
 
         .exam-header-title {
-          font-size: 1.15rem;
-          font-weight: 700;
-          color: var(--text-main);
-        }
-
-        .header-right-tools {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
+          color: var(--text-heading);
         }
 
         .timer-badge {
           display: flex;
           align-items: center;
           gap: 0.4rem;
-          background: var(--pastel-sage);
-          color: var(--brand-emerald);
-          font-family: var(--font-mono);
-          font-size: 0.9rem;
-          font-weight: 700;
-          padding: 0.35rem 0.75rem;
-          border-radius: var(--radius-full);
-          border: 1px solid var(--pastel-sage-border);
+          background: var(--bg-subtle);
+          color: var(--color-lime);
+          font-size: 0.8rem;
+          font-weight: 600;
+          padding: 0.25rem 0.65rem;
+          border-radius: var(--radius-sm);
+          border: 1px solid var(--border-light);
         }
 
         .timer-urgent {
-          background: var(--pastel-peach);
-          color: #a8421b;
-          border-color: var(--pastel-peach-border);
-          animation: pulseSlow 1s infinite;
+          color: #ef4444;
+          border-color: rgba(239, 68, 68, 0.4);
         }
 
         .close-btn {
@@ -403,21 +418,21 @@ export default function QuickExamModal({ isOpen, onClose }) {
           border: none;
           color: var(--text-muted);
           cursor: pointer;
-          padding: 4px;
-          border-radius: 50%;
+          padding: 3px;
+          border-radius: var(--radius-sm);
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: background var(--transition-fast);
+          transition: all var(--transition-fast);
         }
 
         .close-btn:hover {
-          background: var(--bg-subtle);
           color: var(--text-main);
+          background: var(--bg-hover);
         }
 
         .exam-modal-body {
-          padding: 1.5rem 1.75rem;
+          padding: 1.25rem 1.5rem;
           overflow-y: auto;
           display: flex;
           flex-direction: column;
@@ -434,39 +449,54 @@ export default function QuickExamModal({ isOpen, onClose }) {
         }
 
         .palette-label {
-          font-size: 0.78rem;
-          font-weight: 600;
+          font-size: 0.72rem;
           color: var(--text-muted);
         }
 
         .palette-buttons {
           display: flex;
           align-items: center;
-          gap: 0.4rem;
+          gap: 0.35rem;
         }
 
         .palette-num-btn {
-          width: 32px;
-          height: 32px;
-          border-radius: 8px;
+          padding: 0.25rem 0.65rem;
+          border-radius: var(--radius-sm);
           border: 1px solid var(--border-light);
-          background: #f7faf8;
-          font-size: 0.78rem;
-          font-weight: 700;
+          background: var(--bg-surface);
+          font-size: 0.72rem;
+          font-weight: 500;
           color: var(--text-muted);
           cursor: pointer;
-          transition: all var(--transition-fast);
+          transition: all 0.16s ease;
+        }
+
+        .palette-num-btn:hover:not(.current) {
+          background-color: rgba(16, 71, 52, 0.4);
+          background-image: radial-gradient(rgba(213, 243, 106, 0.12) 1px, transparent 0);
+          background-size: 4px 4px;
+          border-color: rgba(67, 201, 139, 0.4);
+          color: #F1F5F2;
         }
 
         .palette-num-btn.answered {
-          background: rgba(170, 255, 199, 0.3);
-          border-color: rgb(103, 192, 144);
-          color: rgb(18, 65, 112);
+          color: var(--accent-lime);
+          border-color: rgba(213, 243, 106, 0.4);
+          background: rgba(16, 71, 52, 0.35);
         }
 
         .palette-num-btn.current {
-          border-color: rgb(18, 65, 112);
-          box-shadow: 0 0 0 2px rgba(18, 65, 112, 0.2);
+          border-color: var(--accent-lime);
+          background-color: rgba(16, 71, 52, 0.65);
+          background-image: radial-gradient(rgba(67, 201, 139, 0.18) 1.2px, transparent 0);
+          background-size: 4px 4px;
+          color: #F1F5F2;
+          box-shadow: inset 0 1px 0 rgba(213, 243, 106, 0.2), 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .palette-num-btn:focus-visible {
+          outline: 2px solid var(--accent-lime);
+          outline-offset: 1px;
         }
 
         /* Active Question Card */
@@ -474,7 +504,7 @@ export default function QuickExamModal({ isOpen, onClose }) {
           background: transparent;
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 0.85rem;
         }
 
         .q-meta-line {
@@ -483,58 +513,50 @@ export default function QuickExamModal({ isOpen, onClose }) {
           justify-content: space-between;
         }
 
-        .q-label {
-          font-size: 0.78rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-          color: var(--text-light);
-        }
-
         .q-marks-tag {
-          font-size: 0.75rem;
-          font-weight: 700;
-          color: var(--brand-emerald);
-          background: var(--pastel-sage);
-          padding: 2px 8px;
-          border-radius: var(--radius-full);
+          color: var(--color-lime);
         }
 
         .q-prompt-text {
-          font-size: 1.05rem;
-          font-weight: 600;
-          color: var(--text-main);
+          font-size: 0.95rem;
+          font-weight: 500;
+          color: var(--text-heading);
           line-height: 1.5;
-          white-space: pre-line;
         }
 
         /* Options */
         .options-stack {
           display: flex;
           flex-direction: column;
-          gap: 0.6rem;
+          gap: 0.5rem;
         }
 
         .option-row {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          padding: 0.85rem 1rem;
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
-          background: rgba(170, 255, 199, 0.08);
-          border-radius: var(--radius-md);
+          padding: 0.65rem 0.85rem;
+          border: 1px solid var(--border-light);
+          background-color: var(--bg-surface);
+          border-radius: var(--radius-sm);
           cursor: pointer;
-          transition: all var(--transition-fast);
+          transition: all 0.16s ease;
+          position: relative;
         }
 
-        .option-row:hover {
-          background: rgba(170, 255, 199, 0.2);
-          border-color: rgb(103, 192, 144);
+        .option-row:hover:not(.selected) {
+          border-color: rgba(67, 201, 139, 0.45);
+          background-color: rgba(16, 71, 52, 0.35);
+          background-image: radial-gradient(rgba(213, 243, 106, 0.12) 1px, transparent 0);
+          background-size: 4px 4px;
         }
 
         .option-row.selected {
-          background: rgba(170, 255, 199, 0.35);
-          border-color: rgb(18, 65, 112);
+          background-color: rgba(16, 71, 52, 0.65);
+          background-image: radial-gradient(rgba(67, 201, 139, 0.18) 1.2px, transparent 0);
+          background-size: 4px 4px;
+          border-color: var(--accent-lime);
+          box-shadow: inset 0 1px 0 rgba(213, 243, 106, 0.2), 0 2px 10px rgba(0, 0, 0, 0.4);
         }
 
         .option-radio {
@@ -542,28 +564,29 @@ export default function QuickExamModal({ isOpen, onClose }) {
         }
 
         .option-index-badge {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: rgba(103, 192, 144, 0.15);
-          border: 1px solid rgba(103, 192, 144, 0.4);
+          width: 22px;
+          height: 22px;
+          border-radius: var(--radius-sm);
+          background: var(--bg-subtle);
+          border: 1px solid var(--border-light);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 0.78rem;
-          font-weight: 700;
-          color: rgb(18, 65, 112);
+          font-size: 0.72rem;
+          color: var(--text-muted);
           flex-shrink: 0;
+          transition: all 0.16s ease;
         }
 
         .option-row.selected .option-index-badge {
-          background: rgb(18, 65, 112);
-          color: #ffffff;
-          border-color: rgb(18, 65, 112);
+          background: var(--accent-lime);
+          color: #07110D;
+          border-color: var(--accent-lime);
+          font-weight: 700;
         }
 
         .option-text {
-          font-size: 0.92rem;
+          font-size: 0.88rem;
           color: var(--text-main);
         }
 
@@ -573,20 +596,21 @@ export default function QuickExamModal({ isOpen, onClose }) {
           gap: 0.4rem;
         }
 
-        .sub-hint {
-          font-size: 0.78rem;
-          color: var(--text-muted);
-        }
-
         .subjective-textarea {
           width: 100%;
-          padding: 0.85rem;
-          border-radius: var(--radius-md);
-          border: 1px solid var(--border-medium);
-          font-family: var(--font-sans);
-          font-size: 0.9rem;
+          padding: 0.75rem;
+          border-radius: var(--radius-sm);
+          border: 1px solid var(--border-light);
+          background: var(--bg-surface);
+          color: var(--text-main);
+          outline: none;
           line-height: 1.5;
           resize: vertical;
+        }
+
+        .subjective-textarea:focus {
+          border-color: var(--accent-emerald);
+          box-shadow: 0 0 0 2px rgba(67, 201, 139, 0.25);
         }
 
         .exam-modal-footer {
@@ -597,110 +621,169 @@ export default function QuickExamModal({ isOpen, onClose }) {
           border-top: 1px solid var(--border-light);
         }
 
-        .footer-center-status {
-          font-size: 0.825rem;
-          color: var(--text-muted);
+        .modal-nav-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          padding: 0.5rem 0.85rem;
+          font-size: 0.75rem;
+          border: 1px solid var(--border-light);
+          background: var(--bg-surface);
+          color: var(--text-main);
+          border-radius: var(--radius-sm);
+          cursor: pointer;
+          transition: all 0.16s ease;
+        }
+
+        .modal-nav-btn:hover:not(:disabled) {
+          border-color: rgba(67, 201, 139, 0.4);
+          background-color: rgba(16, 71, 52, 0.35);
+          background-image: radial-gradient(rgba(213, 243, 106, 0.10) 1px, transparent 0);
+          background-size: 4px 4px;
+          color: #F1F5F2;
+        }
+
+        .modal-nav-btn:focus-visible {
+          outline: 2px solid var(--accent-emerald);
+          outline-offset: 2px;
+        }
+
+        .modal-nav-btn:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+
+        .modal-nav-btn.active-next {
+          border-color: var(--accent-lime);
+          color: var(--accent-lime);
         }
 
         .btn-submit-exam {
-          background: #1e3f31;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.55rem 1rem;
+          font-size: 0.75rem;
+          font-weight: 700;
+          font-family: var(--font-mono);
+          color: #07110D;
+          background: #FFFFFF;
+          background-color: #FFFFFF;
+          background-image: none;
+          border: 1px solid rgba(255, 255, 255, 0.95);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+          border-radius: var(--radius-sm);
+          cursor: pointer;
+          transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-submit-exam:hover {
+          background: #EBF3EE;
+          background-color: #EBF3EE;
+          border-color: #FFFFFF;
+          box-shadow: 0 2px 12px rgba(255, 255, 255, 0.22);
+        }
+
+        .btn-submit-exam:active {
+          background-color: #E2ECE5;
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-submit-exam:focus-visible {
+          outline: 2px solid var(--accent-lime);
+          outline-offset: 2px;
+        }
+
+        .submit-kbd {
+          background: rgba(0, 0, 0, 0.15);
+          color: #07110D;
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          padding: 1px 4px;
+          border-radius: 3px;
+          font-size: 0.68rem;
         }
 
         /* Result View */
         .exam-result-view {
-          padding: 2rem 1.75rem;
+          padding: 1.5rem;
           overflow-y: auto;
           display: flex;
           flex-direction: column;
-          gap: 1.5rem;
+          gap: 1.25rem;
         }
 
         .result-hero-box {
           text-align: center;
-          background: #f7faf8;
-          border: 1px solid var(--pastel-sage-border);
-          border-radius: var(--radius-lg);
-          padding: 1.5rem;
+          background: var(--bg-surface);
+          border: 1px solid var(--border-light);
+          border-radius: var(--radius-md);
+          padding: 1.25rem;
           display: flex;
           flex-direction: column;
           align-items: center;
         }
 
         .result-icon-celebrate {
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          background: var(--pastel-sage);
+          width: 48px;
+          height: 48px;
+          border-radius: var(--radius-sm);
+          border: 1px solid var(--border-light);
+          background: var(--bg-subtle);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 0.75rem;
+          margin-bottom: 0.65rem;
         }
 
         .result-headline {
-          font-size: 1.35rem;
-          margin-bottom: 0.25rem;
-        }
-
-        .result-sub {
-          font-size: 0.85rem;
-          color: var(--text-muted);
-          margin-bottom: 1rem;
+          color: var(--text-heading);
+          margin-bottom: 0.2rem;
         }
 
         .result-score-pill {
           display: inline-flex;
           align-items: baseline;
-          gap: 0.4rem;
-          background: var(--brand-emerald);
-          color: #ffffff;
-          padding: 0.5rem 1.25rem;
-          border-radius: var(--radius-full);
+          gap: 0.35rem;
+          background: var(--bg-card);
+          border: 1px solid var(--border-light);
+          padding: 0.4rem 1rem;
+          border-radius: var(--radius-sm);
+          margin-top: 0.75rem;
         }
 
         .score-big {
-          font-size: 1.75rem;
-          font-weight: 800;
-          font-family: var(--font-display);
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: var(--color-lime);
         }
 
         .score-small {
-          font-size: 0.9rem;
-          opacity: 0.85;
+          font-size: 0.8rem;
         }
 
         .score-pct {
-          font-size: 0.95rem;
-          font-weight: 700;
-          color: #f7d070;
+          font-size: 0.85rem;
         }
 
         .results-review-list {
           display: flex;
           flex-direction: column;
-          gap: 0.75rem;
-        }
-
-        .review-title {
-          font-size: 0.85rem;
-          font-weight: 700;
-          color: var(--text-main);
+          gap: 0.5rem;
         }
 
         .result-q-item {
-          padding: 0.85rem 1rem;
-          border-radius: var(--radius-md);
-          font-size: 0.85rem;
+          padding: 0.75rem;
+          border-radius: var(--radius-sm);
+          background: var(--bg-surface);
+          border: 1px solid var(--border-light);
         }
 
         .result-q-item.correct {
-          background: rgba(226, 241, 231, 0.4);
-          border: 1px solid var(--pastel-sage-border);
+          border-color: rgba(137, 202, 33, 0.35);
         }
 
         .result-q-item.incorrect {
-          background: rgba(255, 237, 226, 0.5);
-          border: 1px solid var(--pastel-peach-border);
+          border-color: rgba(239, 68, 68, 0.35);
         }
 
         .res-q-header {
@@ -708,23 +791,17 @@ export default function QuickExamModal({ isOpen, onClose }) {
           align-items: center;
           justify-content: space-between;
           font-size: 0.75rem;
-          font-weight: 700;
-          margin-bottom: 0.35rem;
+          margin-bottom: 0.25rem;
+          color: var(--text-main);
         }
 
         .res-q-badge {
-          font-size: 0.7rem;
-          padding: 1px 6px;
-          border-radius: var(--radius-full);
-          background: #f2f5f0;
+          color: var(--color-lime);
         }
 
         .res-q-explanation {
-          margin-top: 0.4rem;
-          padding-top: 0.4rem;
-          border-top: 1px dashed rgba(0, 0, 0, 0.08);
-          font-size: 0.78rem;
           color: var(--text-muted);
+          line-height: 1.5;
         }
 
         .result-footer-actions {
@@ -732,7 +809,7 @@ export default function QuickExamModal({ isOpen, onClose }) {
           align-items: center;
           justify-content: space-between;
           gap: 1rem;
-          margin-top: 0.5rem;
+          padding-top: 0.5rem;
         }
       `}</style>
     </div>

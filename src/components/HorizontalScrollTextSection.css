@@ -1,0 +1,108 @@
+/* ═══════════════════════════════════════════════════════════════
+   Autonomous Kinetic Evaluation Stream (Pure Marquee Strip)
+   - Seamless slow continuous infinite horizontal marquee
+   - Clean single strip (no top/bottom meta texts)
+   ═══════════════════════════════════════════════════════════════ */
+
+.Horizontal {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 50%, rgba(14, 46, 31, 0.45) 0%, rgba(7, 17, 13, 0.96) 75%, #07110D 100%);
+  border-top: 1px dotted rgba(190, 220, 200, 0.22);
+  border-bottom: 1px dotted rgba(190, 220, 200, 0.22);
+  padding: clamp(1.2rem, 2.2vw, 1.85rem) 0;
+  user-select: none;
+  z-index: 15;
+}
+
+/* Background grid texture */
+.Horizontal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(190, 220, 200, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(190, 220, 200, 0.02) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Edge feathering / mask gradients on left and right edges */
+.Horizontal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #07110D 0%, transparent 6%, transparent 94%, #07110D 100%);
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* Center Horizontal Stream Viewport */
+.Horizontal__track-wrap {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Infinite Scrolling Track */
+.Horizontal__text-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+}
+
+.Horizontal__text-group {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  font-family: var(--font-heading, "Syne", sans-serif);
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #F1F5F2;
+  padding-right: 2.5rem;
+}
+
+/* Highlight Accents in the Stream */
+.Horizontal .text-lime {
+  color: var(--accent-lime, #D5F36A);
+  text-shadow: 0 0 20px rgba(213, 243, 106, 0.3);
+}
+
+.Horizontal .text-emerald {
+  color: var(--accent-emerald, #43C98B);
+  text-shadow: 0 0 20px rgba(67, 201, 139, 0.3);
+}
+
+.Horizontal .stream-symbol {
+  display: inline-block;
+  margin: 0 clamp(1rem, 2vw, 2.2rem);
+  color: var(--accent-lime, #D5F36A);
+  font-size: 0.65em;
+  opacity: 0.85;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .Horizontal {
+    padding: 1rem 0;
+  }
+}
+
+/* Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .Horizontal__text-track {
+    animation: none !important;
+    transform: none !important;
+  }
+}

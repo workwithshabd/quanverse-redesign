@@ -1,219 +1,203 @@
 import React, { useState } from 'react';
-import { 
-  Timer, 
-  BrainCircuit, 
-  ArrowRight, 
-  Check, 
-  Sparkles,
-  ChevronRight
+import {
+  FileEdit,
+  Timer,
+  BrainCircuit,
+  BarChart3,
+  CheckCircle2,
+  ArrowRight
 } from 'lucide-react';
+import HalftoneMosaic from './common/HalftoneMosaic';
+
+const STEP_HALFTONES = ['architecture', 'compass', 'optics', 'geometry'];
 
 export default function HowItWorksSection({ onOpenDemoExam }) {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(3);
 
   const steps = [
     {
       num: '01',
-      title: 'Teacher-Authored Question Bank',
-      badge: 'Verified Educators',
-      pillClass: 'pill-sage',
-      desc: 'Senior CBSE & ICSE examiners create structured questions mapped to the latest NCERT and CISCE blueprints, including competency, assertion-reasoning, and case-study items.',
+      tag: 'EDUCATOR AUTHORING',
+      title: 'Educator-Authored Papers',
+      desc: 'Structured questions mapped directly to official CBSE & CISCE blueprints.',
       bullets: [
-        'Curated by active board examiners with 15+ years experience',
-        'Includes official marking criteria for every step',
-        'Updated continuously for 2027 curriculum directives'
+        'Embedded with official step-marking criteria by senior board examiners'
       ],
-      previewGraphic: 'authoring'
+      icon: FileEdit,
+      visualBadge: 'NCERT 2027 BLUEPRINT',
+      miniDetail: 'Official Blueprints'
     },
     {
       num: '02',
+      tag: 'SIMULATION',
       title: 'Timed Exam Simulation',
-      badge: 'Board Hall Mode',
-      pillClass: 'pill-lavender',
-      desc: 'Students take 80-mark, 3-hour mock tests under real exam conditions with strict timer enforcement, section navigation, and digital or paper-upload answer sheets.',
+      desc: 'Full 80-mark, 3-hour mock tests under authentic exam hall conditions.',
       bullets: [
-        'Authentic section structure: Sections A, B, C, D & E',
-        'Internal choice options simulated accurately',
-        'Trains pacing to eliminate end-of-exam panic'
+        'Real-time countdown enforcing pacing across Sections A through E'
       ],
-      previewGraphic: 'simulation'
+      icon: Timer,
+      visualBadge: '3-HOUR HALL CLOCK',
+      miniDetail: '180-Min Timer'
     },
     {
       num: '03',
+      tag: 'STEP EVALUATION',
       title: 'Step-by-Step AI Evaluation',
-      badge: 'Official Marking Rubric',
-      pillClass: 'pill-peach',
-      desc: 'Our neural marking engine scans handwriting or typed responses, cross-referencing against official board marking schemes to award partial marks for every formula, step, and unit.',
+      desc: 'Our OCR engine scans handwritten answers and cross-references board rubrics in 60s.',
       bullets: [
-        'Understands formulas, diagrams, and mathematical working',
-        'Identifies missing units, incomplete conclusions, and syntax slip-ups',
-        'Evaluated and marked in under 60 seconds per sheet'
+        'Detects formula omissions, wrong notation, and skipped intermediate steps'
       ],
-      previewGraphic: 'evaluation'
+      icon: BrainCircuit,
+      visualBadge: 'NEURAL STEP SCHEME',
+      miniDetail: 'Sub-60s Turnaround'
     },
     {
       num: '04',
-      title: 'Actionable Diagnostic Scorecard',
-      badge: 'Targeted Remediation',
-      pillClass: 'pill-butter',
-      desc: 'Instead of just a final percentage, students receive a surgical breakdown of chapter-level health, mark leakage points, and targeted 5-minute revision drills.',
+      tag: 'DIAGNOSTIC RADAR',
+      title: 'Diagnostic Scorecard',
+      desc: 'Surgical breakdown isolating specific subtopics leaking half-marks.',
       bullets: [
-        'Pinpoints high-yield topics where half-marks are slipping',
-        'Compares student working against official Topper Model Answers',
-        'Monitors Board Readiness progression towards 95%+'
+        'Side-by-side comparison against 100/100 Topper Model Answers'
       ],
-      previewGraphic: 'diagnostics'
+      icon: BarChart3,
+      visualBadge: 'TARGETED REPAIR',
+      miniDetail: 'Targeted Drills'
     }
   ];
 
   return (
-    <section className="how-it-works-section section-spacing" id="how-it-works">
+    <section className="editorial-how-section" id="how-it-works">
       <div className="app-container">
-        
-        {/* Header */}
-        <div className="section-head text-center gsap-reveal">
-          <div className="pill-badge pill-sage mb-3 gsap-float">
-            <Sparkles size={14} />
-            <span>The Exam Engine</span>
+
+        {/* Section Header */}
+        <div className="editorial-section-header">
+          <div className="header-meta-row font-mono text-xs text-muted mb-2">
+            <span className="text-accent-emerald font-bold">EXAM METHODOLOGY</span>
           </div>
-          <h2 className="section-title">
-            How Teacher-Made Papers Meet <span className="highlight-text">AI Marking</span>
-          </h2>
+
+          <div className="title-with-flourish">
+            <h2 className="section-title text-main">
+              How Senior Examiners Grade — Rebuilt in Code
+            </h2>
+          </div>
+
           <p className="section-subtitle">
-            A seamless bridge between senior educator expertise and step-level automated evaluation.
+            Senior board examiner rubrics united with step-level machine precision.
           </p>
         </div>
 
-        {/* Interactive Steps Grid */}
-        <div className="how-grid">
-          
-          {/* Step Selector List */}
-          <div className="steps-selector-list gsap-stagger-group">
-            {steps.map((st, i) => (
-              <div
-                key={i}
-                className={`step-nav-card gsap-stagger-item ${activeStep === i ? 'active' : ''}`}
-                onClick={() => setActiveStep(i)}
-              >
-                <div className="step-num-circle">{st.num}</div>
-                <div className="step-nav-content">
-                  <div className="step-nav-meta">
-                    <span className={`pill-badge ${st.pillClass} step-badge-mini`}>{st.badge}</span>
+        {/* Continuous Four-Column Structured Editorial Grid */}
+        <div className="editorial-steps-grid">
+
+          {/* 4 Aligned Columns */}
+          <div className="steps-columns-container">
+            {steps.map((st, idx) => {
+              const IconComp = st.icon;
+              const isActive = activeStep === idx;
+              
+              // Restrained dual-accent assignment (Emerald & Acid Lime only)
+              const accent = {
+                color: isActive ? 'text-accent-lime' : 'text-accent-emerald',
+                dotClass: isActive ? 'text-accent-lime' : 'text-accent-emerald'
+              };
+
+              return (
+                <div
+                  key={st.num}
+                  className={`step-grid-col ${isActive ? 'active-col' : ''}`}
+                  onClick={() => setActiveStep(idx)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter') setActiveStep(idx); }}
+                  aria-label={`View step ${st.num}: ${st.title}`}
+                >
+                  <div className="col-top-meta font-mono text-[10px] flex items-center justify-between">
+                    <span className="col-tag text-muted uppercase tracking-wider">{st.tag}</span>
                   </div>
-                  <h4 className="step-nav-title">{st.title}</h4>
-                  <p className="step-nav-excerpt">{st.desc}</p>
+
+                  <div className="col-icon-wrap my-1.5 flex items-center gap-2">
+                    <IconComp size={16} className={isActive ? accent.color : 'text-muted'} />
+                    <span className="font-mono text-[10px] text-muted">{st.miniDetail}</span>
+                  </div>
+
+                  <h3 className="col-title text-main mb-1">
+                    {st.title}
+                  </h3>
+
+                  <p className="col-desc text-muted mb-2">
+                    {st.desc}
+                  </p>
+
+                  <div className="col-active-indicator mt-auto pt-1.5">
+                    <span className={`font-mono text-[10px] ${isActive ? accent.color + ' font-semibold' : 'text-muted'}`}>
+                      {isActive ? '● ACTIVE STAGE' : 'CLICK TO SELECT'}
+                    </span>
+                  </div>
                 </div>
-                <ChevronRight size={18} className="step-arrow" />
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* Step Detail Display Card */}
-          <div className="step-display-col">
-            <div className="step-detail-card glass-panel-elevated">
-              <div className="card-top-tag">
-                <span className="step-giant-number">{steps[activeStep].num}</span>
-                <span className={`pill-badge ${steps[activeStep].pillClass}`}>
-                  {steps[activeStep].badge}
+          {/* Integrated Deep-Dive Showcase Row (Directly in Grid, No Floating Card) */}
+          <div className="step-deep-dive-pane">
+            <div className="deep-dive-header font-mono text-xs">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="deep-dive-title text-main font-semibold">
+                  STAGE {steps[activeStep].num}: {steps[activeStep].title.toUpperCase()}
+                </span>
+                <span className="text-muted opacity-40">/</span>
+                <span className="text-accent-emerald font-semibold">
+                  {steps[activeStep].visualBadge}
                 </span>
               </div>
+              <span className="font-mono text-[10px] text-muted uppercase tracking-wider hidden sm:inline">
+                {steps[activeStep].tag}
+              </span>
+            </div>
 
-              <h3 className="detail-card-heading">{steps[activeStep].title}</h3>
-              <p className="detail-card-desc">{steps[activeStep].desc}</p>
+            <div className="deep-dive-body">
+              {/* Left Column: Evaluation heading, concise supporting content, bullet points, and CTA */}
+              <div className="deep-dive-content-col">
+                <p className="deep-dive-desc font-sans text-xs md:text-sm text-muted leading-relaxed mb-3">
+                  {steps[activeStep].desc}
+                </p>
 
-              <div className="detail-bullet-list">
-                {steps[activeStep].bullets.map((b, idx) => (
-                  <div key={idx} className="bullet-row">
-                    <div className="check-bubble">
-                      <Check size={14} className="text-emerald" />
-                    </div>
-                    <span>{b}</span>
+                <div className="deep-dive-bullets">
+                  <div className="bullets-heading font-mono text-[10.5px] text-muted mb-2 uppercase tracking-wider">
+                    VERIFIED EVALUATION PROTOCOLS:
                   </div>
-                ))}
+                  <ul className="space-y-2.5 font-sans text-xs text-muted">
+                    {steps[activeStep].bullets.map((b, bIdx) => (
+                      <li key={bIdx} className="flex items-start gap-2">
+                        <CheckCircle2 size={13} className="text-accent-emerald shrink-0 mt-0.5" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="deep-dive-action mt-3.5">
+                  <button
+                    type="button"
+                    className="btn btn-emerald btn-sm"
+                    onClick={onOpenDemoExam}
+                  >
+                    <span>Experience Stage {steps[activeStep].num} Live</span>
+                    <ArrowRight size={13} />
+                  </button>
+                </div>
               </div>
 
-              {/* Interactive Visual Graphic for active step */}
-              <div className="interactive-step-visual">
-                {activeStep === 0 && (
-                  <div className="visual-authoring">
-                    <div className="author-card-mock">
-                      <div className="mock-header">
-                        <span className="dot dot-red"></span>
-                        <span className="dot dot-yellow"></span>
-                        <span className="dot dot-green"></span>
-                        <span className="mock-title">CBSE Blueprint Authoring Studio</span>
-                      </div>
-                      <div className="mock-code-box">
-                        <div className="mock-line"><span className="kw">SECTION C:</span> 3-Mark Analytical Questions</div>
-                        <div className="mock-line pl-2"><span className="step-var">Rubric:</span> Step 1: Definition (1M) | Step 2: Derivation (1.5M) | Step 3: SI Unit (0.5M)</div>
-                        <div className="mock-badge-line">
-                          <span className="badge-pill-micro">Competency Aligned</span>
-                          <span className="badge-pill-micro">Verified by Dr. R. Sharma (Ex-CBSE Evaluator)</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {activeStep === 1 && (
-                  <div className="visual-sim">
-                    <div className="sim-timer-mock">
-                      <Timer size={18} className="text-emerald" />
-                      <span className="font-mono">Time Remaining: 02:44:18</span>
-                    </div>
-                    <div className="sim-sections-mock">
-                      <span className="sec-tag active">Section A (MCQ)</span>
-                      <span className="sec-tag">Section B (2M)</span>
-                      <span className="sec-tag">Section C (3M)</span>
-                      <span className="sec-tag">Section D (5M)</span>
-                    </div>
-                  </div>
-                )}
-
-                {activeStep === 2 && (
-                  <div className="visual-ai-scan">
-                    <div className="scan-line-animation"></div>
-                    <div className="scan-content">
-                      <BrainCircuit size={20} className="text-emerald" />
-                      <span>Matching Handwriting OCR to Official CBSE Step 3 Criteria...</span>
-                    </div>
-                    <div className="scan-result-micro">
-                      <span className="tag-green">+1.5 / 2.0 Marks Awarded</span>
-                      <span className="tag-amber">-0.5 Deducted for missing formula substitution</span>
-                    </div>
-                  </div>
-                )}
-
-                {activeStep === 3 && (
-                  <div className="visual-diagnostic">
-                    <div className="radar-metric-mock">
-                      <div className="radar-col">
-                        <span className="radar-label">Science Life Processes</span>
-                        <div className="progress-track"><div className="progress-bar w-85"></div></div>
-                        <span className="radar-val">88% (Mastered)</span>
-                      </div>
-                      <div className="radar-col">
-                        <span className="radar-label">Light &amp; Reflection</span>
-                        <div className="progress-track"><div className="progress-bar w-60 bar-peach"></div></div>
-                        <span className="radar-val text-peach">62% (Step loss in ray diagrams)</span>
-                      </div>
-                    </div>
-                  </div>
-                )}
+              {/* Right Column: Proportional, Compact Halftone Mosaic Illustration */}
+              <div className="deep-dive-illustration-col">
+                <HalftoneMosaic
+                  subject={STEP_HALFTONES[activeStep]}
+                  variant="plate"
+                  compact={true}
+                  aspectRatio="16/10"
+                  className="deep-dive-halftone-plate"
+                />
               </div>
-
-              {/* Card Footer CTA */}
-              <div className="detail-card-footer">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={onOpenDemoExam}
-                >
-                  <span>Experience Step {steps[activeStep].num} Live</span>
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-
             </div>
           </div>
 
@@ -222,357 +206,256 @@ export default function HowItWorksSection({ onOpenDemoExam }) {
       </div>
 
       <style>{`
-        .how-grid {
-          display: grid;
-          grid-template-columns: 1fr 1.15fr;
-          gap: clamp(1.5rem, 3.5vw, 3rem);
-          align-items: stretch;
+        .editorial-how-section {
+          position: relative;
+          padding: clamp(3rem, 5.5vw, 4.5rem) 0;
+          background: transparent;
         }
 
-        .steps-selector-list {
+        .editorial-how-section .editorial-section-header {
+          margin-bottom: clamp(1.75rem, 2.8vw, 2.5rem);
+        }
+
+        .editorial-steps-grid {
+          position: relative;
+          border: 1px solid rgba(190, 220, 200, 0.16);
+          background: rgba(7, 17, 13, 0.45);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* 4 Columns Container */
+        .steps-columns-container {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          border-bottom: 1px solid rgba(190, 220, 200, 0.14);
+        }
+
+        .step-grid-col {
+          padding: clamp(1.35rem, 2vw, 1.85rem);
+          border-right: 1px solid rgba(190, 220, 200, 0.14);
+          cursor: pointer;
           display: flex;
           flex-direction: column;
-          gap: 1rem;
+          gap: 0.35rem;
+          transition: background-color 0.2s ease;
+          position: relative;
+          min-height: 160px;
+          box-sizing: border-box;
         }
 
-        .step-nav-card {
+        .step-grid-col:last-child {
+          border-right: none;
+        }
+
+        .col-top-meta {
+          height: 16px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          letter-spacing: 0.05em;
+        }
+
+        .col-icon-wrap {
+          height: 20px;
+          margin: 0.35rem 0 0.25rem;
           display: flex;
           align-items: center;
-          gap: 1.25rem;
-          padding: 1.25rem 1.4rem;
-          background: #f2f5f0;
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
-          border-radius: var(--radius-lg);
-          cursor: pointer;
-          transition: all var(--transition-smooth);
-          box-shadow: 0 4px 16px rgba(18, 65, 112, 0.05);
         }
 
-        .step-nav-card:hover {
-          background: #f7faf5;
-          border-color: rgb(33, 91, 99);
-          transform: translateX(4px);
-          box-shadow: 0 10px 24px -4px rgba(18, 65, 112, 0.12);
-        }
-
-        .step-nav-card.active {
-          background: #f7faf5;
-          border-color: rgb(33, 91, 99);
-          box-shadow: 0 12px 30px -6px rgba(18, 65, 112, 0.16);
-          border-left: 5px solid rgb(18, 65, 112);
-        }
-
-        .step-num-circle {
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          background: rgba(170, 255, 199, 0.45);
+        .col-title {
+          min-height: 2.35rem;
           display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: var(--font-display);
-          font-size: 1.1rem;
-          font-weight: 800;
-          color: rgb(18, 65, 112);
-          flex-shrink: 0;
-          transition: all var(--transition-fast);
-        }
-
-        .step-nav-card.active .step-num-circle {
-          background: rgb(18, 65, 112);
-          color: #ffffff;
-        }
-
-        .step-nav-content {
-          flex: 1;
-        }
-
-        .step-nav-meta {
+          align-items: flex-start;
+          line-height: 1.3;
           margin-bottom: 0.25rem;
-        }
-
-        .step-badge-mini {
-          font-size: 0.7rem;
-          padding: 1px 7px;
-        }
-
-        .step-nav-title {
           font-size: 1.05rem;
-          font-weight: 700;
-          color: var(--text-main);
-          margin-bottom: 0.25rem;
+          font-weight: 600;
+          color: #F1F5F2;
         }
 
-        .step-nav-excerpt {
-          font-size: 0.8rem;
-          color: var(--text-muted);
-          line-height: 1.4;
+        .col-desc {
+          flex: 1;
+          min-height: 2.5rem;
+          margin-bottom: 0.35rem;
+          line-height: 1.5;
+          font-size: 0.84rem;
+          color: #B5C0B8;
+        }
+
+        .col-mini-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+          padding: 0.15rem 0.45rem;
+          border-radius: 3px;
+          background: rgba(190, 220, 200, 0.08);
+          color: #B5C0B8;
+          align-self: flex-start;
+          margin-top: auto;
+          font-size: 10px;
+        }
+
+        .badge-dot {
+          color: var(--color-lime);
+        }
+
+        .col-active-indicator {
+          margin-top: auto;
+          padding-top: 0.25rem;
+          border-top: 1px dashed rgba(190, 220, 200, 0.1);
+          opacity: 0.85;
+          font-size: 10px;
+          height: 18px;
+          line-height: 18px;
+          white-space: nowrap;
+        }
+
+        /* Deep Dive Pane */
+        .step-deep-dive-pane {
+          padding: 0.95rem 1.35rem;
+          background: rgba(11, 36, 26, 0.3);
+          min-height: 255px;
+          box-sizing: border-box;
+        }
+
+        .deep-dive-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-bottom: 0.45rem;
+          border-bottom: 1px solid rgba(190, 220, 200, 0.12);
+          margin-bottom: 0.75rem;
+          min-height: 28px;
+          gap: 0.5rem;
+          flex-wrap: nowrap;
+        }
+
+        .deep-dive-title {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .deep-dive-body {
+          display: grid;
+          grid-template-columns: 1fr 220px;
+          gap: 1.75rem;
+          align-items: center;
+          min-height: 195px;
+        }
+
+        .deep-dive-content-col {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 195px;
+        }
+
+        .deep-dive-desc {
+          color: #B5C0B8;
+          font-size: 0.84rem;
+          line-height: 1.55;
+          max-width: 640px;
+          min-height: 2.45rem;
+          margin-bottom: 0.65rem;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
 
-        .step-arrow {
-          color: var(--text-light);
-          transition: transform var(--transition-fast);
+        .deep-dive-bullets {
+          max-width: 100%;
+          min-height: 4.45rem;
         }
 
-        .step-nav-card.active .step-arrow {
-          color: var(--brand-emerald);
-          transform: translateX(3px);
+        .deep-dive-action {
+          margin-top: 0.85rem;
         }
 
-        /* Step Detail Display */
-        .step-detail-card {
-          padding: clamp(1.75rem, 3.5vw, 2.5rem);
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          position: relative;
-          background: #f2f5f0;
-        }
-
-        .card-top-tag {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 1.25rem;
-        }
-
-        .step-giant-number {
-          font-family: var(--font-display);
-          font-size: 2.5rem;
-          font-weight: 900;
-          color: rgba(30, 63, 49, 0.12);
-          line-height: 1;
-        }
-
-        .detail-card-heading {
-          font-size: 1.55rem;
-          margin-bottom: 0.75rem;
-        }
-
-        .detail-card-desc {
-          font-size: 0.95rem;
-          color: var(--text-muted);
-          line-height: 1.6;
-          margin-bottom: 1.5rem;
-        }
-
-        .detail-bullet-list {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-          margin-bottom: 2rem;
-        }
-
-        .bullet-row {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          font-size: 0.875rem;
-          color: var(--text-main);
-        }
-
-        .check-bubble {
-          width: 22px;
-          height: 22px;
-          border-radius: 50%;
-          background: var(--pastel-sage);
+        .deep-dive-illustration-col {
+          width: 220px;
+          min-width: 220px;
+          max-width: 220px;
+          height: 180px;
+          justify-self: end;
+          align-self: center;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
         }
 
-        /* Interactive Visual Graphic */
-        .interactive-step-visual {
-          background: #eef5f0;
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
-          border-radius: var(--radius-md);
-          padding: 1.25rem;
-          margin-bottom: 1.75rem;
-          box-shadow: 0 4px 16px rgba(18, 65, 112, 0.06);
-        }
-
-        .author-card-mock {
-          display: flex;
-          flex-direction: column;
-          gap: 0.6rem;
-        }
-
-        .mock-header {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          padding-bottom: 0.5rem;
-          border-bottom: 1px solid var(--border-light);
-        }
-
-        .dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-        }
-
-        .dot-red { background: rgb(18, 65, 112); }
-        .dot-yellow { background: rgb(33, 91, 99); }
-        .dot-green { background: rgb(103, 192, 144); }
-
-        .mock-title {
-          font-size: 0.75rem;
-          font-weight: 600;
-          color: var(--text-light);
-          margin-left: 6px;
-        }
-
-        .mock-code-box {
-          font-family: var(--font-mono);
-          font-size: 0.75rem;
-          color: #2b3e34;
-          display: flex;
-          flex-direction: column;
-          gap: 0.35rem;
-        }
-
-        .kw {
-          color: var(--brand-emerald);
-          font-weight: 700;
-        }
-
-        .step-var {
-          color: rgb(18, 65, 112);
-        }
-
-        .mock-badge-line {
-          display: flex;
-          gap: 0.5rem;
-          margin-top: 0.5rem;
-        }
-
-        .badge-pill-micro {
-          font-size: 0.68rem;
-          background: var(--pastel-sage);
-          color: var(--brand-emerald);
-          padding: 2px 6px;
+        .deep-dive-halftone-plate {
           border-radius: 4px;
-          font-weight: 600;
-        }
-
-        .sim-timer-mock {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.85rem;
-          font-weight: 700;
-          color: var(--brand-emerald);
-          margin-bottom: 0.85rem;
-        }
-
-        .sim-sections-mock {
-          display: flex;
-          gap: 0.5rem;
-          flex-wrap: wrap;
-        }
-
-        .sec-tag {
-          font-size: 0.75rem;
-          padding: 0.35rem 0.75rem;
-          background: var(--bg-subtle);
-          border-radius: var(--radius-sm);
-          color: var(--text-muted);
-        }
-
-        .sec-tag.active {
-          background: var(--brand-emerald);
-          color: #ffffff;
-        }
-
-        .visual-ai-scan {
+          width: 220px;
+          max-width: 220px;
+          height: 180px;
+          max-height: 180px;
           display: flex;
           flex-direction: column;
-          gap: 0.6rem;
-        }
-
-        .scan-content {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          font-size: 0.825rem;
-          color: var(--text-main);
-          font-weight: 600;
-        }
-
-        .scan-result-micro {
-          display: flex;
-          gap: 0.6rem;
-          font-size: 0.75rem;
-        }
-
-        .tag-green {
-          background: var(--pastel-sage);
-          color: var(--brand-emerald);
-          padding: 2px 8px;
-          border-radius: var(--radius-full);
-          font-weight: 600;
-        }
-
-        .tag-amber {
-          background: rgba(33, 91, 99, 0.12);
-          color: rgb(18, 65, 112);
-          padding: 2px 8px;
-          border-radius: var(--radius-full);
-          font-weight: 600;
-        }
-
-        .radar-metric-mock {
-          display: flex;
-          flex-direction: column;
-          gap: 0.75rem;
-        }
-
-        .radar-col {
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-        }
-
-        .radar-label {
-          font-size: 0.78rem;
-          font-weight: 600;
-          color: var(--text-main);
-        }
-
-        .progress-track {
-          height: 6px;
-          background: #e6ede8;
-          border-radius: 9999px;
           overflow: hidden;
         }
 
-        .progress-bar {
-          height: 100%;
-          background: var(--brand-emerald);
-          border-radius: 9999px;
-        }
+        /* Responsive */
+        @media (max-width: 1024px) {
+          .steps-columns-container {
+            grid-template-columns: repeat(2, 1fr);
+          }
 
-        .w-85 { width: 88%; }
-        .w-60 { width: 62%; }
-        .bar-peach { background: rgb(33, 91, 99); }
+          .step-grid-col:nth-child(2) {
+            border-right: none;
+          }
 
-        .radar-val {
-          font-size: 0.72rem;
-          color: var(--text-muted);
-        }
+          .step-grid-col:nth-child(1),
+          .step-grid-col:nth-child(2) {
+            border-bottom: 1px solid rgba(190, 220, 200, 0.14);
+          }
 
-        .detail-card-footer {
-          margin-top: auto;
-        }
+          .step-deep-dive-pane {
+            min-height: auto;
+          }
 
-        @media (max-width: 900px) {
-          .how-grid {
+          .deep-dive-header {
+            flex-wrap: wrap;
+            min-height: auto;
+          }
+
+          .deep-dive-body {
             grid-template-columns: 1fr;
+            gap: 1.25rem;
+            min-height: auto;
+          }
+
+          .deep-dive-content-col {
+            min-height: auto;
+          }
+
+          .deep-dive-desc {
+            min-height: auto;
+          }
+
+          .deep-dive-bullets {
+            min-height: auto;
+          }
+
+          .deep-dive-illustration-col {
+            width: 220px;
+            max-width: 220px;
+            height: 180px;
+            justify-self: start;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .steps-columns-container {
+            grid-template-columns: 1fr;
+          }
+
+          .step-grid-col {
+            border-right: none;
+            border-bottom: 1px solid rgba(190, 220, 200, 0.14);
           }
         }
       `}</style>

@@ -478,8 +478,11 @@ function GoogleAuthModalInner({ mode = 'signin', onClose }) {
           text-align: center;
         }
         .pref-chip:hover:not(:disabled) {
-          border-color: var(--c-jade);
+          border-color: var(--accent-lime);
           color: var(--text-main);
+          background-color: rgba(16, 71, 52, 0.45);
+          background-image: radial-gradient(rgba(167, 243, 196, 0.16) 1px, transparent 0);
+          background-size: 4px 4px;
         }
         .pref-chip.active {
           background: var(--c-navy);
@@ -508,7 +511,7 @@ function GoogleAuthModalInner({ mode = 'signin', onClose }) {
           font-weight: 700;
           font-family: var(--font-sans);
           cursor: pointer;
-          transition: all 0.18s ease;
+          transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
           box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         }
 
@@ -516,11 +519,10 @@ function GoogleAuthModalInner({ mode = 'signin', onClose }) {
           background: #f8fafd;
           border-color: #4285f4;
           box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
-          transform: translateY(-1px);
         }
 
         .google-primary-auth-btn:active:not(:disabled) {
-          transform: translateY(0);
+          background: #f1f5fa;
         }
 
         .google-primary-auth-btn:disabled {
@@ -542,7 +544,7 @@ function GoogleAuthModalInner({ mode = 'signin', onClose }) {
           color: var(--text-muted);
           font-size: 0.74rem;
           cursor: pointer;
-          text-decoration: underline;
+          text-decoration: none;
           padding: 0.25rem;
         }
         .redirect-link-btn:hover {

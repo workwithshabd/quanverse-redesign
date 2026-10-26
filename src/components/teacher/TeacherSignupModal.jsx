@@ -24,13 +24,13 @@ export default function TeacherSignupModal({ isOpen, onClose }) {
 
   return (
     <div className="teacher-modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
-      <div 
+      <div
         className="teacher-modal-dialog glass-panel-elevated"
         onClick={(e) => e.stopPropagation()}
       >
-        <button 
-          type="button" 
-          className="modal-close-icon-btn" 
+        <button
+          type="button"
+          className="modal-close-icon-btn"
           onClick={onClose}
           aria-label="Close dialog"
         >
@@ -38,7 +38,7 @@ export default function TeacherSignupModal({ isOpen, onClose }) {
         </button>
 
         <div className="modal-content-scroller">
-          <TeacherSignupForm onSuccess={() => {}} isModal={true} />
+          <TeacherSignupForm onSuccess={() => { }} isModal={true} />
         </div>
       </div>
 

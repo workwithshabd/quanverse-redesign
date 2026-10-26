@@ -511,12 +511,16 @@ function SignInModalInner({ initialTab = 'signin', onClose }) {
           border-radius: 50%;
           color: var(--text-muted);
           cursor: pointer;
-          transition: all 0.15s ease;
+          transition: all 0.16s ease;
         }
         .modal-icon-btn:hover {
-          background: var(--bg-hover);
-          color: var(--text-main);
-          border-color: var(--c-teal);
+          background-color: rgba(16, 71, 52, 0.4);
+          color: var(--accent-lime);
+          border-color: rgba(67, 201, 139, 0.4);
+        }
+        .modal-icon-btn:focus-visible {
+          outline: 2px solid var(--accent-emerald);
+          outline-offset: 2px;
         }
 
         .signin-modal-body {
@@ -527,7 +531,8 @@ function SignInModalInner({ initialTab = 'signin', onClose }) {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 4px;
-          background: var(--bg-subtle);
+          background: rgba(0, 0, 0, 0.25);
+          border: 1px solid var(--border-light);
           padding: 3px;
           border-radius: var(--radius-lg);
           margin-bottom: 1.1rem;
@@ -535,19 +540,30 @@ function SignInModalInner({ initialTab = 'signin', onClose }) {
 
         .modal-tab-btn {
           padding: 0.55rem;
-          border: none;
+          border: 1px solid transparent;
           background: transparent;
           border-radius: var(--radius-md);
           font-size: 0.85rem;
           font-weight: 700;
           color: var(--text-muted);
           cursor: pointer;
-          transition: all 0.15s ease;
+          transition: all 0.16s ease;
+        }
+        .modal-tab-btn:hover:not(.active) {
+          color: #F1F5F2;
+          background-color: rgba(16, 71, 52, 0.35);
         }
         .modal-tab-btn.active {
-          background: var(--bg-card-solid);
-          color: var(--c-navy);
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+          background-color: rgba(16, 71, 52, 0.7);
+          background-image: radial-gradient(rgba(67, 201, 139, 0.15) 1px, transparent 0);
+          background-size: 4px 4px;
+          color: #F1F5F2;
+          border-color: rgba(67, 201, 139, 0.4);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(213, 243, 106, 0.2);
+        }
+        .modal-tab-btn:focus-visible {
+          outline: 2px solid var(--accent-lime);
+          outline-offset: 1px;
         }
 
         .modal-error-box {
@@ -709,8 +725,8 @@ function SignInModalInner({ initialTab = 'signin', onClose }) {
         }
         .input-wrap input:focus {
           outline: none;
-          border-color: var(--c-teal);
-          box-shadow: 0 0 0 3px var(--c-mint-subtle);
+          border-color: var(--accent-emerald);
+          box-shadow: 0 0 0 3px rgba(67, 201, 139, 0.2);
         }
 
         .toggle-pwd-btn {
@@ -740,7 +756,7 @@ function SignInModalInner({ initialTab = 'signin', onClose }) {
           cursor: pointer;
         }
         .checkbox-label input {
-          accent-color: var(--c-teal);
+          accent-color: var(--accent-emerald);
         }
 
         .modal-board-chips {
@@ -753,16 +769,30 @@ function SignInModalInner({ initialTab = 'signin', onClose }) {
           padding: 0.5rem;
           border-radius: var(--radius-md);
           border: 1.5px solid var(--border-light);
-          background: var(--bg-surface);
+          background-color: var(--bg-surface);
           font-size: 0.82rem;
           font-weight: 700;
           color: var(--text-main);
           cursor: pointer;
-          transition: all 0.15s ease;
+          transition: all 0.16s ease;
+        }
+        .board-chip:hover:not(.active) {
+          border-color: rgba(67, 201, 139, 0.4);
+          background-color: rgba(16, 71, 52, 0.35);
+          background-image: radial-gradient(rgba(213, 243, 106, 0.1) 1px, transparent 0);
+          background-size: 4px 4px;
         }
         .board-chip.active {
-          border-color: var(--c-navy);
-          background: var(--c-mint-wash);
+          border-color: var(--accent-lime);
+          background-color: rgba(16, 71, 52, 0.65);
+          background-image: radial-gradient(rgba(67, 201, 139, 0.18) 1.2px, transparent 0);
+          background-size: 4px 4px;
+          color: #F1F5F2;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(213, 243, 106, 0.2);
+        }
+        .board-chip:focus-visible {
+          outline: 2px solid var(--accent-lime);
+          outline-offset: 1px;
         }
 
         .modal-submit-btn {
@@ -783,7 +813,7 @@ function SignInModalInner({ initialTab = 'signin', onClose }) {
           font-weight: 700;
           cursor: pointer;
           padding: 0;
-          text-decoration: underline;
+          text-decoration: none;
         }
       `}</style>
     </div>

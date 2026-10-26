@@ -12,7 +12,6 @@ import {
   ShieldCheck, 
   CheckCircle2, 
   ArrowRight,
-  GraduationCap,
   Award,
   Zap,
   LogOut,
@@ -81,10 +80,10 @@ export default function SignInPage({ initialTab = 'signin' }) {
     if (/[A-Z]/.test(pwd) || /[^A-Za-z0-9]/.test(pwd)) score += 1;
     if (pwd.length >= 12) score += 1;
 
-    if (score <= 1) return { score: 1, label: 'Weak', color: '#ef4444', percent: 25 };
-    if (score === 2) return { score: 2, label: 'Fair', color: '#f59e0b', percent: 50 };
-    if (score === 3) return { score: 3, label: 'Good', color: '#10b981', percent: 75 };
-    return { score: 4, label: 'Strong', color: '#059669', percent: 100 };
+    if (score <= 1) return { score: 1, label: 'Weak', color: '#889088', percent: 25 };
+    if (score === 2) return { score: 2, label: 'Fair', color: '#D5F36A', percent: 50 };
+    if (score === 3) return { score: 3, label: 'Good', color: '#43C98B', percent: 75 };
+    return { score: 4, label: 'Strong', color: '#43C98B', percent: 100 };
   };
 
   const passwordStrength = getPasswordStrength(signUpPassword);
@@ -233,11 +232,6 @@ export default function SignInPage({ initialTab = 'signin' }) {
             
             {/* Left Column: Visual Showcase & Trust Proof */}
             <div className="signin-hero-showcase">
-              <div className="hero-tag-pill">
-                <GraduationCap size={14} className="text-emerald" />
-                <span>India's Dedicated Board Prep Engine</span>
-              </div>
-
               <h1 className="signin-showcase-title">
                 Master CBSE &amp; ICSE Step Marking.
                 <span className="gradient-highlight"> Without Leaving Marks on the Table.</span>
@@ -1216,7 +1210,7 @@ export default function SignInPage({ initialTab = 'signin' }) {
           padding: 0;
         }
         .forgot-password-link:hover {
-          text-decoration: underline;
+          text-decoration: none;
         }
 
         .input-with-icon {
@@ -1358,7 +1352,7 @@ export default function SignInPage({ initialTab = 'signin' }) {
 
         .terms-link {
           color: var(--c-navy);
-          text-decoration: underline;
+          text-decoration: none;
         }
 
         /* Forgot password drawer */
@@ -1410,8 +1404,8 @@ export default function SignInPage({ initialTab = 'signin' }) {
         .btn-spinner {
           width: 18px;
           height: 18px;
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          border-top-color: #ffffff;
+          border: 2px solid rgba(7, 17, 13, 0.2);
+          border-top-color: #07110D;
           border-radius: 50%;
           animation: spin 0.65s linear infinite;
         }
@@ -1441,7 +1435,7 @@ export default function SignInPage({ initialTab = 'signin' }) {
           padding: 0;
         }
         .switch-link-btn:hover {
-          text-decoration: underline;
+          text-decoration: none;
         }
 
         /* Authenticated State View */

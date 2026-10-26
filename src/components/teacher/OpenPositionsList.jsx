@@ -24,15 +24,14 @@ export default function OpenPositionsList({ onApplyRole }) {
 
   const departments = ['All', 'Academics & Content', 'AI & Educational Research', 'Institutional Growth'];
 
-  const filteredPositions = activeDept === 'All' 
-    ? positions 
+  const filteredPositions = activeDept === 'All'
+    ? positions
     : positions.filter(p => p.department === activeDept);
 
   return (
     <div className="open-positions-container" id="open-roles">
       <div className="positions-header">
         <div className="positions-title-block">
-          <span className="pill-badge pill-peach mb-2">Join the Core Team</span>
           <h3 className="positions-main-heading">Current Academic &amp; Strategic Openings</h3>
           <p className="positions-sub-heading">
             Whether you want flexible per-paper authoring or a dedicated leadership position, shape how millions of board candidates prepare.

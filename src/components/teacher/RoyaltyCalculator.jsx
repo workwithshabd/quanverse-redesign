@@ -125,8 +125,8 @@ export default function RoyaltyCalculator({ onApplyClick }) {
               </div>
             </div>
 
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="btn btn-primary w-full shadow-hover apply-from-calc-btn"
               onClick={onApplyClick}
             >

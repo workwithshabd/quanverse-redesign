@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Star } from 'lucide-react';
 
-
 export default function TestimonialsSection() {
   const [activeTab, setActiveTab] = useState('students');
 
@@ -11,27 +10,27 @@ export default function TestimonialsSection() {
       school: 'Delhi Public School, R.K. Puram',
       board: 'CBSE Class 10',
       score: '97.4%',
+      badge: '97.4% BOARD RESULT',
       avatarText: 'AS',
-      avatarBg: 'var(--pastel-sage)',
-      quote: 'The AI step marking pointed out that I was repeatedly skipping the condition before using the Quadratic formula. That single correction saved me at least 4 marks in the actual board paper.'
+      quote: 'The AI step marking caught that I was skipping formula conditions in Algebra. That single fix saved me 4 marks on the actual board exam.'
     },
     {
       name: 'Ananya Deshmukh',
       school: 'The Cathedral & John Connon, Mumbai',
       board: 'ICSE Class 10',
       score: '98.2%',
+      badge: '98.2% BOARD RESULT',
       avatarText: 'AD',
-      avatarBg: 'var(--pastel-lavender)',
-      quote: 'Writing on real paper, snapping a photo, and getting an official rubric breakdown in 45 seconds is unbelievable. The Topper Model comparisons completely transformed my science presentation.'
+      quote: 'Uploading real notebook sheets and getting official rubric feedback in 45 seconds is game-changing. The Topper comparisons transformed my presentation.'
     },
     {
       name: 'Kabir Varma',
       school: 'National Public School, Bengaluru',
       board: 'CBSE Class 10',
       score: '96.0%',
+      badge: '96.0% BOARD RESULT',
       avatarText: 'KV',
-      avatarBg: 'var(--pastel-peach)',
-      quote: 'I jumped from 76% in my school first pre-board to 96% in final boards. The chapter-level weakness radar prevented me from wasting weeks re-reading stuff I already knew.'
+      quote: 'I jumped from 76% in pre-boards to 96% in final boards. The weakness radar stopped me from wasting time re-reading material I already knew.'
     }
   ];
 
@@ -41,203 +40,233 @@ export default function TestimonialsSection() {
       title: 'Senior HOD Mathematics (22 yrs exp)',
       school: 'Springdales School, New Delhi',
       avatarText: 'SM',
-      avatarBg: 'var(--pastel-butter)',
-      quote: 'Evaluating 160 board mock papers by hand usually takes our math department three grueling weekends. With Quanverse AI assisting our rubrics, papers were graded in 90 minutes with zero human fatigue.'
+      badge: '22 YRS BOARD EXP',
+      quote: 'Grading 160 board papers by hand used to take entire weekends. With Quanverse rubrics, papers were evaluated in 90 minutes with zero fatigue.'
     },
     {
       name: 'Dr. Rajesh Sen',
       title: 'ICSE Science Master & Author',
       school: 'St. Xavier’s Collegiate, Kolkata',
       avatarText: 'RS',
-      avatarBg: 'var(--pastel-sage)',
-      quote: 'The authoring studio makes it effortless to create rigorous, competency-aligned questions. Seeing thousands of students attempt my papers while generating monthly royalties is immensely fulfilling.'
+      badge: 'VERIFIED EXAMINER',
+      quote: 'The authoring studio makes it seamless to publish competency-aligned mock papers and guide thousands of students toward board mastery.'
+    },
+    {
+      name: 'Mr. Anand K. Nair',
+      title: 'Senior Physics Lead (18 yrs exp)',
+      school: 'Bhavan’s Vidya Mandir, Kochi',
+      avatarText: 'AN',
+      badge: 'CBSE EVALUATOR',
+      quote: 'The step marking mirrors official board keys with precision. It trains students to articulate every intermediate step examiners look for.'
     }
   ];
 
   const currentList = activeTab === 'students' ? studentReviews : teacherReviews;
 
   return (
-    <section className="testimonials-section section-spacing" id="testimonials">
+    <section className="editorial-testimonials-section" id="testimonials">
       <div className="app-container">
         
         {/* Header */}
-        <div className="section-head text-center gsap-reveal">
-          <div className="pill-badge pill-sage mb-3 gsap-float">
-            <Star size={13} className="fill-current text-butter" />
-            <span>Proven Board Outcomes</span>
+        <div className="editorial-section-header">
+          <div className="header-meta-row font-mono text-xs text-muted mb-2">
+            <span className="text-accent-emerald font-bold">COMMUNITY VERIFICATION</span>
           </div>
-          <h2 className="section-title">
-            Trusted by Class 10 <span className="highlight-text">Toppers &amp; Examiners</span>
-          </h2>
-          <p className="section-subtitle">
-            See how step-level feedback transforms student performance across India.
-          </p>
 
-          {/* Toggle */}
-          <div className="testimonial-tabs-row">
-            <button
-              type="button"
-              className={`test-tab-btn ${activeTab === 'students' ? 'active' : ''}`}
-              onClick={() => setActiveTab('students')}
-            >
-              Student Stories
-            </button>
-            <button
-              type="button"
-              className={`test-tab-btn ${activeTab === 'teachers' ? 'active' : ''}`}
-              onClick={() => setActiveTab('teachers')}
-            >
-              Teacher &amp; HOD Endorsements
-            </button>
+          <div className="test-header-flex">
+            <div className="title-with-flourish">
+              <h2 className="section-title text-main">
+                Real student turnarounds from 76% to 96%
+              </h2>
+            </div>
+
+            {/* Role Toggle Tabs */}
+            <div className="test-toggle-tabs font-mono text-xs">
+              <button
+                type="button"
+                className={`test-tab-btn ${activeTab === 'students' ? 'active-tab' : ''}`}
+                onClick={() => setActiveTab('students')}
+              >
+                [ STUDENT STORIES ]
+              </button>
+              <button
+                type="button"
+                className={`test-tab-btn ${activeTab === 'teachers' ? 'active-tab' : ''}`}
+                onClick={() => setActiveTab('teachers')}
+              >
+                [ EDUCATOR PERSPECTIVES ]
+              </button>
+            </div>
           </div>
+
+          <p className="section-subtitle">
+            Verified feedback from students and educators.
+          </p>
         </div>
 
-        {/* Reviews Grid */}
-        <div className="reviews-grid gsap-stagger-group">
-          {currentList.map((rev, i) => (
-            <div key={i} className="review-card glass-panel gsap-stagger-item">
-              <div className="review-card-top">
-                <div className="stars-row">
-                  {[...Array(5)].map((_, s) => (
-                    <Star key={s} size={14} className="fill-current text-butter" />
-                  ))}
-                </div>
-                {rev.score && (
-                  <span className="pill-badge pill-sage score-pill-bold">
-                    Scored {rev.score}
-                  </span>
-                )}
-              </div>
+        {/* Master Editorial Testimonials Grid */}
+        <div className="editorial-testimonials-grid">
 
-              <p className="review-quote">"{rev.quote}"</p>
-
-              <div className="reviewer-author-row">
-                <div className="reviewer-avatar" style={{ background: rev.avatarBg }}>
-                  <span>{rev.avatarText}</span>
+          <div className="testimonials-columns">
+            {currentList.map((item, idx) => (
+              <div key={idx} className="testimonial-col">
+                {/* Top Meta */}
+                <div className="test-col-header font-mono text-xs mb-3">
+                  <div className="flex items-center gap-1 text-accent-lime">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={11} fill="currentColor" stroke="none" />
+                    ))}
+                  </div>
+                  {item.badge && (
+                    <span className="score-badge text-accent-lime font-bold">[{item.badge}]</span>
+                  )}
                 </div>
-                <div className="reviewer-info">
-                  <h4 className="reviewer-name">{rev.name}</h4>
-                  <span className="reviewer-meta">{rev.board || rev.title} • {rev.school}</span>
+
+                <blockquote className="test-quote text-main">
+                  "{item.quote}"
+                </blockquote>
+
+                {/* Author Info */}
+                <div className="test-author-box font-mono text-xs mt-auto pt-2.5 border-t border-[rgba(190,220,200,0.1)]">
+                  <div className="author-name text-main font-semibold text-sm">
+                    {item.name}
+                  </div>
+                  <div className="author-sub text-muted mt-0.5">
+                    {item.school}
+                  </div>
+                  {item.board && (
+                    <div className="author-board text-lime text-[11px] mt-0.5">
+                      {item.board}
+                    </div>
+                  )}
+                  {item.title && (
+                    <div className="author-title text-lime text-[11px] mt-0.5">
+                      {item.title}
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
         </div>
 
       </div>
 
       <style>{`
-        .testimonial-tabs-row {
-          display: inline-flex;
-          background: #fce4e8;
-          border: 1px solid #f9c7d0;
-          padding: 3px;
-          border-radius: var(--radius-full);
-          margin-top: 1.5rem;
+        .editorial-testimonials-section {
+          position: relative;
+          padding: clamp(3rem, 5.5vw, 4.5rem) 0;
+          background: transparent;
+        }
+
+        .editorial-testimonials-section .editorial-section-header {
+          margin-bottom: clamp(1.75rem, 2.8vw, 2.5rem);
+        }
+
+        .test-header-flex {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .test-toggle-tabs {
+          display: flex;
+          gap: 0.35rem;
         }
 
         .test-tab-btn {
-          padding: 0.45rem 1.2rem;
-          font-size: 0.85rem;
-          font-weight: 600;
-          border: none;
-          background: transparent;
-          color: var(--text-muted);
-          border-radius: var(--radius-full);
+          padding: 0.35rem 0.75rem;
+          background: rgba(11, 36, 26, 0.4);
+          border: 1px solid rgba(190, 220, 200, 0.14);
+          color: #B5C0B8;
+          border-radius: 4px;
           cursor: pointer;
-          transition: all var(--transition-fast);
+          font-size: 0.72rem;
+          transition: all 0.2s ease;
         }
 
-        .test-tab-btn.active {
-          background: #f2f5f0;
-          color: rgb(18, 65, 112);
-          box-shadow: 0 2px 8px rgba(18, 65, 112, 0.15);
+        .test-tab-btn:hover {
+          color: #F1F5F2;
+          border-color: rgba(67, 201, 139, 0.55);
+          background-color: rgba(16, 71, 52, 0.45);
         }
 
-        .reviews-grid {
+        .test-tab-btn.active-tab {
+          background-color: rgba(16, 71, 52, 0.60);
+          border-color: var(--color-lime);
+          color: var(--color-lime);
+        }
+
+        /* Master Editorial Testimonials Grid */
+        .editorial-testimonials-grid {
+          position: relative;
+          border: 1px solid rgba(190, 220, 200, 0.16);
+          background: rgba(7, 17, 13, 0.45);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+        }
+
+        .testimonials-columns {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 1.5rem;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          align-items: stretch;
         }
 
-        .review-card {
-          padding: 2rem;
-          border-radius: var(--radius-xl);
-          background: #f2f5f0;
+        .testimonial-col {
+          padding: clamp(1.4rem, 2.4vw, 1.95rem);
+          border-right: 1px solid rgba(190, 220, 200, 0.14);
           display: flex;
           flex-direction: column;
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
-          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
-          transition: all var(--transition-smooth);
+          background: rgba(7, 17, 13, 0.4);
+          min-height: 14.5rem;
         }
 
-        .review-card:hover {
-          transform: translateY(-4px);
-          background: #f7faf5;
-          border-color: rgb(33, 91, 99);
-          box-shadow: 0 16px 36px -8px rgba(18, 65, 112, 0.16);
+        .testimonial-col:last-child {
+          border-right: none;
         }
 
-        .review-card-top {
+        .test-col-header {
+          min-height: 1.5rem;
           display: flex;
-          align-items: center;
           justify-content: space-between;
-          margin-bottom: 1.25rem;
+          align-items: center;
+          margin-bottom: 0.5rem;
         }
 
-        .stars-row {
+        .test-quote {
+          flex: 1;
+          min-height: 4.5rem;
           display: flex;
-          gap: 3px;
+          align-items: flex-start;
+          line-height: 1.55;
+          margin-bottom: 1rem;
+          font-size: 0.875rem;
+          color: #F1F5F2;
         }
 
-        .score-pill-bold {
-          font-weight: 700;
-        }
-
-        .review-quote {
-          font-size: 0.95rem;
-          color: var(--text-main);
-          line-height: 1.6;
-          margin-bottom: 1.75rem;
-          font-style: italic;
-        }
-
-        .reviewer-author-row {
+        .test-author-box {
           margin-top: auto;
-          display: flex;
-          align-items: center;
-          gap: 0.85rem;
+          padding-top: 0.55rem;
+          border-top: 1px dashed rgba(190, 220, 200, 0.1);
+          min-height: 3.85rem;
         }
 
-        .reviewer-avatar {
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: var(--font-display);
-          font-weight: 800;
-          font-size: 0.9rem;
-          color: var(--brand-emerald);
-          flex-shrink: 0;
-        }
+        @media (max-width: 900px) {
+          .testimonials-columns {
+            grid-template-columns: 1fr;
+          }
 
-        .reviewer-info {
-          display: flex;
-          flex-direction: column;
-        }
+          .testimonial-col {
+            border-right: none;
+            border-bottom: 1px solid rgba(190, 220, 200, 0.14);
+          }
 
-        .reviewer-name {
-          font-size: 0.95rem;
-          font-weight: 700;
-          color: var(--text-main);
-          line-height: 1.2;
-        }
-
-        .reviewer-meta {
-          font-size: 0.75rem;
-          color: var(--text-muted);
+          .testimonial-col:last-child {
+            border-bottom: none;
+          }
         }
       `}</style>
     </section>

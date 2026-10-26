@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { 
-  Users, 
   Coins, 
   ArrowRight, 
   CheckCircle 
@@ -32,12 +31,8 @@ export default function TeacherPartnershipSection() {
             
             {/* Left Content */}
             <div className="teacher-info-col">
-              <div className="pill-badge pill-lavender mb-3">
-                <Users size={14} />
-                <span>Educator Creator Network</span>
-              </div>
               <h2 className="teacher-heading">
-                Are You a Senior Class 10 Teacher? <span className="highlight-text">Earn While You Author</span>.
+                Are You a Senior Class 10 Teacher? Earn While You Author.
               </h2>
               <p className="teacher-sub">
                 Quanverse connects experienced school teachers with thousands of board candidates. 
@@ -87,7 +82,7 @@ export default function TeacherPartnershipSection() {
             <div className="royalty-calc-col">
               <div className="calc-card">
                 <div className="calc-header">
-                  <Coins size={20} className="text-butter" />
+                  <Coins size={20} className="text-accent-emerald" />
                   <div>
                     <h3 className="calc-title">Monthly Royalty Calculator</h3>
                     <span className="calc-sub">Estimate your monthly creator earnings</span>
@@ -125,7 +120,7 @@ export default function TeacherPartnershipSection() {
                       max="15"
                       value={papersCurated}
                       onChange={(e) => setPapersCurated(Number(e.target.value))}
-                      className="custom-range range-lavender"
+                      className="custom-range range-sage"
                     />
                   </div>
 
@@ -152,10 +147,11 @@ export default function TeacherPartnershipSection() {
       <style>{`
         .teacher-feature-card {
           padding: clamp(2rem, 4vw, 3.5rem);
-          border-radius: var(--radius-xl);
-          background: linear-gradient(135deg, #e7edf0 0%, #dbe5ea 100%);
-          border: 1.5px solid rgba(18, 65, 112, 0.25);
-          box-shadow: 0 16px 40px -8px rgba(18, 65, 112, 0.12);
+          border-radius: 0px;
+          background: rgba(7, 17, 13, 0.45);
+          border: 1px solid rgba(190, 220, 200, 0.16);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
         }
 
         .teacher-grid {
@@ -168,11 +164,12 @@ export default function TeacherPartnershipSection() {
         .teacher-heading {
           font-size: clamp(1.6rem, 1.3rem + 1vw, 2.3rem);
           margin-bottom: 1rem;
+          color: #F1F5F2;
         }
 
         .teacher-sub {
           font-size: 0.95rem;
-          color: var(--text-muted);
+          color: #B5C0B8;
           line-height: 1.6;
           margin-bottom: 1.5rem;
         }
@@ -189,8 +186,17 @@ export default function TeacherPartnershipSection() {
           align-items: flex-start;
           gap: 0.75rem;
           font-size: 0.85rem;
-          color: var(--text-main);
+          color: #F1F5F2;
           line-height: 1.45;
+          padding: 0.45rem 0.65rem;
+          border-radius: 4px;
+          transition: background 0.2s ease;
+        }
+
+        .perk-row:hover {
+          background-color: rgba(16, 71, 52, 0.28);
+          background-image: radial-gradient(rgba(167, 243, 196, 0.14) 1px, transparent 0);
+          background-size: 5px 5px;
         }
 
         .perk-check {
@@ -209,14 +215,16 @@ export default function TeacherPartnershipSection() {
           flex: 1;
           min-width: 220px;
           padding: 0.75rem 1rem;
-          border-radius: var(--radius-full);
-          border: 1.5px solid rgba(33, 91, 99, 0.3);
-          background: #f7faf5;
-          font-size: 0.9rem;
+          border-radius: 4px;
+          border: 1px solid rgba(190, 220, 200, 0.2);
+          background: rgba(11, 36, 26, 0.5);
+          color: #F1F5F2;
+          font-size: 0.875rem;
+          outline: none;
         }
 
         .teacher-input:focus {
-          border-color: rgb(18, 65, 112);
+          border-color: var(--color-lime);
         }
 
         .apply-success-box {
@@ -224,20 +232,20 @@ export default function TeacherPartnershipSection() {
           align-items: center;
           gap: 0.6rem;
           padding: 0.75rem 1rem;
-          background: var(--pastel-sage);
-          color: var(--brand-emerald);
-          border-radius: var(--radius-md);
+          background: rgba(16, 71, 52, 0.35);
+          color: var(--accent-lime);
+          border: 1px solid rgba(67, 201, 139, 0.3);
+          border-radius: 4px;
           font-size: 0.85rem;
           font-weight: 600;
         }
 
         /* Calculator Card */
         .calc-card {
-          background: #f2f5f0;
-          border: 1.5px solid rgba(33, 91, 99, 0.25);
-          border-radius: var(--radius-lg);
+          background: rgba(11, 36, 26, 0.35);
+          border: 1px solid rgba(190, 220, 200, 0.14);
+          border-radius: 4px;
           padding: 1.75rem;
-          box-shadow: 0 16px 40px -8px rgba(18, 65, 112, 0.12);
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
@@ -291,8 +299,8 @@ export default function TeacherPartnershipSection() {
         }
 
         .calc-result-box {
-          background: #f7faf5;
-          border: 1px solid var(--pastel-butter-border);
+          background: rgba(16, 71, 52, 0.25);
+          border: 1px solid rgba(190, 220, 200, 0.16);
           border-radius: var(--radius-md);
           padding: 1.25rem;
           text-align: center;
@@ -319,7 +327,7 @@ export default function TeacherPartnershipSection() {
         .est-figure {
           font-size: 2.25rem;
           font-weight: 800;
-          color: #a14c24;
+          color: var(--accent-lime);
           line-height: 1;
         }
 

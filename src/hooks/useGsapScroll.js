@@ -111,18 +111,6 @@ export function useGsapScroll(containerRef) {
         }
       });
 
-      // Lively sinusoidal physics for badges and meters
-      const floatItems = gsap.utils.toArray('.gsap-float');
-      floatItems.forEach((el, idx) => {
-        gsap.to(el, {
-          y: idx % 2 === 0 ? -5 : 5,
-          duration: 2.0 + (idx * 0.25),
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut'
-        });
-      });
-
     }, containerRef);
 
     ctxRef.current = ctx;

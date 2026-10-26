@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Bell, 
   ExternalLink, 
   ShieldCheck, 
   Search 
@@ -24,186 +23,210 @@ export default function NewsCircularsSection() {
   );
 
   return (
-    <section className="news-section section-spacing" id="news">
+    <section className="editorial-news-section" id="news">
       <div className="app-container">
         
         {/* Header with Search */}
-        <div className="news-header-row gsap-reveal">
-          <div>
-            <div className="pill-badge pill-sage mb-2 gsap-float">
-              <Bell size={13} />
-              <span>Verified Circulars &amp; Directives</span>
-            </div>
-            <h2 className="section-title">
-              Class 10 <span className="highlight-text">Board Exam Intelligence</span>
-            </h2>
-            <p className="section-subtitle">
-              Official circulars from CBSE &amp; CISCE translated into actionable exam prep advice.
-            </p>
+        <div className="editorial-section-header">
+          <div className="header-meta-row font-mono text-xs text-muted mb-2">
+            <span className="text-accent-emerald font-bold">BOARD INTELLIGENCE</span>
           </div>
 
-          <div className="news-search-box">
-            <Search size={16} className="search-icon" />
-            <input
-              type="text"
-              placeholder="Search circulars, specimen papers..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="news-search-input"
-            />
+          <div className="news-header-flex">
+            <div className="title-with-flourish">
+              <h2 className="section-title text-main">
+                Verified Directives &amp; Specimen Blueprint Alerts
+              </h2>
+            </div>
+
+            <div className="news-search-box">
+              <Search size={14} className="search-icon text-muted" />
+              <input
+                type="text"
+                placeholder="Search circulars, blueprints..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="news-search-input font-mono text-xs"
+              />
+              <span className="search-shortcut font-mono text-muted">/</span>
+            </div>
           </div>
+
+          <p className="section-subtitle">
+            Official CBSE and CISCE notifications decoded into marking blueprints.
+          </p>
         </div>
 
-        {/* News Cards Grid */}
-        <div className="news-grid gsap-stagger-group">
-          {filtered.map((item) => (
-            <article key={item.id} className="news-card glass-panel gsap-stagger-item">
-              <div className="news-card-top">
-                <span className={`pill-badge pill-${item.badgeColor} news-cat-pill`}>
-                  {item.category}
-                </span>
-                <span className="news-date">{item.date}</span>
-              </div>
+        {/* Master Editorial News Grid */}
+        <div className="editorial-news-grid">
 
-              <h3 className="news-title">{item.title}</h3>
-              <p className="news-summary">{item.summary}</p>
-
-              <div className="news-card-footer">
-                <div className="source-pill">
-                  <ShieldCheck size={13} className="text-emerald" />
-                  <span>Source: {item.source}</span>
+          <div className="news-grid-columns">
+            {filtered.map((item) => (
+              <article key={item.id} className="news-grid-col">
+                <div className="news-col-top font-mono text-xs mb-3">
+                  <span className="text-accent-emerald font-semibold">[{item.category.toUpperCase()}]</span>
+                  <span className="text-muted">{item.date}</span>
                 </div>
-                <button 
-                  type="button" 
-                  className="read-more-link"
-                  onClick={() => alert(`Opening official notification summary for: ${item.title}`)}
-                >
-                  <span>Read Breakdown</span>
-                  <ExternalLink size={12} />
-                </button>
-              </div>
-            </article>
-          ))}
+
+                <h3 className="news-col-title text-main mb-2">
+                  {item.title}
+                </h3>
+
+                <p className="news-col-summary text-muted mb-6 leading-relaxed">
+                  {item.summary}
+                </p>
+
+                <div className="news-col-footer font-mono text-xs mt-auto">
+                  <div className="source-meta flex items-center gap-1.5 text-muted">
+                    <ShieldCheck size={13} className="text-accent-emerald" />
+                    <span>SRC: {item.source}</span>
+                  </div>
+                  <button 
+                    type="button" 
+                    className="read-more-link text-accent-lime font-mono font-semibold flex items-center gap-1 hover:text-accent-lime-hover"
+                    onClick={() => alert(`Official notification summary for: ${item.title}`)}
+                  >
+                    <span>DECODED RUBRIC</span>
+                    <ExternalLink size={11} />
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+
         </div>
 
       </div>
 
       <style>{`
-        .news-header-row {
+        .editorial-news-section {
+          position: relative;
+          padding: clamp(3rem, 5.5vw, 4.5rem) 0;
+          background: transparent;
+        }
+
+        .editorial-news-section .editorial-section-header {
+          margin-bottom: clamp(1.75rem, 2.8vw, 2.5rem);
+        }
+
+        .news-header-flex {
           display: flex;
-          align-items: flex-end;
           justify-content: space-between;
-          gap: 2rem;
-          margin-bottom: 2.75rem;
+          align-items: flex-end;
           flex-wrap: wrap;
+          gap: 1rem;
         }
 
         .news-search-box {
           position: relative;
+          display: flex;
+          align-items: center;
           width: 100%;
-          max-width: 340px;
+          max-width: 300px;
         }
 
         .search-icon {
           position: absolute;
-          left: 14px;
-          top: 50%;
-          transform: translateY(-50%);
-          color: var(--text-light);
+          left: 10px;
+          pointer-events: none;
         }
 
         .news-search-input {
           width: 100%;
-          padding: 0.7rem 1rem 0.7rem 2.5rem;
-          border-radius: var(--radius-full);
-          border: 1.5px solid rgba(103, 192, 144, 0.4);
-          background: #f2f5f0;
-          font-size: 0.85rem;
+          padding: 0.45rem 1.8rem 0.45rem 2rem;
+          background: rgba(11, 36, 26, 0.5);
+          border: 1px solid rgba(190, 220, 200, 0.14);
+          border-radius: 4px;
+          color: #F1F5F2;
+          font-size: 0.8rem;
+          outline: none;
+          transition: border-color 0.2s ease;
         }
 
-        .news-grid {
+        .news-search-input:focus {
+          border-color: var(--color-lime);
+        }
+
+        .search-shortcut {
+          position: absolute;
+          right: 10px;
+          font-size: 0.7rem;
+          pointer-events: none;
+        }
+
+        /* Master Editorial News Grid */
+        .editorial-news-grid {
+          position: relative;
+          border: 1px solid rgba(190, 220, 200, 0.16);
+          background: rgba(7, 17, 13, 0.45);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+        }
+
+        .news-grid-columns {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-          gap: 1.5rem;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
-        .news-card {
-          padding: 1.75rem;
-          border-radius: var(--radius-lg);
-          background: #f2f5f0;
+        .news-grid-col {
+          padding: clamp(1.4rem, 2.4vw, 1.95rem);
+          border-right: 1px solid rgba(190, 220, 200, 0.14);
           display: flex;
           flex-direction: column;
-          border: 1.5px solid rgba(103, 192, 144, 0.35);
-          box-shadow: 0 10px 28px -6px rgba(18, 65, 112, 0.08);
-          transition: all var(--transition-smooth);
+          background: rgba(7, 17, 13, 0.4);
         }
 
-        .news-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 36px -8px rgba(18, 65, 112, 0.16);
-          border-color: rgb(33, 91, 99);
-          background: #f7faf5;
+        .news-grid-col:last-child {
+          border-right: none;
         }
 
-        .news-card-top {
+        .news-col-top {
+          min-height: auto;
           display: flex;
-          align-items: center;
           justify-content: space-between;
-          margin-bottom: 1rem;
+          align-items: center;
+          margin-bottom: 0.35rem;
         }
 
-        .news-date {
-          font-size: 0.75rem;
-          color: var(--text-light);
-          font-weight: 500;
+        .news-col-title {
+          min-height: auto;
+          display: flex;
+          align-items: flex-start;
+          line-height: 1.3;
+          margin-bottom: 0.35rem;
+          font-size: 1.05rem;
+          font-weight: 600;
+          color: #F1F5F2;
         }
 
-        .news-title {
-          font-size: 1.15rem;
-          margin-bottom: 0.75rem;
-          line-height: 1.35;
-          color: var(--text-main);
+        .news-col-summary {
+          flex: 1;
+          margin-bottom: 0.65rem;
+          font-size: 0.84rem;
+          line-height: 1.5;
+          color: #B5C0B8;
         }
 
-        .news-summary {
-          font-size: 0.88rem;
-          color: var(--text-muted);
-          line-height: 1.55;
-          margin-bottom: 1.5rem;
-        }
-
-        .news-card-footer {
+        .news-col-footer {
           margin-top: auto;
           display: flex;
-          align-items: center;
           justify-content: space-between;
-          padding-top: 1rem;
-          border-top: 1px solid var(--border-light);
-        }
-
-        .source-pill {
-          display: flex;
           align-items: center;
-          gap: 0.35rem;
-          font-size: 0.75rem;
-          color: var(--text-muted);
-          font-weight: 500;
+          padding-top: 0.55rem;
+          border-top: 1px dashed rgba(190, 220, 200, 0.1);
+          flex-wrap: wrap;
+          gap: 0.4rem;
         }
 
-        .read-more-link {
-          display: flex;
-          align-items: center;
-          gap: 0.35rem;
-          font-size: 0.78rem;
-          font-weight: 700;
-          color: var(--brand-emerald);
-          background: transparent;
-          border: none;
-          cursor: pointer;
-        }
+        @media (max-width: 900px) {
+          .news-grid-columns {
+            grid-template-columns: 1fr;
+          }
 
-        .read-more-link:hover {
-          text-decoration: underline;
+          .news-grid-col {
+            border-right: none;
+            border-bottom: 1px solid rgba(190, 220, 200, 0.14);
+          }
         }
       `}</style>
     </section>

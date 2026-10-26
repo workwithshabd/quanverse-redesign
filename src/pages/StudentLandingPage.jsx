@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import HeroSection from '../components/HeroSection';
+import HorizontalScrollTextSection from '../components/HorizontalScrollTextSection';
 import BoardReadinessSection from '../components/BoardReadinessSection';
 import HowItWorksSection from '../components/HowItWorksSection';
 import FeaturesBento from '../components/FeaturesBento';
@@ -28,12 +29,17 @@ export default function StudentLandingPage() {
       {/* 1. Hero Section with Live Step-Marking AI Sandbox */}
       <HeroSection onOpenDemoExam={openDemoExam} />
 
-      {/* 2. Interactive Board Readiness Simulator */}
-      <BoardReadinessSection onOpenDemoExam={openDemoExam} />
+      {/* Kinetic Pinned Horizontal Scroll Stream */}
+      <HorizontalScrollTextSection />
 
-      {/* 3. How It Works (Examiner rubrics meet AI feedback) */}
+     
+
+      {/* 2. How It Works (Examiner rubrics meet AI feedback) */}
       <HowItWorksSection onOpenDemoExam={openDemoExam} />
 
+
+      {/* 3. Interactive Board Readiness Simulator */}
+      <BoardReadinessSection onOpenDemoExam={openDemoExam} />
       {/* 4. Core Features Bento Grid */}
       <FeaturesBento onOpenDemoExam={openDemoExam} />
 

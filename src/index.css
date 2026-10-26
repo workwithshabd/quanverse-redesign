@@ -1,191 +1,150 @@
-/* Quanverse Modern Design System - High-Contrast Chromatic Palette & Dual-Mode Engine */
+/* Quanverse Design System - Inspired by Zuse (Dark Mode Only) */
 :root {
-  /* Fonts */
-  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  /* Fonts: Syne display heading + Schibsted Grotesk + Geist UI + Newsreader editorial serif + Geist Mono */
+  --font-heading: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Schibsted Grotesk', 'Geist', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Geist', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Newsreader', 'Instrument Serif', Georgia, serif;
+  --font-serif-display: 'Instrument Serif', Georgia, serif;
+  --font-sans-editorial: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
 
   /* ============================================================
-     USER SIGNATURE 4-COLOR PALETTE
-     1. rgb(170, 255, 199) - Luminous Mint
-     2. rgb(103, 192, 144) - Vibrant Jade Green
-     3. rgb(33, 91, 99)    - Deep Pine Teal
-     4. rgb(18, 65, 112)   - Deep Oceanic Navy
+     FOCUSED DUAL-ACCENT COLOR SYSTEM (Dark Emerald & Acid Lime)
+     Restrained, editorial, and calm — strictly 2 accent colors:
+     - Emerald: #43C98B — primary brand accent, key actions, success
+     - Acid lime: #D5F36A — selective highlight, active state, emphasis
+     - Off-white: #F1F5F2 — primary text
+     - Muted sage: #B5C0B8 — supporting editorial text
+     - Deep charcoal-green: #07110D — primary background
      ============================================================ */
-  --c-mint: rgb(170, 255, 199);
-  --c-jade: rgb(103, 192, 144);
-  --c-teal: rgb(33, 91, 99);
-  --c-navy: rgb(18, 65, 112);
+  --accent-emerald: #43C98B;
+  --accent-emerald-hover: #38b77c;
+  --accent-lime: #D5F36A;
+  --accent-lime-hover: #c8e858;
+  --accent-amber: #43C98B; /* Remapped to emerald - orange removed */
+  --accent-amber-hover: #38b77c;
+  --accent-coral: #D5F36A; /* Remapped to acid lime - coral removed */
+  --accent-lavender: #43C98B; /* Remapped to emerald - purple removed */
 
-  /* Transparent Tints */
-  --c-mint-wash: rgba(170, 255, 199, 0.45);
-  --c-mint-subtle: rgba(170, 255, 199, 0.20);
-  --c-jade-wash: rgba(103, 192, 144, 0.25);
-  --c-teal-wash: rgba(33, 91, 99, 0.12);
-  --c-navy-wash: rgba(18, 65, 112, 0.08);
+  --bg-primary: #07110D;
+  --bg-secondary: #0B241A;
+  --color-emerald-glow: #104734;
+  --color-mint: #A7F3C4;
+  --color-lime: #D5F36A;
+  --color-lime-hover: #c8e858;
+  --color-lime-glow: rgba(213, 243, 106, 0.22);
+  --color-diff-pos: #43C98B;
+  --color-diff-neg: #8F9D93;
 
-  /* Brand Accents mapped to the 4 colors */
-  --accent-emerald: rgb(103, 192, 144);
-  --accent-emerald-dark: rgb(33, 91, 99);
-  --accent-emerald-light: rgb(170, 255, 199);
-  --accent-emerald-glow: rgba(103, 192, 144, 0.35);
+  /* Signature chromatic tokens */
+  --c-mint: #A7F3C4;
+  --c-jade: #43C98B;
+  --c-teal: #215b63;
+  --c-navy: #124170;
 
-  --accent-violet: rgb(18, 65, 112);
-  --accent-violet-dark: rgb(18, 65, 112);
-  --accent-violet-light: rgb(33, 91, 99);
-  --accent-violet-glow: rgba(18, 65, 112, 0.25);
+  /* Transparent Tints for Editorial Accents (Emerald, Lime, and Muted Neutral) */
+  --tint-emerald-subtle: rgba(67, 201, 139, 0.12);
+  --tint-emerald-border: rgba(67, 201, 139, 0.28);
+  --tint-lime-subtle: rgba(213, 243, 106, 0.12);
+  --tint-lime-border: rgba(213, 243, 106, 0.30);
+  --tint-neutral-subtle: rgba(190, 220, 200, 0.08);
+  --tint-neutral-border: rgba(190, 220, 200, 0.20);
+  --tint-amber-subtle: rgba(67, 201, 139, 0.10);
+  --tint-amber-border: rgba(67, 201, 139, 0.25);
+  --tint-coral-subtle: rgba(213, 243, 106, 0.10);
+  --tint-coral-border: rgba(213, 243, 106, 0.25);
+  --tint-lavender-subtle: rgba(67, 201, 139, 0.10);
+  --tint-lavender-border: rgba(67, 201, 139, 0.25);
 
-  --accent-cyan: rgb(33, 91, 99);
-  --accent-cyan-dark: rgb(18, 65, 112);
-  --accent-cyan-light: rgb(103, 192, 144);
-  --accent-cyan-glow: rgba(33, 91, 99, 0.25);
+  /* Brand Accents */
+  --brand-emerald: #43C98B;
+  --brand-emerald-dark: #0B241A;
+  --brand-emerald-light: #D5F36A;
+  --accent-emerald-glow: rgba(67, 201, 139, 0.22);
 
-  --accent-amber: rgb(103, 192, 144);
-  --accent-amber-dark: rgb(33, 91, 99);
-  --accent-amber-light: rgb(170, 255, 199);
-  --accent-amber-glow: rgba(103, 192, 144, 0.25);
+  /* Deep Emerald & Charcoal Canvas Hierarchy */
+  --bg-page: transparent;
+  --bg-surface: rgba(11, 36, 26, 0.55);
+  --bg-card: rgba(11, 36, 26, 0.65);
+  --bg-card-solid: #0B241A;
+  --bg-card-elevated: rgba(16, 71, 52, 0.40);
+  --bg-subtle: rgba(11, 36, 26, 0.35);
+  --bg-hover: rgba(167, 243, 196, 0.08);
 
-  --accent-rose: rgb(18, 65, 112);
-  --accent-rose-dark: rgb(18, 65, 112);
-  --accent-rose-light: rgb(33, 91, 99);
-  --accent-rose-glow: rgba(18, 65, 112, 0.25);
+  /* High Contrast Typography */
+  --text-main: #F1F5F2;
+  --text-heading: #F1F5F2;
+  --text-muted: #B5C0B8;
+  --text-light: #8F9D93;
+  --text-inverse: #07110D;
 
-  --accent-purple: rgb(33, 91, 99);
-  --accent-purple-glow: rgba(33, 91, 99, 0.25);
+  /* Architectural & Restrained Glass Borders */
+  --border-frame: rgba(190, 220, 200, 0.2);
+  --border-light: rgba(190, 220, 200, 0.12);
+  --border-medium: rgba(190, 220, 200, 0.22);
+  --border-focus: #A7F3C4;
 
-  /* Brand Heritage (Light Mode) */
-  --brand-emerald: rgb(18, 65, 112);
-  --brand-emerald-dark: rgb(18, 65, 112);
-  --brand-emerald-light: rgb(33, 91, 99);
+  /* Badges & Accent Tints */
+  --pastel-sage: rgba(167, 243, 196, 0.12);
+  --pastel-sage-border: rgba(190, 220, 200, 0.25);
+  --pastel-sage-text: #A7F3C4;
 
-  /* Editorial Pastel & Chromatic Chips (Light Mode) */
-  --pastel-sage: rgba(170, 255, 199, 0.45);
-  --pastel-sage-border: rgb(103, 192, 144);
-  --pastel-sage-text: rgb(18, 65, 112);
+  --pastel-lavender: rgba(16, 71, 52, 0.35);
+  --pastel-lavender-border: rgba(190, 220, 200, 0.22);
+  --pastel-lavender-text: #B5C0B8;
 
-  --pastel-lavender: rgba(33, 91, 99, 0.12);
-  --pastel-lavender-border: rgba(33, 91, 99, 0.35);
-  --pastel-lavender-text: rgb(18, 65, 112);
+  --pastel-peach: rgba(253, 114, 36, 0.12);
+  --pastel-peach-border: rgba(253, 114, 36, 0.3);
+  --pastel-peach-text: #fdba74;
 
-  --pastel-peach: rgba(18, 65, 112, 0.09);
-  --pastel-peach-border: rgba(18, 65, 112, 0.32);
-  --pastel-peach-text: rgb(18, 65, 112);
+  --pastel-butter: rgba(167, 243, 196, 0.1);
+  --pastel-butter-border: rgba(167, 243, 196, 0.25);
+  --pastel-butter-text: #A7F3C4;
 
-  --pastel-butter: rgba(170, 255, 199, 0.35);
-  --pastel-butter-border: rgb(103, 192, 144);
-  --pastel-butter-text: rgb(33, 91, 99);
+  --pastel-sky: rgba(56, 189, 248, 0.12);
+  --pastel-sky-border: rgba(56, 189, 248, 0.3);
+  --pastel-sky-text: #38bdf8;
 
-  --pastel-sky: rgba(103, 192, 144, 0.22);
-  --pastel-sky-border: rgba(103, 192, 144, 0.5);
-  --pastel-sky-text: rgb(18, 65, 112);
+  --pastel-rose: rgba(225, 29, 72, 0.14);
+  --pastel-rose-border: rgba(225, 29, 72, 0.3);
+  --pastel-rose-text: #fb7185;
 
-  --pastel-rose: rgba(33, 91, 99, 0.14);
-  --pastel-rose-border: rgba(33, 91, 99, 0.35);
-  --pastel-rose-text: rgb(18, 65, 112);
+  /* Elevation Shadows for Dark Mode */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 8px 24px -4px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(190, 220, 200, 0.08);
+  --shadow-elevated: 0 24px 50px -10px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(190, 220, 200, 0.14);
+  --shadow-glow-emerald: 0 0 28px rgba(16, 71, 52, 0.25);
+  --shadow-glow-lime: 0 0 28px rgba(167, 243, 196, 0.2);
 
-  /* Canvas & Neutral Hierarchy (Light Mode) - Soothing Matte Off-White */
-  --bg-page: #ebeee8;
-  --bg-surface: #f2f5f0;
-  --bg-card: rgba(242, 245, 240, 0.96);
-  --bg-card-solid: #f2f5f0;
-  --bg-card-elevated: #e6eae3;
-  --bg-subtle: #dde3d8;
-  --bg-hover: rgba(18, 65, 112, 0.08);
+  /* Radius (Sleek slightly softened corners - zero pills) */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-full: 6px;
 
-  --text-main: #0f172a;
-  --text-muted: #475569;
-  --text-light: #64748b;
-  --text-inverse: #ffffff;
-
-  --border-light: rgba(15, 23, 42, 0.10);
-  --border-medium: rgba(33, 91, 99, 0.22);
-
-  /* Elevation Shadows */
-  --shadow-subtle: 0 2px 10px rgba(18, 65, 112, 0.05);
-  --shadow-card: 0 10px 30px -6px rgba(18, 65, 112, 0.08), 0 2px 8px -2px rgba(18, 65, 112, 0.05);
-  --shadow-elevated: 0 24px 48px -12px rgba(18, 65, 112, 0.14), 0 4px 16px -2px rgba(18, 65, 112, 0.06);
-
-  /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --radius-full: 9999px;
-
-  /* Transitions (snappier, responsive feedback) */
+  /* Transitions */
   --transition-fast: 0.12s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-bounce: 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ============================================================
-   DARK MODE ENGINE - TURNS WHITE INTO GREYISH BLACK
-   Sleek slate / charcoal greyish black (#0d1117 / #151b23)
-   With Luminous Mint & Vibrant Jade Accents
-   ============================================================ */
-[data-theme="dark"] {
-  /* Brand in Dark Mode pops with high-contrast luminous mint & jade */
-  --brand-emerald: rgb(170, 255, 199);
-  --brand-emerald-dark: rgb(103, 192, 144);
-  --brand-emerald-light: rgb(170, 255, 199);
-
-  /* Greyish Black Canvas Hierarchy */
-  --bg-page: #0d1117;          /* Sleek charcoal greyish-black */
-  --bg-surface: #151b23;       /* Elevated dark slate surface */
-  --bg-card: rgba(22, 27, 34, 0.88);
-  --bg-card-solid: #161b22;    /* Solid dark slate card */
-  --bg-card-elevated: #21262d; /* Hovered / active card */
-  --bg-subtle: #1c2128;
-  --bg-hover: rgba(170, 255, 199, 0.08);
-
-  /* High Contrast Typography */
-  --text-main: #f0f6fc;
-  --text-muted: #9ba3af;
-  --text-light: #6e7681;
-  --text-inverse: #0d1117;
-
-  /* Clean Contrasting Borders */
-  --border-light: rgba(170, 255, 199, 0.15);
-  --border-medium: rgba(103, 192, 144, 0.28);
-
-  /* Saturated Dark Mode Glowing Badges */
-  --pastel-sage: rgba(170, 255, 199, 0.18);
-  --pastel-sage-border: rgba(170, 255, 199, 0.45);
-  --pastel-sage-text: rgb(170, 255, 199);
-
-  --pastel-lavender: rgba(33, 91, 99, 0.4);
-  --pastel-lavender-border: rgba(103, 192, 144, 0.45);
-  --pastel-lavender-text: rgb(170, 255, 199);
-
-  --pastel-peach: rgba(18, 65, 112, 0.5);
-  --pastel-peach-border: rgba(103, 192, 144, 0.4);
-  --pastel-peach-text: rgb(170, 255, 199);
-
-  --pastel-butter: rgba(170, 255, 199, 0.18);
-  --pastel-butter-border: rgba(170, 255, 199, 0.45);
-  --pastel-butter-text: rgb(170, 255, 199);
-
-  --pastel-sky: rgba(103, 192, 144, 0.22);
-  --pastel-sky-border: rgba(103, 192, 144, 0.5);
-  --pastel-sky-text: rgb(170, 255, 199);
-
-  --pastel-rose: rgba(33, 91, 99, 0.45);
-  --pastel-rose-border: rgba(170, 255, 199, 0.4);
-  --pastel-rose-text: rgb(170, 255, 199);
-
-  /* Shadows for Dark Mode with Palette Glows */
-  --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.4);
-  --shadow-card: 0 10px 30px -6px rgba(0, 0, 0, 0.6), 0 2px 8px -2px rgba(0, 0, 0, 0.35);
-  --shadow-elevated: 0 24px 48px -12px rgba(0, 0, 0, 0.8), 0 4px 16px -2px rgba(0, 0, 0, 0.5);
-  --shadow-glow-emerald: 0 0 32px rgba(170, 255, 199, 0.25);
-  --shadow-glow-lavender: 0 0 32px rgba(103, 192, 144, 0.25);
-}
-
 /* CSS Reset & Defaults */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none !important;
 }
 
 html {
@@ -194,33 +153,494 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* ============================================================
+   TEXT SELECTION: RICH EMERALD WITH DARK HIGH-CONTRAST INK
+   Tactile, smooth, cohesive across all text, paragraphs, and headings.
+   Functional and high contrast across form inputs and code blocks.
+   ============================================================ */
+::selection {
+  background-color: rgba(67, 201, 139, 0.85) !important;
+  color: #07110D !important;
+  text-shadow: none !important;
+}
+
+::-moz-selection {
+  background-color: rgba(67, 201, 139, 0.85) !important;
+  color: #07110D !important;
+  text-shadow: none !important;
+}
+
+/* Form fields, inputs, and textareas */
+input::selection,
+textarea::selection {
+  background-color: rgba(67, 201, 139, 0.85) !important;
+  color: #07110D !important;
+  text-shadow: none !important;
+}
+
+input::-moz-selection,
+textarea::-moz-selection {
+  background-color: rgba(67, 201, 139, 0.85) !important;
+  color: #07110D !important;
+  text-shadow: none !important;
+}
+
+/* Code and formula blocks selection in Acid Lime for editorial contrast */
+code::selection,
+pre::selection {
+  background-color: rgba(213, 243, 106, 0.90) !important;
+  color: #07110D !important;
+  text-shadow: none !important;
+}
+
+code::-moz-selection,
+pre::-moz-selection {
+  background-color: rgba(213, 243, 106, 0.90) !important;
+  color: #07110D !important;
+  text-shadow: none !important;
+}
+
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-page);
+  background-color: #07110D;
   color: var(--text-main);
   line-height: 1.6;
   min-height: 100dvh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: 
-    radial-gradient(circle at 15% 15%, rgba(170, 255, 199, 0.28) 0%, transparent 40%),
-    radial-gradient(circle at 85% 30%, rgba(103, 192, 144, 0.16) 0%, transparent 35%),
-    radial-gradient(circle at 50% 80%, rgba(33, 91, 99, 0.06) 0%, transparent 45%);
-  background-attachment: fixed;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-[data-theme="dark"] body {
-  background-color: #0d1117;
-  background-image: 
-    radial-gradient(circle at 15% 15%, rgba(18, 65, 112, 0.25) 0%, transparent 42%),
-    radial-gradient(circle at 85% 30%, rgba(33, 91, 99, 0.20) 0%, transparent 38%),
-    radial-gradient(circle at 50% 80%, rgba(170, 255, 199, 0.08) 0%, transparent 45%);
+/* ============================================================
+   1. FIXED FULL-SCREEN STATIONARY DARK EMERALD-CHARCOAL BACKGROUND
+   Stationary during scrolling, covers the viewport, sitting behind
+   all content with pointer-events: none.
+   ============================================================ */
+.fixed-green-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #07110D;
+}
+
+/* Base linear transition between primary near-black green & secondary gradient */
+.fixed-green-bg-gradient {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #07110D 0%,
+    #081711 30%,
+    #0B241A 65%,
+    #07110D 100%
+  );
+}
+
+/* Atmospheric restrained radial gradients:
+   Subtle emerald glow (#104734) around the hero area and carefully placed regions.
+   Smooth, atmospheric, premium without bright green fills or harsh color bands. */
+.fixed-green-bg-radial {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    /* Hero area restrained emerald glow (#104734) */
+    radial-gradient(ellipse 65% 50% at 50% 18%, rgba(16, 71, 52, 0.32) 0%, rgba(11, 36, 26, 0.12) 45%, transparent 75%),
+    /* Mid-right subtle atmospheric depth (#104734) */
+    radial-gradient(circle at 85% 55%, rgba(16, 71, 52, 0.15) 0%, transparent 50%),
+    /* Lower-left secondary gradient anchor (#0B241A) */
+    radial-gradient(circle at 15% 82%, rgba(11, 36, 26, 0.20) 0%, transparent 55%),
+    /* Center bottom soft ground */
+    radial-gradient(ellipse 60% 30% at 50% 95%, rgba(16, 71, 52, 0.12) 0%, transparent 60%);
+}
+
+/* Very subtle organic atmospheric breathe effect (purely visual & respects prefers-reduced-motion) */
+.fixed-green-bg-mesh {
+  position: absolute;
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  background-image:
+    radial-gradient(ellipse at 50% 25%, rgba(16, 71, 52, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 75%, rgba(11, 36, 26, 0.12) 0%, transparent 45%);
+  filter: blur(80px);
+  animation: ambientGreenBreathe 22s ease-in-out infinite alternate;
+}
+
+@keyframes ambientGreenBreathe {
+  0% {
+    opacity: 0.75;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0.95;
+    transform: scale(1.03) translateY(-1.2%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fixed-green-bg-mesh {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   ARTISTIC GRAFFITI-CALLIGRAPHY BACKGROUND CANVAS
+   Continuous document-height decorative layer spanning from
+   top to bottom of the entire website behind all content.
+   ============================================================ */
+.artistic-graffiti-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+.graffiti-defs-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.graffiti-cluster {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.cluster-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Individual vertical cluster placements along document flow */
+.cluster-hero {
+  top: 0%;
+  height: clamp(800px, 16%, 1100px);
+}
+
+.cluster-middle-grid {
+  top: 16%;
+  height: clamp(850px, 19%, 1200px);
+}
+
+.cluster-features-bento {
+  top: 35%;
+  height: clamp(900px, 19%, 1250px);
+}
+
+.cluster-mock-exam {
+  top: 54%;
+  height: clamp(850px, 19%, 1200px);
+}
+
+.cluster-pricing-reviews {
+  top: 73%;
+  height: clamp(800px, 16%, 1100px);
+}
+
+.cluster-faq-footer {
+  top: 89%;
+  height: clamp(750px, 11%, 1000px);
+}
+
+/* ============================================================
+   2. SCROLLING CONTENT LAYER & ARCHITECTURAL FRAME
+   Places all website content in normal document flow above the fixed background,
+   framed by subtle dotted vertical borders without horizontal dividers.
+   ============================================================ */
+.scrolling-content-layer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Centered main content architectural container with continuous dotted vertical borders */
+.zuse-main-frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  border-left: 1px dotted rgba(190, 220, 200, 0.2);
+  border-right: 1px dotted rgba(190, 220, 200, 0.2);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1280px) {
+  .zuse-main-frame {
+    max-width: calc(100% - 32px);
+  }
+}
+
+@media (max-width: 640px) {
+  .zuse-main-frame {
+    max-width: calc(100% - 16px);
+    border-left: 1px dotted rgba(190, 220, 200, 0.14);
+    border-right: 1px dotted rgba(190, 220, 200, 0.14);
+  }
+}
+
+/* ============================================================
+   3. PROGRESSIVE BOTTOM-EDGE BLUR OVERLAY (Zuse Inspired)
+   Recreates the atmospheric soft-focus viewport dissolve without
+   any container, card, border, pill, horizontal division, or lines.
+   Continuous mathematical easing mask completely avoids banding.
+   ============================================================ */
+.bottom-edge-blur {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: clamp(110px, 15vh, 175px);
+  pointer-events: none;
+  z-index: 40;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.bottom-edge-blur .blur-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Layer 1: Smooth base blur (10px) with continuous cubic easing mask */
+.bottom-edge-blur .blur-layer-base {
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.03) 15%,
+    rgba(0, 0, 0, 0.12) 30%,
+    rgba(0, 0, 0, 0.28) 45%,
+    rgba(0, 0, 0, 0.50) 60%,
+    rgba(0, 0, 0, 0.72) 75%,
+    rgba(0, 0, 0, 0.90) 88%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.03) 15%,
+    rgba(0, 0, 0, 0.12) 30%,
+    rgba(0, 0, 0, 0.28) 45%,
+    rgba(0, 0, 0, 0.50) 60%,
+    rgba(0, 0, 0, 0.72) 75%,
+    rgba(0, 0, 0, 0.90) 88%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+/* Layer 2: Deep atmospheric dissolve (26px) easing in the bottom half */
+.bottom-edge-blur .blur-layer-deep {
+  z-index: 2;
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.08) 50%,
+    rgba(0, 0, 0, 0.28) 65%,
+    rgba(0, 0, 0, 0.62) 80%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.08) 50%,
+    rgba(0, 0, 0, 0.28) 65%,
+    rgba(0, 0, 0, 0.62) 80%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+/* Seamless atmospheric vignette into #07110D (Near-black green).
+   Uses mathematically smooth quadratic easing with zero hard color-stops */
+.bottom-edge-blur .blur-layer-tint {
+  z-index: 3;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 17, 13, 0) 0%,
+    rgba(7, 17, 13, 0.02) 25%,
+    rgba(7, 17, 13, 0.10) 45%,
+    rgba(7, 17, 13, 0.28) 65%,
+    rgba(7, 17, 13, 0.60) 82%,
+    rgba(7, 17, 13, 0.94) 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .bottom-edge-blur {
+    height: clamp(100px, 14vh, 145px);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .bottom-edge-blur {
+    display: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+  .bottom-edge-blur {
+    display: none;
+  }
+}
+
+/* Keycap <kbd> styling inspired by Zuse */
+kbd,
+.kbd-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--text-heading);
+  letter-spacing: 0.02em;
+}
+
+/* Diff Counters (+79 -1) from Zuse */
+.diff-pos {
+  font-family: var(--font-mono);
+  color: #10b981;
+  font-weight: 600;
+}
+
+.diff-neg {
+  font-family: var(--font-mono);
+  color: #f43f5e;
+  font-weight: 600;
+}
+
+/* Monospace Star Badge */
+.zuse-star-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 1.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  overflow: hidden;
+  color: var(--text-main);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.zuse-star-badge:hover {
+  background: var(--bg-card-elevated);
+  border-color: var(--border-medium);
+}
+
+.zuse-star-badge-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0 0.5rem;
+  font-weight: 500;
+}
+
+.zuse-star-badge-count {
+  border-left: 1px solid var(--border-light);
+  padding: 0 0.5rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Zuse Announcement Pill */
+.zuse-announcement-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.785rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.zuse-announcement-pill:hover {
+  border-color: var(--accent-emerald);
+  color: var(--text-heading);
+  background: var(--bg-card-elevated);
+  transform: translateY(-1px);
+}
+
+.zuse-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-lime);
+  box-shadow: 0 0 8px var(--color-lime);
 }
 
 /* Typography Headings */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   color: var(--text-main);
   line-height: 1.18;
@@ -253,7 +673,10 @@ a {
   text-decoration: none;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-family: inherit;
   font-size: inherit;
   outline: none;
@@ -345,112 +768,676 @@ button, input, select, textarea {
 }
 
 /* ============================================================
-   BUTTONS WITH ENHANCED CONTRAST & ACCENT GRADIENTS
+   5. BUTTONS: UNIQUELY TEXTURED PHYSICAL CRAFT WITH GRAIN & HIGHLIGHTS
+   Avoids generic gradients and plain pills; physical design feel
+   with subtle printed grain, thin contrasting border, inner highlights.
    ============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  font-weight: 600;
-  border-radius: var(--radius-full);
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all var(--transition-smooth);
-  border: 1px solid transparent;
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
-  font-size: 0.95rem;
-  padding: 0.75rem 1.6rem;
+  padding: 0.65rem 1.35rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  position: relative;
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, rgb(18, 65, 112) 0%, rgb(33, 91, 99) 100%);
-  color: #ffffff;
-  box-shadow: 0 4px 16px rgba(18, 65, 112, 0.28);
-  border: 1px solid rgba(170, 255, 199, 0.25);
+.btn svg {
+  /* No movement on hover */
 }
 
-.btn-primary:hover {
-  background: linear-gradient(135deg, rgb(33, 91, 99) 0%, rgb(18, 65, 112) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(18, 65, 112, 0.38);
+.btn:focus-visible {
+  outline: 2px solid var(--accent-lime);
+  outline-offset: 2px;
 }
 
-.btn-primary:active {
-  transform: translateY(0);
-}
-
+/* Primary CTA: Crisp High-Contrast White Surface inspired by Zuse Editorial Design */
+.btn-primary,
+.btn-emerald,
 .btn-pastel-sage {
-  background-color: var(--pastel-sage);
-  color: var(--pastel-sage-text);
-  border: 1px solid var(--pastel-sage-border);
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  color: #07110D !important;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
 }
 
+.btn-primary svg,
+.btn-emerald svg,
+.btn-pastel-sage svg {
+  color: #07110D !important;
+}
+
+.btn-primary:hover,
+.btn-emerald:hover,
 .btn-pastel-sage:hover {
-  filter: brightness(0.96);
-  transform: translateY(-2px);
+  background: #EBF3EE !important;
+  background-color: #EBF3EE !important;
+  background-image: none !important;
+  color: #07110D !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.22), 0 2px 6px rgba(0, 0, 0, 0.45) !important;
 }
 
-.btn-pastel-lavender {
-  background-color: var(--pastel-lavender);
-  color: var(--pastel-lavender-text);
-  border: 1px solid var(--pastel-lavender-border);
+.btn-primary:hover svg,
+.btn-emerald:hover svg,
+.btn-pastel-sage:hover svg {
+  color: #07110D !important;
 }
 
-.btn-pastel-lavender:hover {
-  filter: brightness(0.96);
-  transform: translateY(-2px);
+.btn-primary:active,
+.btn-emerald:active,
+.btn-pastel-sage:active {
+  background: #E2ECE5 !important;
+  background-color: #E2ECE5 !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
 }
 
+/* Bright Acid Lime Button Variant */
+.btn-lime {
+  background-color: var(--accent-lime) !important;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.10) 1px, transparent 0) !important;
+  background-size: 4px 4px !important;
+  color: #07110D !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 -1px 0 rgba(0, 0, 0, 0.15), 0 3px 10px rgba(0, 0, 0, 0.4) !important;
+}
+
+.btn-lime:hover {
+  background-color: var(--accent-lime-hover) !important;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.18) 1.2px, transparent 0) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), 0 4px 16px rgba(213, 243, 106, 0.35) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.btn-lime:active {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Secondary Buttons: Translucent Charcoal-Green with Smooth Color Change */
 .btn-secondary {
-  background-color: var(--bg-card-solid);
-  color: var(--text-main);
-  border: 1px solid var(--border-medium);
-  box-shadow: var(--shadow-subtle);
+  background-color: rgba(11, 36, 26, 0.85) !important;
+  background-image: radial-gradient(rgba(190, 220, 200, 0.05) 1px, transparent 0) !important;
+  background-size: 5px 5px !important;
+  color: var(--text-main) !important;
+  border: 1px solid rgba(190, 220, 200, 0.22) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4) !important;
 }
 
 .btn-secondary:hover {
-  background-color: var(--bg-subtle);
-  border-color: var(--accent-emerald);
-  transform: translateY(-2px);
+  background-color: rgba(16, 71, 52, 0.95) !important;
+  background-image: radial-gradient(rgba(213, 243, 106, 0.14) 1.2px, transparent 0) !important;
+  border-color: rgba(213, 243, 106, 0.55) !important;
+  color: var(--accent-lime) !important;
+  box-shadow: inset 0 1px 0 rgba(213, 243, 106, 0.15), 0 4px 14px rgba(0, 0, 0, 0.5) !important;
 }
 
 .btn-ghost {
-  background: transparent;
+  background: transparent !important;
+  background-image: none !important;
   color: var(--text-muted);
+  border: 1px solid transparent;
 }
 
 .btn-ghost:hover {
-  background: var(--bg-hover);
+  background: rgba(167, 243, 196, 0.08) !important;
   color: var(--text-main);
+  border-color: rgba(190, 220, 200, 0.14);
+}
+
+/* Editorial Poster-Like Action Buttons with Smooth Hover Color Transition */
+.btn-editorial-amber,
+.btn-editorial-emerald {
+  background: rgba(67, 201, 139, 0.12) !important;
+  color: var(--accent-emerald) !important;
+  border: 1px solid rgba(67, 201, 139, 0.35) !important;
+  box-shadow: 2px 2px 0 rgba(67, 201, 139, 0.2) !important;
+}
+
+.btn-editorial-amber:hover,
+.btn-editorial-emerald:hover {
+  background: rgba(67, 201, 139, 0.25) !important;
+  background-image: radial-gradient(rgba(67, 201, 139, 0.18) 1px, transparent 0) !important;
+  background-size: 4px 4px !important;
+  border-color: rgba(67, 201, 139, 0.6) !important;
+  box-shadow: 2px 2px 8px rgba(67, 201, 139, 0.35) !important;
+}
+
+.btn-editorial-lime {
+  background: rgba(213, 243, 106, 0.12) !important;
+  color: var(--accent-lime) !important;
+  border: 1px solid rgba(213, 243, 106, 0.35) !important;
+  box-shadow: 2px 2px 0 rgba(213, 243, 106, 0.2) !important;
+}
+
+.btn-editorial-lime:hover {
+  background: rgba(213, 243, 106, 0.25) !important;
+  background-image: radial-gradient(rgba(213, 243, 106, 0.18) 1px, transparent 0) !important;
+  background-size: 4px 4px !important;
+  border-color: rgba(213, 243, 106, 0.6) !important;
+  box-shadow: 2px 2px 8px rgba(213, 243, 106, 0.35) !important;
 }
 
 /* ============================================================
-   HIGH-CONTRAST ACCENT UTILITIES
+   EXPRESSIVE EDITORIAL TYPOGRAPHY & ART-DIRECTED ACCENTS
    ============================================================ */
-.text-accent-emerald { color: var(--accent-emerald) !important; }
-.text-accent-violet { color: var(--accent-violet) !important; }
-.text-accent-cyan { color: var(--accent-cyan) !important; }
-.text-accent-amber { color: var(--accent-amber) !important; }
-.text-accent-rose { color: var(--accent-rose) !important; }
+.font-editorial-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
 
-.glow-emerald { box-shadow: 0 0 24px var(--accent-emerald-glow); }
-.glow-violet { box-shadow: 0 0 24px var(--accent-violet-glow); }
-.glow-cyan { box-shadow: 0 0 24px var(--accent-cyan-glow); }
-.glow-amber { box-shadow: 0 0 24px var(--accent-amber-glow); }
+/* Accent Color Typography (Dual-Accent Only) */
+.text-accent-emerald,
+.text-emerald,
+.text-accent-lavender,
+.text-lavender {
+  color: var(--accent-emerald) !important;
+}
+
+.text-accent-lime,
+.text-lime,
+.text-accent-amber,
+.text-amber,
+.text-accent-coral,
+.text-coral {
+  color: var(--accent-lime) !important;
+}
+
+/* Marker Highlights - Clean typography without extra faux-highlighter tape */
+.marker-highlight-lime,
+.marker-highlight-amber,
+.marker-highlight-emerald,
+.marker-highlight-coral {
+  position: relative;
+  display: inline-block;
+}
+
+.marker-highlight-lime::after,
+.marker-highlight-amber::after,
+.marker-highlight-emerald::after,
+.marker-highlight-coral::after {
+  display: none !important;
+}
+
+/* Brush Underlines - Underlines removed */
+.brush-underline-lime,
+.brush-underline-amber,
+.brush-underline-coral,
+.brush-underline-emerald {
+  text-decoration: none !important;
+}
+
+/* Small Handwritten / Monospace Editorial Annotation Tags */
+.editorial-annotation-tag {
+  display: none !important;
+}
+
+/* Subtle Marker Stroke Indicator Under Section Headers */
+.editorial-marker-rule {
+  width: 44px;
+  height: 2px;
+  border-radius: 2px;
+  margin: 0.6rem 0 1rem;
+}
+
+.editorial-marker-lime {
+  background: var(--accent-lime);
+}
+
+.editorial-marker-amber,
+.editorial-marker-emerald {
+  background: var(--accent-emerald);
+}
+
+/* ============================================================
+   ARCHITECTURAL EDITORIAL GRID & SECTION SYSTEM
+   Guarantees precision alignment of section headers, column baselines,
+   monospace meta annotations, and sharp grid container shapes.
+   ============================================================ */
+.editorial-section-header {
+  position: relative;
+  margin-bottom: clamp(1.75rem, 2.8vw, 2.5rem);
+}
+
+.editorial-section-header .header-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8F9D93;
+  flex-wrap: wrap;
+}
+
+.editorial-section-header .meta-sep {
+  opacity: 0.35;
+}
+
+.editorial-section-header .title-with-flourish {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.editorial-section-header .section-title,
+.section-title,
+.teacher-heading,
+.cta-band-title,
+.teacher-banner-title {
+  font-family: var(--font-heading) !important;
+  font-size: clamp(1.6rem, 2.5vw, 2.15rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.025em;
+  color: #F1F5F2 !important;
+  margin: 0;
+}
+
+.editorial-section-header .section-subtitle,
+.section-subtitle {
+  font-family: var(--font-sans) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.55 !important;
+  color: #B5C0B8 !important;
+  max-width: 640px;
+  margin-top: 0.65rem;
+  margin-bottom: 0;
+}
+
+/* Master Architectural Editorial Grid Frame (Zero shape/border-radius inconsistency) */
+.editorial-readiness-grid,
+.editorial-steps-grid,
+.editorial-features-grid,
+.editorial-mock-grid,
+.editorial-news-grid,
+.editorial-pricing-grid,
+.editorial-testimonials-grid,
+.editorial-faq-grid {
+  position: relative;
+  border: 1px solid rgba(190, 220, 200, 0.16) !important;
+  border-radius: 0px !important;
+  background: rgba(7, 17, 13, 0.45) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   ARCHITECTURAL DOTTED HORIZONTAL LINE SECTION DIVISIONS
+   Connects the continuous left and right dotted vertical frame borders
+   with a crisp 1px dotted horizontal division between each section.
+   ============================================================ */
+.editorial-readiness-section,
+.editorial-how-section,
+.editorial-features-section,
+.editorial-mock-section,
+.editorial-news-section,
+.editorial-pricing-section,
+.editorial-testimonials-section,
+.editorial-faq-section,
+.site-footer,
+.teacher-pathway-banner-section,
+.company-culture-section,
+.educator-pillars-section,
+.bg-subtle-section,
+#teacher-signup-section,
+#teacher-faqs {
+  position: relative;
+  padding: clamp(3rem, 5.5vw, 4.5rem) 0;
+  background: transparent;
+  border-top: 1px dotted rgba(190, 220, 200, 0.2) !important;
+}
+
+@media (max-width: 640px) {
+  .editorial-readiness-section,
+  .editorial-how-section,
+  .editorial-features-section,
+  .editorial-mock-section,
+  .editorial-news-section,
+  .editorial-pricing-section,
+  .editorial-testimonials-section,
+  .editorial-faq-section,
+  .site-footer,
+  .teacher-pathway-banner-section,
+  .company-culture-section,
+  .educator-pillars-section,
+  .bg-subtle-section,
+  #teacher-signup-section,
+  #teacher-faqs {
+    padding: clamp(2rem, 4vw, 2.75rem) 0;
+    border-top-color: rgba(190, 220, 200, 0.14) !important;
+  }
+}
+
+/* ============================================================
+   TACTILE EDITORIAL TEXT & KEYWORD HOVER EFFECTS
+   Expressive ink transitions, hand-drawn underlines, and subtle
+   stippled highlighter textures on interactive keywords.
+   ============================================================ */
+.interactive-keyword {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 3px;
+  transition: color 0.16s ease, background 0.16s ease, text-decoration-color 0.16s ease;
+  position: relative;
+}
+
+.interactive-keyword:hover {
+  color: var(--accent-lime) !important;
+  background-color: rgba(213, 243, 106, 0.14);
+  background-image: radial-gradient(rgba(213, 243, 106, 0.20) 1px, transparent 0);
+  background-size: 4px 4px;
+}
+
+.hover-ink-underline,
+.hover-ink-underline:hover {
+  text-decoration: none !important;
+}
+
+.hover-arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: color 0.16s ease;
+}
+
+.hover-arrow-link svg {
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-arrow-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   TACTILE EDITORIAL GRID & CARD HOVER STATES
+   Maintains rigid architectural grid alignment (zero layout shift)
+   revealing fine printed stipple grain, subtle translucent tint,
+   and thin accent border highlight.
+   ============================================================ */
+
+/* ============================================================
+   TACTILE EDITORIAL GRID & CARD HOVER STATES (ZUSE REFERENCE)
+   Maintains rigid architectural grid alignment (zero layout shift)
+   revealing fine printed stipple grain, subtle translucent tint,
+   and thin lime accent line along bottom edge.
+   ============================================================ */
+
+/* Surface Base: Clean dark surface with minimal decoration */
+.metric-ribbon-cell,
+.step-grid-col,
+.core-capabilities-left,
+.feature-col-desc,
+.paper-grid-col,
+.pricing-col,
+.news-grid-col,
+.testimonial-col,
+.faq-grid-row {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: background-color 220ms ease, border-color 220ms ease;
+}
+
+/* Layer 1 - Background: Subtle, Irregular Emerald-and-Lime Stippled Texture */
+.metric-ribbon-cell::before,
+.step-grid-col::before,
+.core-capabilities-left::before,
+.feature-col-desc::before,
+.paper-grid-col::before,
+.pricing-col::before,
+.news-grid-col::before,
+.testimonial-col::before,
+.faq-grid-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: rgba(16, 71, 52, 0.38);
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='stippleNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.15 0 0 0 0 0.45 0 0 0 0 0.28 0 0 0 0.25 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23stippleNoise)'/%3E%3C/svg%3E"),
+    radial-gradient(1px 1px at 18px 14px, rgba(213, 243, 106, 0.35), transparent 1px),
+    radial-gradient(1.5px 1.5px at 52px 42px, rgba(67, 201, 139, 0.4), transparent 1.5px),
+    radial-gradient(1px 1px at 94px 20px, rgba(213, 243, 106, 0.3), transparent 1px),
+    radial-gradient(2px 2px at 138px 72px, rgba(39, 100, 71, 0.5), transparent 2px),
+    radial-gradient(1.2px 1.2px at 182px 32px, rgba(67, 201, 139, 0.35), transparent 1.2px),
+    radial-gradient(1px 1px at 224px 84px, rgba(213, 243, 106, 0.3), transparent 1px),
+    radial-gradient(1.6px 1.6px at 270px 44px, rgba(39, 100, 71, 0.45), transparent 1.6px),
+    radial-gradient(1px 1px at 314px 96px, rgba(67, 201, 139, 0.35), transparent 1px),
+    linear-gradient(145deg, rgba(16, 71, 52, 0.36) 0%, rgba(7, 24, 17, 0.65) 100%);
+  background-size: 200px 200px, 340px 110px, 340px 110px, 340px 110px, 340px 110px, 340px 110px, 340px 110px, 340px 110px, 340px 110px, 100% 100%;
+}
+
+/* Layer 2 - Bottom Edge: Thin 2px Lime Accent Line (Zuse Reference) */
+.metric-ribbon-cell::after,
+.step-grid-col::after,
+.core-capabilities-left::after,
+.feature-col-desc::after,
+.paper-grid-col::after,
+.pricing-col::after,
+.news-grid-col::after,
+.testimonial-col::after,
+.faq-grid-row::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--color-lime, #D5F36A);
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+/* Hover Reveals Texture and Bottom Line (Strictly Confined to Hovered Block) */
+.metric-ribbon-cell:hover::before,
+.step-grid-col:hover::before,
+.core-capabilities-left:hover::before,
+.feature-col-desc:hover::before,
+.paper-grid-col:hover::before,
+.pricing-col:hover::before,
+.news-grid-col:hover::before,
+.testimonial-col:hover::before,
+.faq-grid-row:hover::before,
+.step-grid-col.active-col::before,
+.faq-grid-row.row-open::before {
+  opacity: 1;
+}
+
+.metric-ribbon-cell:hover::after,
+.step-grid-col:hover::after,
+.core-capabilities-left:hover::after,
+.feature-col-desc:hover::after,
+.paper-grid-col:hover::after,
+.pricing-col:hover::after,
+.news-grid-col:hover::after,
+.testimonial-col:hover::after,
+.faq-grid-row:hover::after,
+.step-grid-col.active-col::after,
+.faq-grid-row.row-open::after {
+  opacity: 1;
+}
+
+/* Content Layer: All Text Stays Above the Texture, Fully Opaque & Razor-Sharp */
+.metric-ribbon-cell > *,
+.step-grid-col > *,
+.core-capabilities-left > *,
+.feature-col-desc > *,
+.paper-grid-col > *,
+.pricing-col > *,
+.news-grid-col > *,
+.testimonial-col > *,
+.faq-grid-row > * {
+  position: relative;
+  z-index: 2;
+}
+
+.metric-ribbon-cell:hover .metric-val {
+  color: var(--accent-lime);
+}
+
+.step-grid-col:hover .col-icon-wrap svg {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+.paper-grid-col:hover .paper-title {
+  color: #F1F5F2;
+}
+
+.paper-grid-col:hover .paper-launch-link {
+  color: var(--accent-lime);
+}
+
+.paper-grid-col:hover .paper-launch-link svg {
+  transform: translateX(3px);
+  transition: transform 0.16s ease;
+}
+
+.news-grid-col:hover .read-more-link {
+  color: var(--accent-lime);
+}
+
+.news-grid-col:hover .read-more-link svg {
+  transform: translate(2px, -2px);
+  transition: transform 0.16s ease;
+}
+
+.faq-grid-row:hover .faq-q-text {
+  color: #F1F5F2 !important;
+}
+
+/* Interactive Filter & Board Selection Tabs & Buttons */
+.board-btn,
+.filter-tab-btn,
+.test-tab-btn {
+  transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+  position: relative;
+}
+
+.board-btn:hover,
+.filter-tab-btn:hover,
+.test-tab-btn:hover {
+  background-color: rgba(16, 71, 52, 0.45) !important;
+  color: #F1F5F2 !important;
+  border-color: rgba(67, 201, 139, 0.55) !important;
+}
+
+.board-btn.active-board,
+.filter-tab-btn.active-tab,
+.test-tab-btn.active-tab {
+  background-color: rgba(16, 71, 52, 0.60) !important;
+  color: var(--accent-lime) !important;
+  border-color: var(--accent-lime) !important;
+}
+
+.board-btn:focus-visible,
+.filter-tab-btn:focus-visible,
+.test-tab-btn:focus-visible {
+  outline: 2px solid var(--accent-lime);
+  outline-offset: 2px;
+}
+
+/* Realistic Exam MCQ Option Rows (selections in Mock Exam & Demo) */
+.option-row {
+  transition: background-color 0.16s ease, border-color 0.16s ease;
+}
+
+.option-row:hover:not(.option-selected):not(.selected) {
+  background-color: rgba(16, 71, 52, 0.35) !important;
+  border-color: rgba(67, 201, 139, 0.4) !important;
+  color: #F1F5F2;
+}
+
+.option-row.option-selected,
+.option-row.selected {
+  background-color: rgba(16, 71, 52, 0.50) !important;
+  border-color: var(--accent-lime) !important;
+}
+
+/* Preview Widgets & Metric Display Blocks (Non-interactive display panels) */
+.radar-metric-cell,
+.pacing-row,
+.split-col,
+.preview-paper-sheet,
+.predicted-box {
+  position: relative;
+}
+
+/* Strictly isolate Core Capabilities right-hand product preview column from hover */
+.feature-col-visual,
+.core-capabilities-right {
+  pointer-events: none !important;
+}
+
+.perk-row {
+  transition: background-color 0.16s ease, border-color 0.16s ease;
+  position: relative;
+}
+
+.perk-row:hover {
+  background-color: rgba(16, 71, 52, 0.35) !important;
+  border-color: rgba(67, 201, 139, 0.35);
+}
+
+/* Universal Keyboard Focus Ring for Accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent-emerald);
+  outline-offset: 2px;
+}
+
+/* Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn svg,
+  .zuse-cta-primary,
+  .zuse-cta-secondary,
+  .nav-link,
+  .hover-arrow-link svg,
+  .step-grid-col:hover .col-icon-wrap svg {
+    transition: none !important;
+    transform: none !important;
+  }
+}
 
 /* Animations (Snappy & Responsive) */
-@keyframes subtleFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
 @keyframes pulseSlow {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 0.95; transform: scale(1.05); }
-}
 
-.float-animation {
-  animation: subtleFloat 3.2s ease-in-out infinite;
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.05);
+  }
 }
 
 /* Custom Scrollbar */
@@ -458,13 +1445,16 @@ button, input, select, textarea {
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-page);
 }
+
 ::-webkit-scrollbar-thumb {
   background: #cbd8d1;
   border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #a3b8ad;
 }
@@ -472,226 +1462,100 @@ button, input, select, textarea {
 [data-theme="dark"] ::-webkit-scrollbar-thumb {
   background: #30363d;
 }
+
 [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
   background: #484f58;
 }
 
 /* ============================================================
-   ELEVATED SECTION CHROMATIC THEMES (LIGHT & DARK ADAPTATIONS)
+   SCROLLING CONTENT SECTION TRANSPARENCY
+   All sections scroll smoothly over the stationary fixed green gradient.
    ============================================================ */
-
-/* 1. Hero Section: Luminous Mint & Soft Jade Atmosphere */
-.hero-section {
-  position: relative;
-  background: radial-gradient(circle at 10% 20%, rgba(170, 255, 199, 0.40) 0%, transparent 60%),
-              radial-gradient(circle at 90% 15%, rgba(103, 192, 144, 0.20) 0%, transparent 50%),
-              linear-gradient(180deg, #e4ede7 0%, #d8eae0 100%);
-  border-bottom: 1.5px solid rgba(103, 192, 144, 0.35);
-}
-
-[data-theme="dark"] .hero-section {
-  background: radial-gradient(circle at 12% 18%, rgba(18, 65, 112, 0.35) 0%, transparent 50%),
-              radial-gradient(circle at 88% 12%, rgba(33, 91, 99, 0.25) 0%, transparent 45%),
-              radial-gradient(circle at 50% 80%, rgba(170, 255, 199, 0.1) 0%, transparent 55%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
-  border-bottom: 1px solid rgba(170, 255, 199, 0.15);
-}
-
-/* 2. Board Readiness Section: Oceanic Navy & Mint Atmosphere */
-.readiness-section {
-  position: relative;
-  background: radial-gradient(circle at 12% 30%, rgba(18, 65, 112, 0.06) 0%, transparent 55%),
-              radial-gradient(circle at 88% 70%, rgba(170, 255, 199, 0.25) 0%, transparent 50%),
-              linear-gradient(180deg, #e3ece8 0%, #d5e5e0 100%);
-  border-top: 1.5px solid rgba(33, 91, 99, 0.25);
-  border-bottom: 1.5px solid rgba(33, 91, 99, 0.25);
-}
-
-.readiness-section .simulator-card {
-  background: #f2f5f0;
-  border: 1.5px solid rgba(33, 91, 99, 0.25);
-  box-shadow: 0 20px 48px -12px rgba(18, 65, 112, 0.12);
-}
-
-[data-theme="dark"] .readiness-section {
-  background: radial-gradient(circle at 15% 30%, rgba(18, 65, 112, 0.3) 0%, transparent 55%),
-              radial-gradient(circle at 85% 70%, rgba(103, 192, 144, 0.15) 0%, transparent 50%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
-  border-color: rgba(103, 192, 144, 0.25) !important;
-}
-
-/* 3. How It Works Section: Luminous Mint & Vibrant Jade */
-.how-it-works-section {
-  position: relative;
-  background: radial-gradient(circle at 85% 20%, rgba(170, 255, 199, 0.30) 0%, transparent 50%),
-              radial-gradient(circle at 15% 80%, rgba(103, 192, 144, 0.18) 0%, transparent 45%),
-              linear-gradient(180deg, #e2ece7 0%, #d5e6de 100%);
-  border-top: 1.5px solid rgba(103, 192, 144, 0.35);
-  border-bottom: 1.5px solid rgba(103, 192, 144, 0.35);
-}
-
-.how-it-works-section .interactive-step-card {
-  background: #f2f5f0;
-  border: 1.5px solid rgba(103, 192, 144, 0.4);
-  box-shadow: 0 20px 48px -12px rgba(18, 65, 112, 0.12);
-}
-
-[data-theme="dark"] .how-it-works-section {
-  background: radial-gradient(circle at 80% 20%, rgba(33, 91, 99, 0.25) 0%, transparent 50%),
-              radial-gradient(circle at 20% 80%, rgba(170, 255, 199, 0.1) 0%, transparent 45%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
-  border-color: rgba(170, 255, 199, 0.2) !important;
-}
-
-/* 4. Features Bento Grid: 4-Color Signature Cards */
-.bento-section {
-  position: relative;
-  background: radial-gradient(circle at 50% 10%, rgba(18, 65, 112, 0.06) 0%, transparent 50%),
-              radial-gradient(circle at 10% 85%, rgba(170, 255, 199, 0.25) 0%, transparent 45%),
-              linear-gradient(180deg, #e5ece8 0%, #d7e6df 100%);
-  border-top: 1.5px solid rgba(33, 91, 99, 0.25);
-  border-bottom: 1.5px solid rgba(33, 91, 99, 0.25);
-}
-
-/* Bento Distinctive Colored Cards - Mapped to the 4 Colors */
-.card-pastel-sage {
-  /* Color 1: Luminous Mint rgb(170, 255, 199) */
-  background: linear-gradient(145deg, #eaf4ed 0%, rgba(170, 255, 199, 0.40) 100%);
-  border: 1.5px solid rgb(103, 192, 144);
-  box-shadow: 0 12px 32px -8px rgba(103, 192, 144, 0.2);
-}
-
-.card-pastel-lavender {
-  /* Color 3: Deep Pine Teal rgb(33, 91, 99) */
-  background: linear-gradient(145deg, #e6eceb 0%, rgba(33, 91, 99, 0.12) 100%);
-  border: 1.5px solid rgba(33, 91, 99, 0.35);
-  box-shadow: 0 12px 32px -8px rgba(33, 91, 99, 0.18);
-}
-
-.card-pastel-peach {
-  /* Color 4: Deep Oceanic Navy rgb(18, 65, 112) */
-  background: linear-gradient(145deg, #e5ebf1 0%, rgba(18, 65, 112, 0.10) 100%);
-  border: 1.5px solid rgba(18, 65, 112, 0.32);
-  box-shadow: 0 12px 32px -8px rgba(18, 65, 112, 0.18);
-}
-
-.card-pastel-butter {
-  /* Color 2: Vibrant Jade Green rgb(103, 192, 144) */
-  background: linear-gradient(145deg, #e6f0ea 0%, rgba(103, 192, 144, 0.22) 100%);
-  border: 1.5px solid rgb(103, 192, 144);
-  box-shadow: 0 12px 32px -8px rgba(103, 192, 144, 0.2);
-}
-
-[data-theme="dark"] .bento-section {
-  background: radial-gradient(circle at 50% 10%, rgba(18, 65, 112, 0.25) 0%, transparent 45%),
-              radial-gradient(circle at 10% 80%, rgba(170, 255, 199, 0.08) 0%, transparent 40%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
-  border-color: rgba(170, 255, 199, 0.15) !important;
-}
-
-/* 5. Mock Exam Suite: Mint & Deep Pine Teal Atmosphere */
-.mock-suite-section {
-  position: relative;
-  background: radial-gradient(circle at 20% 20%, rgba(170, 255, 199, 0.30) 0%, transparent 50%),
-              radial-gradient(circle at 85% 80%, rgba(18, 65, 112, 0.06) 0%, transparent 50%),
-              linear-gradient(180deg, #e3ede8 0%, #d6e5df 100%);
-  border-top: 1.5px solid rgba(103, 192, 144, 0.3);
-  border-bottom: 1.5px solid rgba(103, 192, 144, 0.3);
-}
-
-[data-theme="dark"] .mock-suite-section {
-  background: radial-gradient(circle at 20% 20%, rgba(33, 91, 99, 0.25) 0%, transparent 50%),
-              radial-gradient(circle at 85% 80%, rgba(18, 65, 112, 0.25) 0%, transparent 50%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
-  border-color: rgba(103, 192, 144, 0.25) !important;
-}
-
-/* 6. News & Circulars: Vibrant Jade & Navy */
+.hero-section,
+.readiness-section,
+.how-it-works-section,
+.bento-section,
+.mock-suite-section,
 .circulars-section,
-.news-section {
+.news-section,
+.pricing-section,
+.testimonials-section,
+.faq-section,
+.teacher-section,
+.teachers-page,
+.careers-page,
+.signin-page-wrapper,
+.student-landing-page {
   position: relative;
-  background: radial-gradient(circle at 80% 25%, rgba(103, 192, 144, 0.20) 0%, transparent 55%),
-              radial-gradient(circle at 20% 70%, rgba(18, 65, 112, 0.06) 0%, transparent 45%),
-              linear-gradient(180deg, #e3ece8 0%, #d5e6de 100%);
-  border-top: 1.5px solid rgba(33, 91, 99, 0.25);
-  border-bottom: 1.5px solid rgba(33, 91, 99, 0.25);
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
 }
 
-[data-theme="dark"] .circulars-section,
-[data-theme="dark"] .news-section {
-  background: radial-gradient(circle at 75% 25%, rgba(33, 91, 99, 0.25) 0%, transparent 55%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
-  border-color: rgba(170, 255, 199, 0.2) !important;
+/* Translucent Cards & Surfaces Over Fixed Green Background */
+.readiness-section .simulator-card,
+.how-it-works-section .interactive-step-card,
+.pricing-card,
+.bento-card,
+.mock-exam-card,
+.teacher-testimonial-card,
+.pillar-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(190, 220, 200, 0.08);
 }
 
-/* 7. Pricing Section: Jewel Mint & Pine Accent */
-.pricing-section {
-  position: relative;
-  background: radial-gradient(circle at 80% 20%, rgba(170, 255, 199, 0.35) 0%, transparent 50%),
-              radial-gradient(circle at 20% 80%, rgba(33, 91, 99, 0.08) 0%, transparent 45%),
-              linear-gradient(180deg, #e2ece7 0%, #d4e7dd 100%);
-  border-top: 1.5px solid rgba(103, 192, 144, 0.35);
-  border-bottom: 1.5px solid rgba(103, 192, 144, 0.35);
+/* Bento Signature Accents */
+.card-pastel-sage,
+.card-pastel-lavender,
+.card-pastel-peach,
+.card-pastel-butter {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-light);
 }
 
-[data-theme="dark"] .pricing-section {
-  background: radial-gradient(circle at 80% 10%, rgba(170, 255, 199, 0.12) 0%, transparent 55%),
-              radial-gradient(circle at 20% 90%, rgba(18, 65, 112, 0.3) 0%, transparent 60%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
-  border-color: rgba(170, 255, 199, 0.25) !important;
+.card-pastel-sage:hover {
+  border-color: rgba(167, 243, 196, 0.45);
 }
 
-/* 8. Testimonials Section: Soft Mint & Oceanic Navy Tint */
-.testimonials-section {
-  position: relative;
-  background: radial-gradient(circle at 15% 20%, rgba(170, 255, 199, 0.25) 0%, transparent 50%),
-              radial-gradient(circle at 85% 75%, rgba(18, 65, 112, 0.06) 0%, transparent 50%),
-              linear-gradient(180deg, #e4ece8 0%, #d6e6df 100%);
-  border-top: 1.5px solid rgba(33, 91, 99, 0.25);
-  border-bottom: 1.5px solid rgba(33, 91, 99, 0.25);
+.card-pastel-lavender:hover {
+  border-color: rgba(190, 220, 200, 0.45);
 }
 
-[data-theme="dark"] .testimonials-section {
-  background: radial-gradient(circle at 15% 20%, rgba(33, 91, 99, 0.25) 0%, transparent 50%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
-  border-color: rgba(103, 192, 144, 0.25) !important;
+.card-pastel-peach:hover {
+  border-color: rgba(253, 114, 36, 0.45);
 }
 
-/* 9. FAQ Section: Luminous Mint Meadow */
-.faq-section {
-  position: relative;
-  background: radial-gradient(circle at 50% 20%, rgba(170, 255, 199, 0.30) 0%, transparent 60%),
-              linear-gradient(180deg, #e2ece6 0%, #d5e7dc 100%);
-  border-top: 1.5px solid rgba(103, 192, 144, 0.35);
-}
-
-[data-theme="dark"] .faq-section {
-  background: radial-gradient(circle at 50% 20%, rgba(170, 255, 199, 0.09) 0%, transparent 60%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
-  border-color: rgba(170, 255, 199, 0.15) !important;
-}
-
-/* 10. Teacher Partnership Section: Oceanic Navy & Mint */
-.teacher-section {
-  position: relative;
-  background: radial-gradient(circle at 20% 30%, rgba(18, 65, 112, 0.06) 0%, transparent 55%),
-              radial-gradient(circle at 80% 70%, rgba(170, 255, 199, 0.25) 0%, transparent 50%),
-              linear-gradient(180deg, #e4ebed 0%, #d6e3e7 100%);
-  border-top: 1.5px solid rgba(33, 91, 99, 0.25);
-  border-bottom: 1.5px solid rgba(33, 91, 99, 0.25);
-}
-
-[data-theme="dark"] .teacher-section {
-  background: radial-gradient(circle at 20% 30%, rgba(18, 65, 112, 0.35) 0%, transparent 55%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
-  border-color: rgba(103, 192, 144, 0.25) !important;
+.card-pastel-butter:hover {
+  border-color: rgba(167, 243, 196, 0.45);
 }
 
 /* ============================================================
-   UNIVERSAL DARK MODE ENGINE: 100% CONTRAST & VISIBILITY
+   UNIVERSAL HIGH-CONTRAST TYPOGRAPHY SYSTEM
+   Headings: #F1F5F2 | Paragraphs: #B5C0B8 | Highlights: #A7F3C4 | Sage: #8F9D93
    ============================================================ */
 
 /* Global Headings & Typography Visibility */
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.hero-heading,
+.detail-card-heading,
+.bento-title,
+.mock-title,
+.news-title,
+.plan-name,
+.faq-q-text,
+.cta-band-title,
+.teachers-hero-heading,
+.pillar-title,
+.calc-title,
+.job-card-title,
 [data-theme="dark"] h1,
 [data-theme="dark"] h2,
 [data-theme="dark"] h3,
@@ -711,9 +1575,23 @@ button, input, select, textarea {
 [data-theme="dark"] .pillar-title,
 [data-theme="dark"] .calc-title,
 [data-theme="dark"] .job-card-title {
-  color: #f0f6fc !important;
+  color: #F1F5F2 !important;
 }
 
+p,
+.section-subtitle,
+.section-sub,
+.hero-subtext,
+.detail-card-desc,
+.bento-desc,
+.news-summary,
+.plan-desc,
+.faq-answer-text,
+.review-quote,
+.cta-band-sub,
+.teachers-hero-sub,
+.pillar-desc,
+.job-card-desc,
 [data-theme="dark"] p,
 [data-theme="dark"] .section-subtitle,
 [data-theme="dark"] .section-sub,
@@ -728,26 +1606,37 @@ button, input, select, textarea {
 [data-theme="dark"] .teachers-hero-sub,
 [data-theme="dark"] .pillar-desc,
 [data-theme="dark"] .job-card-desc {
-  color: #9ba3af !important;
+  color: #B5C0B8 !important;
 }
 
-/* High Contrast Highlight Text */
-.highlight-text {
-  background: linear-gradient(135deg, rgb(18, 65, 112) 0%, rgb(33, 91, 99) 45%, rgb(103, 192, 144) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+/* Global Utility Classes */
+.text-main { color: #F1F5F2 !important; }
+.text-heading { color: #F1F5F2 !important; }
+.text-muted { color: #B5C0B8 !important; }
+.text-light, .text-secondary { color: #8F9D93 !important; }
+.text-lime, .text-mint { color: #A7F3C4 !important; }
 
+/* Restrained Soft Mint Highlight Text */
+.highlight-text,
 [data-theme="dark"] .highlight-text {
-  background: linear-gradient(120deg, rgb(170, 255, 199) 0%, rgb(103, 192, 144) 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
+  color: #A7F3C4 !important;
+  -webkit-text-fill-color: #A7F3C4 !important;
+  background: none !important;
+  text-shadow: 0 0 20px rgba(167, 243, 196, 0.25);
 }
 
 /* Hero Section Widget & Sub-Cards */
-[data-theme="dark"] .orb-sage { background: rgba(170, 255, 199, 0.12) !important; }
-[data-theme="dark"] .orb-lavender { background: rgba(33, 91, 99, 0.25) !important; }
-[data-theme="dark"] .orb-peach { background: rgba(18, 65, 112, 0.25) !important; }
+[data-theme="dark"] .orb-sage {
+  background: rgba(167, 243, 196, 0.12) !important;
+}
+
+[data-theme="dark"] .orb-lavender {
+  background: rgba(16, 71, 52, 0.25) !important;
+}
+
+[data-theme="dark"] .orb-peach {
+  background: rgba(18, 65, 112, 0.25) !important;
+}
 
 [data-theme="dark"] .interactive-ai-card {
   background: #161b22 !important;
@@ -1175,8 +2064,8 @@ button, input, select, textarea {
 /* Careers & Teachers Pages */
 [data-theme="dark"] .teachers-hero-section,
 [data-theme="dark"] .careers-hero-section {
-  background: radial-gradient(circle at 50% 15%, rgba(18, 65, 112, 0.35) 0%, transparent 60%),
-              linear-gradient(180deg, #0d1117 0%, #151b23 100%) !important;
+  background: transparent !important;
+  background-image: none !important;
 }
 
 [data-theme="dark"] .teachers-trust-band,
@@ -1187,36 +2076,38 @@ button, input, select, textarea {
 [data-theme="dark"] .job-card,
 [data-theme="dark"] .perk-card,
 [data-theme="dark"] .open-pitch-card {
-  background: #161b22 !important;
-  border: 1px solid #30363d !important;
+  background: var(--bg-card) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-light) !important;
   box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6) !important;
 }
 
 [data-theme="dark"] .job-card:hover {
-  background: #1c2128 !important;
-  border-color: rgb(170, 255, 199) !important;
+  background: rgba(15, 60, 45, 0.85) !important;
+  border-color: var(--color-mint) !important;
 }
 
 [data-theme="dark"] input,
 [data-theme="dark"] select,
 [data-theme="dark"] textarea {
-  background: #0d1117 !important;
-  border-color: #30363d !important;
+  background: rgba(7, 31, 22, 0.8) !important;
+  border-color: var(--border-medium) !important;
   color: #f0f6fc !important;
 }
 
 [data-theme="dark"] input:focus,
 [data-theme="dark"] select:focus,
 [data-theme="dark"] textarea:focus {
-  border-color: rgb(170, 255, 199) !important;
-  box-shadow: 0 0 0 3px rgba(170, 255, 199, 0.2) !important;
+  border-color: var(--color-mint) !important;
+  box-shadow: 0 0 0 3px rgba(123, 224, 174, 0.2) !important;
 }
 
 /* GSAP Reveal Helper Base Styles */
 .gsap-reveal {
   will-change: transform, opacity;
 }
+
 .gsap-stagger-item {
   will-change: transform, opacity;
 }
-
