@@ -1,0 +1,622 @@
+/* ═══════════════════════════════════════════════════════════════
+   Containers, Bento Grids, Glass Cards & Surface System
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── MAIN ARCHITECTURAL APP CONTAINER ── */
+.app-container {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, 2.5rem);
+  padding-right: clamp(1rem, 4vw, 2.5rem);
+  position: relative;
+}
+
+/* ── GLASS CARD & BENTO SURFACES ── */
+.glass-card,
+.zuse-card,
+.bento-card {
+  position: relative;
+  background: rgba(11, 36, 26, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(190, 220, 200, 0.14);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+/* ── INTERACTIVE HOVER TEXTURE & BOTTOM ACCENT (Zuse Reference) ── */
+.bento-card::before,
+.zuse-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(213, 243, 106, 0.08) 1px, transparent 0);
+  background-size: 6px 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 0;
+}
+
+.bento-card::after,
+.zuse-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-lime, #D5F36A);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bento-card:hover,
+.zuse-card:hover {
+  border-color: rgba(67, 201, 139, 0.35);
+  background: rgba(16, 71, 52, 0.45);
+}
+
+.bento-card:hover::before,
+.zuse-card:hover::before {
+  opacity: 1;
+}
+
+.bento-card:hover::after,
+.zuse-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* Ensure card content stays crisp above hover texture */
+.bento-card > *,
+.zuse-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── PILL BADGES & TAGS ── */
+.badge-pill,
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.badge-pill.emerald {
+  background: rgba(67, 201, 139, 0.12);
+  color: var(--accent-emerald, #43C98B);
+  border: 1px solid rgba(67, 201, 139, 0.28);
+}
+
+.badge-pill.lime {
+  background: rgba(213, 243, 106, 0.12);
+  color: var(--accent-lime, #D5F36A);
+  border: 1px solid rgba(213, 243, 106, 0.30);
+}
+
+.badge-pill.sage {
+  background: rgba(181, 192, 184, 0.1);
+  color: #B5C0B8;
+  border: 1px solid rgba(190, 220, 200, 0.18);
+}
+
+/* ── NUMERIC DIFF COUNTERS (+4, -0.5) ── */
+.diff-plus {
+  color: var(--color-diff-pos, #43C98B);
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+}
+
+.diff-minus {
+  color: var(--color-diff-neg, #8F9D93);
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+}
+
+/* ── MODALS & FLOATING PANELS ── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 17, 13, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-sheet,
+.quick-exam-modal-sheet,
+.modal-content,
+.teacher-modal,
+.job-modal {
+  background: #0B241A;
+  border: 1px solid rgba(190, 220, 200, 0.22);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.9);
+  max-height: 90vh;
+  overflow-y: auto;
+  color: #F1F5F2;
+}
+
+/* ── UNIVERSAL FORM FIELDS ── */
+input,
+select,
+textarea {
+  background: rgba(7, 17, 13, 0.7);
+  border: 1px solid rgba(190, 220, 200, 0.2);
+  border-radius: 6px;
+  color: #F1F5F2;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-emerald, #43C98B);
+  box-shadow: 0 0 0 2px rgba(67, 201, 139, 0.25);
+}
+
+/* ── CONTINUOUS ARCHITECTURAL VERTICAL DOTTED FRAME ── */
+.zuse-main-frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  border-left: 1px dotted rgba(190, 220, 200, 0.2);
+  border-right: 1px dotted rgba(190, 220, 200, 0.2);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1280px) {
+  .zuse-main-frame {
+    max-width: calc(100% - 32px);
+  }
+}
+
+@media (max-width: 640px) {
+  .zuse-main-frame {
+    max-width: calc(100% - 16px);
+    border-left: 1px dotted rgba(190, 220, 200, 0.14);
+    border-right: 1px dotted rgba(190, 220, 200, 0.14);
+  }
+}
+
+/* ── ARCHITECTURAL DOTTED HORIZONTAL SECTION DIVISIONS ── */
+.editorial-readiness-section,
+.editorial-how-section,
+.editorial-features-section,
+.editorial-mock-section,
+.editorial-news-section,
+.editorial-pricing-section,
+.editorial-testimonials-section,
+.editorial-faq-section,
+#readiness,
+#how-it-works,
+#features,
+#mock-tests,
+#news,
+#pricing,
+#testimonials,
+#faqs,
+#for-teachers,
+.site-footer,
+.teacher-pathway-banner-section,
+.company-culture-section,
+.educator-pillars-section,
+.bg-subtle-section,
+#teacher-signup-section,
+#teacher-faqs {
+  position: relative;
+  padding: clamp(3rem, 5.5vw, 4.5rem) 0;
+  background: transparent;
+  border-top: 1px dotted rgba(190, 220, 200, 0.2) !important;
+}
+
+@media (max-width: 640px) {
+  .editorial-readiness-section,
+  .editorial-how-section,
+  .editorial-features-section,
+  .editorial-mock-section,
+  .editorial-news-section,
+  .editorial-pricing-section,
+  .editorial-testimonials-section,
+  .editorial-faq-section,
+  #readiness,
+  #how-it-works,
+  #features,
+  #mock-tests,
+  #news,
+  #pricing,
+  #testimonials,
+  #faqs,
+  #for-teachers,
+  .site-footer,
+  .teacher-pathway-banner-section,
+  .company-culture-section,
+  .educator-pillars-section,
+  .bg-subtle-section,
+  #teacher-signup-section,
+  #teacher-faqs {
+    padding: clamp(2rem, 4vw, 2.75rem) 0;
+    border-top-color: rgba(190, 220, 200, 0.14) !important;
+  }
+}
+
+/* ── MASTER ARCHITECTURAL EDITORIAL GRID FRAMES ── */
+.editorial-readiness-grid,
+.editorial-steps-grid,
+.editorial-features-grid,
+.editorial-mock-grid,
+.editorial-news-grid,
+.editorial-pricing-grid,
+.editorial-testimonials-grid,
+.editorial-faq-grid {
+  position: relative;
+  border: 1px solid rgba(190, 220, 200, 0.16) !important;
+  border-radius: 0px !important;
+  background: rgba(7, 17, 13, 0.45) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-sizing: border-box;
+}
+
+/* ── EDITORIAL SECTION HEADERS & FLOURISHES ── */
+.editorial-section-header {
+  position: relative;
+  margin-bottom: clamp(1.75rem, 2.8vw, 2.5rem);
+}
+
+.editorial-section-header .header-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8F9D93;
+  flex-wrap: wrap;
+}
+
+.editorial-section-header .meta-sep {
+  opacity: 0.35;
+}
+
+.editorial-section-header .title-with-flourish {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.editorial-section-header .section-title,
+.section-title,
+.teacher-heading,
+.cta-band-title,
+.teacher-banner-title {
+  font-family: var(--font-heading) !important;
+  font-size: clamp(1.6rem, 2.5vw, 2.15rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.025em;
+  color: #F1F5F2 !important;
+  margin: 0;
+}
+
+.editorial-section-header .section-subtitle,
+.section-subtitle {
+  font-family: var(--font-sans) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.55 !important;
+  color: #B5C0B8 !important;
+  max-width: 640px;
+  margin-top: 0.65rem;
+  margin-bottom: 0;
+}
+
+.editorial-marker-rule {
+  width: 44px;
+  height: 2px;
+  border-radius: 2px;
+  margin: 0.6rem 0 1rem;
+}
+
+.editorial-marker-lime {
+  background: var(--accent-lime);
+}
+
+.editorial-marker-amber,
+.editorial-marker-emerald {
+  background: var(--accent-emerald);
+}
+
+/* ── TACTILE EDITORIAL GRID & CARD HOVER STATES (Zuse Reference) ── */
+.metric-ribbon-cell,
+.step-grid-col,
+.core-capabilities-left,
+.feature-col-desc,
+.paper-grid-col,
+.pricing-col,
+.news-grid-col,
+.testimonial-col,
+.faq-grid-row {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: background-color 220ms ease, border-color 220ms ease;
+}
+
+/* Layer 1 - Stippled Fractal Noise Texture Overlay */
+.metric-ribbon-cell::before,
+.step-grid-col::before,
+.core-capabilities-left::before,
+.feature-col-desc::before,
+.paper-grid-col::before,
+.pricing-col::before,
+.news-grid-col::before,
+.testimonial-col::before,
+.faq-grid-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: rgba(16, 71, 52, 0.38);
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='stippleNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.15 0 0 0 0 0.45 0 0 0 0 0.28 0 0 0 0.25 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23stippleNoise)'/%3E%3C/svg%3E"),
+    radial-gradient(1px 1px at 18px 14px, rgba(213, 243, 106, 0.35), transparent 1px),
+    radial-gradient(1.5px 1.5px at 52px 42px, rgba(67, 201, 139, 0.4), transparent 1.5px),
+    radial-gradient(1px 1px at 94px 20px, rgba(213, 243, 106, 0.3), transparent 1px),
+    radial-gradient(2px 2px at 138px 72px, rgba(39, 100, 71, 0.5), transparent 2px),
+    radial-gradient(1.2px 1.2px at 182px 32px, rgba(67, 201, 139, 0.35), transparent 1.2px),
+    radial-gradient(1px 1px at 224px 84px, rgba(213, 243, 106, 0.3), transparent 1px),
+    radial-gradient(1.6px 1.6px at 270px 44px, rgba(39, 100, 71, 0.45), transparent 1.6px),
+    radial-gradient(1px 1px at 314px 96px, rgba(67, 201, 139, 0.35), transparent 1px),
+    linear-gradient(145deg, rgba(16, 71, 52, 0.36) 0%, rgba(7, 24, 17, 0.65) 100%);
+  background-size: 200px 200px, 340px 110px, 340px 110px, 340px 110px, 340px 110px, 340px 110px, 340px 110px, 340px 110px, 340px 110px, 100% 100%;
+}
+
+/* Layer 2 - Thin 2px Lime Accent Line on Bottom Edge */
+.metric-ribbon-cell::after,
+.step-grid-col::after,
+.core-capabilities-left::after,
+.feature-col-desc::after,
+.paper-grid-col::after,
+.pricing-col::after,
+.news-grid-col::after,
+.testimonial-col::after,
+.faq-grid-row::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--color-lime, #D5F36A);
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+/* Hover Reveals Texture and Bottom Line */
+.metric-ribbon-cell:hover::before,
+.step-grid-col:hover::before,
+.core-capabilities-left:hover::before,
+.feature-col-desc:hover::before,
+.paper-grid-col:hover::before,
+.pricing-col:hover::before,
+.news-grid-col:hover::before,
+.testimonial-col:hover::before,
+.faq-grid-row:hover::before,
+.step-grid-col.active-col::before,
+.faq-grid-row.row-open::before {
+  opacity: 1;
+}
+
+.metric-ribbon-cell:hover::after,
+.step-grid-col:hover::after,
+.core-capabilities-left:hover::after,
+.feature-col-desc:hover::after,
+.paper-grid-col:hover::after,
+.pricing-col:hover::after,
+.news-grid-col:hover::after,
+.testimonial-col:hover::after,
+.faq-grid-row:hover::after,
+.step-grid-col.active-col::after,
+.faq-grid-row.row-open::after {
+  opacity: 1;
+}
+
+/* Content Layer stays above textures */
+.metric-ribbon-cell > *,
+.step-grid-col > *,
+.core-capabilities-left > *,
+.feature-col-desc > *,
+.paper-grid-col > *,
+.pricing-col > *,
+.news-grid-col > *,
+.testimonial-col > *,
+.faq-grid-row > * {
+  position: relative;
+  z-index: 2;
+}
+
+.metric-ribbon-cell:hover .metric-val {
+  color: var(--accent-lime);
+}
+
+.step-grid-col:hover .col-icon-wrap svg {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+.paper-grid-col:hover .paper-title {
+  color: #F1F5F2;
+}
+
+.paper-grid-col:hover .paper-launch-link {
+  color: var(--accent-lime);
+}
+
+.paper-grid-col:hover .paper-launch-link svg {
+  transform: translateX(3px);
+  transition: transform 0.16s ease;
+}
+
+.news-grid-col:hover .read-more-link {
+  color: var(--accent-lime);
+}
+
+.news-grid-col:hover .read-more-link svg {
+  transform: translate(2px, -2px);
+  transition: transform 0.16s ease;
+}
+
+.faq-grid-row:hover .faq-q-text {
+  color: #F1F5F2 !important;
+}
+
+/* ── INTERACTIVE TABS, BOARDS & BUTTONS ── */
+.board-btn,
+.filter-tab-btn,
+.test-tab-btn {
+  transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+  position: relative;
+}
+
+.board-btn:hover,
+.filter-tab-btn:hover,
+.test-tab-btn:hover {
+  background-color: rgba(16, 71, 52, 0.45) !important;
+  color: #F1F5F2 !important;
+  border-color: rgba(67, 201, 139, 0.55) !important;
+}
+
+.board-btn.active-board,
+.filter-tab-btn.active-tab,
+.test-tab-btn.active-tab {
+  background-color: rgba(16, 71, 52, 0.60) !important;
+  color: var(--accent-lime) !important;
+  border-color: var(--accent-lime) !important;
+}
+
+.board-btn:focus-visible,
+.filter-tab-btn:focus-visible,
+.test-tab-btn:focus-visible {
+  outline: 2px solid var(--accent-lime);
+  outline-offset: 2px;
+}
+
+/* ── REALISTIC EXAM MCQ OPTION ROWS ── */
+.option-row {
+  transition: background-color 0.16s ease, border-color 0.16s ease;
+}
+
+.option-row:hover:not(.option-selected):not(.selected) {
+  background-color: rgba(16, 71, 52, 0.35) !important;
+  border-color: rgba(67, 201, 139, 0.4) !important;
+  color: #F1F5F2;
+}
+
+.option-row.option-selected,
+.option-row.selected {
+  background-color: rgba(16, 71, 52, 0.50) !important;
+  border-color: var(--accent-lime) !important;
+}
+
+/* ── INTERACTIVE KEYWORDS & LINKS ── */
+.interactive-keyword {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 3px;
+  transition: color 0.16s ease, background 0.16s ease, text-decoration-color 0.16s ease;
+  position: relative;
+}
+
+.interactive-keyword:hover {
+  color: var(--accent-lime) !important;
+  background-color: rgba(213, 243, 106, 0.14);
+  background-image: radial-gradient(rgba(213, 243, 106, 0.20) 1px, transparent 0);
+  background-size: 4px 4px;
+}
+
+.hover-arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: color 0.16s ease;
+}
+
+.hover-arrow-link svg {
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-arrow-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ── SECTION SCROLLING TRANSPARENCY ── */
+.hero-section,
+.readiness-section,
+.how-it-works-section,
+.bento-section,
+.mock-suite-section,
+.circulars-section,
+.news-section,
+.pricing-section,
+.testimonials-section,
+.faq-section,
+.teacher-section,
+.teachers-page,
+.careers-page,
+.signin-page-wrapper,
+.student-landing-page {
+  position: relative;
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+}
+
+/* Translucent Cards & Surfaces Over Atmospheric Gradient */
+.readiness-section .simulator-card,
+.how-it-works-section .interactive-step-card,
+.pricing-card,
+.bento-card,
+.mock-exam-card,
+.teacher-testimonial-card,
+.pillar-card {
+  background: var(--bg-card, rgba(11, 36, 26, 0.65));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-light, rgba(190, 220, 200, 0.14));
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(190, 220, 200, 0.08);
+}

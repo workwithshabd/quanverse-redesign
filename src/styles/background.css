@@ -1,0 +1,332 @@
+/* ═══════════════════════════════════════════════════════════════
+   Atmospheric Background, Canvas Layers & Selection
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Custom Selection Highlight */
+::selection {
+  background-color: rgba(67, 201, 139, 0.85);
+  color: #07110D;
+  text-shadow: none;
+}
+
+code::selection,
+pre::selection {
+  background-color: rgba(213, 243, 106, 0.90);
+  color: #07110D;
+  text-shadow: none;
+}
+
+/* Global Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07110D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(67, 201, 139, 0.25);
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(67, 201, 139, 0.5);
+}
+
+/* ── FIXED ATMOSPHERIC BACKGROUND ── */
+.fixed-green-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #07110D;
+}
+
+.fixed-green-bg-gradient {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #07110D 0%,
+    #081711 30%,
+    #0B241A 65%,
+    #07110D 100%
+  );
+}
+
+.fixed-green-bg-radial {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(ellipse 65% 50% at 50% 18%, rgba(16, 71, 52, 0.32) 0%, rgba(11, 36, 26, 0.12) 45%, transparent 75%),
+    radial-gradient(circle at 85% 55%, rgba(16, 71, 52, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 15% 82%, rgba(11, 36, 26, 0.20) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 30% at 50% 95%, rgba(16, 71, 52, 0.12) 0%, transparent 60%);
+}
+
+.fixed-green-bg-mesh {
+  position: absolute;
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  background-image:
+    radial-gradient(ellipse at 50% 25%, rgba(16, 71, 52, 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 75%, rgba(11, 36, 26, 0.12) 0%, transparent 45%);
+  filter: blur(80px);
+  animation: ambientGreenBreathe 22s ease-in-out infinite alternate;
+}
+
+@keyframes ambientGreenBreathe {
+  0% {
+    opacity: 0.75;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0.95;
+    transform: scale(1.03) translateY(-1.2%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fixed-green-bg-mesh {
+    animation: none;
+  }
+}
+
+/* ── DOCUMENT BOTTOM BLUR GRADIENT ── */
+.document-bottom-blur-layer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: clamp(80px, 14vh, 140px);
+  z-index: 50;
+  pointer-events: none;
+}
+
+.bottom-blur-l1 {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+
+.bottom-blur-l2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+
+.bottom-blur-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(7, 17, 13, 0.75) 100%);
+}
+
+/* ── ARTISTIC GRAFFITI CANVAS & CLUSTERS ── */
+.artistic-graffiti-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+.graffiti-defs-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.graffiti-cluster {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.cluster-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.cluster-hero {
+  top: 0%;
+  height: clamp(800px, 16%, 1100px);
+}
+
+.cluster-middle-grid {
+  top: 16%;
+  height: clamp(850px, 19%, 1200px);
+}
+
+.cluster-features-bento {
+  top: 35%;
+  height: clamp(900px, 19%, 1250px);
+}
+
+.cluster-mock-exam {
+  top: 54%;
+  height: clamp(850px, 19%, 1200px);
+}
+
+.cluster-pricing-reviews {
+  top: 73%;
+  height: clamp(800px, 16%, 1100px);
+}
+
+.cluster-faq-footer {
+  top: 89%;
+  height: clamp(750px, 11%, 1000px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   3. PROGRESSIVE BOTTOM-EDGE BLUR OVERLAY (Zuse Inspired)
+   Recreates the atmospheric soft-focus viewport dissolve without
+   any container, card, border, pill, horizontal division, or lines.
+   Continuous mathematical easing mask completely avoids banding.
+   ═══════════════════════════════════════════════════════════════ */
+.bottom-edge-blur {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: clamp(110px, 15vh, 175px);
+  pointer-events: none;
+  z-index: 40;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.bottom-edge-blur .blur-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Layer 1: Smooth base blur (10px) with continuous cubic easing mask */
+.bottom-edge-blur .blur-layer-base {
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.03) 15%,
+    rgba(0, 0, 0, 0.12) 30%,
+    rgba(0, 0, 0, 0.28) 45%,
+    rgba(0, 0, 0, 0.50) 60%,
+    rgba(0, 0, 0, 0.72) 75%,
+    rgba(0, 0, 0, 0.90) 88%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.03) 15%,
+    rgba(0, 0, 0, 0.12) 30%,
+    rgba(0, 0, 0, 0.28) 45%,
+    rgba(0, 0, 0, 0.50) 60%,
+    rgba(0, 0, 0, 0.72) 75%,
+    rgba(0, 0, 0, 0.90) 88%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+/* Layer 2: Deep atmospheric dissolve (26px) easing in the bottom half */
+.bottom-edge-blur .blur-layer-deep {
+  z-index: 2;
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.08) 50%,
+    rgba(0, 0, 0, 0.28) 65%,
+    rgba(0, 0, 0, 0.62) 80%,
+    rgba(0, 0, 1) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.08) 50%,
+    rgba(0, 0, 0, 0.28) 65%,
+    rgba(0, 0, 0, 0.62) 80%,
+    rgba(0, 0, 1) 100%
+  );
+}
+
+/* Seamless atmospheric vignette into #07110D (Near-black green).
+   Uses mathematically smooth quadratic easing with zero hard color-stops */
+.bottom-edge-blur .blur-layer-tint {
+  z-index: 3;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 17, 13, 0) 0%,
+    rgba(7, 17, 13, 0.02) 25%,
+    rgba(7, 17, 13, 0.10) 45%,
+    rgba(7, 17, 13, 0.28) 65%,
+    rgba(7, 17, 13, 0.60) 82%,
+    rgba(7, 17, 13, 0.94) 100%
+  );
+}
+
+@media (max-width: 768px) {
+  .bottom-edge-blur {
+    height: clamp(100px, 14vh, 145px);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .bottom-edge-blur {
+    display: none;
+  }
+}
+
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+  .bottom-edge-blur {
+    display: none;
+  }
+}
+

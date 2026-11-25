@@ -1,0 +1,530 @@
+/* ═══════════════════════════════════════════════════════════════
+   BUTTON SYSTEM & GSAP CURSOR-FOLLOWING FLAIR ARCHITECTURE
+   Inspired by Zuse & GSAP Button Flair
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── BUTTON BASE BOUNDARY & CONTAINMENT ── */
+.btn,
+.zuse-cta-primary,
+.zuse-cta-secondary,
+.nav-cta-btn,
+.zuse-cta-btn,
+.nav-signin-header-btn,
+.evaluate-cta-btn,
+.google-action-btn,
+.board-btn,
+.filter-tab-btn,
+.button,
+[data-flair-btn],
+[data-block="button"] {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
+  user-select: none;
+  white-space: nowrap;
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  --flair-fill: #D4FF4F;
+  --flair-text: #07110D;
+}
+
+/* ── DEFAULT EDITORIAL BUTTON SHAPE & PROPORTIONS (Hero Design Alignment) ── */
+.btn {
+  padding: 0.75rem 1.5rem;
+  min-height: 46px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.btn-primary,
+.btn-emerald,
+.btn-pastel-sage {
+  padding: 0.75rem 1.5rem;
+  min-height: 46px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  min-height: 46px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.btn-lime {
+  padding: 0.75rem 1.5rem;
+  min-height: 46px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.btn-editorial-amber,
+.btn-editorial-emerald,
+.btn-editorial-lime {
+  padding: 0.75rem 1.5rem;
+  min-height: 46px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.zuse-cta-primary,
+.zuse-cta-secondary {
+  padding: 0.875rem 1.5rem;
+  min-height: 48px;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+/* Navbar button preserves compact 28px height while inheriting full zuse-cta-primary architecture */
+.nav-cta-btn,
+.zuse-cta-btn {
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  padding: 0 0.75rem !important;
+  font-size: 0.72rem !important;
+  line-height: normal !important;
+  gap: 0.38rem !important;
+}
+
+/* Interactive board and filter tabs preserve compact height */
+.board-btn,
+.filter-tab-btn,
+.test-tab-btn {
+  min-height: unset !important;
+  padding: 0.35rem 0.85rem !important;
+  font-size: 0.75rem !important;
+}
+
+/* ── FOREGROUND CONTENT STACKING ABOVE FLAIR (z-index: 2) ── */
+.btn > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.zuse-cta-primary > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.zuse-cta-secondary > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.nav-cta-btn > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.zuse-cta-btn > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.nav-signin-header-btn > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.evaluate-cta-btn > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.google-action-btn > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.board-btn > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.filter-tab-btn > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.button > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.button__label,
+[data-flair-btn] > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+[data-block="button"] > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key) {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Icons & SVG paths synchronized with exact text transition */
+.btn svg,
+.zuse-cta-primary svg,
+.zuse-cta-secondary svg,
+.nav-cta-btn svg,
+.zuse-cta-btn svg,
+.nav-signin-header-btn svg,
+.evaluate-cta-btn svg,
+.google-action-btn svg,
+.board-btn svg,
+.filter-tab-btn svg,
+.button svg,
+[data-flair-btn] svg,
+[data-block="button"] svg {
+  color: inherit;
+  fill: none;
+  stroke: currentColor;
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  flex-shrink: 0;
+  transition: color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+              stroke 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.btn svg path,
+.zuse-cta-primary svg path,
+.zuse-cta-secondary svg path,
+.nav-cta-btn svg path,
+.zuse-cta-btn svg path,
+.nav-signin-header-btn svg path,
+.evaluate-cta-btn svg path,
+.google-action-btn svg path,
+.board-btn svg path,
+.filter-tab-btn svg path,
+.button svg path,
+[data-flair-btn] svg path,
+[data-block="button"] svg path {
+  stroke: currentColor;
+  transition: stroke 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+              color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* ── GSAP BUTTON FLAIR EXPANDING ELEMENT ── */
+.button__flair {
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: scale(0);
+  transform-origin: 0 0;
+  will-change: transform;
+  z-index: 1;
+}
+
+.button__flair::before {
+  aspect-ratio: 1/1;
+  background-color: var(--flair-fill, #000000);
+  border-radius: 50%;
+  content: "";
+  display: block;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 280%;
+}
+
+/* ── 1. PRIMARY WHITE BUTTON (Solid White -> Flair Inverts to Deep Black) ── */
+.btn-primary,
+.btn-emerald,
+.btn-pastel-sage,
+.zuse-cta-primary {
+  padding: 0.75rem 1.5rem;
+  min-height: 46px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  border-radius: 6px;
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  color: #07110D !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  background-clip: padding-box;
+  --flair-fill: #07110D;
+  --flair-text: #FFFFFF;
+  transition:
+    background-color 0.25s ease,
+    color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+    box-shadow 0.15s ease;
+}
+
+
+.btn-primary svg,
+.btn-emerald svg,
+.btn-pastel-sage svg,
+.zuse-cta-primary svg,
+.nav-cta-btn svg,
+.zuse-cta-btn svg {
+  color: #07110D !important;
+}
+
+/* Ensure background transitions cleanly to flair color with zero white corner bleed */
+.btn-primary:hover,
+.btn-emerald:hover,
+.btn-pastel-sage:hover,
+.zuse-cta-primary:hover,
+.nav-cta-btn:hover,
+.zuse-cta-btn:hover {
+  background: #07110D !important;
+  background-color: #07110D !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+.btn-primary:hover > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.btn-emerald:hover > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.btn-pastel-sage:hover > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.zuse-cta-primary:hover > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.nav-cta-btn:hover > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key),
+.zuse-cta-btn:hover > *:not(.button__flair):not(.zuse-kbd):not(.kbd-key) {
+  color: #FFFFFF !important;
+}
+
+.btn-primary:hover svg,
+.btn-emerald:hover svg,
+.btn-pastel-sage:hover svg,
+.zuse-cta-primary:hover svg,
+.nav-cta-btn:hover svg,
+.zuse-cta-btn:hover svg {
+  color: #FFFFFF !important;
+  stroke: currentColor !important;
+}
+
+.btn-primary:active,
+.btn-emerald:active,
+.btn-pastel-sage:active,
+.zuse-cta-primary:active,
+.nav-cta-btn:active,
+.zuse-cta-btn:active {
+  background: #E2ECE5 !important;
+  background-color: #E2ECE5 !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* ── 2. ACID LIME BUTTON ── */
+.btn-lime {
+  background-color: var(--accent-lime) !important;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.10) 1px, transparent 0) !important;
+  background-size: 4px 4px !important;
+  color: #07110D !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  --flair-fill: #C4F038;
+  --flair-text: #07110D;
+}
+
+.btn-lime:hover {
+  background-color: var(--accent-lime-hover) !important;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.18) 1.2px, transparent 0) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.btn-lime:hover > *:not(.button__flair) {
+  color: #07110D !important;
+}
+
+.btn-lime:hover svg {
+  color: #07110D !important;
+  stroke: currentColor !important;
+}
+
+.btn-lime:active {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* ── 3. SECONDARY TRANSLUCENT BUTTON ── */
+.btn-secondary,
+.zuse-cta-secondary {
+  background-color: rgba(11, 36, 26, 0.85) !important;
+  background-image: radial-gradient(rgba(190, 220, 200, 0.05) 1px, transparent 0) !important;
+  background-size: 5px 5px !important;
+  color: var(--text-main) !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  --flair-fill: #10B981;
+  --flair-text: #07110D;
+}
+
+.btn-secondary:hover,
+.zuse-cta-secondary:hover {
+  background-color: rgba(11, 36, 26, 0.85) !important;
+  color: #07110D !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+.btn-secondary:hover > *:not(.button__flair),
+.zuse-cta-secondary:hover > *:not(.button__flair) {
+  color: #07110D !important;
+}
+
+.btn-secondary:hover svg,
+.zuse-cta-secondary:hover svg {
+  color: #07110D !important;
+  stroke: currentColor !important;
+}
+
+/* ── 4. GHOST & EDITORIAL BUTTONS ── */
+.btn-ghost,
+.nav-signin-header-btn {
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--text-muted);
+  border: none !important;
+  outline: none !important;
+  --flair-fill: rgba(167, 243, 196, 0.12);
+  --flair-text: var(--text-main);
+}
+
+.btn-ghost:hover {
+  background: rgba(167, 243, 196, 0.08) !important;
+  color: var(--text-main);
+}
+
+.btn-editorial-amber,
+.btn-editorial-emerald {
+  background: rgba(67, 201, 139, 0.12) !important;
+  color: var(--accent-emerald) !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  --flair-fill: rgba(67, 201, 139, 0.25);
+  --flair-text: var(--accent-emerald);
+}
+
+.btn-editorial-amber:hover,
+.btn-editorial-emerald:hover {
+  background: rgba(67, 201, 139, 0.25) !important;
+  background-image: radial-gradient(rgba(67, 201, 139, 0.18) 1px, transparent 0) !important;
+  background-size: 4px 4px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+.btn-editorial-lime {
+  background: rgba(213, 243, 106, 0.12) !important;
+  color: var(--accent-lime) !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  --flair-fill: rgba(213, 243, 106, 0.25);
+  --flair-text: var(--accent-lime);
+}
+
+.btn-editorial-lime:hover {
+  background: rgba(213, 243, 106, 0.25) !important;
+  background-image: radial-gradient(rgba(213, 243, 106, 0.18) 1px, transparent 0) !important;
+  background-size: 4px 4px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+.board-btn,
+.filter-tab-btn {
+  --flair-fill: rgba(212, 255, 79, 0.16);
+  --flair-text: #D4FF4F;
+}
+
+.google-action-btn {
+  --flair-fill: #F0FDF4;
+  --flair-text: #07110D;
+}
+
+/* ── KEYBOARD SHORTCUT BADGE (↵ / ⌘K) ── */
+.kbd-key,
+.zuse-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.12rem 0.35rem;
+  border-radius: 4px;
+  color: #07110D !important;
+  background-color: #E2ECE5 !important;
+  border: 1px solid #CAD8CF !important;
+  pointer-events: none !important;
+  user-select: none;
+  flex-shrink: 0;
+  align-self: center;
+  position: relative !important;
+  z-index: 2 !important;
+  transition:
+    color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+    border-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+    background-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+}
+
+/* Stable text, border & background transitions on hover (solid opaque palette prevents any composite shimmer) */
+.btn-primary:hover .kbd-key,
+.btn-primary:hover .zuse-kbd,
+.zuse-cta-primary:hover .kbd-key,
+.zuse-cta-primary:hover .zuse-kbd,
+.nav-cta-btn:hover .kbd-key,
+.nav-cta-btn:hover .zuse-kbd,
+.zuse-cta-btn:hover .kbd-key,
+.zuse-cta-btn:hover .zuse-kbd {
+  color: #FFFFFF !important;
+  background-color: #13241B !important;
+  border-color: #274433 !important;
+  transition:
+    color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+    border-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+    background-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+}
+
+/* Acid lime button badge preserves dark-on-lime tone */
+.btn-lime .kbd-key,
+.btn-lime .zuse-kbd,
+.evaluate-cta-btn .kbd-key,
+.evaluate-cta-btn .zuse-kbd {
+  background-color: rgba(0, 0, 0, 0.14) !important;
+  border-color: rgba(0, 0, 0, 0.22) !important;
+  color: #07110D !important;
+}
+
+/* Zero outline, zero stroke, zero border fringe on hover across all buttons */
+.btn,
+.btn:hover,
+.zuse-cta-primary,
+.zuse-cta-primary:hover,
+.zuse-cta-secondary,
+.zuse-cta-secondary:hover,
+.nav-cta-btn,
+.nav-cta-btn:hover,
+.zuse-cta-btn,
+.zuse-cta-btn:hover,
+.nav-signin-header-btn,
+.nav-signin-header-btn:hover,
+.evaluate-cta-btn,
+.evaluate-cta-btn:hover,
+.google-action-btn,
+.google-action-btn:hover,
+.board-btn,
+.board-btn:hover,
+.filter-tab-btn,
+.filter-tab-btn:hover,
+.button,
+.button:hover,
+[data-flair-btn],
+[data-flair-btn]:hover,
+[data-block="button"],
+[data-block="button"]:hover {
+  border: none !important;
+  border-color: transparent !important;
+}
+
+/* Focus Visible */
+.btn:focus-visible,
+.zuse-cta-primary:focus-visible,
+.nav-cta-btn:focus-visible,
+.zuse-cta-btn:focus-visible {
+  outline: 2px solid var(--accent-lime) !important;
+  outline-offset: 2px !important;
+}
+
+.zuse-cta-secondary:focus-visible {
+  outline: 2px solid var(--accent-emerald) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .button__flair {
+    display: none !important;
+  }
+}

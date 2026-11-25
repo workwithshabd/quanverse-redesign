@@ -1,0 +1,281 @@
+/* ═══════════════════════════════════════════════════════════════
+   Quanverse Design System — Theme Tokens & Variables
+   Dark Mode Only • Dual-Accent Emerald & Acid Lime
+   ═══════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* Typography Families */
+  --font-heading: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Schibsted Grotesk', 'Geist', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Geist', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Newsreader', 'Instrument Serif', Georgia, serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+
+  /* Palette */
+  --color-charcoal-root: #07110D;
+  --color-surface-dark: #0B241A;
+  --color-surface-elevated: #104734;
+
+  --color-emerald-accent: #43C98B;
+  --color-emerald-hover: #38b77c;
+  --color-lime-accent: #D5F36A;
+  --color-lime-hover: #c8e858;
+
+  --color-off-white: #F1F5F2;
+  --color-sage-muted: #B5C0B8;
+  --color-text-light: #8F9D93;
+  --color-mint: #A7F3C4;
+}
+
+:root {
+  /* Fonts: Syne display heading + Schibsted Grotesk + Geist UI + Newsreader editorial serif + Geist Mono */
+  --font-heading: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Schibsted Grotesk', 'Geist', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Geist', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Newsreader', 'Instrument Serif', Georgia, serif;
+  --font-serif-display: 'Instrument Serif', Georgia, serif;
+  --font-sans-editorial: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+
+  /* Dual-Accent Color System */
+  --accent-emerald: #43C98B;
+  --accent-emerald-hover: #38b77c;
+  --accent-lime: #D5F36A;
+  --accent-lime-hover: #c8e858;
+  --accent-amber: #43C98B;
+  --accent-amber-hover: #38b77c;
+  --accent-coral: #D5F36A;
+  --accent-lavender: #43C98B;
+
+  --bg-primary: #07110D;
+  --bg-secondary: #0B241A;
+  --color-emerald-glow: #104734;
+  --color-mint: #A7F3C4;
+  --color-lime: #D5F36A;
+  --color-lime-hover: #c8e858;
+  --color-lime-glow: rgba(213, 243, 106, 0.22);
+  --color-diff-pos: #43C98B;
+  --color-diff-neg: #8F9D93;
+
+  /* Signature Chromatic Tokens */
+  --c-mint: #A7F3C4;
+  --c-jade: #43C98B;
+  --c-teal: #215b63;
+  --c-navy: #124170;
+
+  /* Transparent Tints */
+  --tint-emerald-subtle: rgba(67, 201, 139, 0.12);
+  --tint-emerald-border: rgba(67, 201, 139, 0.28);
+  --tint-lime-subtle: rgba(213, 243, 106, 0.12);
+  --tint-lime-border: rgba(213, 243, 106, 0.30);
+  --tint-neutral-subtle: rgba(190, 220, 200, 0.08);
+  --tint-neutral-border: rgba(190, 220, 200, 0.20);
+  --tint-amber-subtle: rgba(67, 201, 139, 0.10);
+  --tint-amber-border: rgba(67, 201, 139, 0.25);
+  --tint-coral-subtle: rgba(213, 243, 106, 0.10);
+  --tint-coral-border: rgba(213, 243, 106, 0.25);
+  --tint-lavender-subtle: rgba(67, 201, 139, 0.10);
+  --tint-lavender-border: rgba(67, 201, 139, 0.25);
+
+  /* Brand Accents */
+  --brand-emerald: #43C98B;
+  --brand-emerald-dark: #0B241A;
+  --brand-emerald-light: #D5F36A;
+  --accent-emerald-glow: rgba(67, 201, 139, 0.22);
+
+  /* Deep Emerald & Charcoal Canvas Hierarchy */
+  --bg-page: transparent;
+  --bg-surface: rgba(11, 36, 26, 0.55);
+  --bg-card: rgba(11, 36, 26, 0.65);
+  --bg-card-solid: #0B241A;
+  --bg-card-elevated: rgba(16, 71, 52, 0.40);
+  --bg-subtle: rgba(11, 36, 26, 0.35);
+  --bg-hover: rgba(167, 243, 196, 0.08);
+
+  /* High Contrast Typography */
+  --text-main: #F1F5F2;
+  --text-heading: #F1F5F2;
+  --text-muted: #B5C0B8;
+  --text-light: #8F9D93;
+  --text-inverse: #07110D;
+
+  /* Architectural Glass Borders */
+  --border-frame: rgba(190, 220, 200, 0.2);
+  --border-light: rgba(190, 220, 200, 0.12);
+  --border-medium: rgba(190, 220, 200, 0.22);
+  --border-focus: #A7F3C4;
+
+  /* Badges & Accent Tints */
+  --pastel-sage: rgba(167, 243, 196, 0.12);
+  --pastel-sage-border: rgba(190, 220, 200, 0.25);
+  --pastel-sage-text: #A7F3C4;
+
+  --pastel-lavender: rgba(16, 71, 52, 0.35);
+  --pastel-lavender-border: rgba(190, 220, 200, 0.22);
+  --pastel-lavender-text: #B5C0B8;
+
+  --pastel-peach: rgba(253, 114, 36, 0.12);
+  --pastel-peach-border: rgba(253, 114, 36, 0.3);
+  --pastel-peach-text: #fdba74;
+
+  --pastel-butter: rgba(167, 243, 196, 0.1);
+  --pastel-butter-border: rgba(167, 243, 196, 0.25);
+  --pastel-butter-text: #A7F3C4;
+
+  --pastel-sky: rgba(56, 189, 248, 0.12);
+  --pastel-sky-border: rgba(56, 189, 248, 0.3);
+  --pastel-sky-text: #38bdf8;
+
+  --pastel-rose: rgba(225, 29, 72, 0.14);
+  --pastel-rose-border: rgba(225, 29, 72, 0.3);
+  --pastel-rose-text: #fb7185;
+
+  /* Elevation Shadows */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 8px 24px -4px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(190, 220, 200, 0.08);
+  --shadow-elevated: 0 24px 50px -10px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(190, 220, 200, 0.14);
+  --shadow-glow-emerald: 0 0 28px rgba(16, 71, 52, 0.25);
+  --shadow-glow-lime: 0 0 28px rgba(167, 243, 196, 0.2);
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-full: 6px;
+
+  /* Transitions */
+  --transition-fast: 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── BASE DOCUMENT & ROOT RESETS ── */
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #07110D;
+  color: var(--text-main, #F1F5F2);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── GLOBAL HEADINGS & TYPOGRAPHY SYSTEM (Zuse Aesthetic) ── */
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.hero-heading,
+.detail-card-heading,
+.bento-title,
+.mock-title,
+.news-title,
+.plan-name,
+.faq-q-text,
+.cta-band-title,
+.teachers-hero-heading,
+.pillar-title,
+.calc-title,
+.job-card-title,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .hero-heading,
+[data-theme="dark"] .detail-card-heading,
+[data-theme="dark"] .bento-title,
+[data-theme="dark"] .mock-title,
+[data-theme="dark"] .news-title,
+[data-theme="dark"] .plan-name,
+[data-theme="dark"] .faq-q-text,
+[data-theme="dark"] .cta-band-title,
+[data-theme="dark"] .teachers-hero-heading,
+[data-theme="dark"] .pillar-title,
+[data-theme="dark"] .calc-title,
+[data-theme="dark"] .job-card-title {
+  font-family: var(--font-heading);
+  color: #F1F5F2 !important;
+  letter-spacing: -0.02em;
+}
+
+p,
+.section-subtitle,
+.section-sub,
+.hero-subtext,
+.detail-card-desc,
+.bento-desc,
+.news-summary,
+.plan-desc,
+.faq-answer-text,
+.review-quote,
+.cta-band-sub,
+.teachers-hero-sub,
+.pillar-desc,
+.job-card-desc,
+[data-theme="dark"] p,
+[data-theme="dark"] .section-subtitle,
+[data-theme="dark"] .section-sub,
+[data-theme="dark"] .hero-subtext,
+[data-theme="dark"] .detail-card-desc,
+[data-theme="dark"] .bento-desc,
+[data-theme="dark"] .news-summary,
+[data-theme="dark"] .plan-desc,
+[data-theme="dark"] .faq-answer-text,
+[data-theme="dark"] .review-quote,
+[data-theme="dark"] .cta-band-sub,
+[data-theme="dark"] .teachers-hero-sub,
+[data-theme="dark"] .pillar-desc,
+[data-theme="dark"] .job-card-desc {
+  font-family: var(--font-sans);
+  color: #B5C0B8 !important;
+}
+
+/* ── EDITORIAL ITALIC & SERIF ACCENTS ── */
+.font-editorial-italic {
+  font-family: var(--font-serif) !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.015em !important;
+}
+
+/* ── DUAL-ACCENT COLOR TYPOGRAPHY ── */
+.text-accent-emerald,
+.text-emerald,
+.text-accent-lavender,
+.text-lavender {
+  color: var(--accent-emerald) !important;
+}
+
+.text-accent-lime,
+.text-lime,
+.text-accent-amber,
+.text-amber,
+.text-accent-coral,
+.text-coral {
+  color: var(--accent-lime) !important;
+}
+
+/* ── GLOBAL UTILITY CLASSES ── */
+.text-main { color: #F1F5F2 !important; }
+.text-heading { color: #F1F5F2 !important; }
+.text-muted { color: #B5C0B8 !important; }
+.text-light, .text-secondary { color: #8F9D93 !important; }
+.text-mint { color: #A7F3C4 !important; }
+
+/* Restrained Soft Mint Highlight Text */
+.highlight-text,
+[data-theme="dark"] .highlight-text {
+  color: #A7F3C4 !important;
+  -webkit-text-fill-color: #A7F3C4 !important;
+  background: none !important;
+  text-shadow: 0 0 20px rgba(167, 243, 196, 0.25);
+}
